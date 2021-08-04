@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\TourneysRepository;
+use App\Repository\TourneyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=TourneysRepository::class)
+ * @ORM\Entity(repositoryClass=TourneyRepository::class)
  * @ORM\HasLifecycleCallbacks
  */
-class Tourneys
+class Tourney
 {
     /**
      * @ORM\Id
