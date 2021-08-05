@@ -1,0 +1,38 @@
+.tag{
+  font-size: .6em;
+  margin: auto .2em .2em .2em;
+  padding: .2em .5em;
+  background-color: $gray;
+  color: $dark;
+  border-radius: $light-border;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+
+}
+
+.tag-1{
+  background-color: #BC497C;
+  color: $secondary;
+}
+
+.tag-2{
+  background-color: #7E64BD;
+  color: $secondary;
+
+}
+
+.tag-3{
+  background-color: #BA951A;
+  color: $secondary;
+}
+
+.tag-4{
+  background-color: #6C8D02;
+  color: $secondary;
+}
+
+.tag-5{
+  background-color: $dark;
+  color: $secondary;
+}

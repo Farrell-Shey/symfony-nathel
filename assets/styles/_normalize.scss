@@ -1,0 +1,61 @@
+body {
+  font-size: 100%;
+  font-family: "Roboto Thin", sans-serif;
+  background-color: $dark;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+
+  ul{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+
+  }
+
+  a{
+
+    text-decoration: none;
+
+  }
+}
+
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: none;
+}
+
+/*
+::-webkit-scrollbar — la barre entière.
+::-webkit-scrollbar-button — les boutons de la barre de défilement (les flèches vers le bas ou le haut)
+::-webkit-scrollbar-thumb — l'emplacement qui permet de déplacer la barre de défilement.
+::-webkit-scrollbar-track — la piste (la zone de progression) de la barre de défilement
+::-webkit-scrollbar-track-piece — la partie de la piste qui n'est pas couverte par le bouton de la barre de défilement.
+::-webkit-scrollbar-corner — le coin inférieur de la barre où les barres horizontales et verticales se rencontrent.
+::-webkit-resizer — le bouton qui apparaît dans le coin inférieur de certains éléments et qui permet de les redimensionner.
+*/
+
+body::-webkit-scrollbar {
+  width: 16px; /* width of the entire scrollbar */
+
+}
+
+body::-webkit-scrollbar-track {
+  background: $dark;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $light;    /* color of the scroll thumb */
+  border-radius: 100px;       /* roundness of the scroll thumb */
+  border: 4px solid transparent;  /* creates padding around scroll thumb */
+  background-clip: content-box;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba($light, .65);
+}
