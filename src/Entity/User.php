@@ -154,6 +154,11 @@ class User
      */
     private $invitations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MappoolFollowed::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $mappoolFolloweds;
+
     public function __construct()
     {
         $this->tourneyStaff = new ArrayCollection();
@@ -162,6 +167,7 @@ class User
         $this->scores = new ArrayCollection();
         $this->invitations = new ArrayCollection();
         $this->mappoolMaps = new ArrayCollection();
+        $this->mappoolFolloweds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -595,6 +601,36 @@ class User
                 $mappoolMap->setUser(null);
             }
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection|MappoolFollowed[]
+     */
+    public function getMappoolFolloweds(): Collection
+    {
+        return $this->mappoolFolloweds;
+    }
+
+    public function addMappoolFollowed(MappoolFollowed $mappoolFollowed): self
+    {
+        if (!$this->mappoolFolloweds->contains($mappoolFollowed)) {
+            $this->mappoolFolloweds[] = $mappoolFollowed;
+            $mappoolFollowed->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMappoolFollowed(MappoolFollowed $mappoolFollowed): self
+    {
+        if ($this->mappoolFolloweds->removeElement($mappoolFollowed)) {
+            // set the owning side to null (unless already changed)
+            if ($mappoolFollowed->getUser() === $this) {
+                $mappoolFollowed->setUser(null);
+            }
+        }
+
         return $this;
     }
 }
