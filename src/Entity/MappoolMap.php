@@ -52,10 +52,16 @@ class MappoolMap
      */
     private $bans;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Score::class, mappedBy="mappoolMap", orphanRemoval=true)
+     */
+    private $scores;
+
     public function __construct()
     {
         $this->rounds = new ArrayCollection();
         $this->bans = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -165,6 +171,36 @@ class MappoolMap
             // set the owning side to null (unless already changed)
             if ($ban->getMappoolMap() === $this) {
                 $ban->setMappoolMap(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Score[]
+     */
+    public function getScores(): Collection
+    {
+        return $this->scores;
+    }
+
+    public function addScore(Score $score): self
+    {
+        if (!$this->scores->contains($score)) {
+            $this->scores[] = $score;
+            $score->setMappoolMap($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Score $score): self
+    {
+        if ($this->scores->removeElement($score)) {
+            // set the owning side to null (unless already changed)
+            if ($score->getMappoolMap() === $this) {
+                $score->setMappoolMap(null);
             }
         }
 

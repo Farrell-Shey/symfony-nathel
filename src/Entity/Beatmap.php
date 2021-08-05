@@ -69,6 +69,12 @@ class Beatmap
      */
     private $mappoolMaps;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Beatmapset::class, inversedBy="beatmaps")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $beatmapset;
+
     public function __construct()
     {
         $this->mappoolMaps = new ArrayCollection();
@@ -213,6 +219,18 @@ class Beatmap
                 $mappoolMap->setBeatmap(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBeatmapset(): ?Beatmapset
+    {
+        return $this->beatmapset;
+    }
+
+    public function setBeatmapset(?Beatmapset $beatmapset): self
+    {
+        $this->beatmapset = $beatmapset;
 
         return $this;
     }

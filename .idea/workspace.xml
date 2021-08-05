@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210805074636.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Mappool.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Mappool.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/PoolSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PoolSet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/MappoolMap.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MappoolMap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Score.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Score.php" afterDir="false" />
     </list>
     <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -196,7 +194,7 @@
       <workItem from="1628146202536" duration="62000" />
       <workItem from="1628146265820" duration="143000" />
       <workItem from="1628146429801" duration="137000" />
-      <workItem from="1628146567798" duration="5972000" />
+      <workItem from="1628146567798" duration="6958000" />
     </task>
     <servers />
   </component>

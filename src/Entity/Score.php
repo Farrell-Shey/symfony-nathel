@@ -68,6 +68,12 @@ class Score
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=MappoolMap::class, inversedBy="scores")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $mappoolMap;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -189,6 +195,18 @@ class Score
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getMappoolMap(): ?MappoolMap
+    {
+        return $this->mappoolMap;
+    }
+
+    public function setMappoolMap(?MappoolMap $mappoolMap): self
+    {
+        $this->mappoolMap = $mappoolMap;
 
         return $this;
     }

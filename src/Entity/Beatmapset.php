@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BeatmapsetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Beatmapset
      * @ORM\Column(type="string", length=255)
      */
     private $artist;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Beatmap::class, mappedBy="beatmapset", orphanRemoval=true)
+     */
+    private $beatmaps;
+
+    public function __construct()
+    {
+        $this->beatmaps = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,36 @@ class Beatmapset
     public function setArtist(string $artist): self
     {
         $this->artist = $artist;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Beatmap[]
+     */
+    public function getBeatmaps(): Collection
+    {
+        return $this->beatmaps;
+    }
+
+    public function addBeatmap(Beatmap $beatmap): self
+    {
+        if (!$this->beatmaps->contains($beatmap)) {
+            $this->beatmaps[] = $beatmap;
+            $beatmap->setBeatmapset($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBeatmap(Beatmap $beatmap): self
+    {
+        if ($this->beatmaps->removeElement($beatmap)) {
+            // set the owning side to null (unless already changed)
+            if ($beatmap->getBeatmapset() === $this) {
+                $beatmap->setBeatmapset(null);
+            }
+        }
 
         return $this;
     }
