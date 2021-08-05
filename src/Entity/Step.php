@@ -49,9 +49,15 @@ class Step
      */
     private $confrontations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Lobbie::class, mappedBy="step")
+     */
+    private $lobbies;
+
     public function __construct()
     {
         $this->confrontations = new ArrayCollection();
+        $this->lobbies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,6 +149,36 @@ class Step
             // set the owning side to null (unless already changed)
             if ($confrontation->getStep() === $this) {
                 $confrontation->setStep(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Lobbie[]
+     */
+    public function getLobbies(): Collection
+    {
+        return $this->lobbies;
+    }
+
+    public function addLobby(Lobbie $lobby): self
+    {
+        if (!$this->lobbies->contains($lobby)) {
+            $this->lobbies[] = $lobby;
+            $lobby->setStep($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLobby(Lobbie $lobby): self
+    {
+        if ($this->lobbies->removeElement($lobby)) {
+            // set the owning side to null (unless already changed)
+            if ($lobby->getStep() === $this) {
+                $lobby->setStep(null);
             }
         }
 

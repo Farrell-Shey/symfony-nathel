@@ -175,12 +175,18 @@ class Tourney
      */
     private $player;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Lobbie::class, mappedBy="tourney")
+     */
+    private $lobbies;
+
     public function __construct()
     {
         $this->confrontations = new ArrayCollection();
         $this->tourneyStaff = new ArrayCollection();
         $this->pools = new ArrayCollection();
         $this->player = new ArrayCollection();
+        $this->lobbies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -645,6 +651,36 @@ class Tourney
             // set the owning side to null (unless already changed)
             if ($player->getTourney() === $this) {
                 $player->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Lobbie[]
+     */
+    public function getLobbies(): Collection
+    {
+        return $this->lobbies;
+    }
+
+    public function addLobby(Lobbie $lobby): self
+    {
+        if (!$this->lobbies->contains($lobby)) {
+            $this->lobbies[] = $lobby;
+            $lobby->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLobby(Lobbie $lobby): self
+    {
+        if ($this->lobbies->removeElement($lobby)) {
+            // set the owning side to null (unless already changed)
+            if ($lobby->getTourney() === $this) {
+                $lobby->setTourney(null);
             }
         }
 

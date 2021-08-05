@@ -36,9 +36,15 @@ class Group
      */
     private $confrontation;
 
+    /**
+     * @ORM\OneToMany(targetEntity=GroupPlayer::class, mappedBy="pool")
+     */
+    private $groupPlayers;
+
     public function __construct()
     {
         $this->confrontation = new ArrayCollection();
+        $this->groupPlayers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,6 +96,36 @@ class Group
     public function removeConfrontation(Confrontation $confrontation): self
     {
         $this->confrontation->removeElement($confrontation);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GroupPlayer[]
+     */
+    public function getGroupPlayers(): Collection
+    {
+        return $this->groupPlayers;
+    }
+
+    public function addGroupPlayer(GroupPlayer $groupPlayer): self
+    {
+        if (!$this->groupPlayers->contains($groupPlayer)) {
+            $this->groupPlayers[] = $groupPlayer;
+            $groupPlayer->setPool($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupPlayer(GroupPlayer $groupPlayer): self
+    {
+        if ($this->groupPlayers->removeElement($groupPlayer)) {
+            // set the owning side to null (unless already changed)
+            if ($groupPlayer->getPool() === $this) {
+                $groupPlayer->setPool(null);
+            }
+        }
 
         return $this;
     }

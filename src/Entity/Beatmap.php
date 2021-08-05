@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BeatmapRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,16 @@ class Beatmap
      * @ORM\Column(type="string", length=255)
      */
     private $url;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MappoolMap::class, mappedBy="beatmap")
+     */
+    private $mappoolMaps;
+
+    public function __construct()
+    {
+        $this->mappoolMaps = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +183,36 @@ class Beatmap
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MappoolMap[]
+     */
+    public function getMappoolMaps(): Collection
+    {
+        return $this->mappoolMaps;
+    }
+
+    public function addMappoolMap(MappoolMap $mappoolMap): self
+    {
+        if (!$this->mappoolMaps->contains($mappoolMap)) {
+            $this->mappoolMaps[] = $mappoolMap;
+            $mappoolMap->setBeatmap($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMappoolMap(MappoolMap $mappoolMap): self
+    {
+        if ($this->mappoolMaps->removeElement($mappoolMap)) {
+            // set the owning side to null (unless already changed)
+            if ($mappoolMap->getBeatmap() === $this) {
+                $mappoolMap->setBeatmap(null);
+            }
+        }
 
         return $this;
     }

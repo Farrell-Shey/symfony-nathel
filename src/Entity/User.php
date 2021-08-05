@@ -134,10 +134,16 @@ class User
      */
     private $player;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MappoolMap::class, mappedBy="user")
+     */
+    private $mappoolMaps;
+
     public function __construct()
     {
         $this->tourneyStaff = new ArrayCollection();
         $this->player = new ArrayCollection();
+        $this->mappoolMaps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -451,6 +457,36 @@ class User
             // set the owning side to null (unless already changed)
             if ($player->getUser() === $this) {
                 $player->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MappoolMap[]
+     */
+    public function getMappoolMaps(): Collection
+    {
+        return $this->mappoolMaps;
+    }
+
+    public function addMappoolMap(MappoolMap $mappoolMap): self
+    {
+        if (!$this->mappoolMaps->contains($mappoolMap)) {
+            $this->mappoolMaps[] = $mappoolMap;
+            $mappoolMap->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMappoolMap(MappoolMap $mappoolMap): self
+    {
+        if ($this->mappoolMaps->removeElement($mappoolMap)) {
+            // set the owning side to null (unless already changed)
+            if ($mappoolMap->getUser() === $this) {
+                $mappoolMap->setUser(null);
             }
         }
 
