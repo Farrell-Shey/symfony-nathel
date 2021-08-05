@@ -10,11 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-<<<<<<< HEAD:migrations/Version20210805085159.php
-final class Version20210805085159 extends AbstractMigration
-=======
-final class Version20210805082001 extends AbstractMigration
->>>>>>> dev:migrations/Version20210805082001.php
+final class Version20210805091332 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -37,17 +33,14 @@ final class Version20210805082001 extends AbstractMigration
         $this->addSql('CREATE TABLE group_player (id INT AUTO_INCREMENT NOT NULL, player_id INT NOT NULL, pool_id INT NOT NULL, ranking INT DEFAULT NULL, INDEX IDX_4B9FA2B599E6F5DF (player_id), INDEX IDX_4B9FA2B57B3406DF (pool_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE invitation (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, poolset_id INT NOT NULL, is_accept TINYINT(1) DEFAULT NULL, created_at DATETIME NOT NULL, deleted_at DATETIME NOT NULL, INDEX IDX_F11D61A2A76ED395 (user_id), INDEX IDX_F11D61A272FD9BA6 (poolset_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE lobbie (id INT AUTO_INCREMENT NOT NULL, tourney_id INT NOT NULL, step_id INT DEFAULT NULL, date DATETIME NOT NULL, is_replay TINYINT(1) NOT NULL, INDEX IDX_860DEBE1ECAE3834 (tourney_id), INDEX IDX_860DEBE173B21E9C (step_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE mappool (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, thumbnail VARCHAR(255) DEFAULT NULL, follow INT NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE mappool (id INT AUTO_INCREMENT NOT NULL, pool_set_id INT NOT NULL, name VARCHAR(255) NOT NULL, thumbnail VARCHAR(255) DEFAULT NULL, follow INT NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_C3A2B8F1C5737286 (pool_set_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE mappool_followed (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, mappool_id INT NOT NULL, is_complete TINYINT(1) DEFAULT NULL, INDEX IDX_A0144DE1A76ED395 (user_id), INDEX IDX_A0144DE1C6833A60 (mappool_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE mappool_map (id INT AUTO_INCREMENT NOT NULL, mappool_id INT NOT NULL, beatmap_id INT NOT NULL, user_id INT NOT NULL, mode VARCHAR(255) NOT NULL, INDEX IDX_B50D204AC6833A60 (mappool_id), INDEX IDX_B50D204AC60DD20A (beatmap_id), INDEX IDX_B50D204AA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE player (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, tourney_id INT NOT NULL, state VARCHAR(255) NOT NULL, INDEX IDX_98197A65A76ED395 (user_id), INDEX IDX_98197A65ECAE3834 (tourney_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE pool_set (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, thumbnail VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE round (id INT AUTO_INCREMENT NOT NULL, player_id INT NOT NULL, mappool_map_id INT NOT NULL, encounter INT NOT NULL, score INT NOT NULL, accuracy INT NOT NULL, misscount INT NOT NULL, is_v1 TINYINT(1) NOT NULL, INDEX IDX_C5EEEA3499E6F5DF (player_id), INDEX IDX_C5EEEA34F079958C (mappool_map_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE score (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, score INT NOT NULL, note VARCHAR(255) NOT NULL, acc NUMERIC(4, 2) NOT NULL, combo INT NOT NULL, perfect INT NOT NULL, good INT NOT NULL, bad INT NOT NULL, miss INT NOT NULL, updated_at DATETIME NOT NULL, INDEX IDX_32993751A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-<<<<<<< HEAD:migrations/Version20210805085159.php
         $this->addSql('CREATE TABLE step (id INT AUTO_INCREMENT NOT NULL, tourney_id INT NOT NULL, mappool_id INT NOT NULL, step VARCHAR(255) NOT NULL, date DATETIME NOT NULL, position INT NOT NULL, best_of INT DEFAULT NULL, bans INT DEFAULT NULL, INDEX IDX_43B9FE3CECAE3834 (tourney_id), INDEX IDX_43B9FE3CC6833A60 (mappool_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-=======
-        $this->addSql('CREATE TABLE step (id INT AUTO_INCREMENT NOT NULL, step VARCHAR(255) NOT NULL, date DATETIME NOT NULL, position INT NOT NULL, best_of INT DEFAULT NULL, bans INT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
->>>>>>> dev:migrations/Version20210805082001.php
         $this->addSql('CREATE TABLE tag (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, type VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tag_pool_set (tag_id INT NOT NULL, pool_set_id INT NOT NULL, INDEX IDX_ADE6CDD7BAD26311 (tag_id), INDEX IDX_ADE6CDD7C5737286 (pool_set_id), PRIMARY KEY(tag_id, pool_set_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE team (id INT AUTO_INCREMENT NOT NULL, team_name VARCHAR(255) NOT NULL, logo VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -79,6 +72,9 @@ final class Version20210805082001 extends AbstractMigration
         $this->addSql('ALTER TABLE invitation ADD CONSTRAINT FK_F11D61A272FD9BA6 FOREIGN KEY (poolset_id) REFERENCES pool_set (id)');
         $this->addSql('ALTER TABLE lobbie ADD CONSTRAINT FK_860DEBE1ECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
         $this->addSql('ALTER TABLE lobbie ADD CONSTRAINT FK_860DEBE173B21E9C FOREIGN KEY (step_id) REFERENCES step (id)');
+        $this->addSql('ALTER TABLE mappool ADD CONSTRAINT FK_C3A2B8F1C5737286 FOREIGN KEY (pool_set_id) REFERENCES pool_set (id)');
+        $this->addSql('ALTER TABLE mappool_followed ADD CONSTRAINT FK_A0144DE1A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE mappool_followed ADD CONSTRAINT FK_A0144DE1C6833A60 FOREIGN KEY (mappool_id) REFERENCES mappool (id)');
         $this->addSql('ALTER TABLE mappool_map ADD CONSTRAINT FK_B50D204AC6833A60 FOREIGN KEY (mappool_id) REFERENCES mappool (id)');
         $this->addSql('ALTER TABLE mappool_map ADD CONSTRAINT FK_B50D204AC60DD20A FOREIGN KEY (beatmap_id) REFERENCES beatmap (id)');
         $this->addSql('ALTER TABLE mappool_map ADD CONSTRAINT FK_B50D204AA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
@@ -87,11 +83,8 @@ final class Version20210805082001 extends AbstractMigration
         $this->addSql('ALTER TABLE round ADD CONSTRAINT FK_C5EEEA3499E6F5DF FOREIGN KEY (player_id) REFERENCES player (id)');
         $this->addSql('ALTER TABLE round ADD CONSTRAINT FK_C5EEEA34F079958C FOREIGN KEY (mappool_map_id) REFERENCES mappool_map (id)');
         $this->addSql('ALTER TABLE score ADD CONSTRAINT FK_32993751A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-<<<<<<< HEAD:migrations/Version20210805085159.php
         $this->addSql('ALTER TABLE step ADD CONSTRAINT FK_43B9FE3CECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
         $this->addSql('ALTER TABLE step ADD CONSTRAINT FK_43B9FE3CC6833A60 FOREIGN KEY (mappool_id) REFERENCES mappool (id)');
-=======
->>>>>>> dev:migrations/Version20210805082001.php
         $this->addSql('ALTER TABLE tag_pool_set ADD CONSTRAINT FK_ADE6CDD7BAD26311 FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE tag_pool_set ADD CONSTRAINT FK_ADE6CDD7C5737286 FOREIGN KEY (pool_set_id) REFERENCES pool_set (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE team_user ADD CONSTRAINT FK_5C72223299E6F5DF FOREIGN KEY (player_id) REFERENCES player (id)');
@@ -112,6 +105,7 @@ final class Version20210805082001 extends AbstractMigration
         $this->addSql('ALTER TABLE group_confrontation DROP FOREIGN KEY FK_B4FB87A518EE86FA');
         $this->addSql('ALTER TABLE group_confrontation DROP FOREIGN KEY FK_B4FB87A5FE54D947');
         $this->addSql('ALTER TABLE group_player DROP FOREIGN KEY FK_4B9FA2B57B3406DF');
+        $this->addSql('ALTER TABLE mappool_followed DROP FOREIGN KEY FK_A0144DE1C6833A60');
         $this->addSql('ALTER TABLE mappool_map DROP FOREIGN KEY FK_B50D204AC6833A60');
         $this->addSql('ALTER TABLE step DROP FOREIGN KEY FK_43B9FE3CC6833A60');
         $this->addSql('ALTER TABLE ban DROP FOREIGN KEY FK_62FED0E5F079958C');
@@ -121,11 +115,9 @@ final class Version20210805082001 extends AbstractMigration
         $this->addSql('ALTER TABLE team_user DROP FOREIGN KEY FK_5C72223299E6F5DF');
         $this->addSql('ALTER TABLE contributor DROP FOREIGN KEY FK_DA6F9793C5737286');
         $this->addSql('ALTER TABLE invitation DROP FOREIGN KEY FK_F11D61A272FD9BA6');
+        $this->addSql('ALTER TABLE mappool DROP FOREIGN KEY FK_C3A2B8F1C5737286');
         $this->addSql('ALTER TABLE tag_pool_set DROP FOREIGN KEY FK_ADE6CDD7C5737286');
-<<<<<<< HEAD:migrations/Version20210805085159.php
         $this->addSql('ALTER TABLE tourney DROP FOREIGN KEY FK_FFF72131C5737286');
-=======
->>>>>>> dev:migrations/Version20210805082001.php
         $this->addSql('ALTER TABLE confrontation DROP FOREIGN KEY FK_EB1249E773B21E9C');
         $this->addSql('ALTER TABLE lobbie DROP FOREIGN KEY FK_860DEBE173B21E9C');
         $this->addSql('ALTER TABLE tag_pool_set DROP FOREIGN KEY FK_ADE6CDD7BAD26311');
@@ -140,14 +132,12 @@ final class Version20210805082001 extends AbstractMigration
         $this->addSql('ALTER TABLE tourney_staff DROP FOREIGN KEY FK_5EF8D741ECAE3834');
         $this->addSql('ALTER TABLE widget DROP FOREIGN KEY FK_85F91ED0ECAE3834');
         $this->addSql('ALTER TABLE confrontation DROP FOREIGN KEY FK_EB1249E721B741A9');
-<<<<<<< HEAD:migrations/Version20210805085159.php
         $this->addSql('ALTER TABLE announce DROP FOREIGN KEY FK_E6D6DD75A76ED395');
         $this->addSql('ALTER TABLE blacklisted DROP FOREIGN KEY FK_A71A7F0BA76ED395');
         $this->addSql('ALTER TABLE comment DROP FOREIGN KEY FK_9474526CA76ED395');
-=======
->>>>>>> dev:migrations/Version20210805082001.php
         $this->addSql('ALTER TABLE contributor DROP FOREIGN KEY FK_DA6F9793A76ED395');
         $this->addSql('ALTER TABLE invitation DROP FOREIGN KEY FK_F11D61A2A76ED395');
+        $this->addSql('ALTER TABLE mappool_followed DROP FOREIGN KEY FK_A0144DE1A76ED395');
         $this->addSql('ALTER TABLE mappool_map DROP FOREIGN KEY FK_B50D204AA76ED395');
         $this->addSql('ALTER TABLE player DROP FOREIGN KEY FK_98197A65A76ED395');
         $this->addSql('ALTER TABLE score DROP FOREIGN KEY FK_32993751A76ED395');
@@ -166,6 +156,7 @@ final class Version20210805082001 extends AbstractMigration
         $this->addSql('DROP TABLE invitation');
         $this->addSql('DROP TABLE lobbie');
         $this->addSql('DROP TABLE mappool');
+        $this->addSql('DROP TABLE mappool_followed');
         $this->addSql('DROP TABLE mappool_map');
         $this->addSql('DROP TABLE player');
         $this->addSql('DROP TABLE pool_set');
