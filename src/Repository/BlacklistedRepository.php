@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Blaclisted;
+use App\Entity\Blacklisted;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Blaclisted|null find($id, $lockMode = null, $lockVersion = null)
- * @method Blaclisted|null findOneBy(array $criteria, array $orderBy = null)
- * @method Blaclisted[]    findAll()
- * @method Blaclisted[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Blacklisted|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Blacklisted|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Blacklisted[]    findAll()
+ * @method Blacklisted[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BlaclistedRepository extends ServiceEntityRepository
+class BlacklistedRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Blaclisted::class);
+        parent::__construct($registry, Blacklisted::class);
     }
 
     // /**
-    //  * @return Blaclisted[] Returns an array of Blaclisted objects
+    //  * @return Blacklisted[] Returns an array of Blacklisted objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class BlaclistedRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Blaclisted
+    public function findOneBySomeField($value): ?Blacklisted
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.exampleField = :val')

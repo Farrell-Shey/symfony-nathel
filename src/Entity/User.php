@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,6 +113,32 @@ class User
      * @ORM\Column(type="integer", nullable=true)
      */
     private $game_mode_ctb;
+
+    /**
+     * @ORM\OneToMany(targetEntity=TourneyStaff::class, mappedBy="user")
+     */
+    private $tourneyStaff;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $twitter;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $twitch;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Players::class, mappedBy="user")
+     */
+    private $players;
+
+    public function __construct()
+    {
+        $this->tourneyStaff = new ArrayCollection();
+        $this->players = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -341,6 +369,90 @@ class User
     public function setGameModeCtb(?int $game_mode_ctb): self
     {
         $this->game_mode_ctb = $game_mode_ctb;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TourneyStaff[]
+     */
+    public function getTourneyStaff(): Collection
+    {
+        return $this->tourneyStaff;
+    }
+
+    public function addTourneyStaff(TourneyStaff $tourneyStaff): self
+    {
+        if (!$this->tourneyStaff->contains($tourneyStaff)) {
+            $this->tourneyStaff[] = $tourneyStaff;
+            $tourneyStaff->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTourneyStaff(TourneyStaff $tourneyStaff): self
+    {
+        if ($this->tourneyStaff->removeElement($tourneyStaff)) {
+            // set the owning side to null (unless already changed)
+            if ($tourneyStaff->getUser() === $this) {
+                $tourneyStaff->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTwitter(): ?string
+    {
+        return $this->twitter;
+    }
+
+    public function setTwitter(?string $twitter): self
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    public function getTwitch(): ?string
+    {
+        return $this->twitch;
+    }
+
+    public function setTwitch(?string $twitch): self
+    {
+        $this->twitch = $twitch;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Players[]
+     */
+    public function getPlayers(): Collection
+    {
+        return $this->players;
+    }
+
+    public function addPlayer(Players $player): self
+    {
+        if (!$this->players->contains($player)) {
+            $this->players[] = $player;
+            $player->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayer(Players $player): self
+    {
+        if ($this->players->removeElement($player)) {
+            // set the owning side to null (unless already changed)
+            if ($player->getUser() === $this) {
+                $player->setUser(null);
+            }
+        }
 
         return $this;
     }

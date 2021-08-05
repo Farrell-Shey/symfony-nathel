@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\BlaclistedRepository;
+use App\Repository\BlacklistedRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=BlaclistedRepository::class)
+ * @ORM\Entity(repositoryClass=BlacklistedRepository::class)
  */
-class Blaclisted
+class Blacklisted
 {
     /**
      * @ORM\Id

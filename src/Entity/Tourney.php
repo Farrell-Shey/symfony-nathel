@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TourneyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -152,6 +154,34 @@ class Tourney
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Confrontation::class, mappedBy="tourney")
+     */
+    private $confrontations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=TourneyStaff::class, mappedBy="tourney")
+     */
+    private $tourneyStaff;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="tourney")
+     */
+    private $pools;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Players::class, mappedBy="tourney")
+     */
+    private $players;
+
+    public function __construct()
+    {
+        $this->confrontations = new ArrayCollection();
+        $this->tourneyStaff = new ArrayCollection();
+        $this->pools = new ArrayCollection();
+        $this->players = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -499,5 +529,125 @@ class Tourney
     public function onPreUpdate()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return Collection|Confrontation[]
+     */
+    public function getConfrontations(): Collection
+    {
+        return $this->confrontations;
+    }
+
+    public function addConfrontation(Confrontation $confrontation): self
+    {
+        if (!$this->confrontations->contains($confrontation)) {
+            $this->confrontations[] = $confrontation;
+            $confrontation->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConfrontation(Confrontation $confrontation): self
+    {
+        if ($this->confrontations->removeElement($confrontation)) {
+            // set the owning side to null (unless already changed)
+            if ($confrontation->getTourney() === $this) {
+                $confrontation->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TourneyStaff[]
+     */
+    public function getTourneyStaff(): Collection
+    {
+        return $this->tourneyStaff;
+    }
+
+    public function addTourneyStaff(TourneyStaff $tourneyStaff): self
+    {
+        if (!$this->tourneyStaff->contains($tourneyStaff)) {
+            $this->tourneyStaff[] = $tourneyStaff;
+            $tourneyStaff->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTourneyStaff(TourneyStaff $tourneyStaff): self
+    {
+        if ($this->tourneyStaff->removeElement($tourneyStaff)) {
+            // set the owning side to null (unless already changed)
+            if ($tourneyStaff->getTourney() === $this) {
+                $tourneyStaff->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getPools(): Collection
+    {
+        return $this->pools;
+    }
+
+    public function addPool(Group $pool): self
+    {
+        if (!$this->pools->contains($pool)) {
+            $this->pools[] = $pool;
+            $pool->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removePool(Group $pool): self
+    {
+        if ($this->pools->removeElement($pool)) {
+            // set the owning side to null (unless already changed)
+            if ($pool->getTourney() === $this) {
+                $pool->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Players[]
+     */
+    public function getPlayers(): Collection
+    {
+        return $this->players;
+    }
+
+    public function addPlayer(Players $player): self
+    {
+        if (!$this->players->contains($player)) {
+            $this->players[] = $player;
+            $player->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayer(Players $player): self
+    {
+        if ($this->players->removeElement($player)) {
+            // set the owning side to null (unless already changed)
+            if ($player->getTourney() === $this) {
+                $player->setTourney(null);
+            }
+        }
+
+        return $this;
     }
 }
