@@ -203,7 +203,7 @@ class Tourney
     /**
      * @ORM\ManyToOne(targetEntity=PoolSet::class, inversedBy="tourneys")
      */
-    private $pool_set;
+    private $poolset;
 
     public function __construct()
     {
