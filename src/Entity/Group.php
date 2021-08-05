@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GroupRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +25,22 @@ class Group
      */
     private $size;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Tourney::class, inversedBy="pools")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tourney;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Confrontation::class, inversedBy="pools")
+     */
+    private $confrontation;
+
+    public function __construct()
+    {
+        $this->confrontation = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,6 +54,42 @@ class Group
     public function setSize(?int $size): self
     {
         $this->size = $size;
+
+        return $this;
+    }
+
+    public function getTourney(): ?Tourney
+    {
+        return $this->tourney;
+    }
+
+    public function setTourney(?Tourney $tourney): self
+    {
+        $this->tourney = $tourney;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Confrontation[]
+     */
+    public function getConfrontation(): Collection
+    {
+        return $this->confrontation;
+    }
+
+    public function addConfrontation(Confrontation $confrontation): self
+    {
+        if (!$this->confrontation->contains($confrontation)) {
+            $this->confrontation[] = $confrontation;
+        }
+
+        return $this;
+    }
+
+    public function removeConfrontation(Confrontation $confrontation): self
+    {
+        $this->confrontation->removeElement($confrontation);
 
         return $this;
     }

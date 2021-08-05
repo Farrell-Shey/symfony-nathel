@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StepRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Step
      * @ORM\Column(type="integer", nullable=true)
      */
     private $bans;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Confrontation::class, mappedBy="step", orphanRemoval=true)
+     */
+    private $confrontations;
+
+    public function __construct()
+    {
+        $this->confrontations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,36 @@ class Step
     public function setBans(?int $bans): self
     {
         $this->bans = $bans;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Confrontation[]
+     */
+    public function getConfrontations(): Collection
+    {
+        return $this->confrontations;
+    }
+
+    public function addConfrontation(Confrontation $confrontation): self
+    {
+        if (!$this->confrontations->contains($confrontation)) {
+            $this->confrontations[] = $confrontation;
+            $confrontation->setStep($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConfrontation(Confrontation $confrontation): self
+    {
+        if ($this->confrontations->removeElement($confrontation)) {
+            // set the owning side to null (unless already changed)
+            if ($confrontation->getStep() === $this) {
+                $confrontation->setStep(null);
+            }
+        }
 
         return $this;
     }
