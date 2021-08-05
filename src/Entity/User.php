@@ -130,14 +130,14 @@ class User
     private $twitch;
 
     /**
-     * @ORM\OneToMany(targetEntity=Players::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Player::class, mappedBy="user")
      */
-    private $players;
+    private $player;
 
     public function __construct()
     {
         $this->tourneyStaff = new ArrayCollection();
-        $this->players = new ArrayCollection();
+        $this->player = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -428,26 +428,26 @@ class User
     }
 
     /**
-     * @return Collection|Players[]
+     * @return Collection|Player[]
      */
-    public function getPlayers(): Collection
+    public function getPlayer(): Collection
     {
-        return $this->players;
+        return $this->player;
     }
 
-    public function addPlayer(Players $player): self
+    public function addPlayer(Player $player): self
     {
-        if (!$this->players->contains($player)) {
-            $this->players[] = $player;
+        if (!$this->player->contains($player)) {
+            $this->player[] = $player;
             $player->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePlayer(Players $player): self
+    public function removePlayer(Player $player): self
     {
-        if ($this->players->removeElement($player)) {
+        if ($this->player->removeElement($player)) {
             // set the owning side to null (unless already changed)
             if ($player->getUser() === $this) {
                 $player->setUser(null);
