@@ -1,0 +1,61 @@
+.maps{
+
+  padding: 1rem 0 .1rem;
+}
+
+
+.map {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: .2rem 1rem;
+  background-position: center;
+  border-radius: $strong-border;
+  color: $secondary;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+          "name . mod"
+          "mapper . mod";
+
+  .map-name {
+    grid-area: name;
+    font-size: .7rem;
+  }
+
+  .mapper {
+    grid-area: mapper;
+    font-weight: lighter;
+    font-size: .6rem;
+  }
+
+  .mod {
+    margin: auto 0;
+    grid-area: mod;
+    width: 3rem;
+  }
+}
+
+
+.nm-map {
+  border: 2px solid $dark-nm;
+}
+
+.hd-map {
+  border: 2px solid $dark-hd;
+}
+
+.hr-map {
+  border: 2px solid $dark-hr;
+}
+
+.fm-map {
+  border: 2px solid $dark-fm;
+}
+
+.tb-map {
+  border: 2px solid $dark-tb;
+}
+
+.dt-map {
+  border: 2px solid $dark-dt;
+}

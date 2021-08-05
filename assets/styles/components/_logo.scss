@@ -1,0 +1,21 @@
+.logo_nathel {
+  #main_logo {
+
+    transform-origin: 50% 60%;
+    animation: 15s linear 0s infinite rotate;
+
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg)
+  }
+  50% {
+    transform: rotate(180deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+
+}

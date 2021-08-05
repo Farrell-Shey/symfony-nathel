@@ -1,0 +1,50 @@
+.search-mobile {
+  display: grid;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  background: $primary;
+  color: $secondary;
+
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+"logo search btn";
+
+  .header-logo {
+    grid-area: logo;
+    width: 30px;
+    padding: 5px 0;
+    margin-left: .5em;
+  }
+
+  .search {
+    grid-area: search;
+  }
+
+  .btn-search {
+    grid-area: btn;
+  }
+}
+
+#header {
+  .search {
+    background: rgb(0, 0, 0, .33);
+    border-radius: $strong-border;
+    margin: 0.7em 1em;
+    border: none;
+    padding: 0 1em;
+    min-width: 100px;
+    color: $secondary;
+
+    &::placeholder {
+      color: $classic;
+    }
+  }
+
+  .btn-search {
+    background: none;
+    border: none;
+    fill: $secondary;
+    margin-right: .5em;
+  }
+}
