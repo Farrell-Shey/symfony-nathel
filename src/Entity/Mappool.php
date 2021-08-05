@@ -53,11 +53,24 @@ class Mappool
      * @ORM\OneToMany(targetEntity=Step::class, mappedBy="mappool")
      */
     private $steps;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity=PoolSet::class, inversedBy="mappools")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $poolSet;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MappoolFollowed::class, mappedBy="mappool", orphanRemoval=true)
+     */
+    private $mappoolFolloweds;
+
 
     public function __construct()
     {
         $this->mappoolMaps = new ArrayCollection();
         $this->steps = new ArrayCollection();
+        $this->mappoolFolloweds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -173,12 +186,54 @@ class Mappool
         return $this;
     }
 
+    public function getPoolSet(): ?PoolSet
+    {
+        return $this->poolSet;
+    }
+
+    public function setPoolSet(?PoolSet $poolSet): self
+    {
+        $this->poolSet = $poolSet;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MappoolFollowed[]
+     */
+    public function getMappoolFolloweds(): Collection
+    {
+        return $this->mappoolFolloweds;
+    }
+
+    public function addMappoolFollowed(MappoolFollowed $mappoolFollowed): self
+    {
+        if (!$this->mappoolFolloweds->contains($mappoolFollowed)) {
+            $this->mappoolFolloweds[] = $mappoolFollowed;
+            $mappoolFollowed->setMappool($this);
+        }
+
+        return $this;
+    }
+
     public function removeStep(Step $step): self
     {
         if ($this->steps->removeElement($step)) {
             // set the owning side to null (unless already changed)
             if ($step->getMappool() === $this) {
                 $step->setMappool(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeMappoolFollowed(MappoolFollowed $mappoolFollowed): self
+    {
+        if ($this->mappoolFolloweds->removeElement($mappoolFollowed)) {
+            // set the owning side to null (unless already changed)
+            if ($mappoolFollowed->getMappool() === $this) {
+                $mappoolFollowed->setMappool(null);
             }
         }
 

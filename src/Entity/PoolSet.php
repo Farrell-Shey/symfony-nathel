@@ -59,12 +59,18 @@ class PoolSet
      */
     private $tourneys;
 
+    /** 
+     * @ORM\OneToMany(targetEntity=Mappool::class, mappedBy="poolSet", orphanRemoval=true)
+     */
+    private $mappools;
+
     public function __construct()
     {
         $this->contributors = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->invitations = new ArrayCollection();
         $this->tourneys = new ArrayCollection();
+        $this->mappools = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,6 +230,23 @@ class PoolSet
 
         return $this;
     }
+    /** 
+     * @return Collection|Mappool[]
+     */
+    public function getMappools(): Collection
+    {
+        return $this->mappools;
+    }
+
+    public function addMappool(Mappool $mappool): self
+    {
+        if (!$this->mappools->contains($mappool)) {
+            $this->mappools[] = $mappool;
+            $mappool->setPoolSet($this);
+        }
+
+        return $this;
+    }
 
     public function removeTourney(Tourney $tourney): self
     {
@@ -231,6 +254,18 @@ class PoolSet
             // set the owning side to null (unless already changed)
             if ($tourney->getPoolSet() === $this) {
                 $tourney->setPoolSet(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeMappool(Mappool $mappool): self
+    {
+        if ($this->mappools->removeElement($mappool)) {
+            // set the owning side to null (unless already changed)
+            if ($mappool->getPoolSet() === $this) {
+                $mappool->setPoolSet(null);
             }
         }
 
