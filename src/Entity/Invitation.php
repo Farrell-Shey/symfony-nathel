@@ -32,6 +32,18 @@ class Invitation
      */
     private $deleted_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="invitations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PoolSet::class, inversedBy="invitations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $poolset;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +81,30 @@ class Invitation
     public function setDeletedAt(\DateTimeInterface $deleted_at): self
     {
         $this->deleted_at = $deleted_at;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPoolset(): ?PoolSet
+    {
+        return $this->poolset;
+    }
+
+    public function setPoolset(?PoolSet $poolset): self
+    {
+        $this->poolset = $poolset;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PoolSetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,28 @@ class PoolSet
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $thumbnail;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contributor::class, mappedBy="poolSet", orphanRemoval=true)
+     */
+    private $contributors;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="poolSet")
+     */
+    private $tags;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Invitation::class, mappedBy="poolset", orphanRemoval=true)
+     */
+    private $invitations;
+
+    public function __construct()
+    {
+        $this->contributors = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +110,93 @@ class PoolSet
     public function setThumbnail(string $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contributor[]
+     */
+    public function getContributors(): Collection
+    {
+        return $this->contributors;
+    }
+
+    public function addContributor(Contributor $contributor): self
+    {
+        if (!$this->contributors->contains($contributor)) {
+            $this->contributors[] = $contributor;
+            $contributor->setPoolSet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContributor(Contributor $contributor): self
+    {
+        if ($this->contributors->removeElement($contributor)) {
+            // set the owning side to null (unless already changed)
+            if ($contributor->getPoolSet() === $this) {
+                $contributor->setPoolSet(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addPoolSet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        if ($this->tags->removeElement($tag)) {
+            $tag->removePoolSet($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Invitation[]
+     */
+    public function getInvitations(): Collection
+    {
+        return $this->invitations;
+    }
+
+    public function addInvitation(Invitation $invitation): self
+    {
+        if (!$this->invitations->contains($invitation)) {
+            $this->invitations[] = $invitation;
+            $invitation->setPoolset($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvitation(Invitation $invitation): self
+    {
+        if ($this->invitations->removeElement($invitation)) {
+            // set the owning side to null (unless already changed)
+            if ($invitation->getPoolset() === $this) {
+                $invitation->setPoolset(null);
+            }
+        }
 
         return $this;
     }

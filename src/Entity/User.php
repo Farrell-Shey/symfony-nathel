@@ -134,10 +134,28 @@ class User
      */
     private $players;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Contributor::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $contributors;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user")
+     */
+    private $scores;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Invitation::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $invitations;
+
     public function __construct()
     {
         $this->tourneyStaff = new ArrayCollection();
         $this->players = new ArrayCollection();
+        $this->contributors = new ArrayCollection();
+        $this->scores = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -451,6 +469,96 @@ class User
             // set the owning side to null (unless already changed)
             if ($player->getUser() === $this) {
                 $player->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contributor[]
+     */
+    public function getContributors(): Collection
+    {
+        return $this->contributors;
+    }
+
+    public function addContributor(Contributor $contributor): self
+    {
+        if (!$this->contributors->contains($contributor)) {
+            $this->contributors[] = $contributor;
+            $contributor->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContributor(Contributor $contributor): self
+    {
+        if ($this->contributors->removeElement($contributor)) {
+            // set the owning side to null (unless already changed)
+            if ($contributor->getUser() === $this) {
+                $contributor->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Score[]
+     */
+    public function getScores(): Collection
+    {
+        return $this->scores;
+    }
+
+    public function addScore(Score $score): self
+    {
+        if (!$this->scores->contains($score)) {
+            $this->scores[] = $score;
+            $score->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Score $score): self
+    {
+        if ($this->scores->removeElement($score)) {
+            // set the owning side to null (unless already changed)
+            if ($score->getUser() === $this) {
+                $score->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Invitation[]
+     */
+    public function getInvitations(): Collection
+    {
+        return $this->invitations;
+    }
+
+    public function addInvitation(Invitation $invitation): self
+    {
+        if (!$this->invitations->contains($invitation)) {
+            $this->invitations[] = $invitation;
+            $invitation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvitation(Invitation $invitation): self
+    {
+        if ($this->invitations->removeElement($invitation)) {
+            // set the owning side to null (unless already changed)
+            if ($invitation->getUser() === $this) {
+                $invitation->setUser(null);
             }
         }
 
