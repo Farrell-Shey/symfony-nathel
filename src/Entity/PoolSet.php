@@ -54,11 +54,17 @@ class PoolSet
      */
     private $invitations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Tourney::class, mappedBy="pool_set")
+     */
+    private $tourneys;
+
     public function __construct()
     {
         $this->contributors = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->invitations = new ArrayCollection();
+        $this->tourneys = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -195,6 +201,36 @@ class PoolSet
             // set the owning side to null (unless already changed)
             if ($invitation->getPoolset() === $this) {
                 $invitation->setPoolset(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tourney[]
+     */
+    public function getTourneys(): Collection
+    {
+        return $this->tourneys;
+    }
+
+    public function addTourney(Tourney $tourney): self
+    {
+        if (!$this->tourneys->contains($tourney)) {
+            $this->tourneys[] = $tourney;
+            $tourney->setPoolSet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTourney(Tourney $tourney): self
+    {
+        if ($this->tourneys->removeElement($tourney)) {
+            // set the owning side to null (unless already changed)
+            if ($tourney->getPoolSet() === $this) {
+                $tourney->setPoolSet(null);
             }
         }
 

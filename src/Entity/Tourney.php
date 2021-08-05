@@ -180,6 +180,31 @@ class Tourney
      */
     private $lobbies;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Widget::class, mappedBy="tourney")
+     */
+    private $widgets;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="tourney")
+     */
+    private $steps;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Announce::class, mappedBy="tourney")
+     */
+    private $announces;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Blacklisted::class, mappedBy="tourney")
+     */
+    private $blacklisteds;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PoolSet::class, inversedBy="tourneys")
+     */
+    private $pool_set;
+
     public function __construct()
     {
         $this->confrontations = new ArrayCollection();
@@ -187,6 +212,10 @@ class Tourney
         $this->pools = new ArrayCollection();
         $this->player = new ArrayCollection();
         $this->lobbies = new ArrayCollection();
+        $this->widgets = new ArrayCollection();
+        $this->steps = new ArrayCollection();
+        $this->announces = new ArrayCollection();
+        $this->blacklisteds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -683,6 +712,138 @@ class Tourney
                 $lobby->setTourney(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Widget[]
+     */
+    public function getWidgets(): Collection
+    {
+        return $this->widgets;
+    }
+
+    public function addWidget(Widget $widget): self
+    {
+        if (!$this->widgets->contains($widget)) {
+            $this->widgets[] = $widget;
+            $widget->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWidget(Widget $widget): self
+    {
+        if ($this->widgets->removeElement($widget)) {
+            // set the owning side to null (unless already changed)
+            if ($widget->getTourney() === $this) {
+                $widget->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Step[]
+     */
+    public function getSteps(): Collection
+    {
+        return $this->steps;
+    }
+
+    public function addStep(Step $step): self
+    {
+        if (!$this->steps->contains($step)) {
+            $this->steps[] = $step;
+            $step->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): self
+    {
+        if ($this->steps->removeElement($step)) {
+            // set the owning side to null (unless already changed)
+            if ($step->getTourney() === $this) {
+                $step->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Announce[]
+     */
+    public function getAnnounces(): Collection
+    {
+        return $this->announces;
+    }
+
+    public function addAnnounce(Announce $announce): self
+    {
+        if (!$this->announces->contains($announce)) {
+            $this->announces[] = $announce;
+            $announce->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnounce(Announce $announce): self
+    {
+        if ($this->announces->removeElement($announce)) {
+            // set the owning side to null (unless already changed)
+            if ($announce->getTourney() === $this) {
+                $announce->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Blacklisted[]
+     */
+    public function getBlacklisteds(): Collection
+    {
+        return $this->blacklisteds;
+    }
+
+    public function addBlacklisted(Blacklisted $blacklisted): self
+    {
+        if (!$this->blacklisteds->contains($blacklisted)) {
+            $this->blacklisteds[] = $blacklisted;
+            $blacklisted->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlacklisted(Blacklisted $blacklisted): self
+    {
+        if ($this->blacklisteds->removeElement($blacklisted)) {
+            // set the owning side to null (unless already changed)
+            if ($blacklisted->getTourney() === $this) {
+                $blacklisted->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPoolSet(): ?PoolSet
+    {
+        return $this->pool_set;
+    }
+
+    public function setPoolSet(?PoolSet $pool_set): self
+    {
+        $this->pool_set = $pool_set;
 
         return $this;
     }

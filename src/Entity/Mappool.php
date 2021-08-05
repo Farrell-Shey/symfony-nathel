@@ -49,9 +49,15 @@ class Mappool
      */
     private $mappoolMaps;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="mappool")
+     */
+    private $steps;
+
     public function __construct()
     {
         $this->mappoolMaps = new ArrayCollection();
+        $this->steps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,6 +149,36 @@ class Mappool
             // set the owning side to null (unless already changed)
             if ($mappoolMap->getMappool() === $this) {
                 $mappoolMap->setMappool(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Step[]
+     */
+    public function getSteps(): Collection
+    {
+        return $this->steps;
+    }
+
+    public function addStep(Step $step): self
+    {
+        if (!$this->steps->contains($step)) {
+            $this->steps[] = $step;
+            $step->setMappool($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): self
+    {
+        if ($this->steps->removeElement($step)) {
+            // set the owning side to null (unless already changed)
+            if ($step->getMappool() === $this) {
+                $step->setMappool(null);
             }
         }
 

@@ -154,6 +154,21 @@ class User
      */
     private $invitations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Announce::class, mappedBy="user")
+     */
+    private $announces;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Blacklisted::class, mappedBy="user")
+     */
+    private $blacklisteds;
+
     public function __construct()
     {
         $this->tourneyStaff = new ArrayCollection();
@@ -162,6 +177,9 @@ class User
         $this->scores = new ArrayCollection();
         $this->invitations = new ArrayCollection();
         $this->mappoolMaps = new ArrayCollection();
+        $this->announces = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->blacklisteds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -595,6 +613,96 @@ class User
                 $mappoolMap->setUser(null);
             }
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection|Announce[]
+     */
+    public function getAnnounces(): Collection
+    {
+        return $this->announces;
+    }
+
+    public function addAnnounce(Announce $announce): self
+    {
+        if (!$this->announces->contains($announce)) {
+            $this->announces[] = $announce;
+            $announce->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnounce(Announce $announce): self
+    {
+        if ($this->announces->removeElement($announce)) {
+            // set the owning side to null (unless already changed)
+            if ($announce->getUser() === $this) {
+                $announce->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Blacklisted[]
+     */
+    public function getBlacklisteds(): Collection
+    {
+        return $this->blacklisteds;
+    }
+
+    public function addBlacklisted(Blacklisted $blacklisted): self
+    {
+        if (!$this->blacklisteds->contains($blacklisted)) {
+            $this->blacklisteds[] = $blacklisted;
+            $blacklisted->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlacklisted(Blacklisted $blacklisted): self
+    {
+        if ($this->blacklisteds->removeElement($blacklisted)) {
+            // set the owning side to null (unless already changed)
+            if ($blacklisted->getUser() === $this) {
+                $blacklisted->setUser(null);
+            }
+        }
+
         return $this;
     }
 }

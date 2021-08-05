@@ -54,6 +54,18 @@ class Step
      */
     private $lobbies;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Tourney::class, inversedBy="steps")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tourney;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Mappool::class, inversedBy="steps")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $mappool;
+
     public function __construct()
     {
         $this->confrontations = new ArrayCollection();
@@ -181,6 +193,30 @@ class Step
                 $lobby->setStep(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTourney(): ?Tourney
+    {
+        return $this->tourney;
+    }
+
+    public function setTourney(?Tourney $tourney): self
+    {
+        $this->tourney = $tourney;
+
+        return $this;
+    }
+
+    public function getMappool(): ?Mappool
+    {
+        return $this->mappool;
+    }
+
+    public function setMappool(?Mappool $mappool): self
+    {
+        $this->mappool = $mappool;
 
         return $this;
     }

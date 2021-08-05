@@ -37,6 +37,17 @@ class Blacklisted
      */
     private $severity;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Tourney::class, inversedBy="blacklisteds")
+     */
+    private $tourney;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="blacklisteds")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +97,30 @@ class Blacklisted
     public function setSeverity(string $severity): self
     {
         $this->severity = $severity;
+
+        return $this;
+    }
+
+    public function getTourney(): ?Tourney
+    {
+        return $this->tourney;
+    }
+
+    public function setTourney(?Tourney $tourney): self
+    {
+        $this->tourney = $tourney;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
