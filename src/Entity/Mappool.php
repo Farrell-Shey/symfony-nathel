@@ -50,6 +50,11 @@ class Mappool
     private $mappoolMaps;
 
     /**
+     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="mappool")
+     */
+    private $steps;
+    
+    /**
      * @ORM\ManyToOne(targetEntity=PoolSet::class, inversedBy="mappools")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -60,9 +65,11 @@ class Mappool
      */
     private $mappoolFolloweds;
 
+
     public function __construct()
     {
         $this->mappoolMaps = new ArrayCollection();
+        $this->steps = new ArrayCollection();
         $this->mappoolFolloweds = new ArrayCollection();
     }
 
@@ -161,6 +168,24 @@ class Mappool
         return $this;
     }
 
+    /**
+     * @return Collection|Step[]
+     */
+    public function getSteps(): Collection
+    {
+        return $this->steps;
+    }
+
+    public function addStep(Step $step): self
+    {
+        if (!$this->steps->contains($step)) {
+            $this->steps[] = $step;
+            $step->setMappool($this);
+        }
+
+        return $this;
+    }
+
     public function getPoolSet(): ?PoolSet
     {
         return $this->poolSet;
@@ -186,6 +211,18 @@ class Mappool
         if (!$this->mappoolFolloweds->contains($mappoolFollowed)) {
             $this->mappoolFolloweds[] = $mappoolFollowed;
             $mappoolFollowed->setMappool($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): self
+    {
+        if ($this->steps->removeElement($step)) {
+            // set the owning side to null (unless already changed)
+            if ($step->getMappool() === $this) {
+                $step->setMappool(null);
+            }
         }
 
         return $this;

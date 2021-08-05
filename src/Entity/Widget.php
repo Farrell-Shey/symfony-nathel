@@ -37,6 +37,12 @@ class Widget
      */
     private $page;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Tourney::class, inversedBy="widgets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tourney;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +92,18 @@ class Widget
     public function setPage(?string $page): self
     {
         $this->page = $page;
+
+        return $this;
+    }
+
+    public function getTourney(): ?Tourney
+    {
+        return $this->tourney;
+    }
+
+    public function setTourney(?Tourney $tourney): self
+    {
+        $this->tourney = $tourney;
 
         return $this;
     }
