@@ -130,9 +130,14 @@ class User
     private $twitch;
 
     /**
-     * @ORM\OneToMany(targetEntity=Players::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Player::class, mappedBy="user")
      */
     private $players;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MappoolMap::class, mappedBy="user")
+     */
+    private $mappoolMaps;
 
     /**
      * @ORM\OneToMany(targetEntity=Contributor::class, mappedBy="user", orphanRemoval=true)
@@ -156,6 +161,7 @@ class User
         $this->contributors = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->invitations = new ArrayCollection();
+        $this->mappoolMaps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -446,24 +452,24 @@ class User
     }
 
     /**
-     * @return Collection|Players[]
+     * @return Collection|Player[]
      */
-    public function getPlayers(): Collection
+    public function getPlayer(): Collection
     {
         return $this->players;
     }
 
-    public function addPlayer(Players $player): self
+    public function addPlayer(Player $player): self
     {
         if (!$this->players->contains($player)) {
-            $this->players[] = $player;
+            $this->player[] = $player;
             $player->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePlayer(Players $player): self
+    public function removePlayer(Player $player): self
     {
         if ($this->players->removeElement($player)) {
             // set the owning side to null (unless already changed)
@@ -489,7 +495,6 @@ class User
             $this->contributors[] = $contributor;
             $contributor->setUser($this);
         }
-
         return $this;
     }
 
@@ -561,7 +566,35 @@ class User
                 $invitation->setUser(null);
             }
         }
+        return $this;
+    }
 
+    /**
+     * @return Collection|Invitation[]
+     */
+    public function getMappoolMap(): Collection
+    {
+        return $this->mappoolMaps;
+    }
+
+    public function addMappoolMap(MappoolMap $mappoolMap): self
+    {
+        if (!$this->mappoolMaps->contains($mappoolMap)) {
+            $this->mappoolMaps[] = $mappoolMap;
+            $mappoolMap->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMappoolMap(MappoolMap $mappoolMap): self
+    {
+        if ($this->mappoolMaps->removeElement($mappoolMap)) {
+            // set the owning side to null (unless already changed)
+            if ($mappoolMap->getUser() === $this) {
+                $mappoolMap->setUser(null);
+            }
+        }
         return $this;
     }
 }

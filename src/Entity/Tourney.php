@@ -58,7 +58,7 @@ class Tourney
     /**
      * @ORM\Column(type="integer")
      */
-    private $nb_players;
+    private $nb_player;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -171,16 +171,22 @@ class Tourney
     private $pools;
 
     /**
-     * @ORM\OneToMany(targetEntity=Players::class, mappedBy="tourney")
+     * @ORM\OneToMany(targetEntity=player::class, mappedBy="tourney")
      */
-    private $players;
+    private $player;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Lobbie::class, mappedBy="tourney")
+     */
+    private $lobbies;
 
     public function __construct()
     {
         $this->confrontations = new ArrayCollection();
         $this->tourneyStaff = new ArrayCollection();
         $this->pools = new ArrayCollection();
-        $this->players = new ArrayCollection();
+        $this->player = new ArrayCollection();
+        $this->lobbies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -272,14 +278,14 @@ class Tourney
         return $this;
     }
 
-    public function getNbPlayers(): ?int
+    public function getNbplayer(): ?int
     {
-        return $this->nb_players;
+        return $this->nb_player;
     }
 
-    public function setNbPlayers(int $nb_players): self
+    public function setNbplayer(int $nb_player): self
     {
-        $this->nb_players = $nb_players;
+        $this->nb_player = $nb_player;
 
         return $this;
     }
@@ -622,29 +628,59 @@ class Tourney
     }
 
     /**
-     * @return Collection|Players[]
+     * @return Collection|Player[]
      */
-    public function getPlayers(): Collection
+    public function getPlayer(): Collection
     {
-        return $this->players;
+        return $this->player;
     }
 
-    public function addPlayer(Players $player): self
+    public function addPlayer(Player $player): self
     {
-        if (!$this->players->contains($player)) {
-            $this->players[] = $player;
+        if (!$this->player->contains($player)) {
+            $this->player[] = $player;
             $player->setTourney($this);
         }
 
         return $this;
     }
 
-    public function removePlayer(Players $player): self
+    public function removePlayer(Player $player): self
     {
-        if ($this->players->removeElement($player)) {
+        if ($this->player->removeElement($player)) {
             // set the owning side to null (unless already changed)
             if ($player->getTourney() === $this) {
                 $player->setTourney(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Lobbie[]
+     */
+    public function getLobbies(): Collection
+    {
+        return $this->lobbies;
+    }
+
+    public function addLobby(Lobbie $lobby): self
+    {
+        if (!$this->lobbies->contains($lobby)) {
+            $this->lobbies[] = $lobby;
+            $lobby->setTourney($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLobby(Lobbie $lobby): self
+    {
+        if ($this->lobbies->removeElement($lobby)) {
+            // set the owning side to null (unless already changed)
+            if ($lobby->getTourney() === $this) {
+                $lobby->setTourney(null);
             }
         }
 

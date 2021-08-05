@@ -2,15 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/Score.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ScoreRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony-nathel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony-nathel.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210805074636.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Ban.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/GroupPlayer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/MappoolMap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Player.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Round.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/TeamUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/BanRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/GroupPlayerRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/MappoolMapRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/RoundRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/TeamUserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Invitation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Invitation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/PoolSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PoolSet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210804134321.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Beatmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Beatmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Confrontation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Confrontation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Group.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Lobbie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Lobbie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Mappool.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Mappool.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Players.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Step.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Step.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Team.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Team.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tourney.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tourney.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/PlayersRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PlayerRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +215,7 @@
       <workItem from="1628146202536" duration="62000" />
       <workItem from="1628146265820" duration="143000" />
       <workItem from="1628146429801" duration="137000" />
-      <workItem from="1628146567798" duration="2935000" />
+      <workItem from="1628146567798" duration="4101000" />
     </task>
     <servers />
   </component>
