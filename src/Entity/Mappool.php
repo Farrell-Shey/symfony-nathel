@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MappoolRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Mappool
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MappoolMap::class, mappedBy="mappool")
+     */
+    private $mappoolMaps;
+
+    public function __construct()
+    {
+        $this->mappoolMaps = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,36 @@ class Mappool
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MappoolMap[]
+     */
+    public function getMappoolMaps(): Collection
+    {
+        return $this->mappoolMaps;
+    }
+
+    public function addMappoolMap(MappoolMap $mappoolMap): self
+    {
+        if (!$this->mappoolMaps->contains($mappoolMap)) {
+            $this->mappoolMaps[] = $mappoolMap;
+            $mappoolMap->setMappool($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMappoolMap(MappoolMap $mappoolMap): self
+    {
+        if ($this->mappoolMaps->removeElement($mappoolMap)) {
+            // set the owning side to null (unless already changed)
+            if ($mappoolMap->getMappool() === $this) {
+                $mappoolMap->setMappool(null);
+            }
+        }
 
         return $this;
     }

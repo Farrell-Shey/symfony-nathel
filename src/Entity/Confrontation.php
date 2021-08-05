@@ -76,9 +76,15 @@ class Confrontation
      */
     private $pools;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Ban::class, mappedBy="confrontation")
+     */
+    private $bans;
+
     public function __construct()
     {
         $this->pools = new ArrayCollection();
+        $this->bans = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -228,6 +234,36 @@ class Confrontation
     {
         if ($this->pools->removeElement($pool)) {
             $pool->removeConfrontation($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ban[]
+     */
+    public function getBans(): Collection
+    {
+        return $this->bans;
+    }
+
+    public function addBan(Ban $ban): self
+    {
+        if (!$this->bans->contains($ban)) {
+            $this->bans[] = $ban;
+            $ban->setConfrontation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBan(Ban $ban): self
+    {
+        if ($this->bans->removeElement($ban)) {
+            // set the owning side to null (unless already changed)
+            if ($ban->getConfrontation() === $this) {
+                $ban->setConfrontation(null);
+            }
         }
 
         return $this;
