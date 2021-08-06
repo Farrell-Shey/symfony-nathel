@@ -553,8 +553,8 @@ class Tourney
      */
     public function onPrePersist()
     {
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
     }
 
     /*
@@ -563,7 +563,7 @@ class Tourney
      */
     public function onPreUpdate()
     {
-        $this->updatedAt = new \DateTime();
+        $this->updated_at = new \DateTime();
     }
 
     /**
