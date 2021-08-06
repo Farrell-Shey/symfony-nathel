@@ -19,22 +19,32 @@ class MappoolRepository extends ServiceEntityRepository
         parent::__construct($registry, Mappool::class);
     }
 
-    // /**
-    //  * @return Mappool[] Returns an array of Mappool objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findById()
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('m.id = :id')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
+    public function findByPopularity()
+    {
+       $qb = $this->createQueryBuilder('m')
+            ->orderBy('m.id','DESC')
+            ->setMaxResults(5)
+            ->getQuery();
+            return $qb->getResult();
+    }
+
+    public function findByMostRecent()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.created_at','ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Mappool

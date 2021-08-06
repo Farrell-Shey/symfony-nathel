@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\MappoolRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,29 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+        ]);
+    }
+
+    /**
+     * @Route("/popular", name="popular")
+     */
+    public function showPopularMappools(MappoolRepository $mappoolRepository)
+    {
+        $popularMappools = $mappoolRepository->findByPopularity();
+        return $this->render('home/index.html.twig', [
+            'polpularMappools' => $popularMappools,
+
+        ]);
+    }
+
+    /**
+     * @Route("/recent", name="recent")
+     */
+    public function showRecentMappools(MappoolRepository $mappoolRepository)
+    {
+        $recentMappools = $mappoolRepository->findByMostRecent();
+        return $this->render('home/index.html.twig', [
+            'recentMappools' => $recentMappools,
         ]);
     }
 }

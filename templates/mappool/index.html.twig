@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mappool index{% endblock %}
+
+{% block body %}
+    <h1>Mappool index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Thumbnail</th>
+                <th>Follow</th>
+                <th>Updated_at</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mappool in mappools %}
+            <tr>
+                <td>{{ mappool.id }}</td>
+                <td>{{ mappool.name }}</td>
+                <td>{{ mappool.thumbnail }}</td>
+                <td>{{ mappool.follow }}</td>
+                <td>{{ mappool.updatedAt ? mappool.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ mappool.createdAt ? mappool.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('mappool_show', {'id': mappool.id}) }}">show</a>
+                    <a href="{{ path('mappool_edit', {'id': mappool.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('mappool_new') }}">Create new</a>
+{% endblock %}
