@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ScoreRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Score
 {
@@ -209,5 +210,24 @@ class Score
         $this->mappoolMap = $mappoolMap;
 
         return $this;
+    }
+
+     /*
+     * Gets triggered only on insert
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
+    }
+
+    /*
+     * Gets triggered only on update
+     * @ORM\PreUpdate()
+     */
+    public function onPreUpdate()
+    {
+        $this->updated_at = new \DateTime();
     }
 }

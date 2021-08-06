@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit PoolSet{% endblock %}
+
+{% block body %}
+    <h1>Edit PoolSet</h1>
+
+    {{ include('pool_set/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('pool_set_index') }}">back to list</a>
+
+    {{ include('pool_set/_delete_form.html.twig') }}
+{% endblock %}
