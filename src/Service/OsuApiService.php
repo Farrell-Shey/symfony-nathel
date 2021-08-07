@@ -5,7 +5,7 @@ namespace App\Service;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class CallApiService
+class OsuApiService
 {
     private $client;
 
@@ -187,7 +187,7 @@ class CallApiService
 
     public function getUserScores($user_id, $score_type, $include_fails=0, $mode=osu, $limit=12, $offset=1)
     {
-        // returns 
+        // This method returns the scores of specified user.
         // score_type : Must be one of these: best, firsts, recent.
         // include_fails : Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0.
         // mode : GameMode of the scores to be returned. Defaults to the specified user's mode.
