@@ -11,7 +11,7 @@ class OsuApiService
 
     const CLIENT_ID = 8955;
     const SECRET = 'tdqs5PCfWr1V5CeSCwWoFpIIC3M3umVpoMhzcCif';
-    const URI = 'https://127.0.0.1:8000/connexion';
+    const URI = 'https://nathel.local/connexion';
 
     public $code = null; // code obtained in credential token request
     public $credential_token_refresh; // refresh crendetials token
@@ -29,8 +29,9 @@ class OsuApiService
         // fonction transformant le GET['code'] en attribut
         if (isset($_GET['code'])){
             $this->code = $_GET['code'];
+            return $_GET['code'];
         }else{
-            // Lancer la page erreur
+            return null;
         }
     }
 
@@ -84,6 +85,7 @@ class OsuApiService
             CURLOPT_POSTFIELDS => $payload,
             CURLOPT_HTTPHEADER => array(
                 'Content-Type: application/json',
+                'Accept: application/json'
             ),
         ));
 
@@ -136,16 +138,16 @@ class OsuApiService
     public function GetUserInfo(int $user_id)
     {
         // returns the detail of specified user.
-        $this->checkToken(null);
+        $this->checkToken(0);
         $endpoint = "https://osu.ppy.sh/api/v2/users/".$user_id;
-        return self::apiQueryGET($token=0, $endpoint);
+        return $this->apiQueryGET(0, $endpoint);
     }
 
     public function getOwnUserInfo($token_user=null) //Only used for Oauth user_id verification
     {
         //Similar to GetUserInfo but with authenticated user (token owner) as user id.
         if ($token_user == null){
-            $this->checkToken(null);
+            $this->checkToken(1);
         }else{
             $this->user_token = $token_user;
         }
@@ -155,18 +157,18 @@ class OsuApiService
 
         $endpoint = 'https://osu.ppy.sh/api/v2/me/osu';
 
-        return self::apiQueryGET($token=1, $endpoint);
+        return $this->apiQueryGET(1, $endpoint);
     }
 
     // MAPS
     public function getBeatmapInfo($map_id){
         // Gets beatmap data for the specified beatmap ID.
-        $this->getToken(null);
+        $this->getToken();
 
 
         $endpoint = 'https://osu.ppy.sh/api/v2/beatmaps/'.$map_id;
 
-        return $this->apiQueryGET($token=0, $endpoint);
+        return $this->apiQueryGET(0, $endpoint);
     }
 
     public function getUserRecentActivity($user_id, $limit=12, $offset=1)
@@ -175,24 +177,24 @@ class OsuApiService
         //Limit : Maximum number of results
         //Offset : Result offset for pagination
 
-        $this->checkToken(null);
+        $this->checkToken(0);
 
         $endpoint = "https://osu.ppy.sh/api/v2/users/" . $user_id . "1/recent_activity";
         $params = array(
             'limit' => 12,
             'offset' => 1,
         );
-        return self::apiQueryGET($token=0,$endpoint, $params);
+        return $this->apiQueryGET(0,$endpoint, $params);
     }
 
-    public function getUserScores($user_id, $score_type, $include_fails=0, $mode=osu, $limit=12, $offset=1)
+    public function getUserScores($user_id, $score_type, $include_fails=0, $mode='osu', $limit=12, $offset=1)
     {
         // This method returns the scores of specified user.
         // score_type : Must be one of these: best, firsts, recent.
         // include_fails : Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0.
         // mode : GameMode of the scores to be returned. Defaults to the specified user's mode.
 
-        $this->checkToken(null);
+        $this->checkToken(0);
 
         $endpoint = "https://osu.ppy.sh/api/v2/users/" . $user_id ."/scores/" . $score_type;
         $params = array(
@@ -202,7 +204,7 @@ class OsuApiService
             'offset' => $offset
         );
 
-        return self::apiQueryGET($token=0, $endpoint, $params);
+        return $this->apiQueryGET(0, $endpoint, $params);
 
     }
 
