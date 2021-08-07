@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\MappoolRepository;
-use App\Service\CallApiService;
+use App\Service\OsuApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,10 +12,12 @@ class HomeController extends AbstractController
 {
 
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
+     * @param OsuApiService $osuApiService
+     * @return Response
      */
-    public function index(CallApiService $callApiService): Response
-    { 
+    public function index(OSuApiService $osuApiService): Response
+    {  dd($osuApiService);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
