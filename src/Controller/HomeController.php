@@ -15,7 +15,7 @@ class HomeController extends AbstractController
      * @Route("/home", name="home")
      */
     public function index(CallApiService $callApiService): Response
-    {  dd($callApiService);
+    { 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
