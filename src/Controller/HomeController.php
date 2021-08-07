@@ -28,7 +28,7 @@ class HomeController extends AbstractController
     {
         $popularMappools = $mappoolRepository->findByPopularity();
         return $this->render('home/index.html.twig', [
-            'polpularMappools' => $popularMappools,
+            'popularMappools' => $popularMappools,
 
         ]);
     }
@@ -43,4 +43,6 @@ class HomeController extends AbstractController
             'recentMappools' => $recentMappools,
         ]);
     }
+
+
 }
