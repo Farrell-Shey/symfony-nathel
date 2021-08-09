@@ -54,7 +54,7 @@ class Mappool
      * @ORM\OneToMany(targetEntity=Step::class, mappedBy="mappool")
      */
     private $steps;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity=PoolSet::class, inversedBy="mappools")
      * @ORM\JoinColumn(nullable=false)
@@ -144,7 +144,7 @@ class Mappool
      */
     public function getMappoolMaps(): Collection
     {
-        return $this->mappoolMaps;
+        return $this->mappoolMap;
     }
 
     public function addMappoolMap(MappoolMap $mappoolMap): self

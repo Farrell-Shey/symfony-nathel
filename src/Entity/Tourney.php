@@ -203,7 +203,7 @@ class Tourney
     /**
      * @ORM\ManyToOne(targetEntity=PoolSet::class, inversedBy="tourneys")
      */
-    private $pool_set;
+    private $poolset;
 
     public function __construct()
     {
@@ -836,15 +836,19 @@ class Tourney
         return $this;
     }
 
-    public function getPoolSet(): ?PoolSet
+    /**
+     * @return mixed
+     */
+    public function getPoolset()
     {
-        return $this->pool_set;
+        return $this->poolset;
     }
 
-    public function setPoolSet(?PoolSet $pool_set): self
+    /**
+     * @param mixed $poolset
+     */
+    public function setPoolset($poolset): void
     {
-        $this->pool_set = $pool_set;
-
-        return $this;
+        $this->poolset = $poolset;
     }
 }

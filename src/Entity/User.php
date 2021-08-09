@@ -63,27 +63,27 @@ class User
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $silver_ss;
+    private $silver_ss = 0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $count_ss;
+    private $count_ss = 0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $count_silver_s;
+    private $count_silver_s = 0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $count_s;
+    private $count_s = 0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $count_a;
+    private $count_a = 0;
 
     /**
      * @ORM\Column(type="datetime")
@@ -171,8 +171,8 @@ class User
      */
     private $blacklisteds;
 
-    /** 
-     * @ORM\OneToMany(targetEntity=MappoolFollowed::class, mappedBy="user", orphanRemoval=true)
+    /**
+     * @ORM\OneToMany(targetEntity=MappoolFollowed::class, mappedBy="user")
      */
     private $mappoolFolloweds;
 
@@ -642,7 +642,7 @@ class User
         return $this;
     }
 
-    /** 
+    /**
      * @return Collection|MappoolFollowed[]
      */
     public function getMappoolFolloweds(): Collection
