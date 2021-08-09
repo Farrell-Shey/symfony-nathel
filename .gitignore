@@ -25,3 +25,9 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> script bash ###
+/start.sh
+/db.sh
+###< script bash ###
+

@@ -2,36 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/AnnounceFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/BanFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/BeatMapFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/BeatmapsetFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/BlacklistedFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/CommentFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/ConfrontationFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/ContributorFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/Fixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/GroupFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/GroupPlayerFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/InvitationFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/LobbieFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolFollowedFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolMapFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/PlayerFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TeamFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TeamUserFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TourneyFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TourneyStaffFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/WidgetFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony-nathel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony-nathel.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Mappool.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Mappool.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-    </list>
-    <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="">
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210805091332.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AnnounceFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AnnounceFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BanFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BanFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BeatMapFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BeatMapFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BeatmapsetFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BeatmapsetFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BlacklistedFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BlacklistedFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/CommentFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/CommentFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ConfrontationFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ConfrontationFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ContributorFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ContributorFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/Fixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TagFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/GroupFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/GroupFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/GroupPlayerFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/GroupPlayerFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/InvitationFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/InvitationFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/LobbieFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/LobbieFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MappoolFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MappoolFollowedFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolFollowedFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MappoolMapFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolMapFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/PlayerFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/PlayerFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/PoolSetFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/PoolSetFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/RoundFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/RoundFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ScoreFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ScoreFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/StepFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/StepFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Tourney.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tourney.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
+    <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="">
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BanFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BanFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BeatMapFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BeatMapFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BlacklistedFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BlacklistedFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/CommentFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/CommentFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/PlayerFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/PlayerFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Beatmapset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Beatmapset.php" afterDir="false" />
+    </list>
+    <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
+    <list id="81cbae3f-97b8-4076-add1-08a24c9b562b" name="Changes by WolfaH" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +58,55 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/DataFixtures/BlacklistedFixtures.php">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="7" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="10" end1="11" start2="11" end2="12" changelist="b4b61101-5914-4fb8-9d3f-87a750d967fe" />
+        <range start1="14" end1="17" start2="15" end2="22" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="21" end1="27" start2="26" end2="32" changelist="b4b61101-5914-4fb8-9d3f-87a750d967fe" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/DataFixtures/BanFixtures.php">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="7" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="14" end1="17" start2="15" end2="21" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="21" end1="27" start2="25" end2="31" changelist="b4b61101-5914-4fb8-9d3f-87a750d967fe" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/DataFixtures/PlayerFixtures.php">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="7" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="10" end1="11" start2="11" end2="12" changelist="b4b61101-5914-4fb8-9d3f-87a750d967fe" />
+        <range start1="15" end1="17" start2="16" end2="25" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="21" end1="27" start2="29" end2="36" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/DataFixtures/BeatMapFixtures.php">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="7" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="10" end1="11" start2="11" end2="12" changelist="b4b61101-5914-4fb8-9d3f-87a750d967fe" />
+        <range start1="14" end1="17" start2="15" end2="30" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="21" end1="27" start2="34" end2="40" changelist="b4b61101-5914-4fb8-9d3f-87a750d967fe" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/DataFixtures/CommentFixtures.php">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="7" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="10" end1="11" start2="11" end2="12" changelist="b4b61101-5914-4fb8-9d3f-87a750d967fe" />
+        <range start1="14" end1="17" start2="15" end2="25" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+        <range start1="21" end1="27" start2="29" end2="36" changelist="bd46fb5b-fcb1-401d-9114-b45bec991c6b" />
+      </ranges>
+    </file>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -191,7 +255,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/DataFixtures" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WCS/projet/bordeaux-202103-php-project3-gabiloue" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -222,7 +286,10 @@
       <workItem from="1628146202536" duration="62000" />
       <workItem from="1628146265820" duration="143000" />
       <workItem from="1628146429801" duration="137000" />
-      <workItem from="1628146567798" duration="12244000" />
+      <workItem from="1628146567798" duration="14511000" />
+      <workItem from="1628240154392" duration="20239000" />
+      <workItem from="1628489929946" duration="12931000" />
+      <workItem from="1628513806282" duration="3541000" />
     </task>
     <servers />
   </component>

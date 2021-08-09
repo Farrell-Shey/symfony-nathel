@@ -36,6 +36,7 @@ class Beatmapset
 
     /**
      * @ORM\OneToMany(targetEntity=Beatmap::class, mappedBy="beatmapset", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $beatmaps;
 
