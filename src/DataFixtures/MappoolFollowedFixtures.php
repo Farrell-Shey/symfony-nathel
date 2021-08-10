@@ -4,6 +4,7 @@
 namespace App\DataFixtures;
 
 
+use App\Entity\Mappool;
 use App\Entity\MappoolFollowed;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -27,7 +28,7 @@ class MappoolFollowedFixtures extends Fixture implements DependentFixtureInterfa
     {
         return [
             UserFixtures::class,
-//            MappoolFixtures::class,
+            MappoolFixtures::class,
         ];
     }
 }

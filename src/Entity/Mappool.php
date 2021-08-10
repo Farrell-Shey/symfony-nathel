@@ -65,6 +65,11 @@ class Mappool
      */
     private $mappoolFolloweds;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Contributor::class, inversedBy="mappools")
+     */
+    private $Contributor;
+
 
     public function __construct()
     {
@@ -236,6 +241,18 @@ class Mappool
                 $mappoolFollowed->setMappool(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getContributor(): ?Contributor
+    {
+        return $this->Contributor;
+    }
+
+    public function setContributor(?Contributor $Contributor): self
+    {
+        $this->Contributor = $Contributor;
 
         return $this;
     }

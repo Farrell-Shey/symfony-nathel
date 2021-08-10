@@ -9,17 +9,15 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class GroupFixtures extends Fixture // implements DependentFixtureInterface
+class GroupFixtures extends Fixture  implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
         for ($i = 0; $i < 10; $i++) {
             $group = new Group();
-            $group->setTourney($this->getReference('tourney' . $i));
-            $group->addConfrontation($this->getReference('confrontation_' . $i));
-            $group->addGroupPlayer($this->getReference('groupPlayerç_' . $i));
+            $group->setTourney($this->getReference('tourney_' . $i));
             $manager->persist($group);
-            $this->addReference('gourp_' . $i, $group);
+            $this->addReference('group_' . $i, $group);
         }
         $manager->flush();
     }
@@ -27,7 +25,7 @@ class GroupFixtures extends Fixture // implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-//            TourneyFixtures::class
+            TourneyFixtures::class
         ];
     }
 }

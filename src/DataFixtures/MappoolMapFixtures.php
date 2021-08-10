@@ -19,11 +19,8 @@ class MappoolMapFixtures extends Fixture implements DependentFixtureInterface
             $mappoolMap->setBeatmap($this->getReference('beatMap_' . $i));
             $mappoolMap->setUser($this->getReference('user_' . $i));
             $mappoolMap->setMode('mode_' . $i);
-            $mappoolMap->addRound($this->getReference('round_' . $i));
-            $mappoolMap->addBan($this->getReference('ban_' . $i));
-            $mappoolMap->addScore($this->getReference('score_' . $i));
             $manager->persist($mappoolMap);
-            $this->addReference('mappoolMam_' . $i, $mappoolMap);
+            $this->addReference('mappoolMap_' . $i, $mappoolMap);
         }
         $manager->flush();
     }

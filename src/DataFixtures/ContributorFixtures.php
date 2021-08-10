@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ContributorFixtures extends Fixture // implements DependentFixtureInterface
+class ContributorFixtures extends Fixture  implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -27,7 +27,7 @@ class ContributorFixtures extends Fixture // implements DependentFixtureInterfac
     public function getDependencies()
     {
         return [
-//            UserFixtures::class,
+            UserFixtures::class,
 //            PoolSetFixtures::class,
         ];
     }

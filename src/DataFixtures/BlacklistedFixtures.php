@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class BlacklistedFixtures extends Fixture // implements DependentFixtureInterface
+class BlacklistedFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -17,7 +17,7 @@ class BlacklistedFixtures extends Fixture // implements DependentFixtureInterfac
             $blacklisted = new Blacklisted();
             $blacklisted->setReason('reason_' . $i);
             $blacklisted->setSeverity('severity_' . $i);
-            $blacklisted->setUser($this->getDependencies('user_' . $i));
+            $blacklisted->setUser($this->getReference('user_' . $i));
             $manager->persist($blacklisted);
             $this->addReference('blacklisted_' . $i, $blacklisted);
         }
@@ -27,7 +27,7 @@ class BlacklistedFixtures extends Fixture // implements DependentFixtureInterfac
     public function getDependencies()
     {
         return [
-//            UserFixtures::class,
+            UserFixtures::class,
         ];
     }
 }

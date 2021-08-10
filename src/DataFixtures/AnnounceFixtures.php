@@ -21,7 +21,6 @@ class AnnounceFixtures extends Fixture  implements DependentFixtureInterface
             $announce->setDate($date);
             $announce->setTourney($this->getReference('tourney_' . $i));
             $announce->setUser($this->getReference('user_' . $i));
-            $announce->addComment($this->getReference('comment_' . $i));
             $manager->persist($announce);
             $this->addReference('announce_' . $i, $announce);
         }
@@ -32,7 +31,7 @@ class AnnounceFixtures extends Fixture  implements DependentFixtureInterface
     {
         return [
             TourneyFixtures::class,
-//            UserFixtures::class,
+            UserFixtures::class
         ];
     }
 }

@@ -18,9 +18,6 @@ class PlayerFixtures extends Fixture implements DependentFixtureInterface
             $player->setState('state_' . $i);
             $player->setUser($this->getReference('user_' . $i));
             $player->setTourney($this->getReference('tourney_' . $i));
-            $player->addGroupPlayer($this->getReference('groupPlayer_' . $i));
-            $player->addTeamUser($this->getReference('teamUser_' . $i));
-            $player->addRound($this->getReference('round_' . $i));
             $manager->persist($player);
             $this->addReference('player_' . $i, $player);
         }
@@ -31,7 +28,6 @@ class PlayerFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
-//            TourneyFixtures::class,
         ];
     }
 }

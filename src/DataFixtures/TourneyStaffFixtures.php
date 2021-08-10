@@ -17,7 +17,6 @@ class TourneyStaffFixtures extends Fixture implements DependentFixtureInterface
             $tourneyStaff = new TourneyStaff();
             $tourneyStaff->setUser($this->getReference('user_' . $i));
             $tourneyStaff->setTourney($this->getReference('tourney_' . $i));
-            $tourneyStaff->addConfrontation($this->getReference('confrontation_' . $i));
             $tourneyStaff->setRole('role_'. $i);
             $manager->persist($tourneyStaff);
             $this->addReference('tourneyStaff_' . $i, $tourneyStaff);

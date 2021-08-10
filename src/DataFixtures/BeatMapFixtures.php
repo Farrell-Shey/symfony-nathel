@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class BeatMapFixtures extends Fixture // implements DependentFixtureInterface
+class BeatMapFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -24,8 +24,7 @@ class BeatMapFixtures extends Fixture // implements DependentFixtureInterface
             $beatMap->setHitLength($i);
             $beatMap->setModeInt($i);
             $beatMap->setUrl('url_' . $i);
-            $beatMap->addMappoolMap($this->getReference('mapPoolMap_' . $i));
-            $beatMap->setBeatmapset($this->getReference('beatMap_' . $i));
+            $beatMap->setBeatmapset($this->getReference('beatMapset_' . $i));
             $manager->persist($beatMap);
             $this->addReference('beatMap_' . $i, $beatMap);
         }

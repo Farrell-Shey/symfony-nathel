@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class GroupPlayerFixtures extends Fixture // implements DependentFixtureInterface
+class GroupPlayerFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -17,7 +17,7 @@ class GroupPlayerFixtures extends Fixture // implements DependentFixtureInterfac
             $groupPlayer = new GroupPlayer();
             $groupPlayer->setRanking($i);
             $groupPlayer->setPlayer($this->getReference('player_' . $i));
-            $groupPlayer->setPool($this->getReference('pool_' . $i));
+            $groupPlayer->setPool($this->getReference('group_' . $i));
             $manager->persist($groupPlayer);
             $this->addReference('groupPlayer_' . $i, $groupPlayer);
         }
@@ -27,8 +27,8 @@ class GroupPlayerFixtures extends Fixture // implements DependentFixtureInterfac
     public function getDependencies()
     {
         return [
-//            PlayerFixtures::class,
-//            GroupFixtures::class,
+            PlayerFixtures::class,
+            GroupFixtures::class,
         ];
     }
 }
