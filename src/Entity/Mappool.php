@@ -54,7 +54,7 @@ class Mappool
      * @ORM\OneToMany(targetEntity=Step::class, mappedBy="mappool")
      */
     private $steps;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity=PoolSet::class, inversedBy="mappools")
      * @ORM\JoinColumn(nullable=false)
@@ -66,6 +66,11 @@ class Mappool
      * @ORM\JoinColumn(nullable=true)
      */
     private $mappoolFolloweds;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Contributor::class, inversedBy="mappools")
+     */
+    private $Contributor;
 
 
     public function __construct()
@@ -145,7 +150,7 @@ class Mappool
      */
     public function getMappoolMaps(): Collection
     {
-        return $this->mappoolMaps;
+        return $this->mappoolMap;
     }
 
     public function addMappoolMap(MappoolMap $mappoolMap): self
@@ -242,23 +247,15 @@ class Mappool
         return $this;
     }
 
-    /*
-     * Gets triggered only on insert
-     * @ORM\PrePersist
-     */
-    public function onPrePersist()
+    public function getContributor(): ?Contributor
     {
-        $this->created_at = new \DateTime();
-        $this->updated_at = new \DateTime();
+        return $this->Contributor;
     }
 
-    /*
-     * Gets triggered only on update
-     * @ORM\PreUpdate()
-     */
-    public function onPreUpdate()
+    public function setContributor(?Contributor $Contributor): self
     {
-        $this->updated_at = new \DateTime();
-    }
+        $this->Contributor = $Contributor;
 
+        return $this;
+    }
 }

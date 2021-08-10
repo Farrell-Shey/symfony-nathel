@@ -16,8 +16,15 @@ class ConnexionController extends AbstractController
      */
     public function index(OsuApiService $osuApiService): Response
     {
+        $osuApiService->getToken($osuApiService->getCode());
+        dd();
+
         return $this->render('connexion/index.html.twig', [
             'controller_name' => 'ConnexionController',
         ]);
+    }
+
+    public function loadSession(){
+
     }
 }
