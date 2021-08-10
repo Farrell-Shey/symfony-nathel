@@ -1,0 +1,68 @@
+.navbar {
+  position: fixed;
+  background-color: $classic;
+  min-height: 73px;
+  max-height: 102px;
+  padding: 0 !important;
+  right: 0;
+}
+
+.no-transition {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+.form-control {
+  border-radius: 100px !important;
+  background-color: $light !important;
+  border-style: none;
+}
+
+.nav-button {
+  height: 73px;
+}
+
+@mixin theme($theme: $classic) {
+  background: $theme;
+  border-radius: 0 !important;
+}
+
+.menu-card {
+  @include theme;
+  position: fixed;
+  margin-top: 73px;
+}
+
+.nav-card-osu {
+  @include theme($theme: $pink);
+}
+
+.nav-card {
+  @include theme;
+  &:active {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(14, 17, 14, 1) 20%, $classic 100%);
+  }
+}
+
+.side-nav {
+  position: fixed;
+  min-height: 100vh;
+  background-color: $light;
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    max-height: 73px;
+  }
+  .logo_nathel {
+    max-height: 65px;
+  }
+}
+
+@media (min-width: 767.98px) {
+  .navbar {
+    height: 102px;
+  }
+  .logo_nathel {
+    max-height: 95px;
+  }
+}

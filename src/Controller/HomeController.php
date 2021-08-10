@@ -16,10 +16,10 @@ class HomeController extends AbstractController
      * @param OsuApiService $osuApiService
      * @return Response
      */
-    public function index(OSuApiService $osuApiService): Response
-    {
+    public function index(OSuApiService $osuApiService, MappoolRepository $mappoolRepository): Response
+    {  
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'mappools' => $mappoolRepository->findAll(),
         ]);
     }
 
@@ -31,7 +31,6 @@ class HomeController extends AbstractController
         $popularMappools = $mappoolRepository->findByPopularity();
         return $this->render('home/index.html.twig', [
             'popularMappools' => $popularMappools,
-
         ]);
     }
 

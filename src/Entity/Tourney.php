@@ -171,7 +171,8 @@ class Tourney
     private $pools;
 
     /**
-     * @ORM\OneToMany(targetEntity=player::class, mappedBy="tourney")
+     * @ORM\OneToMany(targetEntity=Player::class, mappedBy="tourney")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $player;
 

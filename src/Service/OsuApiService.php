@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Service;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -25,9 +24,10 @@ class OsuApiService
         $this->client = $client;
     }
 
-    public function getCode() {
+    public function getCode()
+    {
         // fonction transformant le GET['code'] en attribut
-        if (isset($_GET['code'])){
+        if (isset($_GET['code'])) {
             $this->code = $_GET['code'];
             return $_GET['code'];
         }else{
@@ -36,34 +36,33 @@ class OsuApiService
     }
 
     // Fonction à retravailler dans l'optique d'utiliser les requettes de tokens ... Plus tard...
-    public function checkToken(bool $token){
+    public function checkToken(bool $token)
+    {
         // Vérifier si le token est dans les attributs, le réobtneir le cas échéant
         // 1 for user token, 0 for credential token
-        if ($token == 1){
-            if (!isset($this->user_token)){
-            $this->getToken($this->code);
+        if ($token == 1) {
+            if (!isset($this->user_token)) {
+                $this->getToken($this->code);
             }
-        }else{
-            if (!isset($this->credential_token)){
+        } else {
+            if (!isset($this->credential_token)) {
                 $this->getToken(null);
             }
-
         }
     }
 
-    public function getToken(string $code=null){
+    public function getToken(string $code = null)
+    {
         // Method that get a token code, credentials ($code = null) or user one // USE CURL (find a method with HTTP client only would be great)
         $curl = curl_init();
-        if ($this->code == null):
+        if ($this->code == null) :
             $payload = [
                 "client_id"     => self::CLIENT_ID,
                 "client_secret" => self::SECRET,
                 "grant_type"    => "client_credentials",
                 "scope" => "public",
             ];
-
-        else:
-
+        else :
             $payload = [
                 "client_id"     => self::CLIENT_ID,
                 "client_secret" => self::SECRET,
@@ -73,10 +72,7 @@ class OsuApiService
             ];
 
         endif;
-
-
         $payload = json_encode($payload);
-
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://osu.ppy.sh/oauth/token',
             CURLOPT_RETURNTRANSFER => true,
@@ -90,44 +86,34 @@ class OsuApiService
         ));
 
         $response = curl_exec($curl);
-
         curl_close($curl);
         $response = json_decode($response, true);
-
-
-        if ($code==null): // Public Token
-
-
+        if ($code == null) : // Public Token
             $this->credential_token = $response['access_token'];
-
-
-        else: // User authentification token
-
+        else : // User authentification token
             $this->user_token = $response['access_token'];
-
-
         endif;
-}
+    }
 
-        public function apiQueryGET(bool $token, string $endpoint, array $params=null){
-            /*this method is the "GET template" for queries in the osu Api
+    public function apiQueryGET(bool $token, string $endpoint, array $params = null)
+    {
+        /*this method is the "GET template" for queries in the osu Api
             $token 1 for user, $token 0 for credentials
             */
 
-            $tokenused = $token == 1 ? $this->user_token : $this->credential_token;
-
-            $method = 'GET';
-            $options = [
+        $tokenused = $token == 1 ? $this->user_token : $this->credential_token;
+        $method = 'GET';
+        $options = [
             'headers' => [
-                'Authorization' => 'Bearer '. $tokenused,
-                'Accept' =>'application/json',
+                'Authorization' => 'Bearer ' . $tokenused,
+                'Accept' => 'application/json',
                 'Content-Type' => 'application/json'
-            ]];
-            // Mise en place des paramètres GET si il y'en a.
-            if ($params !== null){
-                array_push($options, $params);
-            }
-
+            ]
+        ];
+        // Mise en place des paramètres GET si il y'en a.
+        if ($params !== null) {
+            array_push($options, $params);
+        }
         return $this->client->request($method, $endpoint, $options)->toArray();
     }
 
@@ -143,7 +129,7 @@ class OsuApiService
         return $this->apiQueryGET(0, $endpoint);
     }
 
-    public function getOwnUserInfo($token_user=null) //Only used for Oauth user_id verification
+    public function getOwnUserInfo($token_user = null) //Only used for Oauth user_id verification
     {
         //Similar to GetUserInfo but with authenticated user (token owner) as user id.
         if ($token_user == null){
@@ -151,17 +137,13 @@ class OsuApiService
         }else{
             $this->user_token = $token_user;
         }
-
-
-
-
         $endpoint = 'https://osu.ppy.sh/api/v2/me/osu';
-
         return $this->apiQueryGET(1, $endpoint);
     }
 
     // MAPS
-    public function getBeatmapInfo($map_id){
+    public function getBeatmapInfo($map_id)
+    {
         // Gets beatmap data for the specified beatmap ID.
         $this->getToken();
 
@@ -171,14 +153,13 @@ class OsuApiService
         return $this->apiQueryGET(0, $endpoint);
     }
 
-    public function getUserRecentActivity($user_id, $limit=12, $offset=1)
+    public function getUserRecentActivity($user_id, $limit = 12, $offset = 1)
     {
         // Returns recent activity.
         //Limit : Maximum number of results
         //Offset : Result offset for pagination
 
         $this->checkToken(0);
-
         $endpoint = "https://osu.ppy.sh/api/v2/users/" . $user_id . "1/recent_activity";
         $params = array(
             'limit' => 12,
@@ -207,9 +188,4 @@ class OsuApiService
         return $this->apiQueryGET(0, $endpoint, $params);
 
     }
-
-
-
-
 }
-

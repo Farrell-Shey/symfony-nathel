@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210810092418 extends AbstractMigration
+final class Version20210810121759 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -36,7 +36,7 @@ final class Version20210810092418 extends AbstractMigration
         $this->addSql('CREATE TABLE mappool (id INT AUTO_INCREMENT NOT NULL, pool_set_id INT NOT NULL, contributor_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, thumbnail VARCHAR(255) DEFAULT NULL, follow INT NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_C3A2B8F1C5737286 (pool_set_id), INDEX IDX_C3A2B8F17A19A357 (contributor_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE mappool_followed (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, mappool_id INT NOT NULL, is_complete TINYINT(1) DEFAULT NULL, INDEX IDX_A0144DE1A76ED395 (user_id), INDEX IDX_A0144DE1C6833A60 (mappool_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE mappool_map (id INT AUTO_INCREMENT NOT NULL, mappool_id INT NOT NULL, beatmap_id INT NOT NULL, user_id INT NOT NULL, mode VARCHAR(255) NOT NULL, INDEX IDX_B50D204AC6833A60 (mappool_id), INDEX IDX_B50D204AC60DD20A (beatmap_id), INDEX IDX_B50D204AA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE player (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, tourney_id INT NOT NULL, state VARCHAR(255) NOT NULL, INDEX IDX_98197A65A76ED395 (user_id), INDEX IDX_98197A65ECAE3834 (tourney_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE player (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, tourney_id INT DEFAULT NULL, state VARCHAR(255) NOT NULL, INDEX IDX_98197A65A76ED395 (user_id), INDEX IDX_98197A65ECAE3834 (tourney_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE pool_set (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, thumbnail VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE round (id INT AUTO_INCREMENT NOT NULL, player_id INT NOT NULL, mappool_map_id INT NOT NULL, encounter INT NOT NULL, score INT NOT NULL, accuracy INT NOT NULL, misscount INT NOT NULL, is_v1 TINYINT(1) NOT NULL, INDEX IDX_C5EEEA3499E6F5DF (player_id), INDEX IDX_C5EEEA34F079958C (mappool_map_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE score (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, mappool_map_id INT NOT NULL, score INT NOT NULL, note VARCHAR(255) NOT NULL, acc NUMERIC(4, 2) NOT NULL, combo INT NOT NULL, perfect INT NOT NULL, good INT NOT NULL, bad INT NOT NULL, miss INT NOT NULL, updated_at DATETIME NOT NULL, INDEX IDX_32993751A76ED395 (user_id), INDEX IDX_32993751F079958C (mappool_map_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

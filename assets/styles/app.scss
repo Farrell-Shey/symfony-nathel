@@ -2,28 +2,28 @@
 
 //toutes les variables nécessaires
 @import "variables";
-@import "normalize";
+//@import "normalize";
 
 // tout les petits composants
-@import "components/display";
+/*@import "components/display";
 @import "components/btn";
 @import "components/hn";
-@import "components/card";
+//@import "components/card";
 @import "components/tag";
 @import "components/thumbnail";
 @import "components/scroll";
-@import "components/logo";
+*/@import "components/logo";
 @import "components/menu-burger";
 
 // tout les gros éléments
-
-@import "layouts/header/navbar";
-@import "layouts/header/search-bar";
-@import "layouts/mappool";
-@import "layouts/map";
-@import "layouts/user-banner";
-@import "layouts/collection-banner";
-@import "layouts/jumbotron";
+//@import "layouts/header/navbar";*/
+@import "layouts/header/nav";
+//@import "layouts/header/search-bar";
+//@import "layouts/mappool";
+//@import "layouts/map";
+//@import "layouts/user-banner";
+//@import "layouts/collection-banner";
+//@import "layouts/jumbotron";
 
 // tous les agancements de pages
-@import "pages/default";
+//@import "pages/default";
