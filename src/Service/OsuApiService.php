@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Service;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -161,7 +160,7 @@ class OsuApiService
             'limit' => 12,
             'offset' => 1,
         );
-        return $this->apiQueryGET($token = 0, $endpoint, $params);
+        return $this->apiQueryGET(0, $endpoint, $params);
     }
 
     public function getUserScores($user_id, $score_type, $include_fails = 0, $mode = 'osu', $limit = 12, $offset = 1)

@@ -173,6 +173,7 @@ class User
 
     /** 
      * @ORM\OneToMany(targetEntity=MappoolFollowed::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\JoinColumn(name="package_id", referencedColumnName="id", nullable=true)
      */
     private $mappoolFolloweds;
 

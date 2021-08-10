@@ -63,6 +63,7 @@ class Mappool
 
     /**
      * @ORM\OneToMany(targetEntity=MappoolFollowed::class, mappedBy="mappool", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $mappoolFolloweds;
 
