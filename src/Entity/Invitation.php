@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=InvitationRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Invitation
 {
@@ -108,4 +109,24 @@ class Invitation
 
         return $this;
     }
+    
+    /**
+     * Gets triggered only on insert
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime();
+        $this->deleted_at = new \DateTime();
+    }
+
+    /**
+     * Gets triggered only on update
+     * @ORM\PreUpdate()
+     */
+    public function onPreUpdate()
+    {
+        $this->deleted_at = new \DateTime();
+    }
+
 }

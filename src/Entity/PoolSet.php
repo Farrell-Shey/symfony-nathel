@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PoolSetRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class PoolSet
 {
@@ -271,4 +272,24 @@ class PoolSet
 
         return $this;
     }
+
+    /*
+     * Gets triggered only on insert
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
+    }
+
+    /*
+     * Gets triggered only on update
+     * @ORM\PreUpdate()
+     */
+    public function onPreUpdate()
+    {
+        $this->updated_at = new \DateTime();
+    }
+
 }
