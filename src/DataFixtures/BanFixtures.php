@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class BanFixtures extends Fixture //implements DependentFixtureInterface
+class BanFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -26,7 +26,7 @@ class BanFixtures extends Fixture //implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-//            ConfrontationFixtures::class,
+            ConfrontationFixtures::class,
         ];
     }
 }

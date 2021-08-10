@@ -28,7 +28,7 @@ class TeamUserFixtures extends Fixture  implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            PlayerFixtures::class,
+            TeamFixtures::class,
         ];
     }
 }

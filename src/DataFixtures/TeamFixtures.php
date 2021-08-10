@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class TeamFixtures extends Fixture  implements DependentFixtureInterface
+class TeamFixtures extends Fixture // implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -17,7 +17,6 @@ class TeamFixtures extends Fixture  implements DependentFixtureInterface
             $team = new Team();
             $team->setTeamName('team_' . $i);
             $team->setLogo('logo_' . $i);
-            $team->addTeamUser($this->getReference('teamUser_' . $i));
             $manager->persist($team);
             $this->setReference('team_' . $i, $team);
         }

@@ -10,7 +10,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-class TourneyFixtures extends Fixture // implements DependentFixtureInterface
+class TourneyFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -36,15 +36,6 @@ class TourneyFixtures extends Fixture // implements DependentFixtureInterface
             $tourney->setUpdatedAt($date);
             $tourney->setCreatedAt($date);
             $tourney->setPoolSet($this->getReference('poolSet_' . $i));
-            $tourney->addPlayer($this->getReference('player_' . $i));
-            $tourney->addPool($this->getReference('group_' . $i));
-            $tourney->addTourneyStaff($this->getReference('tourneyStaff_' . $i));
-            $tourney->addWidget($this->getReference('widget_' . $i));
-            $tourney->addLobby($this->getReference('lobbie_' . $i));
-            $tourney->addConfrontation($this->getReference('confrontation_' . $i));
-            $tourney->addStep($this->getReference('step_' . $i));
-            $tourney->addAnnounce($this->getReference('announce_' . $i));
-            $tourney->addBlacklisted($this->getReference('blackListed_' . $i));
             $this->addReference('tourney_' . $i, $tourney);
             $manager->persist($tourney);
         }
@@ -54,7 +45,7 @@ class TourneyFixtures extends Fixture // implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-//            PoolSetFixtures::class,
+            UserFixtures::class,
         ];
     }
 }

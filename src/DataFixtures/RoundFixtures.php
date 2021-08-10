@@ -32,7 +32,7 @@ class RoundFixtures extends Fixture  implements DependentFixtureInterface
     {
         return [
             PlayerFixtures::class,
-//            MappoolMapFixtures::class
+            MappoolMapFixtures::class
         ];
     }
 }

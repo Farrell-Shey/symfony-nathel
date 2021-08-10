@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ConfrontationFixtures extends Fixture //implements DependentFixtureInterface
+class ConfrontationFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -24,8 +24,6 @@ class ConfrontationFixtures extends Fixture //implements DependentFixtureInterfa
             $confrontation->setStep($this->getReference('step_' . $i));
             $confrontation->setTourney($this->getReference('tourney_' . $i));
             $confrontation->setRef($this->getReference('tourneyStaff_' . $i));
-            $confrontation->addPool($this->getReference('group_' . $i));
-            $confrontation->addBan($this->getReference('ban_' . $i));
             $manager->persist($confrontation);
             $this->addReference('confrontation_' . $i, $confrontation);
         }
@@ -35,8 +33,8 @@ class ConfrontationFixtures extends Fixture //implements DependentFixtureInterfa
     public function getDependencies()
     {
         return [
-//            TourneyFixtures::class,
-//            StepFixtures::class,
+            StepFixtures::class,
+            TourneyStaffFixtures::class,
         ];
     }
 }

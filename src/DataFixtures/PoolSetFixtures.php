@@ -25,5 +25,4 @@ class PoolSetFixtures extends Fixture
         }
         $manager->flush();
     }
-
 }

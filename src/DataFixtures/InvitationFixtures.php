@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class InvitationFixtures extends Fixture // implements DependentFixtureInterface
+class InvitationFixtures extends Fixture  implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -31,7 +31,7 @@ class InvitationFixtures extends Fixture // implements DependentFixtureInterface
     {
         return [
 //            UserFixtures::class,
-//            PoolSetFixtures::class,
+            PoolSetFixtures::class,
         ];
     }
 }

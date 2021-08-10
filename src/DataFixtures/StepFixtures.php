@@ -22,8 +22,6 @@ class StepFixtures extends Fixture  implements DependentFixtureInterface
             $step->setPosition($i);
             $step->setTourney($this->getReference('tourney_' . $i));
             $step->setMappool($this->getReference('mappool_' . $i));
-            $step->addConfrontation($this->getReference('confrontation_' . $i));
-            $step->addLobby($this->getReference('lobbie_' . $i));
             $manager->persist($step);
             $this->addReference('step_' . $i, $step);
         }
@@ -34,7 +32,7 @@ class StepFixtures extends Fixture  implements DependentFixtureInterface
     {
         return [
             TourneyFixtures::class,
-//            MappoolFixtures::class,
+            MappoolFixtures::class,
         ];
     }
 }

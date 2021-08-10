@@ -21,10 +21,9 @@ class MappoolFixtures extends Fixture implements DependentFixtureInterface
             $mappool->setThumbnail('thumbnail_' . $i);
             $mappool->setFollow($i);
             $mappool->setUpdatedAt($date);
+            $mappool->setCreatedAt($date);
             $mappool->setPoolSet($this->getReference('poolSet_' . $i));
-            $mappool->addMappoolFollowed($this->getReference('mappoolFollowed_' . $i));
-            $mappool->addMappoolMap($this->getReference('MappoolMap_' . $i));
-            $mappool->addStep($this->getReference('Step_' . $i));
+            $mappool->setContributor($this->getReference('contributor_' . $i));
             $manager->persist($mappool);
             $this->addReference('mappool_' . $i, $mappool);
         }
@@ -34,7 +33,7 @@ class MappoolFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            PoolSetFixtures::class,
+            ContributorFixtures::class,
         ];
     }
 }

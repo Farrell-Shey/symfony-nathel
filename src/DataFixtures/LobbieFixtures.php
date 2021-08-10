@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class LobbieFixtures extends Fixture // implements DependentFixtureInterface
+class LobbieFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -17,6 +17,7 @@ class LobbieFixtures extends Fixture // implements DependentFixtureInterface
             $lobbie = new Lobbie();
             $date = new \DateTime();
             $date->setDate(2020, 12, 1 + $i);
+            $lobbie->setDate($date);
             $lobbie->setIsReplay(true);
             $lobbie->setTourney($this->getReference('tourney_' . $i));
             $lobbie->setStep($this->getReference('step_' . $i));
@@ -29,8 +30,8 @@ class LobbieFixtures extends Fixture // implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-//            TourneyFixtures::class,
-//            StepFixtures::class,
+            TourneyFixtures::class,
+            StepFixtures::class,
         ];
     }
 }
