@@ -1,31 +1,37 @@
-{% extends "svg/_svg.html.twig" %}
+{% extends "component/_side_navbar.html.twig" %}
 
 {% block body %}
 	<div class="col-12 d-flex">
-		<div class="side-nav col-2 d-none d-sm-block">
-			<nav class="nav flex-column">
-				<a class="nav-link active" aria-current="page" href="#">Active</a>
-				<a class="nav-link" href="#">Link</a>
-				<a class="nav-link" href="#">Link</a>
-				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-			</nav>
-		</div>
-		<nav class="col-md-10 col-12 navbar">
-			<div class="no-transition show collapse multi-collapse" aria-expanded="true" id="multiCollapseExample1">
-					<a href="#">
-						{% block logo %}
-							{{ parent() }}
-						{% endblock %}
-					</a>
+		
+		<div class="modal fade d-none d-sm-block" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="col-2 d-flex float-start">
+					{{ block('side') }}
+				</div>
 			</div>
-			<div class=" no-transition collapse show multi-collapse" id="multiCollapseExample3">
-				<p class="d-flex d-md-none navbar-brand navbar-expand-lg text-light my-auto">
+		</div>
+		<div class="card side-nav col-1 d-flex float-start">
+			{{ block('side') }}
+		</div>
+		<nav class=" col-12 top-navbar navbar">
+			<div class="no-transition show collapse multi-collapse" aria-expanded="true" id="multiCollapseExample1">
+				<a class="nav-space" href="#">
+					{% block logo %}
+						{{ parent() }}
+					{% endblock %}
+				</a>
+			</div>
+			<button type="button" class="btn btn-primary d-none d-sm-block" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				Launch demo modal
+			</button>
+			<div class="no-transition collapse show multi-collapse" id="multiCollapseExample3">
+				<h2 class="nav-title d-md-none text-light my-auto">
 					Nathel
-				</p>
+				</h2>
 			</div>
 			<div class="no-transition col-10 collapse hide multi-collapse" id="multiCollapseExample1">
 				<form class="d-flex d-md-none  my-auto">
-					<input class="form-control ms-2" type="search" placeholder="Search ..." aria-label="Search">
+					<input class="form-control ms-2 text-light" type="search" placeholder="Search ..." aria-label="Search">
 					<button class="btn" type="submit">
 						{% block search %}
 							{{ parent() }}
@@ -45,7 +51,7 @@
 	</div>
 
 	<nav id="dropdown-menu" class="d-none d-sm-none text-start ">
-		<div class="col-12 border-0 menu-card d-flex flex-column border-0" width="100%">
+		<div class="col-12 border-0 menu-card d-flex flex-column" width="100%">
 			<a href="/test" class="btn nav-button nav-card-osu align-center text-decoration-none text-start text-light">
 				<span class="d-flex my-3 ms-5" title="Coming Soon!">
 					▸ Continue with Osu!
@@ -68,4 +74,5 @@
 			</a>
 		</div>
 	</nav>
+
 {% endblock %}
