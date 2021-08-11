@@ -17,7 +17,7 @@ class HomeController extends AbstractController
      * @return Response
      */
     public function index(OSuApiService $osuApiService, MappoolRepository $mappoolRepository): Response
-    {  
+    {
         return $this->render('home/index.html.twig', [
             'mappools' => $mappoolRepository->findAll(),
         ]);
@@ -44,6 +44,5 @@ class HomeController extends AbstractController
             'recentMappools' => $recentMappools,
         ]);
     }
-
 
 }

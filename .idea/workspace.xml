@@ -2,35 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/symfony-nathel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony-nathel.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210809084255.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AnnounceFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AnnounceFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BanFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BanFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BeatMapFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BeatMapFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/BlacklistedFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/BlacklistedFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/CommentFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/CommentFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ConfrontationFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ConfrontationFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ContributorFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ContributorFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/GroupFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/GroupFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/GroupPlayerFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/GroupPlayerFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/InvitationFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/InvitationFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/LobbieFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/LobbieFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MappoolFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MappoolFollowedFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolFollowedFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MappoolMapFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/MappoolMapFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/PlayerFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/PlayerFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/PoolSetFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/PoolSetFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/RoundFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/RoundFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ScoreFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ScoreFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/StepFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/StepFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TagFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TagFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TeamFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TeamFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TeamUserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TeamUserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TourneyFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TourneyFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TourneyStaffFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TourneyStaffFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Contributor.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Contributor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Mappool.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Mappool.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ConnexionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ConnexionController.php" afterDir="false" />
     </list>
     <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="" />
     <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
@@ -190,6 +165,7 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/symfony/apache-pack" />
     </include_path>
   </component>
   <component name="ProjectId" id="1wFu5polmHcEuz389AYNOshf63f" />
@@ -240,7 +216,7 @@
       <workItem from="1628538917839" duration="497000" />
       <workItem from="1628576227671" duration="7351000" />
       <workItem from="1628584188573" duration="755000" />
-      <workItem from="1628590381990" duration="886000" />
+      <workItem from="1628590381990" duration="3965000" />
     </task>
     <servers />
   </component>
