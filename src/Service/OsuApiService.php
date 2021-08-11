@@ -23,6 +23,9 @@ class OsuApiService
     {
         $this->client = $client;
     }
+    public function connexion(){
+        $this->getToken($this->getCode());
+    }
 
     public function getCode()
     {
