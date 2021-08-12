@@ -6,13 +6,17 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\HasLifecycleCallbacks
+ * @method string getUserIdentifier()
  */
-class User
+class User implements UserInterface
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,9 +25,14 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $osu_id;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -78,6 +87,7 @@ class User
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+
     private $count_s = 0;
 
     /**
@@ -103,17 +113,19 @@ class User
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $game_mode_mania;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
     private $game_mode_taiko;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    private $game_mode_mania;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
     private $game_mode_ctb;
+
+
 
     /**
      * @ORM\OneToMany(targetEntity=TourneyStaff::class, mappedBy="user")
@@ -763,4 +775,144 @@ class User
     {
         $this->updated_at = new \DateTime();
     }
+
+
+    public function getPassword()
+    {
+        // TODO: Implement getPassword() method.
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    public function __call($name, $arguments)
+    {
+        // TODO: Implement @method string getUserIdentifier()
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param array $roles
+     */
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameModStd()
+    {
+        return $this->game_mode_std;
+    }
+
+    /**
+     * @param mixed $game_mode_std
+     */
+    public function setGameModStd($game_mode_std): void
+    {
+        $this->game_mode_std = $game_mode_std;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameModTaiko()
+    {
+        return $this->game_mode_taiko;
+    }
+
+    /**
+     * @param mixed $game_mode_taiko
+     */
+    public function setGameModTaiko($game_mode_taiko): void
+    {
+        $this->game_mode_taiko = $game_mode_taiko;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameModMania()
+    {
+        return $this->game_mode_mania;
+    }
+
+    /**
+     * @param mixed $game_mode_mania
+     */
+    public function setGameModMania($game_mode_mania): void
+    {
+        $this->game_mode_mania = $game_mode_mania;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameModCtb()
+    {
+        return $this->game_mode_ctb;
+    }
+
+    /**
+     * @param mixed $game_mode_ctb
+     */
+    public function setGameModCtb($game_mode_ctb): void
+    {
+        $this->game_mode_ctb = $game_mode_ctb;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPlayers(): ArrayCollection
+    {
+        return $this->players;
+    }
+
+    /**
+     * @param ArrayCollection $players
+     */
+    public function setPlayers(ArrayCollection $players): void
+    {
+        $this->players = $players;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMappoolMaps(): ArrayCollection
+    {
+        return $this->mappoolMaps;
+    }
+
+    /**
+     * @param ArrayCollection $mappoolMaps
+     */
+    public function setMappoolMaps(ArrayCollection $mappoolMaps): void
+    {
+        $this->mappoolMaps = $mappoolMaps;
+    }
+
 }
+

@@ -10,7 +10,7 @@ class OsuApiService
 
     const CLIENT_ID = 8955;
     const SECRET = 'tdqs5PCfWr1V5CeSCwWoFpIIC3M3umVpoMhzcCif';
-    const URI = 'https://nathel.local/connexion';
+    const URI = 'https://nathel.wip/connexion';
 
     public $code = null; // code obtained in credential token request
     public $credential_token_refresh; // refresh crendetials token

@@ -2,44 +2,61 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
-use App\Service\OsuApiService;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpClient\NativeHttpClient;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\ReTestService;
 
 
-//  checkLogged, uri, load API? dans Abstract Controller
+//  checkLogged, uri, load API? dans Service
+// Check pour le timestamp
+
 
 class ConnexionController extends AbstractController
 {
     /**
      * @Route("/connexion", name="connexion")
-     * @param OsuApiService $osuApiService
-     * @param EntityManagerInterface $em
-     * @return Response
+     * @return object
      */
-
-    public function connexion(OsuApiService $osuApiService, EntityManagerInterface $em)
+    public function login(): object
     {
-        $osuApiService->connexion();
-        $_SESSION['Osu_api'] = $osuApiService; // On instancie ou on écrase
 
-        $this->loadSession($em);
-        $this->loadlastPage();
+        # Method called during the connexion
+        $client = new NativeHttpClient();
+        $osuApiService = new OsuApiService($client);
+
+
+        $osuApiService->connexion();
+
+        dd($this->loadSession($osuApiService));
     }
 
-    public function loadSession($em){
+    /**
+     *
+     */
+    public function authenticate()
+    {
 
-        $OsuApi = $_SESSION['Osu_api'];
-        $token = $OsuApi->user_token;
-        $api = $OsuApi->getOwnUserInfo();
-        $id = $api['id'];
+
+    }
+
+    public function loadSession(OsuApiService $osu_api)
+    {
+        // Load de l'objet USER dans la session et le cookie
+
+        $em = $this->getDoctrine()->getManager();
+        $ur = $em->getDoctrine()->getRepository(User::class);
+
+
+        $token = $osu_api->user_token;
+        $api = $osu_api->getOwnUserInfo();
+        $osu_id = $api['id'];
         // On test
 
-        $user = $em->getRepository(User::class)->find($id);
+        $user = $ur->findOneBy(['osu_id' => $osu_id]);
+        //update token
 
         if (!isset($user)) {
 
@@ -53,38 +70,44 @@ class ConnexionController extends AbstractController
             //TODO: think about adding other game_mod ranks later...
             $new_user->setCountry($api['country_code']);
             $new_user->setCover($api['cover_url']);
+            $new_user->setToken($osu_api->user_token);
+            $new_user->setUpdatedAt(new \DateTime('now'));
+            $new_user->setCreatedAt(new \DateTime('now'));
             // executes the queries
 
             $em->persist($new_user);
             $em->flush();
             // On instancie
-            $user = $em->getRepository(User::class)->find($id);
-            dd($user);
+            $user = $ur->findOneBy(['osu_id' => $osu_id]);
+
         }
 
 
-        // Création de la session du user
-        $_SESSION['user'] = $user;
+        // récupération mot de passe (ou génération)
+        //
+
 
         // Création du cookie de sauvegarde
-        //TODO: Think about hashage of the cookie later...
-        setcookie('auth', $_SESSION['user']->osu_id);
-
+        //TODO: Think about hashage of the cookie later... note: système symfony hashage
+        //setcookie('auth', $_SESSION['user']->getOsuId());
+        return $user;
     }
 
 
-    public function loadLastPage(){
+    public function loadLastPage()
+    {
         // On retourne sur la page où se trouvait l'utilisateur (
 
-        if (isset($_SESSION['REQUEST_URI'])){
-            header('Location: '. $_SESSION['REQUEST_URI']);
-        }else{
+        if (isset($_SESSION['REQUEST_URI'])) {
+            header('Location: ' . $_SESSION['REQUEST_URI']);
+        } else {
             header('Location : /');
 
         }
     }
 
-    public function checkLogged(){
+    public function checkLogged()
+    {
         /* méthode de Récupération cookie si besoin */
         if (isset($_COOKIE['auth'])) {
             // Création de la session
@@ -94,5 +117,6 @@ class ConnexionController extends AbstractController
 
         }
     }
+
 
 }
