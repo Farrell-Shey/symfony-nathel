@@ -2,61 +2,76 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\NativeHttpClient;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\ReTestService;
+use App\Service\OsuApiService;
 
 
-//  checkLogged, uri, load API? dans Service
-// Check pour le timestamp
-
-
+/**
+ * Class ConnexionController
+ * @package App\Controller
+ * Controller redirigeant la connexion API (traitement des données) vers l'authentification symfony, pour ensuite renvoyer sur la page d'origine
+ */
 class ConnexionController extends AbstractController
 {
+
+
+    /**
+     * @Route("/test", name="app_login")
+     */
+    public function authenticate() // Check of log in (Returns error if not authenticated, and redirect to appropriate routes if authenticated)
+    {
+
+        
+    }
+
     /**
      * @Route("/connexion", name="connexion")
+     */
+    public function LoginTemp(): RedirectResponse
+    {
+        session_start();
+        $_SESSION['user'] = $this->login(); // get du user
+
+        return $this->redirectToRoute('test');
+    }
+
+    /**
+     *
      * @return object
      */
-    public function login(): object
+    public function login(): object // Returns $user object
     {
 
         # Method called during the connexion
         $client = new NativeHttpClient();
         $osuApiService = new OsuApiService($client);
-
-
         $osuApiService->connexion();
 
-        dd($this->loadSession($osuApiService));
+        return $this->loadSession($osuApiService);
     }
 
-    /**
-     *
-     */
-    public function authenticate()
+
+
+    public function loadSession(OsuApiService $osu_api): ?object
     {
-
-
-    }
-
-    public function loadSession(OsuApiService $osu_api)
-    {
-        // Load de l'objet USER dans la session et le cookie
-
+        // Load de Doctrine
         $em = $this->getDoctrine()->getManager();
-        $ur = $em->getDoctrine()->getRepository(User::class);
+        $ur = $this->getDoctrine()->getRepository(User::class);
 
-
+        // Get des informations API
         $token = $osu_api->user_token;
         $api = $osu_api->getOwnUserInfo();
         $osu_id = $api['id'];
-        // On test
 
+
+        // Instanciation $user
         $user = $ur->findOneBy(['osu_id' => $osu_id]);
-        //update token
+        //TODO: update token
 
         if (!isset($user)) {
 
@@ -71,52 +86,25 @@ class ConnexionController extends AbstractController
             $new_user->setCountry($api['country_code']);
             $new_user->setCover($api['cover_url']);
             $new_user->setToken($osu_api->user_token);
+            //$user->setPassword($this->passwordHasher->hashPassword(
+              //  $new_user,
+                //'password'
+            //));
             $new_user->setUpdatedAt(new \DateTime('now'));
             $new_user->setCreatedAt(new \DateTime('now'));
             // executes the queries
 
             $em->persist($new_user);
             $em->flush();
-            // On instancie
+            // Instanciation User
             $user = $ur->findOneBy(['osu_id' => $osu_id]);
 
         }
 
-
-        // récupération mot de passe (ou génération)
-        //
-
-
-        // Création du cookie de sauvegarde
-        //TODO: Think about hashage of the cookie later... note: système symfony hashage
-        //setcookie('auth', $_SESSION['user']->getOsuId());
         return $user;
     }
 
 
-    public function loadLastPage()
-    {
-        // On retourne sur la page où se trouvait l'utilisateur (
-
-        if (isset($_SESSION['REQUEST_URI'])) {
-            header('Location: ' . $_SESSION['REQUEST_URI']);
-        } else {
-            header('Location : /');
-
-        }
-    }
-
-    public function checkLogged()
-    {
-        /* méthode de Récupération cookie si besoin */
-        if (isset($_COOKIE['auth'])) {
-            // Création de la session
-            $em = $this->getDoctrine()->getManager();
-            $em->getRepository(User::class)->find($_COOKIE['auth']);
-            $_SESSION['user'] = new User();
-
-        }
-    }
 
 
 }

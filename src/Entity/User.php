@@ -6,15 +6,16 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Nullable;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @method string getUserIdentifier()
+ * @ORM\Table(name="`user`")
  */
-class User implements UserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
     /**
@@ -126,7 +127,6 @@ class User implements UserInterface
     private $game_mode_ctb;
 
 
-
     /**
      * @ORM\OneToMany(targetEntity=TourneyStaff::class, mappedBy="user")
      */
@@ -168,7 +168,6 @@ class User implements UserInterface
     private $invitations;
 
     /**
-
      * @ORM\OneToMany(targetEntity=Announce::class, mappedBy="user")
      */
     private $announces;
@@ -187,6 +186,88 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=MappoolFollowed::class, mappedBy="user")
      */
     private $mappoolFolloweds;
+
+
+    ///// NEW FOR AUTHENTICAFITION
+    ///
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $password;
+
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
+    {
+        return (string)$this->osu_id;
+    }
+
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string)$this->osu_id;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
+    public function getPassword():string
+    {
+        return 'password';
+    }
+
+    public function setPassword(): self
+    {
+        $this->password = 'password';
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
 
     public function __construct()
     {
@@ -774,48 +855,6 @@ class User implements UserInterface
     public function onPreUpdate()
     {
         $this->updated_at = new \DateTime();
-    }
-
-
-    public function getPassword()
-    {
-        // TODO: Implement getPassword() method.
-    }
-
-    public function getSalt()
-    {
-        // TODO: Implement getSalt() method.
-    }
-
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
-
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
-    }
-
-    public function __call($name, $arguments)
-    {
-        // TODO: Implement @method string getUserIdentifier()
-    }
-
-    /**
-     * @return array
-     */
-    public function getRoles(): array
-    {
-        return $this->roles;
-    }
-
-    /**
-     * @param array $roles
-     */
-    public function setRoles(array $roles): void
-    {
-        $this->roles = $roles;
     }
 
     /**
