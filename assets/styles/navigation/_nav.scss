@@ -1,4 +1,4 @@
-.navbar {
+.top-navbar {
   position: fixed;
   background-color: $classic;
   min-height: 73px;
@@ -11,6 +11,13 @@
   -webkit-transition: none !important;
   transition: none !important;
 }
+
+.nav-title {
+  position: fixed;
+  right: 50px;
+  top: 23px;
+}
+
 .form-control {
   border-radius: 100px !important;
   background-color: $light !important;
@@ -29,7 +36,7 @@
 .menu-card {
   @include theme;
   position: fixed;
-  margin-top: 73px;
+  margin-top: 65px;
 }
 
 .nav-card-osu {
@@ -44,10 +51,11 @@
 }
 
 .side-nav {
-  position: fixed;
-  min-height: 100vh;
-  background-color: $light;
+  z-index: 50;
+  max-width: 73px;
+  min-height: 100vh !important;
 }
+
 
 @media (max-width: 767.98px) {
   .navbar {
@@ -65,4 +73,14 @@
   .logo_nathel {
     max-height: 95px;
   }
+}
+
+.modal {
+  width: 16.666667% !important;
+  min-height: 100vh !important;
+  background-color: $light;
+}
+
+.modal-dialog {
+  margin: 0 !important;
 }

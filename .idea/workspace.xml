@@ -2,10 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony-nathel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony-nathel.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/general/body.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/navigation/_footer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/component/_side_navbar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/_bootstrap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_bootstrap.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/layouts/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/layouts/header/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/navigation/_nav.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ConnexionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ConnexionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/OsuApiService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/OsuApiService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/component/_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/component/_navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index2.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index2.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/svg/_svg.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/svg/_svg.html.twig" afterDir="false" />
     </list>
     <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="" />
     <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
@@ -217,6 +230,7 @@
       <workItem from="1628576227671" duration="7351000" />
       <workItem from="1628584188573" duration="755000" />
       <workItem from="1628590381990" duration="3965000" />
+      <workItem from="1628795962788" duration="3128000" />
     </task>
     <servers />
   </component>
