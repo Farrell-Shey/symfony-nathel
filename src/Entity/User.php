@@ -6,13 +6,18 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Nullable;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="`user`")
  */
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,9 +26,14 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $osu_id;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -78,6 +88,7 @@ class User
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+
     private $count_s = 0;
 
     /**
@@ -103,17 +114,18 @@ class User
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $game_mode_mania;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
     private $game_mode_taiko;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    private $game_mode_mania;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
     private $game_mode_ctb;
+
 
     /**
      * @ORM\OneToMany(targetEntity=TourneyStaff::class, mappedBy="user")
@@ -156,7 +168,6 @@ class User
     private $invitations;
 
     /**
-
      * @ORM\OneToMany(targetEntity=Announce::class, mappedBy="user")
      */
     private $announces;
@@ -175,6 +186,88 @@ class User
      * @ORM\OneToMany(targetEntity=MappoolFollowed::class, mappedBy="user")
      */
     private $mappoolFolloweds;
+
+
+    ///// NEW FOR AUTHENTICAFITION
+    ///
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $password;
+
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
+    {
+        return (string)$this->osu_id;
+    }
+
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string)$this->osu_id;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
+    public function getPassword():string
+    {
+        return 'password';
+    }
+
+    public function setPassword(): self
+    {
+        $this->password = 'password';
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
 
     public function __construct()
     {
@@ -763,4 +856,102 @@ class User
     {
         $this->updated_at = new \DateTime();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGameModStd()
+    {
+        return $this->game_mode_std;
+    }
+
+    /**
+     * @param mixed $game_mode_std
+     */
+    public function setGameModStd($game_mode_std): void
+    {
+        $this->game_mode_std = $game_mode_std;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameModTaiko()
+    {
+        return $this->game_mode_taiko;
+    }
+
+    /**
+     * @param mixed $game_mode_taiko
+     */
+    public function setGameModTaiko($game_mode_taiko): void
+    {
+        $this->game_mode_taiko = $game_mode_taiko;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameModMania()
+    {
+        return $this->game_mode_mania;
+    }
+
+    /**
+     * @param mixed $game_mode_mania
+     */
+    public function setGameModMania($game_mode_mania): void
+    {
+        $this->game_mode_mania = $game_mode_mania;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameModCtb()
+    {
+        return $this->game_mode_ctb;
+    }
+
+    /**
+     * @param mixed $game_mode_ctb
+     */
+    public function setGameModCtb($game_mode_ctb): void
+    {
+        $this->game_mode_ctb = $game_mode_ctb;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPlayers(): ArrayCollection
+    {
+        return $this->players;
+    }
+
+    /**
+     * @param ArrayCollection $players
+     */
+    public function setPlayers(ArrayCollection $players): void
+    {
+        $this->players = $players;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMappoolMaps(): ArrayCollection
+    {
+        return $this->mappoolMaps;
+    }
+
+    /**
+     * @param ArrayCollection $mappoolMaps
+     */
+    public function setMappoolMaps(ArrayCollection $mappoolMaps): void
+    {
+        $this->mappoolMaps = $mappoolMaps;
+    }
+
 }
+

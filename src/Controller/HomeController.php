@@ -12,12 +12,16 @@ class HomeController extends AbstractController
 {
 
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="app_home")
      * @param OsuApiService $osuApiService
      * @return Response
      */
     public function index(OSuApiService $osuApiService, MappoolRepository $mappoolRepository): Response
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7094a617f8fce6a600f89c002ad0dda5d53df2d8
         return $this->render('home/index.html.twig', [
             'mappools' => $mappoolRepository->findAll(),
         ]);
