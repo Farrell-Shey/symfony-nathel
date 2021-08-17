@@ -1,11 +1,32 @@
 {% extends "svg/_svg.html.twig" %}
+
 {% block body %}
+
 	{% block side %}
-				<nav class="nav flex-column">
-					<a class="nav-link active" aria-current="page" href="#">Active</a>
-					<a class="nav-link" href="#">Link</a>
-					<a class="nav-link" href="#">Link</a>
-					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-				</nav>
+		<div onclick="this.classList.toggle('opened');document.getElementById('side-nav').classList.toggle('d-none');" aria-label="Main Menu"></div>
+
+		<nav class="side-nav-space d-flex justify-content-center d-none d-md-block">
+			<div class="base-theme side-nav-card">
+				<ul class="navbar-nav me-auto my-2 my-lg-0">
+					<li class="nav-item">
+						<a class="pr-3 btn border-0 d-flex justify-content-around align-items-center" href="/">{{ block("home") }}
+							Home
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="ms-1 pr-1n btn border-0 d-flex justify-content-around align-items-center" href="/">{{ block("explore") }}
+							Explore
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="ms-3 btn border-0 d-flex justify-content-around align-items-center" href="/">
+							{{ block("mymappool") }}
+							my mappools
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
 	{% endblock %}
 {% endblock %}

@@ -1,15 +1,19 @@
 .top-navbar {
   position: fixed;
+  justify-content: space-between;
   background-color: $classic;
   min-height: 73px;
   max-height: 102px;
   padding: 0 !important;
-  right: 0;
+  min-width: 100vw;
 }
 
-.no-transition {
-  -webkit-transition: none !important;
-  transition: none !important;
+.right-nav-position {
+  flex-direction: row;
+  position:fixed;
+  right: 0;
+  top: 0;
+
 }
 
 .nav-title {
@@ -19,13 +23,18 @@
 }
 
 .form-control {
-  border-radius: 100px !important;
   background-color: $light !important;
+  border-radius: 100px !important;
   border-style: none;
 }
 
 .nav-button {
   height: 73px;
+}
+
+.nav-link {
+  padding: 0;
+  margin: 0;
 }
 
 @mixin theme($theme: $classic) {
@@ -36,7 +45,7 @@
 .menu-card {
   @include theme;
   position: fixed;
-  margin-top: 65px;
+  margin-top: 70px;
 }
 
 .nav-card-osu {
@@ -50,13 +59,6 @@
   }
 }
 
-.side-nav {
-  z-index: 50;
-  max-width: 73px;
-  min-height: 100vh !important;
-}
-
-
 @media (max-width: 767.98px) {
   .navbar {
     max-height: 73px;
@@ -69,18 +71,16 @@
 @media (min-width: 767.98px) {
   .navbar {
     height: 102px;
+    padding: 0;
   }
   .logo_nathel {
     max-height: 95px;
   }
-}
-
-.modal {
-  width: 16.666667% !important;
-  min-height: 100vh !important;
-  background-color: $light;
-}
-
-.modal-dialog {
-  margin: 0 !important;
+  .nav-button {
+    display: block;
+    justify-content: center;
+    width: 160px;
+    height: 102px;
+    padding-top: 20px;
+  }
 }
