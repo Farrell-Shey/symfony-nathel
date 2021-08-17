@@ -1,0 +1,86 @@
+@use "sass:math";
+
+//if url == [$table]{
+
+@mixin base {
+    color: $secondary;
+    fill: $secondary;
+    &:active {
+        background: $classic;
+        color: $primary;
+        fill: $primary;
+    }
+}
+
+.base-theme {
+    *a {
+        @include base;
+    }
+    .dropdown-nav {
+        @include base;
+    }
+    .nav-button:active{
+        background-color: $dark;
+    }
+}
+
+//elseif url == [$tablemappools]{
+@mixin mappools {
+    color: $secondary;
+    fill: $secondary;
+    &:active {
+        background: $classic;
+        color: $primary;
+        fill: $primary;
+    }
+}
+
+.mappools-theme {
+    *a {
+        @include mappools;
+    }
+    .dropdown-nav {
+        @include mappools;
+    }
+}
+
+//elseif url == [$tabletourney]{
+@mixin tourney {
+    color: $secondary;
+    fill: $secondary;
+    &:active {
+        background: $classic;
+        color: $primary;
+        fill: $primary;
+    }
+}
+
+.tourney-theme {
+    *a {
+        @include tourney;
+    }
+    .dropdown-nav {
+        @include tourney;
+    }
+}
+
+//elseif url == [$tableprofil]{
+
+@mixin profil {
+    color: $secondary;
+    fill: $secondary;
+    &:active {
+        background: $classic;
+        color: $primary;
+        fill: $primary;
+    }
+}
+
+.profil-theme {
+    *a {
+        @include profil;
+    }
+    .dropdown-nav {
+        @include profil;
+    }
+}

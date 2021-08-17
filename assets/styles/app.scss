@@ -1,11 +1,14 @@
-@import "general/_bootstrap";
+@import "general/bootstrap";
 @import "general/variables";
 @import "general/body";
+@import "general/theme";
 
 @import "components/logo";
 @import "components/menu-burger";
 
 @import "navigation/nav";
+@import "navigation/side_nav";
+@import "navigation/footer";
 
 
 
