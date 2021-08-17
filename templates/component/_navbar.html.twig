@@ -2,43 +2,15 @@
 {# variable code dupliqué #}
 {% block body %}
 	<div class="col-12 d-flex">
-		<div id="side-nav" class="d-none expand">
-			<div class="col-2 d-flex float-start">
-				{{ block("side") }}
-			</div>
-		</div>
-		<div class="base-theme card side-nav border-0 d-none d-md-block col-1 d-flex float-start">
-			<nav class="nav d-flex justify-content-center flex-column">
-				<div class="d-flex side-nav-btn burger-btn float-right" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4" onclick="this.classList.toggle('opened');document.getElementById('side-nav').classList.toggle('d-none');" aria-label="Main Menu">
-					{{ block("burger") }}
-				</div>
-				<ul class="side-nav-text border-0 hide card bg-transparent mt-5">
-					<li class="nav-item">
-						<a class="side-nav-btn my-auto btn" href="/">{{ block("home") }}
-							Home
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="side-nav-btn my-auto btn" href="/">{{ block("explore") }}
-							Explore
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="side-nav-btn my-auto btn" href="/">{{ block("mymappool") }}
-							mappool
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
+		{{ block("side") }}
 		<nav class="top-navbar navbar">
 			<nav class="base-theme d-row navbar d-none d-md-block ">
 				<ul>
 					<li class="top-navbar d-inline-flex align-items-center">
 
-						<div class="no-transition space-top-nav collapse hide " aria-expanded="true" id="collapse4"></div>
+						<div class="no-transition space-top-nav  multi-collapse hide collapse" aria-expanded="true" id="space-top-nav"></div>
 
-						<a class="nav-link logo-nav-top no-transition show collapse multi-collapse" aria-expanded="true" id="multiCollapseExample1" href="/">
+						<a class="nav-link logo-nav" aria-expanded="true"  href="/">
 							{{ block("logo") }}
 						</a>
 						<a class="nav-link nav-button my-auto btn" href="/">{{ block("tourney_section") }}<br>
@@ -118,4 +90,5 @@
 			</a>
 		</div>
 	</nav>
+
 {% endblock %}

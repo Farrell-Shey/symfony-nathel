@@ -19,7 +19,7 @@
     .dropdown-nav {
         @include base;
     }
-    .nav-button:active{
+    .side-nav-btn.nav-button:active{
         background-color: $dark;
     }
 }

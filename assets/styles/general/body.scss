@@ -22,3 +22,26 @@ ul {
 li {
     list-style: none;
 }
+
+.container-fluid {
+    overflow-x: hidden;
+}
+
+@media (max-width: 767.98px) {
+    .container-fluid {
+        padding-top: 60px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container-fluid {
+        padding: 80px 0 0 80px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-fluid {
+        padding: 105px 0 0 80px;
+    }
+}
+
