@@ -23,14 +23,14 @@
 			{% endblock %}
 		</header>
 		<main>
-			{% for message in app.flashes('success') %}
-				<div class="alert alert-success mt-5 mb-0">
-					{{ message }}
-				</div>
-			{% endfor %}
-			
-			{% block body %}{% endblock %}
-
+			<div class="container-fluid g-0 ">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success mt-5 mb-0">
+						{{ message }}
+					</div>
+				{% endfor %}
+				{% block body %}{% endblock %}
+			</div>
 		</main>
 		<footer>
 			{% block footer %}
