@@ -11,21 +11,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
 
-    /**
-     * @Route("/", name="app_home")
-     * @param OsuApiService $osuApiService
-     * @return Response
-     */
+/**
+ * @Route("/", name = "app_home")
+* @param OsuApiService $osuApiService
+* @return Response
+*/
     public function index(OSuApiService $osuApiService, MappoolRepository $mappoolRepository): Response
     {
+
         return $this->render('home/index.html.twig', [
             'mappools' => $mappoolRepository->findAll(),
         ]);
     }
 
-    /**
-     * @Route("/popular", name="popular")
-     */
+/**
+ * @Route("/popular", name = "popular")
+*/
     public function showPopularMappools(MappoolRepository $mappoolRepository)
     {
         $popularMappools = $mappoolRepository->findByPopularity();
@@ -44,5 +45,6 @@ class HomeController extends AbstractController
             'recentMappools' => $recentMappools,
         ]);
     }
+
 
 }

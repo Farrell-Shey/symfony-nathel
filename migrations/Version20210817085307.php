@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210810121759 extends AbstractMigration
+final class Version20210817085307 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -47,44 +47,44 @@ final class Version20210810121759 extends AbstractMigration
         $this->addSql('CREATE TABLE team_user (id INT AUTO_INCREMENT NOT NULL, player_id INT NOT NULL, team_id INT NOT NULL, is_capitain TINYINT(1) NOT NULL, INDEX IDX_5C72223299E6F5DF (player_id), INDEX IDX_5C722232296CD8AE (team_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tourney (id INT AUTO_INCREMENT NOT NULL, poolset_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, acronym VARCHAR(255) NOT NULL, description VARCHAR(255) DEFAULT NULL, iteration INT NOT NULL, thumbnail VARCHAR(255) DEFAULT NULL, background_home VARCHAR(255) DEFAULT NULL, follow INT NOT NULL, nb_player INT NOT NULL, nb_inscrits VARCHAR(255) NOT NULL, discord VARCHAR(255) DEFAULT NULL, twitter VARCHAR(255) DEFAULT NULL, forum_post VARCHAR(255) DEFAULT NULL, mode VARCHAR(255) NOT NULL, is_scorev2 TINYINT(1) NOT NULL, is_scale VARCHAR(255) DEFAULT NULL, is_team TINYINT(1) NOT NULL, is_qualif TINYINT(1) NOT NULL, groupstages TINYINT(1) NOT NULL, bracket_format VARCHAR(255) NOT NULL, max_pt INT DEFAULT NULL, max_reg INT DEFAULT NULL, round_of INT DEFAULT NULL, reg_start_date DATETIME NOT NULL, reg_close_date DATETIME NOT NULL, color_theme VARCHAR(255) NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_FFF7213172FD9BA6 (poolset_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tourney_staff (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, tourney_id INT NOT NULL, role VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, INDEX IDX_5EF8D741A76ED395 (user_id), INDEX IDX_5EF8D741ECAE3834 (tourney_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, osu_id INT NOT NULL, name VARCHAR(255) NOT NULL, token VARCHAR(1024) NOT NULL, discord VARCHAR(255) DEFAULT NULL, thumbnail VARCHAR(255) DEFAULT NULL, cover VARCHAR(255) DEFAULT NULL, timezone INT DEFAULT NULL, country VARCHAR(255) NOT NULL, silver_ss INT DEFAULT NULL, count_ss INT DEFAULT NULL, count_silver_s INT DEFAULT NULL, count_s INT DEFAULT NULL, count_a INT DEFAULT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, game_mode_std INT DEFAULT NULL, game_mode_mania INT DEFAULT NULL, game_mode_taiko INT DEFAULT NULL, game_mode_ctb INT DEFAULT NULL, twitter VARCHAR(255) DEFAULT NULL, twitch VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE `user` (id INT AUTO_INCREMENT NOT NULL, osu_id VARCHAR(180) NOT NULL, roles JSON NOT NULL, name VARCHAR(255) NOT NULL, token VARCHAR(1024) NOT NULL, discord VARCHAR(255) DEFAULT NULL, thumbnail VARCHAR(255) DEFAULT NULL, cover VARCHAR(255) DEFAULT NULL, timezone INT DEFAULT NULL, country VARCHAR(255) NOT NULL, silver_ss INT DEFAULT NULL, count_ss INT DEFAULT NULL, count_silver_s INT DEFAULT NULL, count_s INT DEFAULT NULL, count_a INT DEFAULT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, game_mode_std INT DEFAULT NULL, game_mode_taiko INT DEFAULT NULL, game_mode_mania INT DEFAULT NULL, game_mode_ctb INT DEFAULT NULL, twitter VARCHAR(255) DEFAULT NULL, twitch VARCHAR(255) DEFAULT NULL, password VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D64933F3CABF (osu_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE widget (id INT AUTO_INCREMENT NOT NULL, tourney_id INT NOT NULL, content VARCHAR(255) DEFAULT NULL, title VARCHAR(255) DEFAULT NULL, position INT DEFAULT NULL, page VARCHAR(255) DEFAULT NULL, INDEX IDX_85F91ED0ECAE3834 (tourney_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE announce ADD CONSTRAINT FK_E6D6DD75ECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
-        $this->addSql('ALTER TABLE announce ADD CONSTRAINT FK_E6D6DD75A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE announce ADD CONSTRAINT FK_E6D6DD75A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE ban ADD CONSTRAINT FK_62FED0E518EE86FA FOREIGN KEY (confrontation_id) REFERENCES confrontation (id)');
         $this->addSql('ALTER TABLE ban ADD CONSTRAINT FK_62FED0E5F079958C FOREIGN KEY (mappool_map_id) REFERENCES mappool_map (id)');
         $this->addSql('ALTER TABLE beatmap ADD CONSTRAINT FK_F59F06C443EEE4D3 FOREIGN KEY (beatmapset_id) REFERENCES beatmapset (id)');
         $this->addSql('ALTER TABLE blacklisted ADD CONSTRAINT FK_A71A7F0BECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
-        $this->addSql('ALTER TABLE blacklisted ADD CONSTRAINT FK_A71A7F0BA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE blacklisted ADD CONSTRAINT FK_A71A7F0BA76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526C6F5DA3DE FOREIGN KEY (announce_id) REFERENCES announce (id)');
         $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526CF8697D13 FOREIGN KEY (comment_id) REFERENCES comment (id)');
-        $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526CA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526CA76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE confrontation ADD CONSTRAINT FK_EB1249E7ECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
         $this->addSql('ALTER TABLE confrontation ADD CONSTRAINT FK_EB1249E773B21E9C FOREIGN KEY (step_id) REFERENCES step (id)');
         $this->addSql('ALTER TABLE confrontation ADD CONSTRAINT FK_EB1249E721B741A9 FOREIGN KEY (ref_id) REFERENCES tourney_staff (id)');
-        $this->addSql('ALTER TABLE contributor ADD CONSTRAINT FK_DA6F9793A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE contributor ADD CONSTRAINT FK_DA6F9793A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE contributor ADD CONSTRAINT FK_DA6F9793C5737286 FOREIGN KEY (pool_set_id) REFERENCES pool_set (id)');
         $this->addSql('ALTER TABLE `group` ADD CONSTRAINT FK_6DC044C5ECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
         $this->addSql('ALTER TABLE group_confrontation ADD CONSTRAINT FK_B4FB87A5FE54D947 FOREIGN KEY (group_id) REFERENCES `group` (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE group_confrontation ADD CONSTRAINT FK_B4FB87A518EE86FA FOREIGN KEY (confrontation_id) REFERENCES confrontation (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE group_player ADD CONSTRAINT FK_4B9FA2B599E6F5DF FOREIGN KEY (player_id) REFERENCES player (id)');
         $this->addSql('ALTER TABLE group_player ADD CONSTRAINT FK_4B9FA2B57B3406DF FOREIGN KEY (pool_id) REFERENCES `group` (id)');
-        $this->addSql('ALTER TABLE invitation ADD CONSTRAINT FK_F11D61A2A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE invitation ADD CONSTRAINT FK_F11D61A2A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE invitation ADD CONSTRAINT FK_F11D61A272FD9BA6 FOREIGN KEY (poolset_id) REFERENCES pool_set (id)');
         $this->addSql('ALTER TABLE lobbie ADD CONSTRAINT FK_860DEBE1ECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
         $this->addSql('ALTER TABLE lobbie ADD CONSTRAINT FK_860DEBE173B21E9C FOREIGN KEY (step_id) REFERENCES step (id)');
         $this->addSql('ALTER TABLE mappool ADD CONSTRAINT FK_C3A2B8F1C5737286 FOREIGN KEY (pool_set_id) REFERENCES pool_set (id)');
         $this->addSql('ALTER TABLE mappool ADD CONSTRAINT FK_C3A2B8F17A19A357 FOREIGN KEY (contributor_id) REFERENCES contributor (id)');
-        $this->addSql('ALTER TABLE mappool_followed ADD CONSTRAINT FK_A0144DE1A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE mappool_followed ADD CONSTRAINT FK_A0144DE1A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE mappool_followed ADD CONSTRAINT FK_A0144DE1C6833A60 FOREIGN KEY (mappool_id) REFERENCES mappool (id)');
         $this->addSql('ALTER TABLE mappool_map ADD CONSTRAINT FK_B50D204AC6833A60 FOREIGN KEY (mappool_id) REFERENCES mappool (id)');
         $this->addSql('ALTER TABLE mappool_map ADD CONSTRAINT FK_B50D204AC60DD20A FOREIGN KEY (beatmap_id) REFERENCES beatmap (id)');
-        $this->addSql('ALTER TABLE mappool_map ADD CONSTRAINT FK_B50D204AA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('ALTER TABLE player ADD CONSTRAINT FK_98197A65A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE mappool_map ADD CONSTRAINT FK_B50D204AA76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
+        $this->addSql('ALTER TABLE player ADD CONSTRAINT FK_98197A65A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE player ADD CONSTRAINT FK_98197A65ECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
         $this->addSql('ALTER TABLE round ADD CONSTRAINT FK_C5EEEA3499E6F5DF FOREIGN KEY (player_id) REFERENCES player (id)');
         $this->addSql('ALTER TABLE round ADD CONSTRAINT FK_C5EEEA34F079958C FOREIGN KEY (mappool_map_id) REFERENCES mappool_map (id)');
-        $this->addSql('ALTER TABLE score ADD CONSTRAINT FK_32993751A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE score ADD CONSTRAINT FK_32993751A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE score ADD CONSTRAINT FK_32993751F079958C FOREIGN KEY (mappool_map_id) REFERENCES mappool_map (id)');
         $this->addSql('ALTER TABLE step ADD CONSTRAINT FK_43B9FE3CECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
         $this->addSql('ALTER TABLE step ADD CONSTRAINT FK_43B9FE3CC6833A60 FOREIGN KEY (mappool_id) REFERENCES mappool (id)');
@@ -93,7 +93,7 @@ final class Version20210810121759 extends AbstractMigration
         $this->addSql('ALTER TABLE team_user ADD CONSTRAINT FK_5C72223299E6F5DF FOREIGN KEY (player_id) REFERENCES player (id)');
         $this->addSql('ALTER TABLE team_user ADD CONSTRAINT FK_5C722232296CD8AE FOREIGN KEY (team_id) REFERENCES team (id)');
         $this->addSql('ALTER TABLE tourney ADD CONSTRAINT FK_FFF7213172FD9BA6 FOREIGN KEY (poolset_id) REFERENCES pool_set (id)');
-        $this->addSql('ALTER TABLE tourney_staff ADD CONSTRAINT FK_5EF8D741A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE tourney_staff ADD CONSTRAINT FK_5EF8D741A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE tourney_staff ADD CONSTRAINT FK_5EF8D741ECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
         $this->addSql('ALTER TABLE widget ADD CONSTRAINT FK_85F91ED0ECAE3834 FOREIGN KEY (tourney_id) REFERENCES tourney (id)');
     }
@@ -175,7 +175,7 @@ final class Version20210810121759 extends AbstractMigration
         $this->addSql('DROP TABLE team_user');
         $this->addSql('DROP TABLE tourney');
         $this->addSql('DROP TABLE tourney_staff');
-        $this->addSql('DROP TABLE user');
+        $this->addSql('DROP TABLE `user`');
         $this->addSql('DROP TABLE widget');
     }
 }

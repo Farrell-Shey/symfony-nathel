@@ -1,29 +1,50 @@
 {% extends "component/_side_navbar.html.twig" %}
-
+{# variable code dupliqué #}
 {% block body %}
 	<div class="col-12 d-flex">
-		
-		<div class="modal fade d-none d-sm-block" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="col-2 d-flex float-start">
-					{{ block('side') }}
-				</div>
-			</div>
-		</div>
-		<div class="card side-nav col-1 d-flex float-start">
-			{{ block('side') }}
-		</div>
-		<nav class=" col-12 top-navbar navbar">
-			<div class="no-transition show collapse multi-collapse" aria-expanded="true" id="multiCollapseExample1">
-				<a class="nav-space" href="#">
-					{% block logo %}
-						{{ parent() }}
-					{% endblock %}
-				</a>
-			</div>
-			<button type="button" class="btn btn-primary d-none d-sm-block" data-bs-toggle="modal" data-bs-target="#exampleModal">
-				Launch demo modal
-			</button>
+		{{ block("side") }}
+		<nav class="top-navbar navbar">
+			<nav class="base-theme d-row navbar d-none d-md-block ">
+				<ul>
+					<li class="top-navbar d-inline-flex align-items-center">
+
+						<div class="no-transition space-top-nav  multi-collapse hide collapse" aria-expanded="true" id="space-top-nav"></div>
+
+						<a class="nav-link logo-nav" aria-expanded="true"  href="/">
+							{{ block("logo") }}
+						</a>
+						<a class="nav-link nav-button my-auto btn" href="/">{{ block("tourney_section") }}<br>
+							Tournaments
+						</a>
+						<a class="nav-link nav-button my-auto btn" href="/">
+							{{ block("guide_section") }}<br>
+							Osu! Guides
+						</a>
+						<a class="nav-link nav-button my-auto btn" href="/">
+							{{ block("mappool_section") }}<br>
+							Osu! Mappools
+						</a>
+						<div class="d-none d-xl-block">
+							<form class="d-flex">
+								<input class="form-control ms-2 text-light" type="search" placeholder="Search ..." aria-label="Search">
+								<button class="btn" type="submit">
+									{{ block("search") }}
+								</button>
+							</form>
+						</div>
+						<a class="nav-link d-none d-md-block d-xl-none my-auto btn" href="/">
+							{{ block("magnifying_glass") }}
+						</a>
+						<a class="nav-link nav-button my-auto btn" href="/">
+							{{ block("login") }}<br>
+							Sign-in
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<a class="d-md-none ms-3 no-transition show collapse multi-collapse" aria-expanded="true" id="multiCollapseExample1" href="/">
+				{{ block("logo") }}
+			</a>
 			<div class="no-transition collapse show multi-collapse" id="multiCollapseExample3">
 				<h2 class="nav-title d-md-none text-light my-auto">
 					Nathel
@@ -33,23 +54,18 @@
 				<form class="d-flex d-md-none  my-auto">
 					<input class="form-control ms-2 text-light" type="search" placeholder="Search ..." aria-label="Search">
 					<button class="btn" type="submit">
-						{% block search %}
-							{{ parent() }}
-						{% endblock %}
+						{{ block("search") }}
 					</button>
 				</form>
 			</div>
-			<div id="mobile-menu" class="no-transition menu" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3" onclick="this.classList.toggle('opened');document.getElementById('dropdown-menu').classList.toggle('d-none');" aria-label="Main Menu">
+			<div id="mobile-menu" class="no-transition menu" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3 multiCollapseExample4" onclick="this.classList.toggle('opened');document.getElementById('dropdown-menu').classList.toggle('d-none');" aria-label="Main Menu">
 				<div class="mobile-burger d-md-none">
 					<span>{#<?= $_SESSION['match']['name']; ?>#}</span>
-					{% block burger %}
-						{{ parent() }}
-					{% endblock %}
+					{{ block("burger") }}
 				</div>
 			</div>
 		</nav>
 	</div>
-
 	<nav id="dropdown-menu" class="d-none d-sm-none text-start ">
 		<div class="col-12 border-0 menu-card d-flex flex-column" width="100%">
 			<a href="/test" class="btn nav-button nav-card-osu align-center text-decoration-none text-start text-light">

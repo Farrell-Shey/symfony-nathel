@@ -1,9 +1,10 @@
-{% extends 'svg/_svg.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Hello HomeController!
 {% endblock %}
 
 {% block body %}
+
     <section class="jumbotron_home">
         <div class="filter">
             <div class="row_1 ">
@@ -26,27 +27,21 @@
                 </div>
                 <div class="d-flex flex-column mt-3">
                     <div class="d-flex  justify-content-around align-items-center grey_card">
-                        {% block jumb_1 %}
-                            {{ parent() }}
-                        {% endblock %}
+                        {% include 'svg/_jumb_1.html.twig' %}
                         <div>
                             <h3 class="font-weight-bold title_h3">Create your own pools </h3>
                             <p>We want everyone to be able to easily create their own mappools</p>
                         </div>
                     </div>
                     <div class="d-flex justify-content-around align-items-center grey_card">
-                        {% block jumb_2 %}
-                            {{ parent() }}
-                        {% endblock %}
+                        {% include 'svg/_jumb_2.html.twig' %}
                         <div>
                             <h3 class="font-weight-bold title_h3">Share with your friends</h3>
                             <p>Be sure to share with your friends good bangers to enjoy the game to the fullest.</p>
                         </div>
                     </div>
                     <div class="d-flex justify-content-around align-items-center grey_card">
-                        {% block jumb_3 %}
-                            {{ parent() }}
-                        {% endblock %}
+                        {% include 'svg/_jumb_3.html.twig' %}
                         <div>
                             <h3 class="font-weight-bold title_h3">Coming Soon ...</h3>
                             <p>Soon you’ll be able to link your mappool to tournament create through the website</p>

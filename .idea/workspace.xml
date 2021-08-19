@@ -2,18 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/styles/components/_button.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/general/theme.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/navigation/_side_nav.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/component/_mappool.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/zone_test/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/general/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/general/body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ConnexionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ConnexionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/navigation/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/navigation/_footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/navigation/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/navigation/_nav.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210810121759.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210817085307.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210810122012.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ZoneTestController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/component/2_navbar.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/component/_footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/component/_footer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/component/_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/component/_navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/component/_side_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/component/_side_navbar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index2.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/mappool/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mappool/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/svg/_svg.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/svg/_svg.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/test/index.html.twig" beforeDir="false" />
     </list>
     <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="" />
     <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
@@ -229,6 +244,8 @@
       <workItem from="1629122887515" duration="11796000" />
       <workItem from="1629148657258" duration="3231000" />
       <workItem from="1629292003355" duration="7306000" />
+      <workItem from="1629378752887" duration="2826000" />
+      <workItem from="1629403824808" duration="828000" />
     </task>
     <servers />
   </component>

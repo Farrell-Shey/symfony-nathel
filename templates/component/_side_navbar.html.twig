@@ -1,11 +1,46 @@
-{% extends "svg/_svg.html.twig" %}
-{% block body %}
-	{% block side %}
-				<nav class="nav flex-column">
-					<a class="nav-link active" aria-current="page" href="#">Active</a>
-					<a class="nav-link" href="#">Link</a>
-					<a class="nav-link" href="#">Link</a>
-					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-				</nav>
-	{% endblock %}
+{% extends 'svg/_svg.html.twig' %}
+{% block side %}
+	<div class="base-theme">
+		<div id="open" class=" hide bs collapse multi-collapse no-transition ">
+			<div class="side-menu-bg d-none d-md-block "></div>
+		</div>
+		<div class="card side-nav border-0 d-none d-md-block col-1 d-flex float-start">
+			<nav class="nav d-flex justify-content-center flex-column">
+				<div class=" burger-btn  ms-3" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="space-top-nav open" onclick="this.classList.toggle('opened')">
+					{{ block("burger") }}
+				</div>
+				<div id="open" class="wide-side-menu hide bs collapsing multi-collapse no-transition ">
+					<div class="card border-0 bg-transparent">
+						<ul class="my-auto">
+							{% block side_menu %}
+								<li class="side-nav-btn">
+									<a class="side-link" href="/">
+										{{ block("home") }}
+										Home
+									</a>
+								</li>
+								<li class="side-nav-btn">
+									<a class="side-link" href="/">
+										{{ block("explore") }}
+										Explore
+									</a>
+								</li>
+								<li class="side-nav-btn">
+									<a class="side-link" href="/">
+										{{ block("mymappool") }}
+										mappool
+									</a>
+								</li>
+							{% endblock %}
+						</ul>
+					</div>
+				</div>
+				<div id="open" class="thin-side-menu show bs toggle multi-collapse no-transition">
+					<ul class="side-nav-flex flex-column card border-0 bg-transparent">
+						{{ block("side_menu") }}
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
 {% endblock %}

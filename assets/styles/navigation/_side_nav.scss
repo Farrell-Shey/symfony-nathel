@@ -1,0 +1,62 @@
+.side-nav {
+    z-index: 3;
+    display: flex;
+    background-color: $light;
+    width: 73px;
+    min-height: 100vw !important;
+    border-radius: 0 !important;
+    position: fixed;
+}
+
+.side-nav-btn  {
+    height: 44px;
+    min-width: 73px;
+    align-items: center;
+}
+
+.burger-btn {
+    margin-bottom: 74px;
+}
+
+
+
+.thin-side-menu{
+    display: flex;
+    align-items: center;
+    .side-link{
+        height: 44px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.side-menu-bg {
+    z-index: 1;
+    background-color: $light;
+    width: 270px;
+    min-height: 100vw !important;
+    position: fixed;
+}
+
+.wide-side-menu {
+    .card {
+        width: 270px;
+        justify-content: center;
+    }
+    .side-link{
+        height: 44px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.side-nav-flex {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 73px;
+}
