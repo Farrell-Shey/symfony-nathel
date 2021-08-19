@@ -26,7 +26,7 @@ class ConnexionController extends AbstractController
     public function authenticate() // Check of log in (Returns error if not authenticated, and redirect to appropriate routes if authenticated)
     {
 
-        
+
     }
 
     /**
@@ -40,25 +40,22 @@ class ConnexionController extends AbstractController
         return $this->redirectToRoute('test');
     }
 
-    /**
-     *
-     * @return object
-     */
-    public function login(): object // Returns $user object
-    {
-<<<<<<< HEAD
-        $osuApiService->getToken($osuApiService->getCode());
-        dd($osuApiService->getBeatmapInfo(954692));
-=======
-
-        # Method called during the connexion
-        $client = new NativeHttpClient();
-        $osuApiService = new OsuApiService($client);
->>>>>>> 7094a617f8fce6a600f89c002ad0dda5d53df2d8
-        $osuApiService->connexion();
-
-        return $this->loadSession($osuApiService);
-    }
+//    /**
+//     *
+//     * @return object
+//     */
+//    public function login(): object // Returns $user object
+//    {
+//        $osuApiService->getToken($osuApiService->getCode());
+//        dd($osuApiService->getBeatmapInfo(954692));
+//
+//        # Method called during the connexion
+//        $client = new NativeHttpClient();
+//        $osuApiService = new OsuApiService($client);
+//        $osuApiService->connexion();
+//
+//        return $this->loadSession($osuApiService);
+//    }
 
 
 

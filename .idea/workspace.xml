@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Security/ApiKeyAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/components/_button.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/body.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/home.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ConnexionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ConnexionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/OsuApiService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/OsuApiService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/svg/_svg.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/svg/_svg.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="" />
     <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
@@ -186,7 +186,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WCS/projet/bordeaux-202103-php-project3-gabiloue" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -226,6 +226,9 @@
       <workItem from="1628584188573" duration="755000" />
       <workItem from="1628590381990" duration="3965000" />
       <workItem from="1628795962788" duration="3727000" />
+      <workItem from="1629122887515" duration="11796000" />
+      <workItem from="1629148657258" duration="3231000" />
+      <workItem from="1629292003355" duration="7306000" />
     </task>
     <servers />
   </component>
