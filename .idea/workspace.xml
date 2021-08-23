@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/svg/_jumb.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/components/_button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/components/_button.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/home/jumbotron.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/svg/_jumb_1.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/svg/_jumb_2.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/svg/_jumb_3.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/svg/_jumb.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/svg/_jumb.html.twig" afterDir="false" />
     </list>
     <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="" />
     <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
@@ -182,7 +180,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WCS/projet/bordeaux-202103-php-project3-gabiloue" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -191,6 +189,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/DataFixtures" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/styles/home" />
     </key>
   </component>
   <component name="RunManager">
@@ -227,7 +228,9 @@
       <workItem from="1629292003355" duration="7306000" />
       <workItem from="1629378752887" duration="2826000" />
       <workItem from="1629403824808" duration="828000" />
-      <workItem from="1629467055159" duration="2284000" />
+      <workItem from="1629467055159" duration="5667000" />
+      <workItem from="1629480498883" duration="4394000" />
+      <workItem from="1629724056023" duration="6869000" />
     </task>
     <servers />
   </component>
