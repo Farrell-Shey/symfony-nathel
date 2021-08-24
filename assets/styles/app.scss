@@ -24,13 +24,30 @@
 @import "components/tag";
 @import "components/thumbnail";
 @import "components/scroll";
-// tous les gros éléments
-@import "layouts/header/navbar";
-@import "layouts/header/search-bar";
-@import "layouts/mappool";
-@import "layouts/map";
-@import "layouts/user-banner";
-@import "layouts/collection-banner";
-@import "layouts/jumbotron";
- tous les agancements de pages
-@import "pages/default";*/
+<<<<<<< HEAD
+*/@import "components/logo";
+@import "components/menu-burger";
+@import "home/jumbotron";
+// tout les gros éléments
+//@import "layouts/header/navbar";*/
+//@import "layouts/header/nav";
+////@import "layouts/header/search-bar";
+////@import "layouts/mappool";
+////@import "layouts/map";
+////@import "layouts/user-banner";
+////@import "layouts/collection-banner";
+////@import "layouts/jumbotron";
+//
+//// tous les agancements de pages
+////@import "pages/default";
+//// tous les gros éléments
+//@import "layouts/header/navbar";
+//@import "layouts/header/search-bar";
+//@import "layouts/mappool";
+//@import "layouts/map";
+//@import "layouts/user-banner";
+//@import "layouts/collection-banner";
+//@import "layouts/jumbotron";
+// tous les agancements de pages
+//@import "pages/default";*/
+@import "components/button";
