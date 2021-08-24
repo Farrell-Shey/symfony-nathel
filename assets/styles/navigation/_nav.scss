@@ -40,16 +40,7 @@
   }
 }
 
-@media (max-width: 767.98px) {
-  .navbar {
-    max-height: 60px;
-  }
-  .logo_nathel {
-    max-height: 55px;
-  }
-}
-
-@media (max-width: 1200px) {
+@include media-breakpoint-up(sm) {
   .navbar {
     max-height: 73px;
   }
@@ -61,7 +52,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@include media-breakpoint-up(lg) {
   .navbar {
     height: 102px;
     padding: 0;

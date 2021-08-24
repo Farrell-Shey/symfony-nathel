@@ -1,47 +1,13 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}! ZoneTest !
+{% block test %}
+	<h5 class="bg-warning text-uppercase d-flex justify-content-center align-items-center" style="height:50px;">
+		{% for i in 0..11 %}
+			<p class="text-warning">_</p>  test area  <p class="text-warning">_</p>
+		{% endfor %}
+	</h5>
 {% endblock %}
 
+
 {% block body %}
-
-	{% block mappool_card %}
-		<div class="col-10 mx-auto">
-			<div class="row row-cols-1 row-cols-md-2">
-				{% block test %}
-					{#foreach#}
-					<div class="col">
-						<div class="mappool-card-group card" style="max-width: 600px">
-							<img src="{{ asset('build/default_mappool_card_img.jpg') }}" class="card-img" alt="...">
-							<div class="card-img-overlay">
-								<div class="d-flex">
-									<h5 class="card-title">From collection
-										{#mappool.tittle#}
-										KimiPool Challenge</h5>
-								</div>
-								<div class="d-flex">
-									<p class="card-text">
-										From collection{#collection.tittle#}Dan Project<br>
-										submitted by
-										{#user.mappool#}
-										Nath<br>
-										26
-										{#total.mappool#}
-										maps
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					{#endfor#}
-				{% endblock %}
-				{#suppr#}
-				{{ block("test") }}
-				{{ block("test") }}
-				{{ block("test") }}
-				{#suppr#}
-			</div>
-		</div>
-	{% endblock %}
-
+	{% include "base.html.twig" %}#}
+	{#{% include "component/_mappool.html.twig" %}#}
 {% endblock %}

@@ -1,12 +1,12 @@
-{% extends "svg/_svg.html.twig" %}
+{% extends "svg/_svg_nav.html.twig" %}
 
 
 {% block side %}
 	{#reprendre backdrop#}
 	<div id="open" class=" hide bs collapse multi-collapse no-transition ">
-		<div class="side-menu-bg d-none d-md-block "></div>
+		<div class="side-menu-bg d-none d-lg-block "></div>
 	</div>
-	<div class="card side-nav border-0 d-none d-md-block col-1 d-flex float-start">
+	<div class="card side-nav border-0 d-none d-lg-block col-1 d-flex float-start">
 		<nav class="nav d-flex justify-content-center flex-column">
 			<div class=" burger-btn ms-3" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="open" onclick="this.classList.toggle('opened')">
 				{{ block("burger") }}

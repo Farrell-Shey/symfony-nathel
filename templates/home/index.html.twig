@@ -5,8 +5,8 @@
 
 {% block body %}
 
-{#{{ app.user.getOsuId() }}
-	{#<section class="jumbotron" style="background-image: url('assets/img/home_bg.jpg');">
+{{ app.user }} {#.getOsuId()#}
+	<section class="jumbotron" style="background-image: url('assets/img/home_bg.jpg');">
 		<div
 			class="mappool-jumbotron">
 			<!-- MAIN TITLE -->
@@ -95,4 +95,4 @@
 			</div>
 		</div>
 	</section>
-#}{% endblock %}
+{% endblock %}

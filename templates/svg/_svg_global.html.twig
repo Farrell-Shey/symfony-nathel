@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	{% block mymappool %}
+		<svg class="" alt="Logo note sur deux carrés supperposés SVG" width="25" height="25" viewbox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M8 2H20C21.1 2 22 2.9 22 4V16C22 17.1 21.1 18 20 18H8C6.9 18 6 17.1 6 16V4C6 2.9 6.9 2 8 2ZM8 16H20V4H8V16ZM12.5 15C13.88 15 15 13.88 15 12.5V7H18V5H14V10.51C13.58 10.19 13.07 10 12.5 10C11.12 10 10 11.12 10 12.5C10 13.88 11.12 15 12.5 15ZM2 6H4V20H18V22H4C2.9 22 2 21.1 2 20V6Z"/>
+		</svg>
+	{% endblock %}
+
+	{% block follow %}
+		<svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<rect width="32" height="32" rx="16" fill="#2299BB"/>
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M23.0117 15.9991L15.9993 22.135V18.5804C13.7928 18.3451 11.9686 18.9726 10.4707 20.4705L9.33266 21.6086V19.9991C9.33266 15.8221 11.6335 13.5534 15.9993 13.3478V9.86328L23.0117 15.9991ZM20.9869 15.9991L17.3326 12.8016V14.6657H16.666C13.1989 14.6657 11.299 15.8997 10.8001 18.4768C12.4956 17.3421 14.4992 16.9621 16.7756 17.3415L17.3326 17.4343V19.1966L20.9869 15.9991Z" fill="white"/>
+		</svg>
+	{% endblock %}
+
+	{% block unfollow %}
+		<svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<rect width="32" height="32" rx="16" fill="#BB2222"/>
+			<path d="M23.5827 9.94352L22.0552 8.41602L15.9994 14.4718L9.94352 8.41602L8.41602 9.94352L14.4718 15.9994L8.41602 22.0552L9.94352 23.5827L15.9994 17.5268L22.0552 23.5827L23.5827 22.0552L17.5268 15.9994L23.5827 9.94352Z" fill="white"/>
+		</svg>
+	{% endblock %}
+
+	{% block stroke_line %}
+		<svg width="100vw" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+			<line stroke-dasharray="10, 5" x1="0" y1="9" x2="100vw" y2="9" style="stroke-width: 1px; stroke: rgb(255, 255, 255);"></line>
+		</svg>
+	{% endblock %}
+
+	{% block download %}
+		<svg width="22" height="26" viewbox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M21.5 9.25H15.5V0.25H6.5V9.25H0.5L11 19.75L21.5 9.25ZM9.50004 12.25V3.25H12.5V12.25H14.255L11 15.505L7.74504 12.25H9.50004ZM21.5 25.75V22.75H0.5V25.75H21.5Z" fill="#2299BB"/>
+		</svg>
+	{% endblock %}
+
+{% endblock %}
