@@ -5,11 +5,8 @@ body {
 }
 
 a {
-  text-decoration: none;
-
-  &:hover {
-    pointer-events: none;
-  }
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .no-transition {
@@ -25,22 +22,46 @@ li {
   list-style: none;
 }
 
+.extra-small-text {
+    font-size: $extra-small;
+}
+
 .container-fluid {
-  min-height: 100%;
-  min-width: 100%;
-  overflow: hidden;
-  padding: 60px 0 0 0px;
+    min-height: 100%;
+    min-width: 100%;
+    overflow: hidden;
+    padding: 60px 0 0 0px;
 }
 
-@media (min-width: 765px) {
-  .container-fluid {
-    padding: 80px 0 0 67px;
-  }
+@include media-breakpoint-up(sm) {
+    .container-fluid {
+        padding: 80px 0 0 0;
+    }
+
+.small-text {
+    font-size: $small;
 }
 
-@media (min-width: 1200px) {
-  .container-fluid {
-    padding: 105px 0 0 67px;
-  }
+.medium-text {
+    font-size: $medium;
 }
 
+.large-text {
+    font-size: $large;
+}
+
+.extra-large-text {
+    font-size: $extra-large;
+}
+
+.largest-text {
+    font-size: $largest;
+}
+
+}
+
+@include media-breakpoint-up(lg) {
+    .container-fluid {
+        padding: 105px 0 0 67px;
+    }
+}

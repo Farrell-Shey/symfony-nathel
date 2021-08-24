@@ -1,37 +1,136 @@
-{% block Mappool_card %}
+{% extends "svg/_svg_global.html.twig" %}
 
-<div class="row row-cols-1 row-cols-md-2 g-4">
-
-{# foreach mappool #}
-
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-  {# end foreach #}
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
+{% block body %}
+	<div class="mappool-global">
+		<div class="card mappool-skew text-white">
+			{% block mappool_card %}
+				<div class="card bg-transparent border-0">
+					<div class="mt-5">
+						{{ block("stroke_line") }}
+					</div>
+					<div class="d-flex justify-content-center card flex-row border-0 bg-transparent negative-mappool-skew">
+						<div
+							class="card-group mappool-card-group">
+							{#À modifier après mis en place du foreach#}
+							{% for i in 0..3 %}
+								{% if i == 1 or i == 3 %}
+									{#Fin à modifier#}
+									<div class="left-loop">
+										{% block mappool_card_foreach %}
+											<div class="card mappool-card shadow">
+												<img src="{{ asset('build/default_mappool_card_img.png') }}" class="mappool-card-img card-img" alt="...">
+												<div class="card-img-overlay">
+													<div class="d-flex justify-content-between">
+														<p class="card-title">From collection
+															{#mappool.tittle#}
+															KimiPool Challenge</p>
+														{#À modifier après mis en place du foreach#}
+														<a id="unfollow" class="show no-transition" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+															{{ block("follow") }}</a>
+														<a id="unfollow" class="collapse no-transition" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+															{{ block("unfollow") }}</a>
+														{#Fin à modifier#}
+													</div>
+													<div class="d-flex">
+														<p class="card-text">
+															From collection
+															{#collection.tittle#}
+															<a href="/" class="">Dan Project</a><br>
+															submitted by
+															{#user.mappool#}
+															<a href="/" class="">Nath</a><br>
+															26
+															{#total.mappool#}
+															maps
+														</p>
+													</div>
+													<div class="d-flex justify-content-end mappool-tag-content text-light">
+														<a class="mappool-tag bg-danger text-uppercase text-light" href="/" role="button">
+															std
+														</a>
+														<a class="mappool-tag bg-secondary text-light" href="/" role="button">
+															4.5-5.0✰
+														</a>
+														<a class="mappool-tag bg-success text-light" href="/" role="button">
+															100k-250k
+														</a>
+														<a class="mappool-tag bg-info text-light" href="/" role="button">
+															tournament
+														</a>
+													</div>
+												</div>
+												<div
+													class="d-none d-sm-block card bg-transparent border-0">
+													{#À modifier après mis en place du foreach#}
+													{% for i in 0..3 %}
+														{#Fin à modifier#}
+														{% block card_beatmap %}
+															<div class="card m-2 beatmap-card border border border-1 border-dark"><img src="{{ asset('build/default_beatmap_img.png') }}" class="card-img" alt="...">
+																<div class="card-img-overlay">
+																	<p
+																		class="medium-text mt-n2">
+																		{#beatmapset.artist#}
+																		Matsushita
+																		{#beatmapset.name#}
+																		- raspberry cube
+																		{#beatmap.difficulty#}
+																		[Insane]</p>
+																	<div class="row col-12 d-flex ">
+																		<p class="col-11 mt-n4 float start small-text">
+																			mappée par
+																			<a href="#" class="text-decoration-underline">timemon
+																				{#beatmapset.creator#}
+																			</a>
+																		</p>
+																		<a class="col-1 mt-n4 " href="#" role="button">
+																			{{ block("download") }}
+																		</a>
+																	</div>
+																	<p class="text-uppercase mt-n2">
+																		cs: 4
+																		{#beatmap.cs#}
+																		ar: 9.3
+																		{#beatmap.ar#}
+																		od: 8.5
+																		{#beatmap.accuracy#}
+																		hp: 4.5
+																		{#beatmap.drain#}
+																		stars: 4.98
+																		{#beatmap.stars#}
+																	</p>
+																</div>
+															</div>
+														{% endblock %}
+														{#À modifier après mis en place du foreach#}
+													{% endfor %}
+													{#Fin à modifier#}
+												</div>
+												<div class="d-flex mappool-card-gradient border-0 card">
+													<a class="btn d-none d-sm-block mappool-card-btn text-white" href="/" role="button">
+														Check all mappool
+													</a>
+												</div>
+											</div>
+										{% endblock %}
+									</div>
+									{#À modifier après mis en place du foreach#}
+								{% endif %}
+								{% if i == 0 or i == 2 %}
+									{#Fin à modifier#}
+									<div class="right-loop">
+										{{ block("mappool_card_foreach") }}
+									</div>
+									{#À modifier après mis en place du foreach#}
+								{% endif %}
+							{% endfor %}
+							{#Fin à modifier#}
+						</div>
+					</div>
+					<div class="mb-5">
+						{{ block("stroke_line") }}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+	</div>
 {% endblock %}

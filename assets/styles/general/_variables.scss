@@ -9,8 +9,9 @@ $green : #88b300;
 $black : #121415;
 $red : #BB2222;
 $gray : #C4C4C4;
-
+$indigo: #FC6AFF;
 $violet: #302E38;
+$fuchsia: #BB1177;
 
 
 // background - colors
@@ -55,16 +56,15 @@ $shadow : 0 1px 3px rgb(0, 0, 0, .25);
 
 // typo
 
-$xsmall : .5rem;
-$small : .75rem;
+//8px
+$extra-small : 0.5rem;
+//12px
+$small : 0.75rem;
+//16px
 $medium : 1rem;
+//24px
 $large : 1.5rem;
+//32px
 $extra-large : 2rem;
+//40px
 $largest : 2.5rem;
-
-
-// breakpoints
-
-$breakpoint-sm : 600px;
-$breakpoint-md : 1024px;
-$breakpoint-lg : 1350px;

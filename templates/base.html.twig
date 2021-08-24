@@ -1,39 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="{{ asset('build/favicon.png') }}"/>
-    <title>
-        {% block title %}Nathel Mappools
-        {% endblock %}
-    </title>
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
-</head>
-<body>
-<header>
-    {% block header %}
-        {% include 'component/_navbar.html.twig' %}
-    {% endblock %}
-</header>
-<main>
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success mt-5 mb-0">
-            {{ message }}
-        </div>
-    {% endfor %}
-    {% block body %}
-    {% endblock %}
-</main>
-<footer>
-    {% block footer %}
-        {% include 'component/_footer.html.twig' %}
-    {% endblock %}
-</footer>
-</body>
+<!DOCTYPES html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" type="image/png" href="{{ asset('build/favicon.png') }}"/>
+		<title>
+			{% block title %}Nathel Mappools
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<header>
+			{% block header %}
+				{% include 'component/_navbar.html.twig' %}
+			{% endblock %}
+		</header>
+		<main>
+			<div class="container-fluid g-0 ">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success mt-5 mb-0">
+						{{ message }}
+					</div>
+				{% endfor %}
+				{% block body %}{% endblock %}
+			</div>
+		</main>
+		<footer>
+			{% block footer %}
+				{% include 'component/_footer.html.twig' %}
+			{% endblock %}
+		</footer>
+	</body>
 </html>
