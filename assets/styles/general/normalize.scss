@@ -30,16 +30,14 @@ li {
     font-size: $extra-small;
 }
 
-.container-fluid {
-    min-height: 100%;
-    min-width: 100%;
-    overflow: hidden;
-    padding: 60px 0 0 0px;
+main {
+    min-height: calc(100vh - 60px);
+    margin: 60px 0 0 0px;
 }
 
 @include media-breakpoint-up(sm) {
-    .container-fluid {
-        padding: 80px 0 0 0;
+    main {
+        margin: 72px 0 0 0px;
     }
 
 .small-text {
@@ -65,7 +63,7 @@ li {
 }
 
 @include media-breakpoint-up(lg) {
-    .container-fluid {
-        padding: 105px 0 0 67px;
+    main {
+        margin: 102px 0 0 72px;
     }
 }

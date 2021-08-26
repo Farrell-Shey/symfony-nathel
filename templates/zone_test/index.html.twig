@@ -3,16 +3,16 @@
 {% block body %}
 	{#{% include "component/_mappool.html.twig" %}#}
 	{% block collection %}
-		<div class="card border-0 bg-transparent collection-global-card mt-5 mx-auto">
+		<div class=" card border-0 bg-transparent collection-global-card mt-5 mx-auto">
 			<div class="accordion accordion-flush" id="accordionFlushExample">
 				{% for i in 0..3 %}
 					<div class="accordion-item card border-0 mb-3">
 						<div id="flush-heading{{ loop.index0 }}" class="accordion-header bg-transparent border-0 collection-top-card ">
 							<img src="{{ asset('build/default_collection_img.png') }}" class="card-img" alt="...">
 							<div class="card-img-overlay text-white d-block">
-								
-									<p class="collection-title">Dan Project : Aim Collection</p>
-								
+
+								<p class="collection-title">Dan Project : Aim Collection</p>
+
 								<p class="collection-text">4 mappools</p>
 								<p class="collection-text">manage with
 									{% for i in 0..2 %}
@@ -59,4 +59,5 @@
 			</div>
 		</div>
 	{% endblock %}
+
 {% endblock %}
