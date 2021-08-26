@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/default_avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/default_collection_img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/default_collection_map_img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/layout/_collection-card.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/components/_mappool-card.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/layout/_mappool-card.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/layout/_jumbotron.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/layout/_jumbotron.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/layout/_scroll.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/layout/jumbotron.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_body.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/zone_test/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/zone_test/index.html.twig" afterDir="false" />
     </list>
     <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="" />
     <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
@@ -235,7 +236,7 @@
       <workItem from="1629724056023" duration="6869000" />
       <workItem from="1629812359868" duration="5129000" />
       <workItem from="1629897104588" duration="7649000" />
-      <workItem from="1629983100606" duration="1083000" />
+      <workItem from="1629983100606" duration="1408000" />
     </task>
     <servers />
   </component>
