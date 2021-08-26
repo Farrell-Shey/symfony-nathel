@@ -1,0 +1,160 @@
+.collection-global-card {
+    max-width: 95%;
+    border-radius: 10px 10px 0 0;
+    margin: 48px 10px 61px 10px;
+
+    .accordion-item {
+        box-shadow: 1px 1px 2px 1px #00000080;
+        border-radius: 10px;
+        background-color: $light;
+        overflow: hidden;
+        img {
+            max-height: 170px;
+            object-fit: cover;
+        }
+        p {
+            text-shadow: 1px 1px 2px rgb(85, 85, 85);
+        }
+    }
+    .collection-top-card {
+        display: block;
+        &::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+
+        .card-img,
+        .card-img-overlay {
+            display: block;
+            min-height: 77px;
+            max-height: 100px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .collection-title {
+            font-size: $large;
+            margin-top: -20px;
+            max-width: 98%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            min-width: 98%;
+        }
+
+        .collection-text {
+            font-size: $small;
+            margin-top: -22px;
+            @for $i from 0 through 3 {
+                .avatar {
+                    z-index: $i;
+                    border: solid rgba(0, 0, 0, 0.185);
+                    border-width: 1px;
+                    margin-right: -6px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    font-size: $extra-small;
+                    background-color: #c4c4c4;
+                    text-shadow: none;
+                }
+            }
+        }
+
+        .collection-tag-card {
+            position: absolute;
+            width: 92%;
+            height: 17%;
+            bottom: 2px;
+            .collection-tag {
+                border-radius: 22px;
+                padding: 3px;
+                margin-right: 5px;
+                font-size: $extra-small;
+                color: black;
+                background-color: #c4c4c4;
+            }
+            button {
+                width: 24px !important;
+                height: 24px !important;
+                justify-content: center;
+                
+                &.collection-btn {
+                    align-items: flex-end;
+                    float: right;
+                    box-shadow: none;
+                    color: white !important;
+                    
+                }
+            }
+        }
+    }
+    .accordion-body {
+        background-color: $light;
+        border-radius: 0 0 10px 10px;
+        padding: 0 3px 5px 3px;
+        .collection-bottom-card,
+        .card-img,
+        .card-img-overlay {
+            display: block;
+            min-height: 77px;
+            border-radius: 10px !important;
+            .title {
+                font-size: $medium;
+            }
+            .text {
+                font-size: $extra-small;
+                margin-top: -20px;
+                .link {
+                    color: $indigo;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .collection-global-card {
+        max-width: 90%;
+        .accordion-item {
+            .collection-top-card {
+                .collection-title {
+                    font-size: $extra-large;
+                    margin-top: -20px;
+                }
+                .collection-text {
+                    font-size: $medium;
+                    margin-top: -20px;
+                    @for $i from 0 through 3 {
+                        .avatar {
+                            width: 16px;
+                            height: 16px;
+                            font-size: $small;
+                            margin-right: -8px;
+                        }
+                    }
+                }
+                .collection-tag-card {
+                    .collection-tag {
+                        font-size: $small;
+                    }
+                }
+            }
+            .accordion-body {
+                .title {
+                    font-size: $large;
+                }
+                .text {
+                    font-size: $small;
+                    margin-top: -30px;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .collection-global-card {
+        max-height: 170px;
+    }
+}
