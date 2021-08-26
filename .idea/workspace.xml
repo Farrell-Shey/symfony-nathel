@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/images/default_avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/default_collection_img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/default_collection_map_img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/styles/layout/_collection-card.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/general/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/general/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/body.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/normalize.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/normalize.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/zone_test/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/zone_test/index.html.twig" afterDir="false" />
     </list>
     <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="" />
