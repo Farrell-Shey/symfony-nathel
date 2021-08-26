@@ -1,0 +1,100 @@
+.jumbotron_home {
+  background-image: url("/assets/images/home_bg.jpg");
+  background-size: cover;
+  color: $secondary;
+
+  * {
+    margin-bottom: 0;
+  }
+
+  .filter {
+    background-color: rgba($black, .5);
+
+    .row_1 {
+      font-size: $small;
+      padding: 3vh 4vw;
+
+      .title_h1 {
+        font-size: $large;
+        font-weight: bold;
+      }
+
+      .font_xsmall {
+        font-size: $extra-small;
+      }
+
+      .pink_button {
+        background-color: $pink;
+        color: $secondary;
+        border-radius: 11px;
+        margin-top: 1vh;
+      }
+    }
+
+    .filter_2 {
+      background-color: rgba($dark, .8);
+      border-radius: 11px;
+      margin: 3vh 1vw;
+
+      @include media-breakpoint-up(md) {
+        margin: -1vh 4vw;
+      }
+
+      .row_2 {
+        padding: 2vh 4vw;
+
+        .row_2_h2:after {
+          content: "";
+          display: block;
+          background-color: $primary;
+          width: 50px;
+          height: 4px;
+          border-radius: 11px;
+        }
+
+        .font_medium {
+          font-size: $small;
+          margin-bottom: 8vh;
+        }
+
+        .blue_button {
+          background-color: $primary;
+          font-size: $small;
+          color: $secondary;
+          border-radius: 10px;
+          padding: 1vh 2vw;
+          width: 250px;
+          height: 40px;
+        }
+      }
+
+      .grey_card {
+        background-color: $light;
+        border-radius: 11px;
+        margin: 1vh;
+        padding: 1vh 1vw;
+        @include media-breakpoint-up(md) {
+          text-align: center;
+          width: 200px;
+          height: 170px;
+        }
+
+        .logo_jumb {
+          width: 68px;
+          margin: 0 3vw;
+          height: auto;
+
+        }
+
+        .title_h3 {
+          color: $primary;
+          font-size: $medium;
+        }
+
+        p {
+          font-size: $small;
+        }
+      }
+    }
+  }
+}
