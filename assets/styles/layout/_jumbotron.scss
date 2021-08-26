@@ -2,10 +2,6 @@
   background-image: url("/assets/images/home_bg.jpg");
   background-size: cover;
   color: $secondary;
-  @include media-breakpoint-up(lg) {
-    width: 100vw;
-    height: 100vh;
-  }
 
   * {
     margin-bottom: 0;
@@ -13,38 +9,27 @@
 
   .filter {
     background-color: rgba($black, .5);
-    font-size: $small;
-    @include media-breakpoint-up(lg) {
-      width: 100%;
-      height: 100%;
-    }
-    //padding: 3vh 4vw;
 
-    .title_h1 {
-      font-size: $large;
-      font-weight: bold;
-      @include media-breakpoint-up(md) {
-        font-size: $extra-large;
-      }
-      @include media-breakpoint-up(lg) {
-        font-size: $largest;
-      }
-    }
+    .row_1 {
+      font-size: $small;
+      padding: 3vh 4vw;
 
-    .font_xsmall {
-      font-size: $xsmall;
-      @include media-breakpoint-up(md) {
-        font-size: $small;
+      .title_h1 {
+        font-size: $large;
+        font-weight: bold;
+      }
+
+      .font_xsmall {
+        font-size: $extra-small;
+      }
+
+      .pink_button {
+        background-color: $pink;
+        color: $secondary;
+        border-radius: 11px;
+        margin-top: 1vh;
       }
     }
-
-    .pink_button {
-      background-color: $pink;
-      color: $secondary;
-      border-radius: 11px;
-      margin-top: 1vh;
-    }
-
 
     .filter_2 {
       background-color: rgba($dark, .8);
@@ -52,76 +37,8 @@
       margin: 3vh 1vw;
 
       @include media-breakpoint-up(md) {
-        margin: 2vh 2vw;
+        margin: -1vh 4vw;
       }
-
-      @include media-breakpoint-up((lg)) {
-        width: 1058px;
-        height: 501px;
-        margin: 16vh 5vw;
-
-        .float-card {
-          width: 400px;
-          background-color: $light;
-          border-radius: $light-border;
-          padding: 15px;
-          box-shadow: 20px 20px 20px rgb(23, 26, 28, 30%);
-          transition: transform .2s ease;
-          display: grid;
-          grid-template-areas:  "svg title"
-                              "svg desc";
-          grid-template-columns: 120px 1fr;
-          grid-template-rows: 1.5rem auto;
-
-          &:nth-child(1) {
-            margin-top: -50px;
-            transform-origin: 75% 40%;
-
-            &:hover {
-              transform: rotate(-3deg);
-              transition: transform .2s ease;
-            }
-          }
-
-          &:nth-child(2) {
-            margin: 5vh -50px 5vh 114px;
-
-            &:hover {
-              transform: rotate(5deg);
-              transition: transform .2s ease;
-            }
-          }
-
-          &:nth-child(3) {
-            margin-bottom: -50px;
-            transform-origin: 40% 75%;
-
-            &:hover {
-              transform: rotate(-5deg);
-              transition: transform .2s ease;
-            }
-          }
-
-          .svg {
-            grid-area: svg;
-            margin: auto;
-          }
-
-          h3 {
-            grid-area: title;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: $primary;
-          }
-
-          p {
-            grid-area: desc;
-          }
-
-        }
-
-      }
-
 
       .row_2 {
         padding: 2vh 4vw;
@@ -137,9 +54,6 @@
 
         .font_medium {
           font-size: $small;
-          @include media-breakpoint-up((lg)) {
-            font-size: $medium;
-          }
           margin-bottom: 8vh;
         }
 
@@ -164,22 +78,11 @@
           width: 200px;
           height: 170px;
         }
-        @include media-breakpoint-up(lg) {
-          width: 478px;
-          height: 122px;
-          text-align: start;
-          font-size: $medium;
-
-        }
 
         .logo_jumb {
           width: 68px;
           margin: 0 3vw;
           height: auto;
-          @include media-breakpoint-up(lg) {
-            width: 100px;
-            margin: 0 1vw;
-          }
 
         }
 
