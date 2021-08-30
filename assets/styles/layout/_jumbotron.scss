@@ -10,6 +10,9 @@
 }
 
 .filter {
+  @include media-breakpoint-up(lg) {
+    padding: 45px;
+  }
   .jumb-h1 {
     font-size: $large;
     @include media-breakpoint-up(sm) {
@@ -136,8 +139,8 @@
 
     .logo-jumb {
       @include media-breakpoint-up(lg) {
-        width: 100px;
-        height: 110px;
+        width: 135px;
+        height: auto;
       }
     }
 
