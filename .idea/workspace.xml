@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd46fb5b-fcb1-401d-9114-b45bec991c6b" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/components/_button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/components/_button.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/home/jumbotron.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/svg/_jumb.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/svg/_jumb.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/_body.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/body.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/general/normalize.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/general/normalize.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/zone_test/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/zone_test/index.html.twig" afterDir="false" />
+>>>>>>> dev
     </list>
     <list id="b4b61101-5914-4fb8-9d3f-87a750d967fe" name="Changes by decle" comment="" />
     <list id="91d8b5fb-96ed-4601-bcc9-8b7deea9c9c4" name="Changes by natha" comment="" />
@@ -191,6 +197,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/styles/layout" />
       <recent name="$PROJECT_DIR$/assets/styles/home" />
     </key>
   </component>
@@ -231,6 +238,9 @@
       <workItem from="1629467055159" duration="5667000" />
       <workItem from="1629480498883" duration="4394000" />
       <workItem from="1629724056023" duration="6869000" />
+      <workItem from="1629812359868" duration="5129000" />
+      <workItem from="1629897104588" duration="7649000" />
+      <workItem from="1629983100606" duration="4226000" />
     </task>
     <servers />
   </component>
