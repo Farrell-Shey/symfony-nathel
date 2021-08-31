@@ -1,20 +1,64 @@
-{% extends 'base.html.twig' %}
+{% extends 'svg/_svg_global.html.twig' %}
 
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="user-body">
+        <img class="rounded-pill thumbnail" src="https://via.placeholder.com/80x80 " alt="">
+        <p class="user-name">Farrell-Shey974</p>
+        <img src="https://via.placeholder.com/30x21" alt="">
+        <a href="" class="btn score-btn"></a>
+        <div class="user-stats">
+            <div>
+                <div>
+                    <p>Completed mappools</p>
+                    <p>548</p>
+                </div>
+                <div>
+                    <p>Submited Mappools</p>
+                    <p>3</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <p>Followed mappool</p>
+                    <p>465</p>
+                </div>
+                <div>
+                    <p>Classement générale</p>
+                    <p>#456,125</p>
+                </div>
+            </div>
+        </div>
+        <div class="user-scores d-flex justify-content-around">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <div>
+                {{ block('score_ss_silver') }}
+                <p></p>
+            </div>
+            <div>
+                {{ block('score_ss') }}
+                <p></p>
+            </div>
+            <div>
+                {{ block('score_s_silver') }}
+                <p></p>
+            </div>
+            <div>
+                {{ block('score_s') }}
+                <p></p>
+            </div>
+            <div>
+                {{ block('score_a') }}
+                <p></p>
+            </div>
+        </div>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/banon/Desktop/NATHEL/symfony-nathel/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/banon/Desktop/NATHEL/symfony-nathel/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+
+
+
+
+
 {% endblock %}

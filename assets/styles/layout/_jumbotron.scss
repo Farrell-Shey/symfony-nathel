@@ -10,31 +10,16 @@
 }
 
 .filter {
-  @include media-breakpoint-up(lg) {
-    padding: 45px;
-  }
+  background-color: rgba($black, .5);
+  height: 100%;
+
   .jumb-h1 {
     font-size: $large;
-    @include media-breakpoint-up(sm) {
-      font-size: $extra-large;
-    }
-    @include media-breakpoint-up(lg) {
-      font-size: $largest;
-    }
   }
 
   .jumb-extra-small-text {
     font-size: $extra-small;
-    @include media-breakpoint-up(sm) {
-      font-size: $small;
-    }
-    @include media-breakpoint-up(lg) {
-      font-size: $medium;
-    }
   }
-
-  background-color: rgba($black, .5);
-  height: 100%;
 
   .pink-button {
     background-color: $pink;
@@ -42,12 +27,6 @@
     border-radius: 11px;
     margin-top: 1vh;
     font-size: $small;
-    @include media-breakpoint-up(sm) {
-      font-size: $medium;
-    }
-    @include media-breakpoint-up(lg) {
-      font-size: $extra-large;
-    }
   }
 }
 
@@ -59,68 +38,32 @@
   @include media-breakpoint-up(md) {
     margin: -1vh 4vw;
   }
-  @include media-breakpoint-up(lg) {
-    margin: 9vh 4vw;
-    width: 833px;
-    height: 400px;
+
+  .jumb-h2 {
+    font-size: $large;
   }
 
-  .bloc-text-btn {
-    @include media-breakpoint-up(lg) {
-      width: 35%;
-      margin-right: 28px;
-    }
-
-    .filter-2-text {
-      @include media-breakpoint-up(sm) {
-        width: 50%;
-      }
-      @include media-breakpoint-up(lg) {
-        width: 100%;
-      }
-    }
-
-    .jumb-h2 {
-      font-size: $large;
-      @include media-breakpoint-up(lg) {
-        font-size: $extra-large;
-      }
-    }
-
-    .jumb-h2-p {
-      font-size: $small;
-      @include media-breakpoint-up(lg) {
-        font-size: $medium;
-      }
-    }
-
-    .h2-blue-line:after {
-      content: "";
-      display: block;
-      background-color: $primary;
-      width: 50px;
-      height: 4px;
-      border-radius: 11px;
-    }
-
-    .blue-button {
-      background-color: $primary;
-      color: $secondary;
-      border-radius: 10px;
-      width: 250px;
-      height: 40px;
-      margin-top: 12vh;
-      font-size: $small;
-      @include media-breakpoint-up(lg) {
-        font-size: $medium;
-        margin-top: 3vh;
-      }
-    }
+  .jumb-h2-p {
+    font-size: $small;
   }
-  .cards-container{
-    @include media-breakpoint-up(lg) {
-      width: 50%;
-    }
+
+  .h2-blue-line:after {
+    content: "";
+    display: block;
+    background-color: $primary;
+    width: 50px;
+    height: 4px;
+    border-radius: 11px;
+  }
+
+  .blue-button {
+    background-color: $primary;
+    color: $secondary;
+    border-radius: 10px;
+    width: 250px;
+    height: 40px;
+    margin-top: 12vh;
+    font-size: $small;
   }
 
   .grey-card {
@@ -132,67 +75,130 @@
     h3 {
       color: $primary;
       font-size: $medium;
-      @include media-breakpoint-up(lg) {
-        font-size: $large;
-      }
-    }
-
-    .logo-jumb {
-      @include media-breakpoint-up(lg) {
-        width: 135px;
-        height: auto;
-      }
     }
 
     p {
       font-size: $small;
-      @include media-breakpoint-up(lg) {
-        font-size: $medium;
-      }
-    }
-
-    @include media-breakpoint-up(sm) {
-      text-align: center;
-      width: 200px;
-      height: 170px;
-    }
-
-    @include media-breakpoint-up(lg) {
-      text-align: start;
-    }
-
-    @include media-breakpoint-up(lg) {
-      width: 400px;
-      transition: transform .2s ease;
-      &:nth-child(1) {
-        margin-top: -50px;
-        transform-origin: 75% 40%;
-
-        &:hover {
-          transform: rotate(-3deg);
-          transition: transform .2s ease;
-        }
-      }
-
-      &:nth-child(2) {
-        margin: 5vh 1vw 5vh 200px;
-
-        &:hover {
-          transform: rotate(5deg);
-          transition: transform .2s ease;
-        }
-      }
-
-      &:nth-child(3) {
-        margin-bottom: -50px;
-        transform-origin: 40% 75%;
-
-        &:hover {
-          transform: rotate(-5deg);
-          transition: transform .2s ease;
-        }
-      }
     }
   }
 }
+@include media-breakpoint-up(sm) {
+  .jumb-h1 {
+    font-size: $extra-large;
+  }
 
+  .jumb-extra-small-text {
+    font-size: $small;
+  }
+
+  .pink-button {
+    font-size: $medium;
+  }
+
+  .filter-2-text {
+    width: 50%;
+  }
+
+  .grey-card {
+    text-align: center;
+    width: 200px;
+    height: 170px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+
+  .filter {
+    padding: 45px;
+  }
+
+  .jumb-h1 {
+    font-size: $largest;
+  }
+
+  .jumb-extra-small-text {
+    font-size: $medium;
+  }
+
+  .pink-button {
+    font-size: $extra-large;
+  }
+
+  .filter-2 {
+    margin: 1vh 4vw;
+    width: 833px;
+    height: 375px;
+  }
+
+  .bloc-text-btn {
+    width: 35%;
+    margin-right: 28px;
+  }
+
+  .filter-2-text {
+    width: 100%;
+  }
+
+  .jumb-h2 {
+    font-size: $extra-large;
+  }
+  .jumb-h2-p {
+    font-size: $medium;
+  }
+
+  .blue-button {
+    font-size: $medium;
+    margin-top: 3vh;
+  }
+  .cards-container {
+    width: 50%;
+  }
+
+  .grey-card {
+    width: 400px;
+    height: 100px;
+    text-align: start;
+    transition: transform .2s ease;
+
+    &:nth-child(1) {
+      margin-top: -50px;
+      transform-origin: 75% 40%;
+
+      &:hover {
+        transform: rotate(-3deg);
+        transition: transform .2s ease;
+      }
+    }
+
+    &:nth-child(2) {
+      margin: 5vh 1vw 5vh 200px;
+
+      &:hover {
+        transform: rotate(5deg);
+        transition: transform .2s ease;
+      }
+    }
+
+    &:nth-child(3) {
+      margin-bottom: -50px;
+      transform-origin: 40% 75%;
+
+      &:hover {
+        transform: rotate(-5deg);
+        transition: transform .2s ease;
+      }
+    }
+
+    h3 {
+      font-size: $large;
+    }
+
+    p {
+      font-size: $medium;
+    }
+    .logo-jumb {
+      width: 135px;
+      height: auto;
+    }
+  }
+}
