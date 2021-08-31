@@ -83,16 +83,18 @@
   }
 }
 @include media-breakpoint-up(sm) {
-  .jumb-h1 {
-    font-size: $extra-large;
-  }
+  .filter{
+    .jumb-h1 {
+      font-size: $extra-large;
+    }
 
-  .jumb-extra-small-text {
-    font-size: $small;
-  }
+    .jumb-extra-small-text {
+      font-size: $small;
+    }
 
-  .pink-button {
-    font-size: $medium;
+    .pink-button {
+      font-size: $medium;
+    }
   }
 
   .filter-2-text {
@@ -109,24 +111,24 @@
 @include media-breakpoint-up(lg) {
 
   .filter {
-    padding: 45px;
+    padding: 15px 45px;
+    .jumb-h1 {
+      font-size: $largest;
+    }
+
+    .jumb-extra-small-text {
+      font-size: $medium;
+    }
+
+    .pink-button {
+      font-size: $extra-large;
+    }
   }
 
-  .jumb-h1 {
-    font-size: $largest;
-  }
-
-  .jumb-extra-small-text {
-    font-size: $medium;
-  }
-
-  .pink-button {
-    font-size: $extra-large;
-  }
 
   .filter-2 {
     margin: 1vh 4vw;
-    width: 833px;
+    width: 793px;
     height: 375px;
   }
 
@@ -155,7 +157,7 @@
   }
 
   .grey-card {
-    width: 400px;
+    width: 357px;
     height: 100px;
     text-align: start;
     transition: transform .2s ease;
@@ -197,7 +199,7 @@
       font-size: $medium;
     }
     .logo-jumb {
-      width: 135px;
+      width: 75px;
       height: auto;
     }
   }
