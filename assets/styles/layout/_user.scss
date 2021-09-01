@@ -1,0 +1,51 @@
+
+.user-body {
+  background-color: $bg-dark;
+  grid-template-areas:  "thumbnail name"
+                        "thumbnail btn"
+                        "stats stats"
+                        "scores scores";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(4, auto);
+}
+
+@include media-breakpoint-up(sm) {
+  .user-body {
+    grid-template-areas:  "thumbnail name btn"
+                          "stats stats stats"
+                          "scores scores scores";
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: repeat(3, auto);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .user-body {
+    grid-template-areas:  "thumbnail name btn"
+                          "thumbnail stats stats"
+                          ". scores scores";
+  }
+}
+
+.user-name {
+  font-size: $extra-large;
+  grid-area: name;
+}
+
+.thumbnail {
+  grid-area: thumbnail;
+}
+
+.score-btn {
+  grid-area: btn;
+}
+
+.user-stats {
+  grid-area: stats;
+}
+
+.user-scores {
+  grid-area: scores;
+}
+
+
