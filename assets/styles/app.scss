@@ -1,8 +1,7 @@
 @import "general/bootstrap";
 @import "general/variables";
-//@import "general/normalize";
+@import "general/normalize";
 @import "general/theme";
-@import "general/body";
 
 @import "components/logo";
 @import "components/menu-burger";
@@ -15,8 +14,6 @@
 @import "layout/user";
 
 @import "navigation/nav";
-@import "navigation/side_nav";
-@import "navigation/footer";
 
 //toutes les variables nécessaires
 /*@import "normalize";

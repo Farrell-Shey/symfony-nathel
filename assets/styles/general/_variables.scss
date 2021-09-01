@@ -16,66 +16,60 @@ $bg-dark: #22282A;
 
 // background - colors
 
-$dark : #171a1c;
-$classic : #2E3538;
-$light : #465156;
-
+$dark: #171a1c;
+$obscure: #22282a;
+$classic: #2e3538;
+$light: #465156;
 
 // mods - colors
 
-$dark-nm : #1A1A1A;
-$light-nm : #666666;
+$dark-nm: #1a1a1a;
+$light-nm: #666666;
 
-$dark-hd : #5A581D;
-$light-hd : #7F6000;
+$dark-hd: #5a581d;
+$light-hd: #7f6000;
 
-$dark-hr : #5A1D1D;
-$light-hr : #660000;
+$dark-hr: #5a1d1d;
+$light-hr: #660000;
 
-$dark-dt : #35194A;
-$light-dt : #351C75;
+$dark-dt: #35194a;
+$light-dt: #351c75;
 
-$dark-fm : #192D4A;
-$light-fm : #073763;
+$dark-fm: #192d4a;
+$light-fm: #073763;
 
-
-$dark-tb : #214D2A;
-$dark-tb : #274E13;
-
+$dark-tb: #214d2a;
+$dark-tb: #274e13;
 
 // border-radius
 
-$light-border : 10px;
-$strong-border : 9999px;
-
+$light-border: 10px;
+$strong-border: 9999px;
 
 // shadow
 
-$shadow : 0 1px 3px rgb(0, 0, 0, .25);
-
+$shadow: 0 1px 3px rgb(0, 0, 0, 0.25);
 
 // typo
 
 //6px
-$smallest : .375rem;
+$smallest: 0.375rem;
 //8px
-$extra-small : .5rem;
+$extra-small: 0.5rem;
 //12px
-$small : .75rem;
+$small: 0.75rem;
 //16px
-$medium : 1rem;
+$medium: 1rem;
 //24px
-$large : 1.5rem;
+$large: 1.5rem;
 //32px
-$extra-large : 2rem;
+$extra-large: 2rem;
 //40px
 $largest : 2.5rem;
 
 
 // breakpoints
 
-$breakpoint-sm : 600px;
-$breakpoint-md : 1024px;
-$breakpoint-lg : 1350px;
-
-
+$breakpoint-sm: 600px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1350px;

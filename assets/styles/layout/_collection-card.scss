@@ -9,7 +9,6 @@
         background-color: $light;
         overflow: hidden;
         img {
-            //  max-height: 170px;
             object-fit: cover;
         }
         p {
@@ -18,11 +17,6 @@
     }
     .collection-top-card {
         display: block;
-        &::-webkit-scrollbar {
-            width: 0px;
-            height: 0px;
-        }
-
         .card-img,
         .overlay-top {
             display: block;
@@ -161,10 +155,6 @@
 }
 
 @include media-breakpoint-up(lg) {
-    .collection-global-card {
-        max-height: 170px;
-    }
-
     .collection-btn {
         display: flex;
         justify-self: center;
@@ -204,13 +194,11 @@
         .contributor-name {
             font-size: $medium;
             margin-left: 80px;
-            
         }
         .text-contributor {
             font-size: $small;
             margin-top: -20px;
             margin-left: 80px;
-          
         }
 
         .bloc-contributor {
