@@ -32,3 +32,6 @@ yarn-error.log
 /db.sh
 ###< script bash ###
 
+ ###> git token ###
+ /token.txt
+ ###< git token ###
