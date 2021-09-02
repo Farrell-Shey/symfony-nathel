@@ -207,6 +207,7 @@
     }
 
     .flag {
+      margin-bottom: 10px;
       width: 32px;
     }
   }
@@ -310,7 +311,11 @@
     width: 200px;
     margin-right: 20px;
   }
-
+  .user-name {
+    .flag {
+      margin-bottom: 27px;
+    }
+  }
 
   .user-stats {
     justify-content: space-between;
@@ -322,6 +327,7 @@
   .user-scores {
     font-size: $medium;
     margin: 16px 0 0 auto;;
+    width: 100%;
 
     .score {
       width: 84px;
