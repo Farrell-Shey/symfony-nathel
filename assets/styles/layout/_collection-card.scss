@@ -57,7 +57,7 @@
         .collection-tag-card {
             position: absolute;
             width: 92%;
-            height: 14%;
+            top: 75%;
             bottom: 2px;
             .collection-tag {
                 border-radius: 22px;
@@ -155,16 +155,27 @@
 }
 
 @include media-breakpoint-up(lg) {
+    .collection-global-card {
+        .accordion-item {
+            .collection-top-card {
+                .card-img,
+                .overlay-top {
+                    height: 172px;
+                }
+            }
+        }
+    }
+
     .collection-btn {
-        display: flex;
-        justify-self: center;
-        align-items: center;
+        position: absolute;
+        right: 50%;
+        top: 50%;
     }
 
     .global-collection-contributeur {
         position: absolute;
-        top: 0;
-        right: 0;
+        right: 5px;
+        top: 12px;
         width: 302px;
         height: 152px;
         background-color: rgba(26, 26, 26, 0.75);
@@ -174,18 +185,20 @@
             background-image: url("/assets/images/background.svg");
             background-color: $classic;
             padding: 0;
-            height: 43px;
+            max-height: 43px;
             width: 291px;
+            border-radius: 10px;
         }
         .contributor-card {
             width: 291px;
-            height: 43px;
+            max-height: 43px;
             padding: 0 !important;
+            border-radius: 10px;
         }
         .contributor-bg {
             position: absolute;
             max-height: 43px;
-            border-radius: 5px 5px 5px 5px !important;
+            border-radius: 10px !important;
         }
 
         .text-contributor-card {
@@ -196,7 +209,7 @@
             margin-left: 80px;
         }
         .text-contributor {
-            font-size: $small;
+            font-size: $extra-small;
             margin-top: -20px;
             margin-left: 80px;
         }
