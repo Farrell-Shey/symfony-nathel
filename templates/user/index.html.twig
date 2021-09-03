@@ -3,19 +3,19 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-    <div class="user-body d-lg-flex justify-content-lg-between">
+    <div class="user-body d-lg-flex ">
         <div class="user-contain-1">
-            <img class="rounded-pill thumbnail" src="https://via.placeholder.com/80x80 " alt="">
-            <div class="user-name align-items-lg-center">
+            <img class="thumbnail rounded-pill " src="https://via.placeholder.com/80x80 " alt="">
+            <div class="user-name">
                 <p class="name">Farrell-Shey974</p>
                 <img src="" class="flag ms-2" alt="">
-                <a href="" class="btn score-btn d-flex justify-content-around">
+                <a href="" class="score-btn btn">
                     {{ block('upload') }}
-                    <p class="fw-bold">Update <br> Score</p>
+                    <p>Update <br> Score</p>
                 </a>
             </div>
-            <div class="d-flex justify-content-around fw-bold user-stats">
-                <div class="d-flex flex-column justify-content-around text-center ">
+            <div class="user-stats d-flex">
+                <div class=" stats-contain d-flex flex-column ">
                     <div class="stat">
                         <p>Completed mappools</p>
                         <p>548</p>
@@ -25,7 +25,7 @@
                         <p>3</p>
                     </div>
                 </div>
-                <div class="d-flex flex-column justify-content-around text-center">
+                <div class=" stats-contain d-flex flex-column ">
                     <div class="stat">
                         <p>Submited mappool</p>
                         <p>465</p>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="user-scores d-flex justify-content-around text-center">
+            <div class="user-scores d-flex">
                 <div>
                     {{ block('score_ss_silver') }}
                     <p>3</p>
@@ -62,73 +62,73 @@
         <div class="user-contain-2" id="activity-contain">
             <h2 class="activities-h2">ACTIVITE RECENTE</h2>
             <ul class="activities-list">
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
-                <li class="d-flex justify-content-between activity">
+                <li class="activity d-flex">
                     <div class="d-flex justify-content-between align-items-center">
                         {{ block('score_s_silver') }}
-                        <p><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
                     </div>
                     <p><span>Il y a 1 minute</span></p>
                 </li>
