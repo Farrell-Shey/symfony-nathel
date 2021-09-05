@@ -1,0 +1,34 @@
+{% extends 'svg/_svg_global.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <section id="collection-body">
+        <div class="contributors-contain">
+            <h2 class="contributors-h2">Contributors</h2>
+            <div class="contributors d-flex" id="contributor-contain">
+                {% for i in 0..9 %}
+                    <div class="contributor d-flex">
+                        <a href="">
+                            {{ block('delete') }}
+                        </a>
+                        <img class="contributor-flag" src="https://via.placeholder.com/17x12 " alt="">
+                        <div class="contributor-1">
+                            <img class="contributor-thumbnail" src="https://via.placeholder.com/40x40" alt="">
+                        </div>
+                        <div class="contributor-2">
+                            <p class="contributor-name">Farrell-Shey974</p>
+                            <p><span>Contributor since  <br> 1 November 2020</span></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center">
+                <a onclick="getElementById('contributor-contain').classList.toggle('open')">
+                    {{ block('arrow') }}
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
