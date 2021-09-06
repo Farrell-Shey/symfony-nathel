@@ -112,7 +112,9 @@
 }
 
 @include media-breakpoint-up(lg) {
-
+.jumbotron-home{
+  height: calc(100vh - 102px);
+}
   .filter {
     padding: 15px 45px;
   }
@@ -130,7 +132,7 @@
 
 
   .filter-2 {
-    margin: 1vh 4vw;
+    margin: 11vh 4vw;
     width: 793px;
     height: 375px;
   }

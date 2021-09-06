@@ -8,6 +8,16 @@
   background-color: $dark;
   height: auto;
   padding: 14px 10px 5px 10px;
+
+  &.open {
+    .contributors {
+      height: auto;
+    }
+
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .contributors-h2 {
@@ -32,14 +42,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 1rem;
-
-  &.open {
-    height: auto;
-
-    .arrow {
-      transform: rotate(180deg);
-    }
-  }
+  margin: auto;
 }
 
 .contributor {
@@ -125,7 +128,9 @@
     flex-direction: column;
     justify-content: normal;
     flex-wrap: nowrap;
-    height: 312px;
+    height: 371px !important;
+    overflow-y: scroll;
+    border-radius: 10px;
 
     .contributor {
       flex-direction: row;

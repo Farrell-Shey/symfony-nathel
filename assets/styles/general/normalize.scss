@@ -76,7 +76,6 @@ main {
 @include media-breakpoint-up(lg) {
   main {
     min-height: calc(100vh - 102px);
-    margin: 72px 0 0 72px;
-
+    margin: 102px 0 0 72px;
   }
 }

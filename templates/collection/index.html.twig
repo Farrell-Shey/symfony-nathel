@@ -5,11 +5,11 @@
 {% block body %}
 
     <section id="collection-body">
-        <div class="contributors-contain">
+        <div id="test" class="contributors-contain">
             <h2 class="contributors-h2">Contributors</h2>
-            <div class="contributors d-flex" id="contributor-contain">
+            <ul class="contributors d-flex" >
                 {% for i in 0..9 %}
-                    <div class="contributor d-flex">
+                    <li class="contributor d-flex">
                         <a href="">
                             {{ block('delete') }}
                         </a>
@@ -21,13 +21,13 @@
                             <p class="contributor-name">Farrell-Shey974</p>
                             <p><span>Contributor since  <br> 1 November 2020</span></p>
                         </div>
-                    </div>
+                    </li>
                 {% endfor %}
-            </div>
+            </ul>
             <div class="d-flex justify-content-center">
-                <a onclick="getElementById('contributor-contain').classList.toggle('open')">
+                <button  class="btn btn-no-bg" onclick="getElementById('test').classList.toggle('open')">
                     {{ block('arrow') }}
-                </a>
+                </button>
             </div>
         </div>
     </section>
