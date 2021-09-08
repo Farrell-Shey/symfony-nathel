@@ -90,10 +90,10 @@
 
       &.active {
         background: linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.56) 0%,
-          rgba(14, 17, 14, 0.320833) 81.77%,
-          rgba(23, 28, 23, 0) 100%
+                        90deg,
+                        rgba(0, 0, 0, 0.56) 0%,
+                        rgba(14, 17, 14, 0.320833) 81.77%,
+                        rgba(23, 28, 23, 0) 100%
         );
 
         &:before {
@@ -246,9 +246,12 @@
       border: 2px solid rgba($secondary, 0.3);
       order: 3;
       margin: auto 0 auto auto;
+      width: 44px;
+      height: 44px;
 
       .btn-search {
         padding: 8px 9px;
+        margin: 0;
       }
 
       .svg {
@@ -403,6 +406,7 @@
     }
 
     .search-bar {
+      width: auto;
       border: unset;
     }
 
