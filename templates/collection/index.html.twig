@@ -8,6 +8,12 @@
         <div id="test" class="contributors-contain">
             <h2 class="contributors-h2">Contributors</h2>
             <ul class="contributors d-flex" >
+                <li>
+                    <a class="btn modal-btn">
+                        {{ block('modal') }}
+                        <p class="modal-text">add a new contributor</p>
+                    </a>
+                </li>
                 {% for i in 0..9 %}
                     <li class="contributor d-flex">
                         <a href="">
