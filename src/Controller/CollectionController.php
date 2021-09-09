@@ -19,14 +19,4 @@ class CollectionController extends AbstractController
 
         ]);
     }
-
-    /**
-     * @Route ("/modal", name="_modal")
-     */
-    public function modal(): Response
-    {
-        return $this->render('collection/_modal.html.twig', [
-
-        ]);
-    }
 }
