@@ -1,7 +1,15 @@
-#modal-body {
-  padding: 3vh 10vw 18vh 10vw;
+//BOOTSTRAP MODAL
+.modal {
+  padding: 10vh 15vw;;
 }
 
+.modal-dialog {
+  border-radius: 15px;
+  min-width: 100%;
+  margin: unset;
+}
+
+///////
 .modal-contain {
   display: flex;
   flex-direction: column;
@@ -30,6 +38,13 @@
     opacity: unset;
     color: white;
   }
+}
+
+.btn-confirm-contain {
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
 }
 
 .btn-confirm {
@@ -157,6 +172,7 @@
 @include media-breakpoint-up(sm) {
   .modal-contain {
     height: 440px;
+    padding: 30px;
   }
   .btn-close {
     width: 61px;
@@ -220,8 +236,16 @@
 }
 
 @include media-breakpoint-up(lg) {
+  //BOOTSTRAP MODAL
+  .modal {
+    padding: 13vh 9vw;
+  }
+  .modal-dialog {
+    height: 100%;
+  }
+  ///////
   .modal-contain {
-    height: 560px;
+    height: 100%;
   }
   .btn-close {
     width: 71px;
