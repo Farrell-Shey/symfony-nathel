@@ -1,3 +1,6 @@
 main .btn {
   background-image: url("/assets/images/osu_triangle.png");
 }
+.btn-no-bg{
+  background-image: unset !important;
+}

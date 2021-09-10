@@ -12,23 +12,24 @@
 .filter {
   background-color: rgba($black, .5);
   height: 100%;
-
-  .jumb-h1 {
-    font-size: $large;
-  }
-
-  .jumb-extra-small-text {
-    font-size: $extra-small;
-  }
-
-  .pink-button {
-    background-color: $pink;
-    color: $secondary;
-    border-radius: 11px;
-    margin-top: 1vh;
-    font-size: $small;
-  }
 }
+
+.jumb-h1 {
+  font-size: $large;
+}
+
+.jumb-extra-small-text {
+  font-size: $extra-small;
+}
+
+.pink-button {
+  background-color: $pink;
+  color: $secondary;
+  border-radius: 11px;
+  margin-top: 1vh;
+  font-size: $small;
+}
+
 
 .filter-2 {
   background-color: rgba($dark, .8);
@@ -38,64 +39,66 @@
   @include media-breakpoint-up(md) {
     margin: -1vh 4vw;
   }
+}
 
-  .jumb-h2 {
-    font-size: $large;
+.jumb-h2 {
+  font-size: $large;
+}
+
+.jumb-h2-p {
+  font-size: $small;
+}
+
+.h2-blue-line:after {
+  content: "";
+  display: block;
+  background-color: $primary;
+  width: 50px;
+  height: 4px;
+  border-radius: 11px;
+}
+
+.blue-button {
+  background-color: $primary;
+  color: $secondary;
+  border-radius: 10px;
+  width: 250px;
+  height: 40px;
+  margin-top: 12vh;
+  font-size: $small;
+}
+
+.grey-card {
+  background-color: $light;
+  border-radius: $light-border;
+  margin: 1vh;
+  box-shadow: 20px 20px 20px rgb(23, 26, 28, 30%);
+
+  h3 {
+    color: $primary;
+    font-size: $medium;
   }
 
-  .jumb-h2-p {
+  p {
     font-size: $small;
-  }
-
-  .h2-blue-line:after {
-    content: "";
-    display: block;
-    background-color: $primary;
-    width: 50px;
-    height: 4px;
-    border-radius: 11px;
-  }
-
-  .blue-button {
-    background-color: $primary;
-    color: $secondary;
-    border-radius: 10px;
-    width: 250px;
-    height: 40px;
-    margin-top: 12vh;
-    font-size: $small;
-  }
-
-  .grey-card {
-    background-color: $light;
-    border-radius: $light-border;
-    margin: 1vh;
-    box-shadow: 20px 20px 20px rgb(23, 26, 28, 30%);
-
-    h3 {
-      color: $primary;
-      font-size: $medium;
-    }
-
-    p {
-      font-size: $small;
-    }
   }
 }
+
+
 @include media-breakpoint-up(sm) {
-  .filter{
-    .jumb-h1 {
-      font-size: $extra-large;
-    }
 
-    .jumb-extra-small-text {
-      font-size: $small;
-    }
-
-    .pink-button {
-      font-size: $medium;
-    }
+  .jumb-h1 {
+    font-size: $extra-large;
   }
+
+  .jumb-extra-small-text {
+    font-size: $small;
+  }
+
+  .pink-button {
+    font-size: $medium;
+  }
+
 
   .filter-2-text {
     width: 50%;
@@ -109,98 +112,103 @@
 }
 
 @include media-breakpoint-up(lg) {
-
+.jumbotron-home{
+  height: calc(100vh - 102px);
+}
   .filter {
     padding: 15px 45px;
-    .jumb-h1 {
-      font-size: $largest;
-    }
+  }
+  .jumb-h1 {
+    font-size: $largest;
+  }
 
-    .jumb-extra-small-text {
-      font-size: $medium;
-    }
+  .jumb-extra-small-text {
+    font-size: $medium;
+  }
 
-    .pink-button {
-      font-size: $extra-large;
-    }
+  .pink-button {
+    font-size: $extra-large;
   }
 
 
   .filter-2 {
-    margin: 1vh 4vw;
+    margin: 11vh 4vw;
     width: 793px;
     height: 375px;
   }
 
-  .bloc-text-btn {
-    width: 35%;
-    margin-right: 28px;
-  }
-
-  .filter-2-text {
-    width: 100%;
-  }
-
-  .jumb-h2 {
-    font-size: $extra-large;
-  }
-  .jumb-h2-p {
-    font-size: $medium;
-  }
-
-  .blue-button {
-    font-size: $medium;
-    margin-top: 3vh;
-  }
-  .cards-container {
-    width: 50%;
-  }
-
-  .grey-card {
-    width: 357px;
-    height: 100px;
-    text-align: start;
-    transition: transform .2s ease;
-
-    &:nth-child(1) {
-      margin-top: -50px;
-      transform-origin: 75% 40%;
-
-      &:hover {
-        transform: rotate(-3deg);
-        transition: transform .2s ease;
-      }
+    .bloc-text-btn {
+      width: 35%;
+      margin-right: 28px;
     }
 
-    &:nth-child(2) {
-      margin: 5vh 1vw 5vh 200px;
-
-      &:hover {
-        transform: rotate(5deg);
-        transition: transform .2s ease;
-      }
+    .filter-2-text {
+      width: 100%;
     }
 
-    &:nth-child(3) {
-      margin-bottom: -50px;
-      transform-origin: 40% 75%;
-
-      &:hover {
-        transform: rotate(-5deg);
-        transition: transform .2s ease;
-      }
+    .jumb-h2 {
+      font-size: $extra-large;
     }
 
-    h3 {
-      font-size: $large;
-    }
-
-    p {
+    .jumb-h2-p {
       font-size: $medium;
     }
-    .logo-jumb {
-      width: 75px;
-      height: auto;
+
+    .blue-button {
+      font-size: $medium;
+      margin-top: 3vh;
     }
-  }
+
+    .cards-container {
+      width: 50%;
+    }
+
+    .grey-card {
+      width: 357px;
+      height: 100px;
+      text-align: start;
+      transition: transform .2s ease;
+
+      &:nth-child(1) {
+        margin-top: -50px;
+        transform-origin: 75% 40%;
+
+        &:hover {
+          transform: rotate(-3deg);
+          transition: transform .2s ease;
+        }
+      }
+
+      &:nth-child(2) {
+        margin: 5vh 1vw 5vh 200px;
+
+        &:hover {
+          transform: rotate(5deg);
+          transition: transform .2s ease;
+        }
+      }
+
+      &:nth-child(3) {
+        margin-bottom: -50px;
+        transform-origin: 40% 75%;
+
+        &:hover {
+          transform: rotate(-5deg);
+          transition: transform .2s ease;
+        }
+      }
+
+      h3 {
+        font-size: $large;
+      }
+
+      p {
+        font-size: $medium;
+      }
+
+      .logo-jumb {
+        width: 75px;
+        height: auto;
+      }
+    }
 }
