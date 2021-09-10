@@ -120,7 +120,7 @@
                 &:before {
                     content: "";
                     display: block;
-                    margin-left: -14px;
+                    margin-left: -15px;
                     height: 0;
                     width: 0;
                     border-top: 31px solid #1a1a1abf;
@@ -199,7 +199,7 @@
                     width: 107px;
                     height: 84px;
                     &:before {
-                        margin-left: 4px;
+                        margin-left: -15px;
                         height: 0;
                         width: 0;
                         border-top: 42px solid #1a1a1abf;
@@ -244,9 +244,15 @@
                         height: 24px;
                     }
                 }
+
                 .clip-path-card {
                     font-size: $medium;
                     width: 400px;
+                    .max-combo {
+                        margin: auto;
+                        width: 100%;
+                        font-size: $extra-small;
+                    }
                 }
             }
         }
