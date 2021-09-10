@@ -2,69 +2,96 @@
 
 {% block body %}
 	{#{% include "component/_mappool.html.twig" % #}
-	{% block collection %}
-		<div class="card border-0 bg-transparent collection-global-card mt-5 mx-auto">
+
+	{% block pined %}
+		<div class="pined">
 			<div class="accordion accordion-flush" id="accordionFlushExample">
-				{% for i in 0..3 %}
-					<div class="accordion-item card border-0 mb-3">
-						<div id="flush-heading{{ loop.index0 }}" class="accordion-header bg-transparent border-0 collection-top-card ">
-							<img src="{{ asset('build/default_collection_img.png') }}" class="card-img" alt="...">
-							<div class="card-img-overlay overlay-top text-white d-block">
-								<p class="collection-title">Dan Project : Aim Collection</p>
-								<p class="collection-text">4 mappools</p>
-								<p class="collection-text">manage with
-									{% for i in 0..2 %}
-										<img class="avatar" src="{{ asset('build/default_avatar.png') }}" href="#">
-									{% endfor %}
-									<a class="avatar manager text-dark" href="#">
-										+{{ random(5) }}
+				{% block pined_card %}
+					<div class="card-pined">
+						<div class="d-flex card card-pined">
+							<img id="flush-heading" src="{{ asset('build/default_collection_img.png') }}" class="card-img-pined-top" alt="...">
+							<div class="card-img-overlay">
+								<div class="d-flex text-pined">
+									<ul>
+										<li class="title-pined">KimiPool Challenge</li>
+										<li>From collection
+											<a class="link-pined">Dan project</a>
+										</li>
+										<li>Dan project
+											<a class="link-pined">Nath</a>
+										</li>
+										<li>26 maps</li>
+									</ul>
+									<div class="d-flex svg">
+										<a class="d-flex pined-svg" href="#">{{ block("svg_pined") }}</a>
+										<a class="d-flex pined-svg" href="#">{{ block("unfollow") }}</a>
+									</div>
+								</div>
+								<div class="d-flex pined-info">
+									<button class="accordion-button bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse" aria-expanded="false" aria-controls="flush-collapse"></button>
+									<a class="pined-tag" href="/" role="button">
+										4.0-6.5✰
 									</a>
-									<div class="collection-tag-card card bg-transparent border-0 d-block">
-										<a class="collection-tag" href="/" role="button">
-											4.0-6.5✰
-										</a>
-										<a class="collection-tag" href="/" role="button">
-											training
-										</a>
-										<a class="collection-tag" href="/" role="button">
-											100k-250k
-										</a>
-										<button class="collection-btn accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ loop.index0 }}" aria-expanded="false" aria-controls="flush-collapse{{ loop.index0 }}"></button>
-									</div>
-								</p>
-								<div class="d-none d-lg-block">
-									<div class="card global-collection-contributeur d-flex justify-content-around align-items-center">
-										{% for i in 0..2 %}
-											<div class="card collection-contributor-card">
-												<img src="{{ asset('build/contributor-bg.png') }}" class="contributor-bg card-img" alt="...">
-												<div class="contributor-bg card-img-overlay d-bloc justify-content-around ">
-													<div class="card-img-overlay d-flex flex-row flex-wrap: wrap">
-														<img class="contributor-avatar" src="{{ asset('build/default_avatar.png') }}" href="#">
-														<img class="contributor-flag" src="{{ asset('build/flag.png') }}" href="#">
-													</div>
-												</div>
-												<div class="d-column text-contributor-card">
-													<p class="contributor-name fw-bold">Nath</p>
-													<p class="text-contributor ">Contributor since 1 November 2020</p>
-												</div>
-											</div>
-										{% endfor %}
-									</div>
+									<a class="pined-tag" href="/" role="button">
+										training
+									</a>
+									<a class="pined-tag" href="/" role="button">
+										100k-250k
+									</a>
 								</div>
 							</div>
 						</div>
-						{% block maps_collection %}
-							<div id="flush-collapse{{ loop.index0 }}" class="accordion-collapse collapse hide" aria-labelledby="flush-heading{{ loop.index0 }}" data-bs-parent="#accordionFlushExample">
+						{% block pined_card_mappools %}
+							<div id="flush-collapse" class="pb-2 accordion-collapse collapse hide" aria-labelledby="flush-heading" data-bs-parent="#accordionFlushExample">
 								{% for i in 0..3 %}
-									<div class="card border-0 accordion-body mt-2">
-										<div class="card collection-bottom-card text-white">
-											<img src="{{ asset('build/default_collection_map_img.png') }}" class="card-img" alt="...">
-											<div class="card-img-overlay overlay-bottom">
-												<p class="title">KimiPool Challenge</p>
-												<p class="text">submitted by
-													<a class="link">Nath</a>
-												</p>
-												<p class="text">12 maps</p>
+									<div class="d-flex card card-pined-mappools border-dark">
+										<img src="{{ asset('build/default_collection_img.png') }}" class="card-img-pined border-dark" alt="...">
+										<div class="card-img-overlay border-dark">
+											<div class="d-flex text-pined">
+												<div class="d-flex text-pined-mappools">
+													<ul>
+														<div class="d-flex card-pined-mappools-lg">
+															<li class="title-pined-mappools">Matsushita - raspberry cube [Insane]
+															</li>
+															<div class="d-none d-lg-block card time-card-pined">
+																<div class="mt-n1 text-pined-lg">
+																	<p><img class="img-pined" src="{{ asset('build/note.png') }}">
+																		21-145 (145)
+																		<img class="img-pined" src="{{ asset('build/hourglass.png') }}">
+																		03:31</p>
+																</div>
+															</div>
+															<img class="img-hd" src="{{ asset('build/img-hd.png') }}" alt="...">
+														</div>
+														<li>mappée par
+															<a class="link-pined-mappools">timemon</a>
+														</li>
+														<li class="tag-pined-mappools">CS: 4  AR: 9.3 OD: 8.5 HP: 4.5 Stars: 4.98
+														</li>
+													</ul>
+												</div>
+											</div>
+											<div class="d-flex clip-path-card">
+												<ul class="d-flex clip-path-text">
+													<li>
+														<a href="#">{{ block("score_ss") }}</a>
+													</li>
+													<li>88 801 454
+													</li>
+													<li>
+														99.99%
+													</li>
+												</ul>
+												<ul class="d-none d-lg-block d-flex clip-path-text text-danger">
+													<li class="text-uppercase fw-bold">
+														1701
+													</li>
+													<li class="text-uppercase max-combo text-light">max combo
+													</li>
+													<li class="text-uppercase fw-bold">
+														0 X
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
@@ -72,9 +99,8 @@
 							</div>
 						{% endblock %}
 					</div>
-				{% endfor %}
+				{% endblock %}
 			</div>
 		</div>
 	{% endblock %}
-
 {% endblock %}
