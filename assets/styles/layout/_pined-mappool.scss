@@ -205,10 +205,13 @@
                         border-top: 42px solid #1a1a1abf;
                         border-bottom: 42px solid #1a1a1abf;
                     }
+                    .clip-path-text {
+                        width: 50%;
+                    }
                     .max-combo {
                         font-size: $extra-small;
                         margin: auto;
-                        width: 100%;
+                        width: 50%;
                     }
                 }
             }
@@ -249,7 +252,6 @@
                     font-size: $medium;
                     width: 400px;
                     .max-combo {
-                        margin: auto;
                         width: 100%;
                         font-size: $extra-small;
                     }
