@@ -9,7 +9,7 @@ export const app = startStimulusApp(require.context(
 // register any custom, 3rd party controllers here
 // app.register('some_controller_name', SomeImportedController);
 
-import 'bootstrap/js/dist/alert';
+// import 'bootstrap/js/dist/alert';
 import 'bootstrap/js/dist/button';
 // import 'bootstrap/js/dist/carousel';
 import 'bootstrap/js/dist/collapse';
