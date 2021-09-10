@@ -1,20 +1,321 @@
-#modal_contain{
-  background-color: $bg-dark;
-  width: 266px;
-  height: 252px;
-  border-radius: 10px;
-  margin: 5px;
-  position: relative;
+//BOOTSTRAP MODAL
+.modal {
+  padding: 10vh 15vw;;
 }
-.btn-close{
-  position: absolute;
-  right: 15px;
-  top: 15px;
+
+.modal-dialog {
+  border-radius: 15px;
+  min-width: 100%;
+  margin: unset;
+}
+
+///////
+.modal-contain {
+  display: flex;
+  flex-direction: column;
+  background-color: $bg-dark;
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px;
+}
+
+.btn-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 41px;
+  height: 16px;
   background-color: $red;
   color: white;
-  width: 40px;
-  height: 16px;
   font-size: $extra-small;
   border-radius: 20px;
   opacity: 1;
+
+  &:hover {
+    background-color: $red;
+    opacity: unset;
+    color: white;
+  }
+}
+
+.btn-confirm-contain {
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.btn-confirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $blue;
+  color: white;
+  width: 45px;
+  height: 20px;
+  font-size: $extra-small;
+  border-radius: 20px;
+  opacity: 1;
+  padding: unset;
+  &:hover {
+    background-color: $blue;
+    opacity: unset;
+    color: white;
+  }
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 9px;
+  margin-right: 9px;
+}
+
+.btn-search {
+  padding: 0;
+  background-image: unset !important;
+  margin-left: -25px;
+}
+
+.search {
+  width: 13px
+}
+
+.form-control {
+  width: 180px;
+  height: 24px;
+  border-radius: $strong-border;
+  background-color: $search-bg;
+  border: 1px solid $blue;
+  font-size: $small;
+
+  &::placeholder {
+    color: white;
+  }
+}
+
+.modal-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 163px;
+  height: 117px;
+  border-radius: 10px;
+  padding: 0 5px 5px 5px;
+  margin: 0 auto auto;
+  background-color: $dark;
+}
+
+.modal-card {
+  width: 100%;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  background-image: url("/assets/images/constellation.svg");
+  background-color: $classic;
+  border-radius: 6px;
+  gap: 5px;
+  padding: 0 10px;
+
+  .modal-thumbnail {
+    width: 22px;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .modal-flag {
+    width: 14px;
+    height: 9px;
+    border-radius: 3px;
+  }
+
+  p {
+    font-size: $small;
+  }
+}
+
+.modal-add {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0 0 10px;
+  p {
+    font-size: $small;
+  }
+
+  .btn-contain {
+    display: flex;
+    gap: 10px;
+  }
+
+  .btn-add {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $pink;
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 2px;
+    height: 14px;
+    width: 62px;
+
+    p {
+      font-size: $extra-small;
+      height: max-content;
+    }
+
+    svg {
+      margin-bottom: 4px;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  //BOOTSTRAP MODAL
+  .modal-dialog {
+    min-height: 61%;
+  }
+  ///////
+  .modal-contain {
+    height: 100%;
+    padding: 19px;
+  }
+  .btn-close {
+    width: 61px;
+    height: 26px;
+    font-size: $small;
+  }
+
+  .form-control {
+    width: 259px;
+    height: 39px;
+  }
+  .search {
+    width: 16px;
+    margin-left: -5px;
+  }
+  .modal-list {
+    width: 224px;
+    height: 221px;
+    gap: 7px;
+    margin: 0 auto 18px;
+  }
+  .modal-card {
+    height: 49px;
+
+    .modal-thumbnail {
+      width: 40px;
+      border-radius: 20px;
+    }
+
+    .modal-flag {
+      width: 25px;
+      height: 16px;
+    }
+
+    p {
+      font-size: $medium;
+    }
+  }
+  .modal-add {
+    gap: 10px;
+
+    p {
+      font-size: $medium;
+    }
+
+    .btn-add {
+      width: 93px;
+      height: 24px;
+
+      p {
+        font-size: $small;
+      }
+    }
+  }
+  .btn-confirm {
+    width: 93px;
+    height: 30px;
+    font-size: $small;
+    margin-top: 10px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  //BOOTSTRAP MODAL
+  .modal {
+    padding: 13vh 9vw;
+  }
+  .modal-dialog {
+    height: 100%;
+  }
+  ///////
+  .modal-contain {
+    height: 100%;
+  }
+  .btn-close {
+    width: 71px;
+    height: 34px;
+    font-size: $medium;
+  }
+  .form-control {
+    width: 55%;
+    height: 45px;
+    font-size: $large;
+  }
+  .btn-search {
+    margin-left: -37px;
+  }
+  .search {
+    width: 24px
+  }
+  .modal-list {
+    width: 50%;
+    height: auto;
+    gap: 7px;
+    margin: 0 auto 18px;
+  }
+  .modal-card {
+    height: 68px;
+
+    .modal-thumbnail {
+      width: 60px;
+      border-radius: 30px;
+    }
+
+    .modal-flag {
+      width: 37px;
+      height: 24px;
+    }
+
+    p {
+      font-size: $large;
+    }
+  }
+  .modal-add {
+    gap: 10px;
+
+    p {
+      font-size: $large;
+    }
+
+    .btn-add {
+      width: 132px;
+      height: 32px;
+
+      p {
+        font-size: $medium;
+      }
+    }
+  }
+  .btn-confirm {
+    width: 99px;
+    height: 40px;
+    font-size: $medium;
+    margin-top: 10px;
+  }
 }
