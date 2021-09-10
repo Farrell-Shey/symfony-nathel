@@ -1,0 +1,102 @@
+{% extends "svg/_svg_global.html.twig" %}
+
+{% block pined %}
+	<div class="pined">
+		<div class="accordion accordion-flush" id="accordionFlushExample">
+			{% block pined_card %}
+				<div class="card-pined">
+					<div class="d-flex card card-pined">
+						<img id="flush-heading" src="{{ asset('build/default_collection_img.png') }}" class="card-img-pined-top" alt="...">
+						<div class="card-img-overlay">
+							<div class="d-flex text-pined">
+								<ul>
+									<li class="title-pined">KimiPool Challenge</li>
+									<li>From collection
+										<a class="link-pined">Dan project</a>
+									</li>
+									<li>Dan project
+										<a class="link-pined">Nath</a>
+									</li>
+									<li>26 maps</li>
+								</ul>
+								<div class="d-flex svg">
+									<a class="d-flex pined-svg" href="#">{{ block("svg_pined") }}</a>
+									<a class="d-flex pined-svg" href="#">{{ block("unfollow") }}</a>
+								</div>
+							</div>
+							<div class="d-flex pined-info">
+								<button class="accordion-button bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse" aria-expanded="false" aria-controls="flush-collapse"></button>
+								<a class="pined-tag" href="/" role="button">
+									4.0-6.5✰
+								</a>
+								<a class="pined-tag" href="/" role="button">
+									training
+								</a>
+								<a class="pined-tag" href="/" role="button">
+									100k-250k
+								</a>
+							</div>
+						</div>
+					</div>
+					{% block pined_card_mappools %}
+						<div id="flush-collapse" class="pb-2 accordion-collapse collapse hide" aria-labelledby="flush-heading" data-bs-parent="#accordionFlushExample">
+							{% for i in 0..3 %}
+								<div class="d-flex card card-pined-mappools border-dark">
+									<img src="{{ asset('build/default_collection_img.png') }}" class="card-img-pined border-dark" alt="...">
+									<div class="card-img-overlay border-dark">
+										<div class="d-flex text-pined">
+											<div class="d-flex text-pined-mappools">
+												<ul>
+													<div class="d-flex card-pined-mappools-lg">
+														<li class="title-pined-mappools">Matsushita - raspberry cube [Insane]
+														</li>
+														<div class="d-none d-lg-block card time-card-pined">
+															<div class="mt-n1 text-pined-lg">
+																<p><img class="img-pined" src="{{ asset('build/note.png') }}">
+																	21-145 (145)
+																	<img class="img-pined" src="{{ asset('build/hourglass.png') }}">
+																	03:31</p>
+															</div>
+														</div>
+														<img class="img-hd" src="{{ asset('build/img-hd.png') }}" alt="...">
+													</div>
+													<li>mappée par
+														<a class="link-pined-mappools">timemon</a>
+													</li>
+													<li class="tag-pined-mappools">CS: 4  AR: 9.3 OD: 8.5 HP: 4.5 Stars: 4.98
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="d-flex clip-path-card">
+											<ul class="d-flex clip-path-text">
+												<li>
+													<a href="#">{{ block("score_ss") }}</a>
+												</li>
+												<li>88 801 454
+												</li>
+												<li>
+													99.99%
+												</li>
+											</ul>
+											<ul class="d-none d-lg-block d-flex clip-path-text text-danger">
+												<li class="text-uppercase fw-bold">
+													1701
+												</li>
+												<li class="text-uppercase max-combo text-light">max combo
+												</li>
+												<li class="text-uppercase fw-bold">
+													0 X
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					{% endblock %}
+				</div>
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}
