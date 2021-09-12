@@ -12,6 +12,19 @@
   width: 100vw;
   font-size: $medium;
 
+  .form-control {
+    color: $secondary;
+    width: 220px;
+    height: 40px;
+    background: rgba(#a1a1a1, 0.4);
+    border: unset;
+    border-radius: $strong-border;
+
+    &::placeholder {
+      color: rgba($secondary, 0.5);
+    }
+  }
+
   .logo_nathel {
     width: 44px;
     height: 60px;
@@ -23,19 +36,6 @@
     justify-items: center;
     align-items: center;
     margin: auto;
-
-    .form-control {
-      color: $secondary;
-      width: 220px;
-      height: 40px;
-      background: rgba(#a1a1a1, 0.4);
-      border: unset;
-      border-radius: $strong-border;
-
-      &::placeholder {
-        color: rgba($secondary, 0.5);
-      }
-    }
 
     .svg {
       fill: $secondary;

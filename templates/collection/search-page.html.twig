@@ -1,0 +1,65 @@
+{% extends 'svg/_svg_global.html.twig' %}
+	{% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('modal') }}
+    {% endblock %}
+{% block title %}{% endblock %}
+{% block body %}
+    <section class="search-section">
+        <form class="search-form">
+            <div class="main-input bg-sm-linear-constellation">
+                <div class="input-title">
+                    <div class="form-control">
+                        <input type="text" id="collection-title" placeholder="Tape in keywords">
+                        <button type="submit" class="btn">
+                            <svg class="svg" width="29" height="29" viewBox="0 0 29 29"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M12.0837 21.7493C6.74491 21.7493 2.41699 17.4214 2.41699 12.0827C2.41699 6.74393 6.74491 2.41602 12.0837 2.41602C17.4224 2.41602 21.7503 6.74393 21.7503 12.0827C21.7503 14.3165 20.9926 16.3734 19.7202 18.0103L26.2298 24.5199L24.5209 26.2288L18.0113 19.7192C16.3744 20.9916 14.3175 21.7493 12.0837 21.7493ZM19.3337 12.0827C19.3337 16.0867 16.0877 19.3327 12.0837 19.3327C8.07959 19.3327 4.83366 16.0867 4.83366 12.0827C4.83366 8.07862 8.07959 4.83268 12.0837 4.83268C16.0877 4.83268 19.3337 8.07862 19.3337 12.0827Z"/>
+                            </svg>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="search-option">
+
+                <div class="tags block-mod">
+                    <span class="title title-mod">Game Mod</span>
+                    {% for i in 0..3 %}
+                        <input type="checkbox" name="{{ i }}" id="{{ i }}"/>
+                        <label class="tag tag-mod" for="{{ i }}">tag mod {{ i }}</label>
+                    {% endfor %}
+                </div>
+
+                <div class="tags block-category">
+                    <span class="title title-category">Category</span>
+                    {% for j in 0..3 %}
+                        <input type="checkbox" name="{{ j }}" id="{{ j }}"/>
+                        <label class="tag tag-category" for="{{ j }}">catégorie {{ j }}</label>
+                    {% endfor %}
+                </div>
+
+                <div class="block-rank">
+                    <span class="title title-rank">Rank Range</span>
+                    <div id="slider-rank" class="slider"></div>
+                </div>
+
+                <div class="block-ratting">
+                    <span class="title title-ratting">Star Rating</span>
+                    <div id="slider-ratting" class="slider"></div>
+                </div>
+            </div>
+
+        </form>
+        <div class="search-filter">
+            <svg class="svg" width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M0 0V2.66667H24V0H0ZM9.33333 16H14.6667V13.3333H9.33333V16ZM20 9.33333H4V6.66667H20V9.33333Z"/>
+            </svg>
+            <span class="search-item active">pertinence</span>
+            <span class="search-item">last posted</span>
+        </div>
+    </section>
+    <section class="search-result"></section>
+{% endblock %}

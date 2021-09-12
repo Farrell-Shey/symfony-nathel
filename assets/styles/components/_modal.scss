@@ -59,6 +59,7 @@
   border-radius: 20px;
   opacity: 1;
   padding: unset;
+
   &:hover {
     background-color: $blue;
     opacity: unset;
@@ -72,6 +73,19 @@
   justify-content: center;
   margin-top: 9px;
   margin-right: 9px;
+
+  .form-control {
+    width: 180px;
+    height: 24px;
+    border-radius: $strong-border;
+    background-color: $search-bg;
+    border: 1px solid $blue;
+    font-size: $small;
+
+    &::placeholder {
+      color: white;
+    }
+  }
 }
 
 .btn-search {
@@ -84,18 +98,6 @@
   width: 13px
 }
 
-.form-control {
-  width: 180px;
-  height: 24px;
-  border-radius: $strong-border;
-  background-color: $search-bg;
-  border: 1px solid $blue;
-  font-size: $small;
-
-  &::placeholder {
-    color: white;
-  }
-}
 
 .modal-list {
   display: flex;
@@ -143,6 +145,7 @@
   display: flex;
   flex-direction: column;
   margin: 15px 0 0 10px;
+
   p {
     font-size: $small;
   }
@@ -189,10 +192,12 @@
     height: 26px;
     font-size: $small;
   }
+  .search-bar {
 
-  .form-control {
-    width: 259px;
-    height: 39px;
+    .form-control {
+      width: 259px;
+      height: 39px;
+    }
   }
   .search {
     width: 16px;
@@ -262,10 +267,13 @@
     height: 34px;
     font-size: $medium;
   }
-  .form-control {
-    width: 55%;
-    height: 45px;
-    font-size: $large;
+  .search-bar {
+
+    .form-control {
+      width: 55%;
+      height: 45px;
+      font-size: $large;
+    }
   }
   .btn-search {
     margin-left: -37px;

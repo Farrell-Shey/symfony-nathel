@@ -1,12 +1,19 @@
+
 @import "general/bootstrap";
+@import "~nouislider";
+
 @import "general/variables";
 @import "general/normalize";
 @import "general/theme";
+@import "general/bg";
 
 @import "components/logo";
 @import "components/menu-burger";
 @import "components/button";
 @import "components/scroll";
+@import "components/title";
+@import "components/tag";
+@import "components/input";
 @import "components/modal";
 
 @import "layout/mappool-card";
@@ -14,8 +21,12 @@
 @import "layout/jumbotron";
 @import "layout/user";
 @import "layout/collection";
+@import "layout/pop-up";
 
 @import "navigation/nav";
+
+@import "page/mycollection";
+@import "page/search-page";
 
 //toutes les variables nécessaires
 /*@import "normalize";

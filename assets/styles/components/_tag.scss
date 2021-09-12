@@ -1,0 +1,17 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: .5rem;
+  row-gap: .5rem;
+  margin-top: 10px;
+}
+
+.tag {
+  padding: .2rem .5rem;
+  line-height: normal;
+  color: $dark;
+  background: $gray;
+  border-radius: $strong-border;
+}
+

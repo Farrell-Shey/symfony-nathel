@@ -1,0 +1,39 @@
+.bg-constellation {
+  width: 100%;
+  height: 100%;
+  background-color: $obscure;
+  background-image: url("/assets/images/constellation.svg");
+
+  background-repeat: repeat;
+}
+
+
+
+.filter {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+@include media-breakpoint-up(sm) {
+  .bg-sm-linear-constellation {
+    width: 100%;
+    height: 100%;
+    background-image: url("/assets/images/constellation.svg"), linear-gradient(285deg, #171A1C 8%, #2E3538 107%);
+    background-repeat: repeat;
+  }
+
+  main{
+    width: calc(100vw - 72px);
+    min-height: calc(100vh - 76px);
+    margin-left: 72px;
+    margin-top: 76px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  main{
+    min-height: calc(100vh - 102px);
+    margin-top: 102px;
+  }
+}
