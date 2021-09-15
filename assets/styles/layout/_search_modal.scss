@@ -1,0 +1,341 @@
+.modal-search {
+    padding: 0 !important;
+    .modal-content {
+        background-color: transparent !important;
+        border-radius: 10px !important;
+        .modal-search-card {
+            background: $dark;
+            width: 100%;
+            height: 100%;
+            border-radius: none;
+            .btn-arrow-modal {
+                margin: 10px;
+            }
+            .search-form {
+                justify-content: center;
+                .search-bar-modal {
+                    width: 90%;
+                    height: 41px;
+                    background: $lighter;
+                    border: none;
+                    color: white;
+                }
+                .btn-search-modal {
+                    .search {
+                        width: 24px !important;
+                    }
+                }
+            }
+
+            .search-filter {
+                background: $lighter;
+                height: 21px;
+                justify-content: space-around;
+                flex-direction: row;
+                font-size: $small;
+                padding: 5px 0 0 0;
+                margin: 13px 0 20px 0;
+                box-shadow: 0px 4px 4px 0px #00000040;
+            }
+            
+            .search-tourney-modal,
+            .search-players-modal {
+                align-items: center;
+                padding: 0 0 0 20px;
+                width: 149px;
+                height: 50px;
+                background: $lighter;
+                margin: 0 0 40px 25px;
+                border-radius: 5px;
+                box-shadow: 4px 4px 8px 0px #171a1c80;
+            }
+
+            .search-explore-modal {
+                visibility: hidden;
+                .explore {
+                    visibility: hidden;
+                }
+            }
+            .search-more-results {
+                visibility: hidden;
+            }
+
+            .nothing-find-modal {
+                align-items: center;
+                justify-content: center;
+                height: 50px;
+                background: $lighter;
+                margin: 0 0 45px 0;
+                border-left: 5px solid $blue;
+                box-shadow: 4px 4px 8px 0px #171a1c80;
+            }
+
+            .player-card-modal {
+                display: flex;
+                margin: 0 0 7px 0;
+                height: 90px;
+                background-image: url("/assets/images/constellation.svg");
+                background-color: $classic;
+                border-radius: 5px;
+                .player-name {
+                    margin: auto;
+                }
+                .player-bg-modal {
+                    z-index: 5;
+                    border-radius: 5px;
+                    width: 105px;
+                    filter: brightness(50%);
+                }
+                .player-info-modal {
+                    z-index: 6;
+                    width: 105px;
+                    background: transparent;
+                    .player-flag-modal {
+                        width: 25px;
+                        position: absolute;
+                        left: 75px;
+                        border-radius: 20px;
+                        border: 1px solid black;
+                        margin: 6px 0 0 0;
+                    }
+                    .player-thumbnail-modal {
+                        z-index: 6;
+                        width: 60px;
+                        border-radius: 100%;
+                        margin: 15px 5px 15px 6px;
+                        position: absolute;
+                        left: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .modal-search {
+        padding: 160px 40px 40px 40px !important;
+        .modal-content {
+            .modal-search-card {
+                border-radius: 10px !important;
+                .btn-arrow-modal {
+                    display: none;
+                }
+
+                .bg-modal-search {
+                    border-radius: 10px 10px 0 0;
+                    margin: 0 0 100px 0;
+                    padding: 50px 0 0 0;
+                    height: 320px;
+                    width: 100%;
+                    background: linear-gradient(285.86deg, #171a1c 8.13%, #2e3538 107.68%);
+                    background-image: url("/assets/images/constellation.svg");
+                }
+
+                .btn-close-modal {
+                    float: right;
+                    color: white;
+                    margin: -40px 20px 0 0;
+                    width: 114px;
+                    height: 41px;
+                    border-radius: 22px;
+                    background-color: $red;
+                }
+                .search-form {
+                    .search-bar-modal {
+                        max-width: 1081px;
+                        justify-content: center;
+                        height: 90px;
+                        width: 85%;
+                        font-size: $large;
+                        & input {
+                            width: 76%;
+                            margin: 20px 0 0 25px;
+                            align-items: center;
+                            height: 50px;
+                            border-bottom: 1px solid $primary;
+                        }
+                    }
+                    .btn-search-modal {
+                        float: right;
+                        .search {
+                            margin: 20px 20px 0 0;
+                            width: 52px !important;
+                        }
+                    }
+                }
+                .search-filter {
+                    height: 41px;
+                    font-size: $large;
+                    margin: 20px 0 20px 0;
+                }
+                .search-tourney-modal,
+                .search-players-modal {
+                    font-size: $extra-large;
+                    text-align: left;
+                    width: 30%;
+                    min-width: 200px;
+                    height: 80px;
+                }
+
+                .search-explore-modal {
+                    visibility: visible;
+                    font-size: $extra-large;
+                    align-items: center;
+                    padding: 0 0 0 20px;
+                    width: 370px;
+                    height: 80px;
+                    background: $lighter;
+                    margin: 0 0 70px 25px;
+                    border-radius: 5px;
+                    box-shadow: 4px 4px 8px 0px #171a1c80;
+                    .explore {
+                        visibility: visible;
+                        width: 30px !important;
+                        height: 30px !important;
+                        margin: 0 20px 0 0;
+                    }
+                }
+                .search-more-results {
+                    color: white;
+                    visibility: visible;
+                    font-size: $extra-large;
+                    align-items: center;
+                    justify-content: center;
+                    width: 90%;
+                    height: 80px;
+                    background: $blue;
+                    margin: 0 auto 70px auto;
+                    border-radius: 5px;
+                    box-shadow: 4px 4px 8px 0px #171a1c80;
+                }
+                .nothing-find-modal {
+                    margin: 0 auto 45px auto;
+                    height: 95px;
+                    width: 90%;
+                    font-size: $large;
+                    border-radius: 0 5px 5px 0;
+                }
+
+                .global-player-card-modal {
+                    margin: 0 0 18px 0;
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    .player-card-modal {
+                        display: block;
+                        height: 283px;
+                        width: 250px;
+
+                        .player-name {
+                            display: block;
+                            position: relative;
+                            margin: 50px 25% 0 25%;
+                            font-size: $large;
+                            font-weight: bold;
+                        }
+                        .player-bg-modal {
+                            height: 130px;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                        .player-info-modal {
+                            position: relative;
+                            margin-top: -200px;
+                            width: 100%;
+                            .player-flag-modal {
+                                display: block;
+                                position: absolute;
+                                left: 5px;
+                                top: -15px;
+                                width: 35px;
+                                border-radius: 5px;
+                            }
+                            .player-thumbnail-modal {
+                                display: block;
+                                position: absolute;
+                                top: -15px;
+                                left: 25%;
+                                width: 100px;
+                                height: 100px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .modal-search {
+        .modal-content {
+            .modal-search-card {
+                .search-filter {
+                    .search-tourney-modal,
+                    .search-players-modal {
+                        width: 30%;
+                    }
+                }
+
+                .search-more-results {
+                    position: absolute;
+                    top: 680px;
+                    right: 5%;
+                    width: 30%;
+                    min-width: 458px;
+                    background: $blue;
+                }
+
+                .global-player-card-modal {
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    .player-card-modal {
+                        display: block;
+                        height: 283px;
+                        width: 250px;
+
+                        .player-name {
+                            display: block;
+                            position: relative;
+                            margin: 50px 25% 0 25%;
+                            font-size: $large;
+                            font-weight: bold;
+                        }
+                        .player-bg-modal {
+                            height: 130px;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                        .player-info-modal {
+                            position: relative;
+                            margin-top: -200px;
+                            width: 100%;
+                            .player-flag-modal {
+                                display: block;
+                                position: absolute;
+                                left: 5px;
+                                top: -15px;
+                                width: 35px;
+                                border-radius: 5px;
+                            }
+                            .player-thumbnail-modal {
+                                display: block;
+                                position: absolute;
+                                top: -15px;
+                                left: 25%;
+                                width: 100px;
+                                height: 100px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
