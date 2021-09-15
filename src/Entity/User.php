@@ -198,6 +198,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $count_completed_mappools;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $count_submitted_mappools;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $count_followed_mappools;
+
+    /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
     public function getUsername(): string
@@ -951,6 +966,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMappoolMaps(ArrayCollection $mappoolMaps): void
     {
         $this->mappoolMaps = $mappoolMaps;
+    }
+
+    public function getCountCompletedMappools(): ?int
+    {
+        return $this->count_completed_mappools;
+    }
+
+    public function setCountCompletedMappools(?int $count_completed_mappools): self
+    {
+        $this->count_completed_mappools = $count_completed_mappools;
+
+        return $this;
+    }
+
+    public function getCountSubmittedMappools(): ?int
+    {
+        return $this->count_submitted_mappools;
+    }
+
+    public function setCountSubmittedMappools(?int $count_submitted_mappools): self
+    {
+        $this->count_submitted_mappools = $count_submitted_mappools;
+
+        return $this;
+    }
+
+    public function getCountFollowedMappools(): ?int
+    {
+        return $this->count_followed_mappools;
+    }
+
+    public function setCountFollowedMappools(?int $count_followed_mappools): self
+    {
+        $this->count_followed_mappools = $count_followed_mappools;
+
+        return $this;
     }
 
 }

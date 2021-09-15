@@ -21,41 +21,40 @@ class ConnexionController extends AbstractController
 
 
     /**
-     * @Route("/test", name="app_login")
+     * @Route("/authenticate", name="app_login")
      */
     public function authenticate() // Check of log in (Returns error if not authenticated, and redirect to appropriate routes if authenticated)
     {
-
 
     }
 
     /**
      * @Route("/connexion", name="connexion")
+     * @param OsuApiService $osuApiService
+     * @return RedirectResponse
      */
     public function LoginTemp(): RedirectResponse
     {
         session_start();
         $_SESSION['user'] = $this->login(); // get du user
 
-        return $this->redirectToRoute('test');
+        return $this->redirectToRoute('app_login');
     }
 
-//    /**
-//     *
-//     * @return object
-//     */
-//    public function login(): object // Returns $user object
-//    {
-//        $osuApiService->getToken($osuApiService->getCode());
-//        dd($osuApiService->getBeatmapInfo(954692));
-//
-//        # Method called during the connexion
-//        $client = new NativeHttpClient();
-//        $osuApiService = new OsuApiService($client);
-//        $osuApiService->connexion();
-//
-//        return $this->loadSession($osuApiService);
-//    }
+    /**
+     *
+     * @return object
+     */
+    public function login(): object // Returns $user object
+    {
+
+        # Method called during the connexion
+        $client = new NativeHttpClient();
+        $osuApiService = new OsuApiService($client);
+        $osuApiService->connexion();
+
+        return $this->loadSession($osuApiService);
+    }
 
 
 

@@ -1,0 +1,20 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
+fos_elastica:
+    clients:
+        default: { url: '%env(ELASTICSEARCH_URL)%' }
+    indexes:
+        poolset:
+            properties:
+                id: ~
+                name: ~
+                created_at: ~
+                updated_at: ~
+                thumbnail: ~
+                #contributors: ~
+                #tags: ~
+                #invitations: ~
+                #tourneys: ~
+                #mappools: ~
+            persistence:
+                driver: orm
+                model: App\Entity\PoolSet
