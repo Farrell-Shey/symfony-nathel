@@ -23,3 +23,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+
+    App\Controller\SearchController:
+        tags: [controller.service_arguments]
+        bind:
+            # replace "articles" with the name of your index
+            # and replace the class of the Finder
+            FOS\ElasticaBundle\Finder\TransformedFinder $poolsetFinder: '@fos_elastica.finder.poolset'

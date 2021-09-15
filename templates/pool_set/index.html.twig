@@ -1,41 +1,68 @@
-{% extends 'base.html.twig' %}
+ {% extends 'base.html.twig' %}
 
 {% block title %}PoolSet index{% endblock %}
 
 {% block body %}
-    <h1>PoolSet index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>Thumbnail</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for pool_set in pool_sets %}
-            <tr>
-                <td>{{ pool_set.id }}</td>
-                <td>{{ pool_set.name }}</td>
-                <td>{{ pool_set.createdAt ? pool_set.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ pool_set.updatedAt ? pool_set.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ pool_set.thumbnail }}</td>
-                <td>
-                    <a href="{{ path('pool_set_show', {'id': pool_set.id}) }}">show</a>
-                    <a href="{{ path('pool_set_edit', {'id': pool_set.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+   <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet">
+   <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
 
-    <a href="{{ path('pool_set_new') }}">Create new</a>
+
+   <div id="slider" ></div>
+   
+   <style>
+      main{
+         padding-top: 100px;
+      }
+      #slider{
+         max-width: 50%;
+         margin: auto;
+
+
+
+      }
+      .noUi-tooltip{
+         color: #1a1e21;
+      }
+   </style>
+
+
+{{ form(formulaire) }}
+
+   <script>
+
+      let slider = document.getElementById('slider');
+
+      noUiSlider.create(slider, {
+         start: [20, 80],
+         connect: true,
+         range: {
+            'min': 20,
+            'max': 80
+         },
+         tooltips: [true, true]
+      });
+
+      let maxValue = document.getElementById('form_range_max');
+      let minValue = document.getElementById('form_range_min');
+      //vavar.value = slider.noUiSlider.get();
+      //console.log(vavar.value);
+      //document.write(slider.noUiSlider.get());
+      slider.noUiSlider.on('update', function (values, handle) {
+
+         let value = values[handle];
+
+         if (handle) {
+            maxValue.value = value;
+
+         } else {
+            minValue.value = Math.round(value);
+         }
+      });
+
+
+   </script>
+
 {% endblock %}
+
+

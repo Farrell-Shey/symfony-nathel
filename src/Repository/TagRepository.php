@@ -47,4 +47,21 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function findByPoolset(int $id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $this->createQueryBuilder('t')
+            ->join('t.poolSets', 'tps')
+            ->addSelect('tps')
+            ->where('tps.id = :id')
+            //->andWhere('')
+            ->setParameter('id', $id)
+
+        ;
+
+        return $query->getQuery()->execute();
+    }
 }

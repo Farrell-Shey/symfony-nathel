@@ -72,6 +72,8 @@ class Mappool
      */
     private $Contributor;
 
+    public array $maps;
+
 
     public function __construct()
     {

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\BeatmapRepository;
+use App\Repository\MappoolMapRepository;
 use App\Repository\MappoolRepository;
 use App\Service\OsuApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,38 +13,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
 
-/**
- * @Route("/", name = "app_home")
-* @param OsuApiService $osuApiService
-* @return Response
-*/
-    public function index(OSuApiService $osuApiService, MappoolRepository $mappoolRepository): Response
-    {
-
-        return $this->render('home/index.html.twig', [
-            'mappools' => $mappoolRepository->findAll(),
-        ]);
-    }
-
-/**
- * @Route("/popular", name = "popular")
-*/
-    public function showPopularMappools(MappoolRepository $mappoolRepository)
-    {
-        $popularMappools = $mappoolRepository->findByPopularity();
-        return $this->render('home/index.html.twig', [
-            'popularMappools' => $popularMappools,
-        ]);
-    }
-
     /**
-     * @Route("/recent", name="recent")
+     * @Route("/", name="app_home")
+     * @param OsuApiService $osuApiService
+     * @return Response
      */
-    public function showRecentMappools(MappoolRepository $mappoolRepository)
+    public function index(OSuApiService $osuApiService, MappoolRepository $mappoolRepository, MappoolMapRepository $mappoolMapRepository, BeatmapRepository $beatmapRepository): Response
     {
-        $recentMappools = $mappoolRepository->findByMostRecent();
+
+        /*
+         * Retourne les 5 mappools les plus populaires, les 5 mappools les plus récents, ainsi que leurs maps respectifs ET le mode
+         */
+
+        $popular_mappools = $mappoolRepository->findByPopularity();
+        $recent_mappools = $mappoolRepository->findByMostRecent();
+        $mappools = [$popular_mappools, $recent_mappools];
+
+        for ($i = 0; $i <= 1; $i++) {
+            foreach ($mappools[$i] as $mappool) {
+                $pool_maps = $mappoolMapRepository->findBy(['mappool' => $mappool]);
+                $maps = [];
+                foreach ($pool_maps as $pool_map) {
+                    $id = $pool_map->getBeatmap()->getId();
+                    array_push($maps,[$beatmapRepository->findBy(['id' => $id]), $pool_map->getMode()]);
+                }
+                $mappool->maps = $maps ;
+            }
+        }
+
+
         return $this->render('home/index.html.twig', [
-            'recentMappools' => $recentMappools,
+            'mappools' => $mappools,
         ]);
     }
 
