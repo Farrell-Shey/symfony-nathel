@@ -13,12 +13,52 @@ class TagFixtures extends Fixture // implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for($i = 0; $i < 10; $i++){
+        $fixtures = [
+            [
+            'name' => 'std',
+            'type' => 'gamemod'],
+            [
+            'name' => 'mania',
+            'type' => 'gamemod'
+            ],
+            [
+            'name' => 'taiko',
+            'type' => 'gamemod'
+            ],
+            [
+                'name' => 'ctb',
+                'type' => 'gamemod'
+            ],
+            [
+                'name' => 'tournament',
+                'type' => 'category'
+            ],
+            [
+                'name' => 'fun',
+                'type' => 'category'
+            ],
+            [
+                'name' => 'training',
+                'type' => 'category'
+            ],
+            [
+                'name' => 'challenge',
+                'type' => 'category'
+            ],
+            [
+                'name' => 'pp farm',
+                'type' => 'category'
+            ]
+
+
+        ];
+
+        foreach($fixtures as $fixture){
             $tag = new Tag();
-            $tag->setName('name_' . $i);
-            $tag->setType('type_' . $i);
+            $tag->setName($fixture['name']);
+            $tag->setType($fixture['type']);
             $manager->persist($tag);
-            $this->addReference('tag_' . $i, $tag);
+            $this->addReference($fixture['name'], $tag);
         }
         $manager->flush();
     }

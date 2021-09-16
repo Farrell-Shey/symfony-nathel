@@ -19,6 +19,20 @@ class PoolSetRepository extends ServiceEntityRepository
         parent::__construct($registry, PoolSet::class);
     }
 
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('p.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+
     // /**
     //  * @return PoolSet[] Returns an array of PoolSet objects
     //  */
