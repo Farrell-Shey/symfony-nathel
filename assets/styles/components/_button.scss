@@ -1,6 +1,22 @@
 main .btn {
   background-image: url("/assets/images/osu_triangle.png");
+  &:hover{
+    color: white;
+  }
 }
 .btn-no-bg{
   background-image: unset !important;
+}
+.btn-success {
+  background-color: #88B300;
+  border: 1px solid #88B300;
+
+  &:hover, &:focus &:focus-within {
+    background-color: #afe600;
+  }
+}
+
+.btn-danger {
+  background-color: #BB2222;
+  border: 1px solid #BB2222;
 }

@@ -17,13 +17,14 @@
   background-position: top;
   background-size: contain;
   background-repeat: no-repeat;
+
+  .thumbnail {
+    border: 1px solid;
+    grid-area: thumbnail;
+    margin: 20px 10px 20px 10px;
+  }
 }
 
-.thumbnail {
-  border: 1px solid;
-  grid-area: thumbnail;
-  margin: 20px 10px 20px 10px;
-}
 
 .user-name {
   grid-area: name;
@@ -206,10 +207,11 @@
     background-position: center;
     background-size: cover;
     padding: 27px;
-  }
-  .thumbnail {
-    width: 100px;
-    margin: 10px 10px 0 10px;
+
+    .thumbnail {
+      width: 100px;
+      margin: 10px 10px 0 10px;
+    }
   }
 
   .user-name {
@@ -316,10 +318,11 @@
     flex-grow: 1;
     flex-basis: 1000px;
     border-radius: 10px;
-  }
-  .thumbnail {
-    width: 200px;
-    margin-right: 20px;
+
+    .thumbnail {
+      width: 200px;
+      margin-right: 20px;
+    }
   }
   .user-name {
     align-items: center;
