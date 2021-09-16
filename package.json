@@ -21,6 +21,8 @@
   "dependencies": {
     "@popperjs/core": "^2.9.3",
     "bootstrap": "^5.0.2",
-    "nouislider": "^15.4.0"
+
+    "nouislider": "^15.4.0",
+    "wnumb": "^1.2.0"
   }
 }
