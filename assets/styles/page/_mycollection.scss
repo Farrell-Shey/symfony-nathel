@@ -44,9 +44,10 @@
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: auto 1fr;
-    grid-template-areas:  "thumbnail message"
-                          "thumbnail response";
-    background: rgba($classic, .75);
+    grid-template-areas:
+      "thumbnail message"
+      "thumbnail response";
+    background: rgba($classic, 0.75);
     border-radius: $light-border;
     border: 1px solid $primary;
     padding: 1rem;
@@ -57,7 +58,6 @@
       width: 64px;
       height: 64px;
       margin-right: 10px;
-
     }
 
     .message {
@@ -66,7 +66,6 @@
       align-self: center;
       justify-self: left;
       font-size: $small;
-
     }
 
     .response {
@@ -85,8 +84,8 @@
         color: $secondary;
         fill: $secondary;
         font-size: $extra-small;
-        padding: .1rem .3rem;
-        margin: 0 .2rem;
+        padding: 0.1rem 0.3rem;
+        margin: 0 0.2rem;
 
         &:last-child {
           text-decoration: none;
@@ -106,18 +105,18 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto 1fr auto;
-    grid-template-areas:  "delete . edit"
-                          ". text ."
-                          "tag tag tag";
-    padding: .5rem;
+    grid-template-areas:
+      "delete . edit"
+      ". text ."
+      "tag tag tag";
+    padding: 0.5rem;
 
     .btn-delete {
       grid-area: delete;
       width: 24px;
       height: 24px;
       transform: rotate(45deg);
-      fill: #C30000;
-
+      fill: #c30000;
     }
 
     .btn-edit {
@@ -125,8 +124,8 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: .1rem;
-      padding: 0 .4rem;
+      gap: 0.1rem;
+      padding: 0 0.4rem;
       border-radius: $strong-border;
       background-color: $primary;
       fill: $secondary;
@@ -143,7 +142,8 @@
         margin-bottom: 5px;
       }
 
-      .nb-mappool, .title-card {
+      .nb-mappool,
+      .title-card {
         width: 100%;
       }
     }
@@ -164,7 +164,7 @@
         height: 16px;
         border-radius: $strong-border;
         flex-grow: 1;
-        p{
+        p {
           font-size: $extra-small;
         }
       }
@@ -184,7 +184,7 @@
 @include media-breakpoint-up(sm) {
   .mycollection {
     min-height: calc(100vh - 76px);
-    padding: 32px ;
+    padding: 32px;
 
     .btn-add-collection {
       font-size: $extra-large;
@@ -196,8 +196,9 @@
 
     .invitation {
       grid-template-rows: auto auto;
-      grid-template-areas:  "thumbnail message"
-                            "response response";
+      grid-template-areas:
+        "thumbnail message"
+        "response response";
       padding: 1.5rem 2.5rem;
       height: 100%;
 
@@ -223,7 +224,7 @@
           max-width: 180px;
           justify-content: center;
           font-size: $medium;
-          padding: .2rem 1.5rem;
+          padding: 0.2rem 1.5rem;
           margin: 0 auto 0 0;
 
           .svg {
@@ -235,9 +236,10 @@
     }
 
     .collection {
-      grid-template-areas:  "delete . edit"
-                          ". text ."
-                          ". tag .";
+      grid-template-areas:
+        "delete . edit"
+        ". text ."
+        ". tag .";
       padding: 1rem;
       font-size: $small;
 
@@ -284,14 +286,16 @@
 
     .invitation {
       grid-template-rows: auto;
-      grid-template-column: repeat(3, auto);
-      grid-template-areas:  "thumbnail"
-                            "message"
-                            "response";
+      grid-template-columns: repeat(3, auto);
+      grid-template-areas:
+        "thumbnail"
+        "message"
+        "response";
       padding: 1rem;
       height: 100%;
 
-      .thumbnail, .response {
+      .thumbnail,
+      .response {
         margin: auto;
       }
 
@@ -312,9 +316,10 @@
     }
 
     .collection {
-      grid-template-areas:  "delete . edit"
-                          "text text text"
-                          "tag tag tag";
+      grid-template-areas:
+        "delete . edit"
+        "text text text"
+        "tag tag tag";
 
       .text {
         margin-bottom: auto;
@@ -327,4 +332,3 @@
     }
   }
 }
-

@@ -1,0 +1,53 @@
+.collection {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "delete . edit"
+        ". text ."
+        "tag tag tag";
+    padding: 0.5rem;
+
+    .text {
+        grid-area: text;
+        display: flex;
+        flex-wrap: wrap;
+
+        .title-card {
+            font-size: $medium;
+            margin-bottom: 5px;
+        }
+
+        .nb-mappool,
+        .title-card {
+            width: 100%;
+        }
+    }
+
+    .thumbnails-contributor {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 5px;
+
+        .thumbnail {
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            margin-right: -5px;
+            background-color: $gray;
+            color: $dark;
+            width: 16px;
+            height: 16px;
+            border-radius: $strong-border;
+            flex-grow: 1;
+            p {
+                font-size: $extra-small;
+            }
+        }
+    }
+
+    .tags {
+        grid-area: tag;
+        flex-direction: row-reverse;
+    }
+}
