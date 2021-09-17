@@ -1,12 +1,14 @@
-
-@import "general/bootstrap";
+// import de toutes les librairies externes
+@import "bootstrap";
 @import "~nouislider";
 
-@import "general/variables";
-@import "general/normalize";
-@import "general/theme";
-@import "general/bg";
+//import des variables spécifiques au projet
+@import "variables";
+@import "theme";
+@import "normalize";
 
+// import de tous les petites élements du site
+@import "components/bg";
 @import "components/logo";
 @import "components/menu-burger";
 @import "components/button";
@@ -14,8 +16,9 @@
 @import "components/title";
 @import "components/tag";
 @import "components/input";
-@import "components/modal";
+@import "layout/modal";
 
+//import de tous les gros élément du site
 @import "layout/mappool-card";
 @import "layout/collection-card";
 @import "layout/pined-mappool";
@@ -24,46 +27,11 @@
 @import "layout/user";
 @import "layout/collection";
 @import "layout/pop-up";
+@import "layout/nav";
 
-@import "navigation/nav";
-
+// import du style des construction finale des pages
 @import "page/mycollection";
 @import "page/search-page";
 
-//toutes les variables nécessaires
-/*@import "normalize";
-// tous les petits composants
-@import "components/display";
-@import "components/btn";
-@import "components/hn";
-@import "components/card";
-@import "components/tag";
-@import "components/thumbnail";
-@import "components/scroll";
-@import "components/logo";
-@import "components/menu-burger";
-@import "home/jumbotron";
-// tout les gros éléments
-//@import "layouts/header/navbar";*/
-//@import "layouts/header/nav";
-////@import "layouts/header/search-bar";
-////@import "layouts/mappool";
-////@import "layouts/map";
-////@import "layouts/user-banner";
-////@import "layouts/collection-banner";
-////@import "layouts/jumbotron";
-//
-//// tous les agancements de pages
-////@import "pages/default";
-//// tous les gros éléments
-//@import "layouts/header/navbar";
-//@import "layouts/header/search-bar";
-//@import "layouts/mappool";
-//@import "layouts/map";
-//@import "layouts/user-banner";
-//@import "layouts/collection-banner";
-//@import "layouts/jumbotron";
-// tous les agancements de pages
-//@import "pages/default";*/
 
 
