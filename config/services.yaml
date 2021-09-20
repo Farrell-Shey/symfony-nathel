@@ -31,3 +31,4 @@ services:
             # replace "articles" with the name of your index
             # and replace the class of the Finder
             FOS\ElasticaBundle\Finder\TransformedFinder $poolsetFinder: '@fos_elastica.finder.poolset'
+

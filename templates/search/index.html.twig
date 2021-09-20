@@ -5,8 +5,10 @@
 {% block body %}
 
     <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
-
+    <script  src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
+    <script type='module' src="https://unpkg.com/axios/dist/axios.min.js">import axios from 'axios';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <h1> PARTIE FORMULAIRE </h1>
 
     <div id="slider" ></div>
     <div id="slider_rank" ></div>
@@ -100,5 +102,73 @@
 
 
     </script>
+
+
+
+    <h1> PARTIE RESULTAT </h1>
+
+
+    {% block content %}
+        <script >
+             //const axios = require("axios");
+             const form = document.querySelector("form[name='form']");
+
+             function serialize (data) {
+                let obj = {};
+                for (let [key, value] of data) {
+                    if (obj[key] !== undefined) {
+                        if (!Array.isArray(obj[key])) {
+                            obj[key] = [obj[key]];
+                        }
+                        obj[key].push(value);
+                    } else {
+                        obj[key] = value;
+                    }
+                }
+                return obj;
+            }
+
+
+
+             document.addEventListener('DOMContentLoaded', function() {
+                // Action qui est exécutée quand le formulaire est envoyé
+                form.addEventListener('submit', function(e) {
+                    const data = new FormData(form);
+                    let formObj = serialize(data);
+
+                    e.preventDefault(); // On empêche de soumettre le formulaire
+
+                    // Envoi de la requête HTTP en mode asynchrone
+
+                    async function makePostRequest(input, last_id=null){
+
+                        const res = await axios({
+                            method: 'post',
+                            url: '{{ (path('owo')) }}',
+                            data: {input, data}, // On sérialise les données = Envoi des valeurs du formulaire
+                            headers: { "Content-Type": "application/json" }
+                        })
+
+                        let data = res.data; // OUTPUT
+                        // EN JS, il reste à faire l'event qui RENVOIE la requête
+                        // scrollable à true signifie qu'il reste pools à afficher
+                        //
+                        console.log(data);
+
+                    }
+                    makePostRequest(formObj);
+
+
+                });
+            });
+        </script>
+
+    {% endblock %}
+
+
+
+
+
+
 
 {% endblock %}
