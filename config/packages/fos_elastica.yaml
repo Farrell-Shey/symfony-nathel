@@ -7,14 +7,6 @@ fos_elastica:
             properties:
                 id: ~
                 name: ~
-                created_at: ~
-                updated_at: ~
-                thumbnail: ~
-                #contributors: ~
-                #tags: ~
-                #invitations: ~
-                #tourneys: ~
-                #mappools: ~
             persistence:
                 driver: orm
                 model: App\Entity\PoolSet
