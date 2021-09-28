@@ -41,9 +41,9 @@ class HomeController extends AbstractController
             }
         }
 
-
-        return $this->render('home/index.html.twig', [
-            'mappools' => $mappools,
+        return $this->render('/page/home.html.twig', [
+            'popular_mappool' => $mappools[0],
+            'recent_mappool' => $mappools[1]
         ]);
     }
 

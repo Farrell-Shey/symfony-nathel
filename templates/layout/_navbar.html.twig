@@ -1,0 +1,91 @@
+{% embed "/component/_svg-nav.html.twig" %}
+	{# variable code dupliqué #}
+	{% block body %}
+		<div class="base-theme">
+			<div id="main-nav">
+				{{ block("logo") }}
+				<span class="d-sm-none brand">Nathel</span>
+				<form class="d-sm-flex search-bar" action="">
+					<input class="d-sm-none d-lg-block form-control" type="text" placeholder="Search ...">
+					<button class="btn btn-search" type="submit">
+						{{ block("search") }}
+					</button>
+				</form>
+				<a class="d-sm-none dropdown-btn" onclick="getElementById('main-nav').classList.toggle('nav-open')">
+					<span class="section-name">Mappools</span>
+					{{ block("burger") }}
+				</a>
+				<nav>
+					<ul class="nav">
+						<li class="d-sm-none nav-item">
+							<a class="nav-link">
+								Continue With osu!
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link">
+								{{ block("tourney_section") }}Tournaments
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link">
+								{{ block("guide_section") }}Osu! Guide
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active">
+								{{ block("mappool_section") }}
+								Osu! Mappools
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="d-sm-none social-media">
+					<a class="media twitter">
+						{{ block("twitter") }}
+					</a>
+					<a class="media discord">
+						{{ block("discord") }}
+					</a>
+				</div>
+				<div class="d-none d-sm-grid profile">
+					{{ block("login") }}
+					Log In
+				</div>
+			</div>
+			<div id="second-nav">
+				<a class="d-none d-sm-flex slide-wrap" onclick="getElementById('second-nav').classList.toggle('nav-open')">
+					{{ block("burger") }}
+				</a>
+				<ul class="nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="/">
+							{{ block("home") }}
+							Home
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/">
+							{{ block("mymappool") }}
+							My Mappools
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/">
+							{{ block("explore") }}
+							Explore
+						</a>
+					</li>
+				</ul>
+				<div class="d-none d-sm-flex social-media">
+					<a class="media twitter">
+						{{ block("twitter") }}
+					</a>
+					<a class="media discord">
+						{{ block("discord") }}
+					</a>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endembed %}

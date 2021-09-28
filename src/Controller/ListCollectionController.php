@@ -13,7 +13,7 @@ class ListCollectionController extends AbstractController
      */
     public function list(): Response
     {
-        return $this->render('collection/list-collection.html.twig', [
+        return $this->render('list-collection.html.twig', [
 
         ]);
     }
@@ -24,7 +24,7 @@ class ListCollectionController extends AbstractController
      */
     public function search(): Response
     {
-        return $this->render('collection/search-page.html.twig', [
+        return $this->render('search-page.html.twig', [
 
         ]);
     }

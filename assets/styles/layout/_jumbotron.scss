@@ -6,253 +6,254 @@
   * {
     margin-bottom: 0;
   }
-}
-
-.filter {
-  background-color: rgba($black, .5);
-  height: 100%;
-  padding: 3px;
-}
-
-.title-contain {
-  padding: 10px 20px;
-}
-
-.jumb-h1 {
-  font-size: $large;
-  font-weight: bold;
-}
-
-.jumb-extra-small-text {
-  font-size: $extra-small;
-}
-
-.pink-button {
-  background-color: $pink;
-  color: $secondary;
-  border-radius: 11px;
-  margin-top: 1vh;
-  font-size: $small;
-}
-
-.filter-2-contain {
-  margin-top: 20px;
-}
-
-.filter-2 {
-  background-color: rgba($dark, .8);
-  border-radius: 11px;
-}
-
-.filter-2-text {
-  padding: 12px;
-}
-
-.jumb-h2 {
-  font-size: $large;
-  margin-top: 14px;
-}
-
-.jumb-h2-p {
-  font-size: $small;
-  margin-top: 12px;
-}
-
-.map-btn-contain {
-  display: flex;
-  justify-content: center;
-}
-
-.h2-blue-line:after {
-  content: "";
-  display: block;
-  background-color: $primary;
-  width: 50px;
-  height: 4px;
-  border-radius: 11px;
-  margin-top: 2px;
-}
-
-.blue-button {
-  background-color: $primary;
-  color: $secondary;
-  border-radius: 10px;
-  width: 250px;
-  height: 40px;
-  margin-top: 12vh;
-  font-size: $small;
-}
-
-.grey-card {
-  background-color: $light;
-  border-radius: $light-border;
-  margin: 1vh;
-  box-shadow: 20px 20px 20px rgb(23, 26, 28, 30%);
-
-  h3 {
-    color: $primary;
-    font-size: $medium;
-  }
-
-  p {
-    font-size: $small;
-  }
-}
-
-
-@include media-breakpoint-up(sm) {
   .filter {
-    padding: 10px;
+    background-color: rgba($black, 0.5);
+    height: 100%;
+    padding: 3px;
   }
+
+  .title-contain {
+    padding: 10px 20px;
+  }
+
   .jumb-h1 {
-    font-size: $extra-large;
+    font-size: $large;
+    font-weight: bold;
   }
 
   .jumb-extra-small-text {
-    font-size: $small;
+    font-size: $extra-small;
   }
 
   .pink-button {
-    font-size: $medium;
+    background-color: $pink;
+    color: $secondary;
+    border-radius: 11px;
+    margin-top: 1vh;
+    font-size: $small;
+  }
+
+  .filter-2-contain {
+    margin-top: 20px;
+  }
+
+  .filter-2 {
+    background-color: rgba($dark, 0.8);
+    border-radius: 11px;
   }
 
   .filter-2-text {
-    width: 50%;
+    padding: 12px;
   }
+
+  .jumb-h2 {
+    font-size: $large;
+    margin-top: 14px;
+  }
+
+  .jumb-h2-p {
+    font-size: $small;
+    margin-top: 12px;
+  }
+
   .map-btn-contain {
-    justify-content: end;
+    display: flex;
+    justify-content: center;
   }
-  .cards-container {
-    margin-top: 27px;
+
+  .h2-blue-line:after {
+    content: "";
+    display: block;
+    background-color: $primary;
+    width: 50px;
+    height: 4px;
+    border-radius: 11px;
+    margin-top: 2px;
   }
+
   .blue-button {
-    width: 209px;
-    height: 34px;
-    margin-top: unset;
-    margin-right: 10px;
+    background-color: $primary;
+    color: $secondary;
+    border-radius: 10px;
+    width: 250px;
+    height: 40px;
+    margin-top: 12vh;
+    font-size: $small;
   }
+
   .grey-card {
-    text-align: center;
-    width: 200px;
-    height: 170px;
+    background-color: $light;
+    border-radius: $light-border;
+    margin: 1vh;
+    box-shadow: 20px 20px 20px rgb(23, 26, 28, 30%);
+
+    h3 {
+      color: $primary;
+      font-size: $medium;
+    }
+
+    p {
+      font-size: $small;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .jumbotron-home {
+    .filter {
+      padding: 10px;
+    }
+    .jumb-h1 {
+      font-size: $extra-large;
+    }
+
+    .jumb-extra-small-text {
+      font-size: $small;
+    }
+
+    .pink-button {
+      font-size: $medium;
+    }
+
+    .filter-2-text {
+      width: 50%;
+    }
+    .map-btn-contain {
+      justify-content: end;
+    }
+    .cards-container {
+      margin-top: 27px;
+    }
+    .blue-button {
+      width: 209px;
+      height: 34px;
+      margin-top: unset;
+      margin-right: 10px;
+    }
+    .grey-card {
+      text-align: center;
+      width: 200px;
+      height: 170px;
+    }
   }
 }
 
 @include media-breakpoint-up(lg) {
   .jumbotron-home {
     height: calc(100vh - 102px);
-  }
-  .filter {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 15px 45px;
-  }
-  .jumb-h1 {
-    font-size: $largest;
-  }
 
-  .jumb-extra-small-text {
-    font-size: $medium;
-  }
-
-  .pink-button {
-    font-size: $extra-large;
-  }
-
-  .filter-2-contain {
-    display: flex;
-    justify-content: end;
-  }
-  .filter-2 {
-    display: flex;
-    margin: 5vh 9vw;
-    width: 793px;
-    height: 408px;
-  }
-
-  .bloc-text-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 28px;
-    width: 46%;
-    margin-right: -27px;
-  }
-
-  .filter-2-text {
-    padding: unset;
-    width: 100%;
-  }
-
-  .jumb-h2 {
-    margin-top: unset;
-    font-size: $extra-large;
-  }
-
-  .jumb-h2-p {
-    margin-top: 36px;
-    font-size: $medium;
-  }
-
-  .blue-button {
-    font-size: $medium;
-    margin-top: 3vh;
-    width: 258px;
-  }
-
-  .cards-container {
-    width: 50%;
-  }
-  .map-btn-contain {
-    justify-content: center;
-  }
-  .grey-card {
-    width: 376px;
-    height: 122px;
-    text-align: start;
-    transition: transform .2s ease;
-
-    &:nth-child(1) {
-      margin-top: -50px;
-      transform-origin: 75% 40%;
-
-      &:hover {
-        transform: rotate(-3deg);
-        transition: transform .2s ease;
-      }
+    .filter {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px 45px;
+    }
+    .jumb-h1 {
+      font-size: $largest;
     }
 
-    &:nth-child(2) {
-      margin: 5vh 1vw 5vh 200px;
-
-      &:hover {
-        transform: rotate(5deg);
-        transition: transform .2s ease;
-      }
-    }
-
-    &:nth-child(3) {
-      margin-bottom: -50px;
-      transform-origin: 40% 75%;
-
-      &:hover {
-        transform: rotate(-5deg);
-        transition: transform .2s ease;
-      }
-    }
-
-    h3 {
-      font-size: $large;
-    }
-
-    p {
+    .jumb-extra-small-text {
       font-size: $medium;
     }
 
-    .logo-jumb {
-      width: 144px;
-      height: auto;
+    .pink-button {
+      font-size: $extra-large;
+    }
+
+    .filter-2-contain {
+      display: flex;
+      justify-content: end;
+    }
+    .filter-2 {
+      display: flex;
+      margin: 5vh 9vw;
+      width: 793px;
+      height: 408px;
+    }
+
+    .bloc-text-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+      width: 46%;
+      margin-right: -27px;
+    }
+
+    .filter-2-text {
+      padding: unset;
+      width: 100%;
+    }
+
+    .jumb-h2 {
+      margin-top: unset;
+      font-size: $extra-large;
+    }
+
+    .jumb-h2-p {
+      margin-top: 36px;
+      font-size: $medium;
+    }
+
+    .blue-button {
+      font-size: $medium;
+      margin-top: 3vh;
+      width: 258px;
+    }
+
+    .cards-container {
+      width: 50%;
+    }
+    .map-btn-contain {
+      justify-content: center;
+    }
+    .grey-card {
+      width: 376px;
+      height: 122px;
+      text-align: start;
+      transition: transform 0.2s ease;
+
+      &:nth-child(1) {
+        margin-top: -50px;
+        transform-origin: 75% 40%;
+
+        &:hover {
+          transform: rotate(-3deg);
+          transition: transform 0.2s ease;
+        }
+      }
+
+      &:nth-child(2) {
+        margin: 5vh 1vw 5vh 200px;
+
+        &:hover {
+          transform: rotate(5deg);
+          transition: transform 0.2s ease;
+        }
+      }
+
+      &:nth-child(3) {
+        margin-bottom: -50px;
+        transform-origin: 40% 75%;
+
+        &:hover {
+          transform: rotate(-5deg);
+          transition: transform 0.2s ease;
+        }
+      }
+
+      h3 {
+        font-size: $large;
+      }
+
+      p {
+        font-size: $medium;
+      }
+
+      .logo-jumb {
+        width: 144px;
+        height: auto;
+      }
     }
   }
 }

@@ -1,0 +1,76 @@
+{% embed "/component/_svg-global.html.twig" %}
+	{% block body %}
+		<div class="card border-0 bg-transparent collection-global-card mt-5 mx-auto">
+			<div class="accordion accordion-flush" id="accordionFlushExample">
+				{% for i in 0..3 %}
+					<div class="accordion-item card border-0 mb-3">
+						<div id="flush-heading{{ loop.index0 }}" class="accordion-header bg-transparent border-0 collection-top-card ">
+							<img src="{{ asset('build/default_collection_img.png') }}" class="card-img" alt="...">
+							<div class="card-img-overlay overlay-top text-white d-block">
+								<p class="collection-title">Dan Project : Aim Collection</p>
+								<p class="collection-text">4 mappools</p>
+								<p class="collection-text">manage with
+									{% for i in 0..2 %}
+										<img class="avatar" src="{{ asset('build/default_avatar.png') }}" href="#">
+									{% endfor %}
+									<a class="avatar manager text-dark" href="#">
+										+{{ random(5) }}
+									</a>
+									<div class="collection-tag-card card bg-transparent border-0 d-block">
+										<a class="collection-tag" href="/" role="button">
+											4.0-6.5✰
+										</a>
+										<a class="collection-tag" href="/" role="button">
+											training
+										</a>
+										<a class="collection-tag" href="/" role="button">
+											100k-250k
+										</a>
+										<button class="collection-btn accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ loop.index0 }}" aria-expanded="false" aria-controls="flush-collapse{{ loop.index0 }}"></button>
+									</div>
+								</p>
+								<div class="d-none d-lg-block">
+									<div class="card global-collection-contributeur d-flex justify-content-around align-items-center">
+										{% for i in 0..2 %}
+											<div class="card collection-contributor-card">
+												<img src="{{ asset('build/contributor-bg.png') }}" class="contributor-bg card-img" alt="...">
+												<div class="contributor-bg card-img-overlay d-bloc justify-content-around ">
+													<div class="card-img-overlay d-flex flex-row flex-wrap: wrap">
+														<img class="contributor-avatar" src="{{ asset('build/default_avatar.png') }}" href="#">
+														<img class="contributor-flag" src="{{ asset('build/flag.png') }}" href="#">
+													</div>
+												</div>
+												<div class="d-column text-contributor-card">
+													<p class="contributor-name fw-bold">Nath</p>
+													<p class="text-contributor ">Contributor since 1 November 2020</p>
+												</div>
+											</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+						{% block maps_collection %}
+							<div id="flush-collapse{{ loop.index0 }}" class="accordion-collapse collapse hide" aria-labelledby="flush-heading{{ loop.index0 }}" data-bs-parent="#accordionFlushExample">
+								{% for i in 0..3 %}
+									<div class="card border-0 accordion-body mt-2">
+										<div class="card collection-bottom-card text-white">
+											<img src="{{ asset('build/default_collection_map_img.png') }}" class="card-img" alt="...">
+											<div class="card-img-overlay overlay-bottom">
+												<p class="title">KimiPool Challenge</p>
+												<p class="text">submitted by
+													<a class="link">Nath</a>
+												</p>
+												<p class="text">12 maps</p>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						{% endblock %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	{% endblock %}
+{% endembed %}

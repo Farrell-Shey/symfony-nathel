@@ -48,6 +48,10 @@ body, .scroller {
   }
 }
 
+.invisible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -70,10 +74,6 @@ li {
   list-style: none;
 }
 
-.extra-small-text {
-  font-size: $extra-small;
-}
-
 main {
   color: $secondary;
   width: 100vw;
@@ -88,26 +88,6 @@ main {
     margin-left: 72px;
     width: calc(100vw - 72px);
     min-height: calc(100vh - 76px);
-  }
-
-  .small-text {
-    font-size: $small;
-  }
-
-  .medium-text {
-    font-size: $medium;
-  }
-
-  .large-text {
-    font-size: $large;
-  }
-
-  .extra-large-text {
-    font-size: $extra-large;
-  }
-
-  .largest-text {
-    font-size: $largest;
   }
 }
 
