@@ -1,53 +1,103 @@
-.global-collection-data {
-    height: 388px;
-    .data-img-text {
-        padding: 1%;
-        background-image: url("/assets/images/contributor-bg.png");
-        background-size: cover;
-        width: 100%;
-        height: 125px;
-        top: 0px;
-        .collection-data-title {
-            flex-direction: column;
-            font-size: $large;
-        }
-        .collection-data-text {
-            flex-direction: column;
+//CHOISIR ENTRE LE FICHIER _collection.scss où _collection-data.scss //
+
+.collection-card {
+    height: 123px;
+    width: 100%;
+    margin-bottom: 22px;
+    .data-collection {
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        .data-text {
             font-size: $small;
-        }
-        .global-data-tag {
-            bottom: 0;
-            padding: 0 0 5px 3px;
-            font-size: $extra-small;
-            .collection-data-tag {
-                background-color: gray;
-                margin: 0 5px 0 0;
-                padding: 4px;
-                border-radius: 22px;
-                color: black;
+            .collection-title {
+                margin: 0 !important;
+                font-size: $large;
+                white-space: nowrap;
+                overflow: scroll;
+                text-overflow: ellipsis;
             }
         }
-        @for $i from 0 through 3 {
-            .collection-data-avatar {
-                width: 16px;
-                height: 16px;
-                font-size: $small;
-                margin-right: -8px;
-                border-radius: 100%;
-                object-fit: cover;
+    }
+    .dropdown-card {
+        height: 20px;
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .collection-card {
+        height: 244px;
+        border-radius: 10px;
+        justify-content: center;
+
+        .bg-collection {
+            border-radius: 10px;
+            margin: 20px 0 20px 0;
+            width: 95%;
+            justify-self: center;
+            .filter {
+                border-radius: 10px;
+                .following-btn {
+                    float: right;
+                    margin: 1rem 0.5rem;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: rgba(0, 0, 0, 0.397);
+                    border-radius: 22px;
+                    border: solid 2px $blue;
+                    height: 45px;
+                    width: 124px;
+                    .following-text {
+                        color: $blue;
+                        font-size: $large;
+                    }
+                }
+                .data-collection {
+                    width: 70%;
+                    .data-text {
+                        font-size: $medium;
+                        .collection-title {
+                            margin: 0 0 10px 0 !important;
+                            font-size: $extra-large;
+                            margin-bottom: 5px;
+                            width: 100%;
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-/*@include media-breakpoint-up(sm) {
-    .global-collection-data {
-        .global-img-text {
-            width: calc(100vw - 72px);
-            .collection-data-img {
-                width: calc(100vw - 72px);
+@include media-breakpoint-up(lg) {
+    .collection-card {
+        flex-direction: row;
+        height: 452px;
+        gap: 5rem;
+        .bg-collection {
+            .filter {
+                .data-collection {
+                    .data-text {
+                        .collection-title {
+                            font-size: 60px;
+                        }
+                    }
+                    .mappools-text {
+                        font-size: $large;
+                    }
+                    .tag-text {
+                        font-size: $large;
+                    }
+                    .maps-text {
+                        font-size: $large;
+                    }
+                    .global-tag-card {
+                        flex-direction: column;
+                    }
+                }
             }
         }
     }
 }
-*/

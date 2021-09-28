@@ -1,0 +1,35 @@
+.global-thumbnail-card {
+    justify-content: flex-start;
+    flex-direction: row;
+    .thumbnails-contributor {
+        display: flex;
+        align-items: center;
+        margin-left: 5px;
+        .thumbnail {
+            align-items: center;
+            display: flex;
+            object-fit: cover;
+            margin-right: -5px;
+            background-color: $gray;
+            color: $dark;
+            width: 12px;
+            height: 12px;
+            border-radius: $strong-border;
+            p {
+                text-align-last: center;
+                font-size: $extra-small;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .global-thumbnail-card {
+        .thumbnails-contributor {
+            .thumbnail {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+}

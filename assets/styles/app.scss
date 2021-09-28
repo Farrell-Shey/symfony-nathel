@@ -3,33 +3,35 @@
 @import "~nouislider";
 
 //import des variables spécifiques au projet
-@import "variables";
-@import "theme";
 @import "normalize";
+@import "theme";
+@import "variables";
 
 // import de tous les petites élements du site
 @import "components/bg";
+@import "components/button";
+@import "components/collection";
+@import "components/input";
 @import "components/logo";
 @import "components/menu-burger";
-@import "components/button";
 @import "components/scroll";
-@import "components/title";
 @import "components/tag";
-@import "components/input";
-@import "components/collection";
+@import "components/thumbnails";
+@import "components/title";
 
 //import de tous les gros élément du site
-@import "layout/mappool-card";
-@import "layout/collection-card";
-@import "layout/pined-mappool";
-@import "layout/_search_modal";
-@import "layout/jumbotron";
-@import "layout/user";
 @import "layout/collection";
+@import "layout/collection-card";
 @import "layout/collection-data";
-@import "layout/pop-up";
-@import "layout/nav";
+@import "layout/contributor";
+@import "layout/jumbotron";
+@import "layout/mappool-card";
 @import "layout/modal";
+@import "layout/nav";
+@import "layout/pined-mappool";
+@import "layout/pop-up";
+@import "layout/search_modal";
+@import "layout/user";
 
 // import du style des construction finale des pages
 @import "page/mycollection";

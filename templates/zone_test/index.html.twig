@@ -1,33 +1,13 @@
-{% extends "svg/_svg_global.html.twig" %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
-	{#{% include "component/_mappool.html.twig" % #}
-	{% block collection_data %}
-		<div class="d-flex global-collection-data">
-			<div class="data-img-text">
-				<span class="d-flex collection-data-title">Dan Project : Aim Collection</span>
-				<span class="d-flex collection-data-text">4 mappools
-					<br>
-					manage with
-				</span>
-				{% for i in 0..2 %}
-					<img class="collection-data-avatar" src="{{ asset('build/default_avatar.png') }}" href="#">
-				{% endfor %}
-				<a class="collection-data-avatar manager text-dark" href="#">
-					+{{ random(5) }}
-				</a>
-				<div class="global-data-tag">
-					<span class="collection-data-tag">
-						4.0-6.5✰
-					</span>
-					<span class="collection-data-tag">
-						training
-					</span>
-					<span class="collection-data-tag">
-						100k-250k
-					</span>
-				</div>
-			</div>
-		</div>
-	{% endblock %}
+
+	{% include "/layout/_collection-data.html.twig" %}
+
+	<div class="d-flex contributors-global-card">
+		{% for i in 0..5 %}
+			{% include "/layout/_contributor-card.html.twig" %}
+		{% endfor %}
+	</div>
+	<div class="dropdown-card"></div>
 {% endblock %}

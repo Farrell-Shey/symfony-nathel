@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home
+{% endblock %}
+
+{% block body %}
+	{{ include('layout/_jumb-home.html.twig') }}
+
+	{{ include('layout/_mappool.html.twig', {mappool : popular_mappool, title : 'Most Popular Mappool', tag: 'left'}) }}
+{% endblock %}

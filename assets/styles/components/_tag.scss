@@ -1,17 +1,38 @@
-.tags {
+@mixin global-tags {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  column-gap: .5rem;
-  row-gap: .5rem;
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
   margin-top: 10px;
 }
 
+.tags {
+  @include global-tags;
+}
+
+.tags-right {
+  @include global-tags;
+  flex-direction: row-reverse;
+}
+
 .tag {
-  padding: .2rem .5rem;
+  font-size: $extra-small;
+  padding: 0.2rem 0.5rem;
   line-height: normal;
   color: $dark;
   background: $gray;
   border-radius: $strong-border;
 }
 
+@include media-breakpoint-up(sm) {
+  .tag {
+    font-size: $small;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .tag {
+    font-size: $large;
+  }
+}

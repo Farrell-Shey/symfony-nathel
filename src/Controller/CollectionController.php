@@ -15,7 +15,7 @@ class CollectionController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('collection/index.html.twig', [
+        return $this->render('collection.html.twig', [
 
         ]);
     }
