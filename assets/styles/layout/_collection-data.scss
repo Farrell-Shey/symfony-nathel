@@ -31,12 +31,12 @@
         height: 244px;
         border-radius: 10px;
         justify-content: center;
+        margin: 20px 0 20px 0;
 
         .bg-collection {
             border-radius: 10px;
-            margin: 20px 0 20px 0;
-            width: 95%;
             justify-self: center;
+            margin: 0 5% 0 5%;
             .filter {
                 border-radius: 10px;
                 .following-btn {
@@ -73,9 +73,10 @@
 
 @include media-breakpoint-up(lg) {
     .collection-card {
+        width: 100%;
+        min-width: 60%;
         flex-direction: row;
         height: 452px;
-        gap: 5rem;
         .bg-collection {
             .filter {
                 .data-collection {
