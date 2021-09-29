@@ -1,12 +1,84 @@
 //layout
-.contributors-global-card {
-    flex-direction: row;
-    width: 100%;
-    height: 170px;
-    justify-content: center;
+.block-contributors {
     background-color: $dark;
-    overflow-y: hidden;
-    flex-flow: wrap;
+    padding: 0 1.5% 0 1.5%;
+    margin: 20px 0 15px 0;
+    .title-block {
+        padding: 15px 0 0 0;
+        .section-title {
+            border-bottom: solid 2px $blue;
+            border-radius: 0;
+            width: fit-content;
+            padding: 0;
+            color: white;
+            font-size: $medium;
+            margin: 15px 0 10px 11px;
+        }
+    }
+    .global-contributors-dropdown {
+        justify-content: center;
+        width: 100%;
+        height: 170px;
+        background-color: $dark;
+        .contributors-global-card {
+            justify-content: space-around;
+            width: fit-content;
+            background-color: $dark;
+            overflow-y: hidden;
+            flex-flow: wrap;
+        }
+    }
+    .dropdown-card {
+        display: flex;
+        justify-content: center;
+        background-color: $dark;
+    }
+
+    //component dropdown
+    .toggle-fit-content {
+        height: fit-content;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .block-contributors {
+        border-radius: 10px;
+        margin: 0 5% 45px 5%;
+
+        .title-block {
+            .section-title {
+                font-size: $extra-large;
+            }
+        }
+    }
+}
+@include media-breakpoint-up(lg) {
+    .block-contributors {
+        margin: 20px 3% 20px 0;
+        height: 452px !important;
+        overflow-x: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    .global-contributors-dropdown {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: max-content !important;
+        background-color: $dark;
+        .contributors-global-card {
+            justify-content: space-around;
+            width: fit-content;
+            background: $dark;
+            overflow-y: hidden;
+            flex-flow: wrap;
+        }
+
+        .toggle-fit-content {
+            height: 400px;
+        }
+    }
 }
 
 //component
@@ -16,7 +88,6 @@
     width: 108px;
     border-radius: 10px;
     margin: 10px 1.5% 0 1.5%;
-
     .contributor-cover {
         width: 100%;
         height: 69px;
@@ -60,6 +131,65 @@
         }
         .contributor-data {
             font-size: $extra-small;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .contributor-card {
+        flex-direction: column;
+        background-color: $light;
+        height: 90px;
+        width: 90%;
+        min-width: fit-content;
+        border-radius: 10px;
+        margin: 10px 0 0 0;
+        .contributor-cover {
+            width: 104px;
+            height: 90px;
+            background-size: cover;
+            border-radius: 10px;
+            .filter {
+                display: flex;
+                justify-content: space-between;
+                height: 90px;
+                border-radius: 10px;
+                z-index: 2 !important;
+                padding: 6px;
+            }
+            .contributor-flag {
+                float: left;
+                width: 17px;
+                height: 12px;
+                border-radius: 20px;
+            }
+            .contributor-avatar {
+                object-fit: cover;
+                border-radius: 100%;
+                width: 40px;
+                height: 40px;
+                margin: 15px 0 0 0;
+            }
+            .contributor-delete {
+                float: right;
+                width: 16px;
+                height: 16px;
+            }
+        }
+        .contributors-data {
+            flex-direction: column;
+            text-align: left;
+            word-wrap: break-word;
+            margin: -105px 0 0 115px;
+            color: white;
+            .contributor-name {
+                white-space: nowrap;
+                margin: 0 0 5px 0;
+                font-size: $large;
+            }
+            .contributor-data {
+                font-size: $medium;
+            }
         }
     }
 }
