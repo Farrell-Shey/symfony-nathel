@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="block-contributors-collection">
+		{% include "/layout/_collection-data.html.twig" %}
+		<div class="block-contributors">
+			<div class="title-block">
+				<span class="section-title">
+					Contributors
+				</span>
+			</div>
+			<div id="contributors" class="d-flex global-contributors-dropdown">
+				<div class="d-flex contributors-global-card">
+					{% for i in 0..5 %}
+						{% include "/layout/_contributor-card.html.twig" %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="d-lg-none d-flex dropdown-card">
+				<button id="dropdown-contributor" type="button" class="dropdown-button" onclick="contributorToggle()">
+					<img id="dropdown" class="dropdown" src="{{ asset('build/dropdown-down.svg') }}" alt=""/></button>
+			</div>
+		</div>
+	</div>
+	{% include "/layout/_pined-mappool.html.twig" %}
+
+	<script>
+		function contributorToggle() {
+var dropdown = document.getElementById("contributors");
+var up = document.getElementById("dropdown");
+dropdown.classList.toggle('toggle-fit-content');
+up.classList.toggle('btn-rotate');
+}
+	</script>
+
+{% endblock %}
