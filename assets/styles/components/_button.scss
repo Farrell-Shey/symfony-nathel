@@ -33,6 +33,38 @@ main .btn {
   }
 }
 
+.following-btn {
+  float: right;
+  margin: 1rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.397);
+  border-radius: 22px;
+  border: solid 2px $blue;
+  height: 45px;
+  width: 124px;
+  .following-text {
+      color: $blue;
+      font-size: $large;
+  }
+}
+
+.change-cover-btn {
+  float: right;
+  margin: 1rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: $blue;
+  border-radius: 10px;
+  border: solid 2px $blue;
+  height: 24px;
+  width: 83px;
+  .change-cover-text {
+      color: white;
+      font-size: $extra-small;
+  }
+}
+
 @include media-breakpoint-up(sm) {
   .dropdown-button {
     .dropdown {
