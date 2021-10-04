@@ -17,20 +17,11 @@
 				</div>
 			</div>
 			<div class="d-lg-none d-flex dropdown-card">
-				<button id="dropdown-contributor" type="button" class="dropdown-button" onclick="contributorToggle()">
+				<button id="dropdown-contributor" type="button" class="dropdown-button">
 					<img id="dropdown" class="dropdown" src="{{ asset('build/dropdown-down.svg') }}" alt=""/></button>
 			</div>
 		</div>
 	</div>
 	{% include "/layout/_pined-mappool.html.twig" %}
-
-	<script>
-		function contributorToggle() {
-var dropdown = document.getElementById("contributors");
-var up = document.getElementById("dropdown");
-dropdown.classList.toggle('toggle-fit-content');
-up.classList.toggle('btn-rotate');
-}
-	</script>
 
 {% endblock %}

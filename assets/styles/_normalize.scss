@@ -76,8 +76,8 @@ li {
 
 main {
   color: $secondary;
-  width: 100vw;
-  min-height: calc(100vh - 32px - 60px);
+  width: 100%;
+  min-height: calc(100% - 32px - 60px);
   margin-top: 60px;
   background-color: $dark;
 }
@@ -86,14 +86,17 @@ main {
   main {
     margin-top: 76px;
     margin-left: 72px;
-    width: calc(100vw - 72px);
-    min-height: calc(100vh - 76px);
+    width: calc(100% - 72px);
+    min-height: calc(100% - 76px);
+    padding-bottom: 60px;
   }
 }
 
 @include media-breakpoint-up(lg) {
   main {
-    min-height: calc(100vh - 102px);
+    
+    min-height: calc(100% - 102px);
     margin: 102px 0 0 72px;
+    padding-bottom: 102px;
   }
 }
