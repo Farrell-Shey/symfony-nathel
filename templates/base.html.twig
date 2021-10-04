@@ -14,7 +14,6 @@
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
-			{{ encore_entry_script_tags('contributor') }}
 		{% endblock %}
 	</head>
 	<body>
@@ -23,14 +22,8 @@
 				{% include 'layout/_navbar.html.twig' %}
 			{% endblock %}
 		</header>
-		{% block aside %}
-		{% endblock %}
+
 		<main>
-{#			{% for message in app.flashes('success') %}#}
-{#				<div class="alert alert-success mt-5 mb-0">#}
-{#					{{ message }}#}
-{#				</div>#}
-{#			{% endfor %}#}
 			{% block body %}{% endblock %}
 		</main>
 	</body>
