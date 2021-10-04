@@ -80,6 +80,7 @@ main {
   min-height: calc(100% - 32px - 60px);
   margin-top: 60px;
   background-color: $dark;
+  padding-bottom: 60px;
 }
 
 @include media-breakpoint-up(sm) {
@@ -88,7 +89,6 @@ main {
     margin-left: 72px;
     width: calc(100% - 72px);
     min-height: calc(100% - 76px);
-    padding-bottom: 60px;
   }
 }
 
