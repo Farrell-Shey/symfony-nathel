@@ -46,7 +46,7 @@ class PoolSet
     private $contributors;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="poolSet")
+     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="poolSets")
      */
     private $tags;
 
@@ -177,7 +177,9 @@ class PoolSet
 
     public function removeTag(Tag $tag): self
     {
+
         if ($this->tags->removeElement($tag)) {
+
             $tag->removePoolSet($this);
         }
 
