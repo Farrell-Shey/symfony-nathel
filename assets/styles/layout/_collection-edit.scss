@@ -1,6 +1,5 @@
 .collection-title-form {
     width: 95%;
-    height: min-content;
     align-items: center;
     justify-content: space-around;
     color: white;
@@ -23,6 +22,30 @@
         border-bottom: 2px solid $blue !important;
         input:-internal-autofill-selected {
             color: -internal-light-dark(white, $dark) !important;
+        }
+    }
+}
+@include media-breakpoint-up(sm) {
+    .collection-title-form {
+        height: 64px;
+        font-size: $large;
+        .collection-title {
+            min-width: fit-content;
+        }
+        .collection-name {
+            outline: 0 !important;
+            text-rendering: none !important;
+            appearance: none !important;
+            border: none !important;
+            border-radius: 0;
+            background-color: $dark !important;
+            background: $dark !important;
+            min-width: 20%;
+            max-width: fit-content;
+            border-bottom: 2px solid $blue !important;
+            input:-internal-autofill-selected {
+                color: -internal-light-dark(white, $dark) !important;
+            }
         }
     }
 }
