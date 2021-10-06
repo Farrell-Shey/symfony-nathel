@@ -45,7 +45,6 @@
     .block-contributors {
         border-radius: 10px;
         margin: 0 5% 45px 5%;
-
         .title-block {
             .section-title {
                 font-size: $extra-large;
@@ -136,6 +135,10 @@
             margin: 0 0 5px 0;
             font-size: $small;
         }
+        .contributor-add {
+            margin: 0 0 5px 0;
+            font-size: $small;
+        }
         .contributor-data {
             font-size: $extra-small;
         }
@@ -148,7 +151,6 @@
         background-color: $light;
         height: 90px;
         width: 90%;
-
         border-radius: 10px;
         margin: 10px 0 0 0;
         .contributor-cover {
@@ -156,6 +158,11 @@
             height: 90px;
             background-size: cover;
             border-radius: 10px;
+            .img-arrow {
+                margin: 10px 0 0 0;
+                width: 24px;
+                height: 24px;
+            }
             .filter {
                 display: flex;
                 justify-content: space-between;
@@ -190,6 +197,9 @@
             word-wrap: break-word;
             margin: -105px 0 0 115px;
             color: white;
+            .contributor-add {
+                font-size: $large;
+            }
             .contributor-name {
                 white-space: nowrap;
                 text-overflow: ellipsis;
