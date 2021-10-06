@@ -72,6 +72,13 @@ main .btn {
     }
   }
 }
+.change-cover-btn {
+  height: 40px;
+  width: 122px;
+  .change-cover-text {
+      font-size: $small;
+  }
+}
 
 @include media-breakpoint-up(sm) {
   .dropdown-button {

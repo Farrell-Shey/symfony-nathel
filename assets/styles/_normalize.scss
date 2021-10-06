@@ -93,8 +93,7 @@ main {
 }
 
 @include media-breakpoint-up(lg) {
-  main {
-    
+  main { 
     min-height: calc(100% - 102px);
     margin: 102px 0 0 72px;
     padding-bottom: 102px;
