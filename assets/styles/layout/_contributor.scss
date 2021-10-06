@@ -58,6 +58,7 @@
         height: 452px !important;
         overflow-x: hidden;
         overflow-y: scroll;
+        scrollbar-width: none;
         &::-webkit-scrollbar {
             display: none;
         }
@@ -206,6 +207,7 @@
                 overflow-x: scroll;
                 margin: 0 0 5px 0;
                 font-size: $large;
+                scrollbar-width: none;
                 &::-webkit-scrollbar {
                     display: none;
                 }
