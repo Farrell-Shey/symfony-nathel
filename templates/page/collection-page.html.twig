@@ -2,18 +2,18 @@
 {% block javascripts %}
 	{{ parent() }}
 	{{ encore_entry_script_tags('modal') }}
-	{{ encore_entry_script_tags('contributorToggle') }}
+	{{ encore_entry_script_tags('dropdown') }}
 {% endblock %}
 {% block body %}
 	<div class="block-contributors-collection">
 		{% include "/layout/_collection-data.html.twig" %}
-		<div class="block-contributors">
+		<div  id="target-contributor" class="block-contributors">
 			<div class="title-block">
 				<span class="section-title">
 					Contributors
 				</span>
 			</div>
-			<div id="contributors" class="d-flex global-contributors-dropdown">
+			<div class="toggle-fit-content d-flex global-contributors-dropdown">
 				<div class="d-flex contributors-global-card">
 					{% for i in 0..5 %}
 						{% include "/layout/_contributor-card.html.twig" %}
@@ -21,8 +21,8 @@
 				</div>
 			</div>
 			<div class="d-lg-none d-flex dropdown-card">
-				<button id="dropdown-contributor" type="button" class="dropdown-button">
-					<img id="dropdown" class="dropdown" src="{{ asset('build/dropdown-down.svg') }}" alt=""/></button>
+				<button type="button" class="dropdown-button">
+					<img id="btn-contributor" class="dropdown" src="{{ asset('build/dropdown-down.svg') }}" alt=""/></button>
 			</div>
 		</div>
 	</div>
