@@ -4,9 +4,11 @@ main .btn {
     color: white;
   }
 }
+
 .btn-no-bg {
   background-image: unset !important;
 }
+
 .btn-success {
   background-color: #88b300;
   border: 1px solid #88b300;
@@ -22,17 +24,6 @@ main .btn {
   border: 1px solid #bb2222;
 }
 
-.dropdown-button {
-  background: transparent;
-  border: none;
-  .dropdown {
-    width: 24px;
-  }
-  .btn-rotate {
-    transform: rotate(180deg);
-  }
-}
-
 .following-btn {
   float: right;
   margin: 1rem 0.5rem;
@@ -44,8 +35,8 @@ main .btn {
   height: 45px;
   width: 124px;
   .following-text {
-      color: $blue;
-      font-size: $large;
+    color: $blue;
+    font-size: $large;
   }
 }
 
@@ -60,30 +51,45 @@ main .btn {
   height: 24px;
   width: 83px;
   .change-cover-text {
-      color: white;
-      font-size: $extra-small;
+    color: white;
+    font-size: $extra-small;
   }
 }
 
-@include media-breakpoint-up(sm) {
-  .dropdown-button {
-    .dropdown {
-      width: 24px;
-    }
-  }
+.delete-btn {
+  justify-self: flex-end;
+  float: right;
+  width: fit-content;
+  width: -moz-fit-content;
+  height: fit-content;
+  height: -moz-fit-content;
+  border: 0;
+  padding: 4px 10px;
+  background-color: $red;
+  border-radius: 22px;
+  color: white;
+  font-size: $extra-small;
 }
-.change-cover-btn {
-  height: 40px;
-  width: 122px;
-  .change-cover-text {
+.add-btn {
+  @extend .delete-btn;
+  background-color: $blue;
+}
+
+.save-btn {
+  @extend .delete-btn;
+  background-color: $dark-pink;
+  font-size: $medium;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+@include media-breakpoint-up(sm) {
+  .change-cover-btn {
+    height: 40px;
+    width: 122px;
+    .change-cover-text {
       font-size: $small;
-  }
-}
-
-@include media-breakpoint-up(sm) {
-  .dropdown-button {
-    .dropdown {
-      width: 32px;
     }
   }
 }
