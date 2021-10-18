@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}
 	{{ parent() }}
-	{{ encore_entry_script_tags('dropdown') }}
+	{{ encore_entry_script_tags('mappoolDropdown') }}
 {% endblock %}
 
 {% block body %}
 	<section
-		class="global-edit-mappool">
+		class="global-edit-mappool"  id="target-mappool">
 		{#component block-edit-mappool#}
 		
 			<div class="d-flex block-edit-mappool">
@@ -32,7 +32,7 @@
 
 				{#component block-mappool-data#}
 
-				<div class="d-flex block-dropdown-data toggle-fit-content" id="target-mappool">
+				<div class="d-flex block-dropdown-data">
 
 					<div class="d-flex block-mappool-data" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg'); z-index: 2">
 						<div class="map-link-card">

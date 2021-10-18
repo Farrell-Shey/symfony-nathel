@@ -1,16 +1,29 @@
 .global-edit-mappool {
-    padding: 2%;
+    padding: 0 2% 0 2%;
+    &.js-toggle-mappool {
+        .block-edit-mappool {
+            height: fit-content;
+            .dropdown-block {
+               
+                .dropdown {
+                    transform: rotate(180deg);
+                }
+            }
+            .block-dropdown-data {
+                visibility: visible;
+            }
+        }
+    }
     .background-edit-mappool {
         margin: 10px 0 10px 0;
         width: 98%;
         border: solid 1px rgba(255, 255, 255, 0.144);
         border-radius: 10px;
-
     }
     .block-edit-mappool {
         background: $light;
         border-radius: 10px;
-        height: fit-content;
+        height: 90px;
         flex-direction: column;
         align-items: center;
         margin: 0 auto 10px auto;
@@ -26,6 +39,7 @@
         }
 
         .block-dropdown-data {
+            visibility: hidden;
             flex-direction: column;
             width: 90%;
             height: fit-content;
@@ -116,7 +130,7 @@
             align-items: space-around;
             border-radius: 10px;
             width: 100%;
-            height: 94px;
+            height: 90px;
             padding: 5px;
             .global-card-title {
                 margin: 5px 0;
