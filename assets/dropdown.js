@@ -6,3 +6,4 @@ function contributorDropdown() {
   let target = document.getElementById("target-contributor");
   target.classList.toggle("js-toggle");
 }
+
