@@ -3,6 +3,7 @@
 	{{ parent() }}
 	{{ encore_entry_script_tags('modal') }}
 	{{ encore_entry_script_tags('dropdown') }}
+	{{ encore_entry_script_tags('mappoolDropdown') }}
 {% endblock %}
 {% block body %}
 	<div class="block-contributors-collection">
@@ -74,5 +75,6 @@
 			</div>
 		</form>
 	</section>
+	{% include "/layout/_mappool-edit.html.twig" %}
 
 {% endblock %}
