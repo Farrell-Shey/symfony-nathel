@@ -57,7 +57,6 @@ main .btn {
 }
 
 .delete-btn {
-  justify-self: flex-end;
   float: right;
   width: fit-content;
   width: -moz-fit-content;
@@ -92,4 +91,25 @@ main .btn {
       font-size: $small;
     }
   }
+  .delete-btn {
+    font-size: $small;
+    padding: 8px 18px;
+  }
+
+  .save-btn {
+    font-size: $large;
+    padding: 9px 30px;
+  }
 }
+@include media-breakpoint-up(lg) {
+ 
+  .delete-btn {
+    font-size: $medium;
+    padding: 8px 24px;
+  }
+  .save-btn {
+    font-size: $large;
+    padding: 9px 30px;
+  }
+}
+
