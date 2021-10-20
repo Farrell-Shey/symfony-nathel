@@ -3,6 +3,7 @@
     background-color: $dark;
     padding: 0 1.5% 0 1.5%;
     margin: 20px 0 15px 0;
+    border-radius: 10px;
     .title-block {
         padding: 15px 0 0 0;
         .section-title {
@@ -101,7 +102,7 @@
 @include media-breakpoint-up(sm) {
     .block-contributors {
         border-radius: 10px;
-        margin: 0 5% 45px 5%;
+        margin: 0 0 45px 0;
         .title-block {
             .section-title {
                 font-size: $extra-large;
@@ -111,7 +112,7 @@
 }
 @include media-breakpoint-up(lg) {
     .block-contributors {
-        margin: 20px 3% 20px 0;
+        margin: 20px 0 20px 40px;
         height: 452px !important;
         overflow-x: hidden;
         overflow-y: scroll;

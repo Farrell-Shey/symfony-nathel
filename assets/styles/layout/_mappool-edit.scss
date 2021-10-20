@@ -17,7 +17,7 @@
         }
     }
     .block-edit-mappool {
-        width: 98%;
+        width: 100%;
         background: $light;
         border-radius: 10px;
         height: 90px;
@@ -25,14 +25,14 @@
         align-items: center;
         margin: 0 auto 10px auto;
         .dropdown-block {
-            width: 98%;
+            width: 100%;
             .dropdown {
                 margin-right: auto;
                 width: 24px;
             }
         }
         .block-btn {
-            width: 98%;
+            width: 100%;
         }
         .block-add-mappool-title {
             @extend .block-mappool-title;
@@ -217,7 +217,7 @@
 
         .block-edit-mappool {
             min-height: 182px;
-            width: 95%;
+            width: 100%;
 
             .dropdown-block {
                 .dropdown {
@@ -243,8 +243,8 @@
 
         .block-dropdown-data {
             .block-mappool-data {
-                height: fit-content;
-                height: -moz-fit-content;
+                height: 60px;
+                overflow: visible;
                 flex-direction: column;
                 padding: 9px;
                 .first-line-data {
@@ -329,7 +329,7 @@
 
         .block-edit-mappool {
             min-height: 232px;
-            width: 95%;
+            width: 100%;
 
             .dropdown-block {
                 .dropdown {
@@ -359,13 +359,14 @@
         .block-dropdown-data {
             .block-mappool-data {
                 height: fit-content;
-                height: -moz-fit-content;
+                overflow: visible;
                 flex-direction: column;
                 padding: 9px;
                 .first-line-data {
                     flex-direction: row;
                     align-items: flex-start;
                     width: 100%;
+                    height: 45px;
                 }
                 .second-line-data {
                     width: 100%;

@@ -74,6 +74,10 @@ main .btn {
   background-color: $blue;
 }
 
+.close-btn {
+  @extend .delete-btn;
+}
+
 .save-btn {
   @extend .delete-btn;
   background-color: $dark-pink;
