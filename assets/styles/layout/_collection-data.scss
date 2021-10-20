@@ -37,7 +37,6 @@
         .bg-collection {
             border-radius: 10px;
             justify-self: center;
-            margin: 0 5% 0 5%;
             .filter {
                 border-radius: 10px;
                 .data-collection {
@@ -63,9 +62,8 @@
         min-width: 60%;
         flex-direction: row;
         height: 452px;
-        margin-left: 3%;
         .bg-collection {
-            margin: 0 3% 0 0%;
+         
             .filter {
                 .data-collection {
                     .data-text {
