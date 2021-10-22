@@ -1,6 +1,6 @@
 .global-modal-contributor {
     margin-top: 192px;
-    
+
     -webkit-animation: slide-in-elliptic-left-fwd 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation: slide-in-elliptic-left-fwd 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     @-webkit-keyframes slide-in-elliptic-left-fwd {
@@ -35,7 +35,7 @@
             opacity: 1;
         }
     }
-    
+
     .modal-add-contributor {
         z-index: 20;
         width: 70%;
@@ -43,7 +43,7 @@
         border-radius: 10px;
         padding: 6px;
         background-color: #22282af2;
-        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 
         .block-search-user {
             margin: 10px auto;
@@ -63,6 +63,21 @@
         overflow-y: scroll;
         width: 100%;
         height: 125px;
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a1a;
+            border-radius: 30px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b3afb3;
+        }
+        ::-webkit-scrollbar-track {
+            border-radius: 0px;
+            box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+        }
         .user-card {
             border: solid 1px $dark;
             flex-direction: row;
@@ -85,5 +100,59 @@
             }
         }
     }
+}
 
+@include media-breakpoint-up(sm) {
+    .global-modal-contributor {
+        padding-left: 72px;
+        .modal-add-contributor {
+            z-index: 20;
+            width: 100%;
+            height: 446px;
+            border-radius: 10px;
+            padding: 6px;
+            background-color: #22282af2;
+            box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
+            .block-search-user {
+                margin: 10px auto;
+                width: 70%;
+                height: 80px;
+                border-radius: 10px;
+                background-color: $dark;
+                border: solid 1px $primary;
+                .search-user {
+                    width: 90%;
+                    margin: auto;
+                }
+            }
+        }
+        .search-result-block {
+            flex-direction: column;
+            overflow-y: scroll;
+            width: 100%;
+            height: 100%;
+            .user-card {
+                border: solid 1px $dark;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                color: $secondary;
+                width: 70%;
+                height: 49px;
+                border-radius: 5px;
+                margin: 10px auto 0 auto;
+                .contributor-avatar {
+                    width: 40px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    justify-content: center;
+                }
+                .contributor-flag {
+                    border-radius: 5%;
+                    width: 24px;
+                }
+            }
+        }
+    }
 }
