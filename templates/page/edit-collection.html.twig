@@ -11,9 +11,10 @@
 			<section class="d-flex collection-card">
 				<div class="bg-collection" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg')">
 					<div class="filter">
-						<button type="button" class="d-flex change-cover-btn">
+						<button type="button" class="d-flex change-cover-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop-cover">
 							<span class="change-cover-text">change cover</span>
 						</button>
+						{% include "/layout/_modal-cover.html.twig" %}
 						<form class="d-flex block-input-title">
 							<div class="d-flex mx-auto collection-title-form">
 								<span class="collection-title ms-3">Collection Title</span>
@@ -33,7 +34,7 @@
 					<div class="d-flex contributors-global-card">
 						<button type="button" class="contributor-card" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 							<div class="d-flex mb-n3 contributor-cover">
-								<img class="mx-auto img-arrow" src="{{ asset('build/add-arrow.png') }}" href="#">
+								<img class="mx-auto img-arrow" src="{{ asset('build/add-arrow.png') }}">
 							</div>
 							<div class="d-flex contributors-data">
 								<span class="contributor-add">Add a new contributor</span>

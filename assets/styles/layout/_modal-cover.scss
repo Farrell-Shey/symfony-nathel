@@ -1,0 +1,56 @@
+.drop-background {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    .drop-title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: $medium;
+    }
+    .drop-case {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 10px;
+        margin: 13px 0 20px 0;
+        width: 96%;
+        height: 139px;
+        border: dashed 5px $lighter;
+        .text-drop {
+            text-align: center;
+            .btn-upload {
+                border-radius: 22px;
+                font-size: $small;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .drop-background {
+        margin-top: 56px;
+        .drop-title {
+            font-size: $extra-large;
+        }
+        .drop-case {
+            height: 209px;
+            .text-drop {
+                font-size: $extra-large;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .drop-background {
+        .drop-title {
+            font-size: $extra-large;
+        }
+        .drop-case {
+            margin: 13px 0 20px 0;
+            width: 96%;
+            height: 350px;
+        }
+    }
+}

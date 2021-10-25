@@ -78,6 +78,11 @@ main .btn {
   @extend .delete-btn;
 }
 
+.btn-upload {
+  @extend .delete-btn;
+  background-color: $lighter;
+}
+
 .save-btn {
   @extend .delete-btn;
   background-color: $dark-pink;
@@ -104,9 +109,13 @@ main .btn {
     font-size: $large;
     padding: 9px 30px;
   }
+
+  .btn-upload {
+    font-size: $large;
+    padding: 8px 43px;
+  }
 }
 @include media-breakpoint-up(lg) {
- 
   .delete-btn {
     font-size: $medium;
     padding: 8px 24px;
@@ -115,5 +124,8 @@ main .btn {
     font-size: $large;
     padding: 9px 30px;
   }
+    .btn-upload {
+    font-size: $large;
+    padding: 8px 43px;
+  }
 }
-

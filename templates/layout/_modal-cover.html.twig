@@ -1,0 +1,25 @@
+{% block modal_cover %}
+	<div class="modal global-modal-contributor" id="staticBackdrop-cover" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class=" mx-auto modal-content modal-add-contributor">
+				<div class="d-flex flex-end justify-content-end">
+					<button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">Close</button>
+				</div>
+
+				<form class="mx-auto drop-background">
+					<span class="mx-auto drop-title">Change Nath's Collection Cover</span>
+					<div class="mx-auto d-flex drop-case">
+						<span class="text-drop">Drop your image
+							<br>
+							or</span>
+						<button class="btn btn-upload">Upload image</button>
+					</div>
+					<div class="d-flex flex-end justify-content-end">
+						<button type="button" class="add-btn" data-bs-dismiss="modal" aria-label="Confirm">Confirm</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
