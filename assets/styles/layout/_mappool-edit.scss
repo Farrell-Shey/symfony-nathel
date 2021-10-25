@@ -359,6 +359,7 @@
         .block-dropdown-data {
             .block-mappool-data {
                 height: fit-content;
+                height: -moz-fit-content;
                 overflow: visible;
                 flex-direction: column;
                 padding: 9px;
