@@ -13,3 +13,9 @@
     border-radius: 0px;
     box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
+
+.invisible-scrollbar::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+    scrollbar-width: 0px;
+  }

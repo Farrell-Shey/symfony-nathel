@@ -1,45 +1,51 @@
 {% block modal_contributor %}
 
-<div class="modal global-modal-contributor" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class=" mx-auto modal-content modal-add-contributor">
-			<div class="d-flex flex-end justify-content-end">
-				<button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">Close</button>
-			</div>
-
-			<form class="d-flex block-search-user">
-				<div class="d-flex ">
-					<input class="search-user bg-transparent" type="text" placeholder="search user">
-				</div>
-			</form>
-
-			<div class="d-flex search-result-block scrollbar">
-				{% for i in 0..5 %}
-					<button type="button" class="select-user bg-transparent border-0">
-						<div class="d-flex user-card" style="background-image: url('{{asset('/build/constellation.svg')}}')">
-
-							<img class="contributor-avatar" src="{{ asset('build/default_avatar.png') }}">
-							<img class="contributor-flag" src="{{ asset('build/flag.png') }}">
-
-							<div class="d-flex contributors-data">
-								<span class="contributor-name">Farrell-Shey974</span>
-							</div>
+	{% embed "/component/_svg-global.html.twig" %}
+		{% block body %}
+			<div class="modal global-modal-contributor" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class=" mx-auto modal-content modal-add-contributor">
+						<div class="d-flex flex-end justify-content-end">
+							<button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">Close</button>
 						</div>
-					</button>
-				{% endfor %}
+
+						<form>
+							<div class="d-flex block-search-user">
+								<div class="d-flex ">
+									<input class="search-user bg-transparent" type="text" placeholder="Search user">
+								</div>
+							</div>
+							<div class="d-flex search-result-block scrollbar">
+								{% for i in 0..3 %}
+
+									<div class="d-flex user-card" style="background-image: url('{{asset('/build/constellation.svg')}}')">
+
+										<img class="contributor-avatar" src="{{ asset('build/default_avatar.png') }}">
+										<img class="contributor-flag" src="{{ asset('build/flag.png') }}">
+
+										<div class="d-flex contributors-data">
+											<span class="contributor-name">Farrell-Shey974</span>
+										</div>
+									</div>
+
+								{% endfor %}
+							</div>
+							<span class="text-add">You want to add :</span>
+							<div class="d-flex block-user-selected invisible-scrollbar">
+								<div class="user-selected border-0">Thrace12
+									<button type="button" class="unselected-btn border-0 bg-transparent">
+										{{ block("cross") }}
+									</button>
+								</div>
+							</div>
+							<div class="d-flex flex-end justify-content-end">
+								<button type="button" class="add-btn" data-bs-dismiss="modal" aria-label="Confirm">Confirm</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
 			</div>
-			<span class="text-add">You want to add :</span>
-			<div class="user-selected border-0">name
-				<button type="button" class="unselected-btn border-0 bg-transparent">
-					<svg width="15" height="15" viewbox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M1.62426 1.62574C0.195073 3.05493 0.195073 5.37476 1.62426 6.80394C3.05344 8.23313 5.37327 8.23313 6.80245 6.80394C8.23164 5.37476 8.23164 3.05493 6.80245 1.62574C5.37327 0.196562 3.05344 0.196562 1.62426 1.62574ZM4.21325 3.69702L3.17761 2.66138L2.65979 3.1792L3.69543 4.21484L2.65979 5.25048L3.17761 5.7683L4.21325 4.73266L5.24889 5.7683L5.76671 5.25048L4.73107 4.21484L5.76671 3.1792L5.24889 2.66138L4.21325 3.69702ZM2.14197 6.28612C3.28376 7.42792 5.14274 7.42792 6.28453 6.28612C7.42632 5.14433 7.42632 3.28536 6.28453 2.14356C5.14274 1.00177 3.28376 1.00177 2.14197 2.14356C1.00018 3.28536 1.00018 5.14433 2.14197 6.28612Z" fill="#C30000"/>
-					</svg>
-				</button>
-			</div>
-			<div class="d-flex flex-end justify-content-end">
-				<button type="button" class="add-btn" data-bs-dismiss="modal" aria-label="Confirm">Confirm</button>
-			</div>
-		</div>
-	</div>
-</div>
+		{% endblock %}
+	{% endembed %}
 {% endblock %}
