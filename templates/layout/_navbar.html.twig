@@ -1,13 +1,14 @@
 {% embed "/component/_svg-nav.html.twig" %}
 	{# variable code dupliqué #}
 	{% block body %}
+		{% include "/layout/_search-modal.html.twig" %}
 		<div class="base-theme">
 			<div id="main-nav">
 				{{ block("logo") }}
 				<span class="d-sm-none brand">Nathel</span>
 				<form class="d-sm-flex search-bar" action="">
 					<input class="d-sm-none d-lg-block form-control" type="text" placeholder="Search ...">
-					<button class="btn btn-search" type="submit">
+					<button class="btn btn-search" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 						{{ block("search") }}
 					</button>
 				</form>
@@ -65,13 +66,13 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/">
+						<a class="nav-link" href="{{ path('my_collection') }}">
 							{{ block("mymappool") }}
 							My Mappools
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/">
+						<a class="nav-link" href="{{ path('collection_search') }}">
 							{{ block("explore") }}
 							Explore
 						</a>

@@ -1,143 +1,187 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Hello UserController!
+{% endblock %}
 
 {% block body %}
-    <div class="user-body d-lg-flex ">
-        <div class="user-contain-1">
-            <img class="thumbnail rounded-pill " src="https://via.placeholder.com/80x80 " alt="">
-            <div class="user-name">
-                <p class="name">Farrell-Shey974</p>
-                <img src="" class="flag ms-2" alt="">
-                <a href="" class="score-btn btn">
-                    {{ block('upload') }}
-                    <p>Update <br> Score</p>
-                </a>
-            </div>
-            <div class="user-stats d-flex">
-                <div class=" stats-contain d-flex flex-column ">
-                    <div class="stat">
-                        <p>Completed mappools</p>
-                        <p>548</p>
-                    </div>
-                    <div class="stat">
-                        <p>Followed Mappools</p>
-                        <p>3</p>
-                    </div>
-                </div>
-                <div class=" stats-contain d-flex flex-column ">
-                    <div class="stat">
-                        <p>Submited mappool</p>
-                        <p>465</p>
-                    </div>
-                    <div class="stat">
-                        <p>Classement générale</p>
-                        <p>#456,125</p>
-                    </div>
-                </div>
-            </div>
-            <div class="user-scores d-flex">
-                <div>
-                    {{ block('score_ss_silver') }}
-                    <p>3</p>
-                </div>
-                <div>
-                    {{ block('score_ss') }}
-                    <p>14</p>
-                </div>
-                <div>
-                    {{ block('score_s_silver') }}
-                    <p>5</p>
-                </div>
-                <div>
-                    {{ block('score_s') }}
-                    <p>119</p>
-                </div>
-                <div>
-                    {{ block('score_a') }}
-                    <p>789</p>
-                </div>
-            </div>
-        </div>
-        <div class="user-contain-2" id="activity-contain">
-            <h2 class="activities-h2">ACTIVITE RECENTE</h2>
-            <ul class="activities-list">
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-                <li class="activity d-flex">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ block('score_s_silver') }}
-                        <p class="activity-text"><span>97,55%</span> on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
-                    </div>
-                    <p><span>Il y a 1 minute</span></p>
-                </li>
-            </ul>
-            <div class="d-flex justify-content-center">
-                <a onclick="getElementById('activity-contain').classList.toggle('open')">
-                    {{ block('arrow') }}
-                </a>
-            </div>
-        </div>
-    </div>
+	<div class="user-body d-lg-flex ">
+		<div class="user-contain-1">
+			<img class="thumbnail rounded-pill " src="https://via.placeholder.com/80x80 " alt="">
+			<div class="user-name">
+				<p class="name">Farrell-Shey974</p>
+				<img src="" class="flag ms-2" alt="">
+				<a href="" class="score-btn btn">
+					{{ block('upload') }}
+					<p>Update
+						<br>
+						Score</p>
+				</a>
+			</div>
+			<div class="user-stats d-flex">
+				<div class=" stats-contain d-flex flex-column ">
+					<div class="stat">
+						<p>Completed mappools</p>
+						<p>548</p>
+					</div>
+					<div class="stat">
+						<p>Followed Mappools</p>
+						<p>3</p>
+					</div>
+				</div>
+				<div class=" stats-contain d-flex flex-column ">
+					<div class="stat">
+						<p>Submited mappool</p>
+						<p>465</p>
+					</div>
+					<div class="stat">
+						<p>Classement générale</p>
+						<p>#456,125</p>
+					</div>
+				</div>
+			</div>
+			<div class="user-scores d-flex">
+				<div>
+					{{ block('score_ss_silver') }}
+					<p>3</p>
+				</div>
+				<div>
+					{{ block('score_ss') }}
+					<p>14</p>
+				</div>
+				<div>
+					{{ block('score_s_silver') }}
+					<p>5</p>
+				</div>
+				<div>
+					{{ block('score_s') }}
+					<p>119</p>
+				</div>
+				<div>
+					{{ block('score_a') }}
+					<p>789</p>
+				</div>
+			</div>
+		</div>
+		<div class="user-contain-2" id="activity-contain">
+			<h2 class="activities-h2">ACTIVITE RECENTE</h2>
+			<ul class="activities-list">
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+				<li class="activity d-flex">
+					<div class="d-flex justify-content-between align-items-center">
+						{{ block('score_s_silver') }}
+						<p class="activity-text">
+							<span>97,55%</span>
+							on Matsushita - raspberry cube [Insane]vsdgdfsgdsfgfdsgfdsgdsfgfdsgsdfgsdfgdfsgsdfgsdfgdfsgsdfgsdfgfds</p>
+					</div>
+					<p>
+						<span>Il y a 1 minute</span>
+					</p>
+				</li>
+			</ul>
+			<div class="d-flex justify-content-center">
+				<a onclick="getElementById('activity-contain').classList.toggle('open')">
+					{{ block('arrow') }}
+				</a>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}
