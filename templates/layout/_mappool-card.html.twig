@@ -1,0 +1,60 @@
+{% extends "/component/_svg-global.html.twig" %}
+
+
+{% block body %}
+
+	<div class=" d-flex section-mappool-data">
+		<div class="filter">
+			<div class="d-flex global-mappool-data" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg')">
+				<div class="d-flex mappool-data">
+					<span class="mappool-name invisible-scrollbar">KimiPool Challenge
+						<a id="unfollow" class="show no-transition" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+							{{ block("follow") }}</a>
+						<a id="unfollow" class="collapse no-transition" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+							{{ block("unfollow") }}</a>
+					</span>
+					<span class="mappool-collection">From collection Dan Project</span>
+					<span class="mappool-contributor">& submitted by Nath</span>
+					<span class="mappool-count">26 maps</span>
+					<div class="d-flex mappool-tag">
+						<div class="game-mod-tag">STD</div>
+						<div class="stars-tag">4.5-5.0✰</div>
+						<div class="rank-range-tag">100k-250k</div>
+						<div class="category-tag">tournament</div>
+					</div>
+				</div>
+				<div class="follow-btn"></div>
+			</div>
+		</div>
+		<div class="d-none d-sm-block">
+			{% for i in 0..3 %}
+				{% block card_beatmap %}
+					<div class="d-flex global-beatmapset" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg')">
+
+						<span class="beatmapset">Matsushitan - raspberry cube [Insane]</span>
+
+
+						<span class="beatmapset-creator">
+							mappée par
+							<a href="#" class="creator-link">timemon
+							</a>
+						</span>
+
+
+						<span class="text-uppercase beatmapset-data">
+							cs: 4 ar: 9.3 od: 8.5 hp: 4.5 stars: 4.98
+						</span>
+
+						<a class="dowload-btn bg-transparent border-0" href="#" role="button">
+							{{ block("download") }}
+						</a>
+					</div>
+
+				{% endblock %}
+			{% endfor %}
+		</div>
+		<div class="d-none d-sm-flex check-mappool">
+			<a class="d-flex btn check-button" href="{{ path('collection_name') }}"  type="button" > Check all mappool</a>
+		</div>
+	</div>
+{% endblock %}

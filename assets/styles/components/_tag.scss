@@ -19,20 +19,46 @@
 .tag {
   font-size: $extra-small;
   padding: 0.2rem 0.5rem;
+  width: fit-content;
+  width: -moz-fit-content;
+  height: fit-content;
+  height: -moz-fit-content;
+  margin-left: 5px;
   line-height: normal;
   color: $dark;
   background: $gray;
   border-radius: $strong-border;
+  white-space: nowrap;
+}
+
+.game-mod-tag {
+  @extend .tag;
+  color: $secondary;
+  background: $light-pink;
+}
+.stars-tag {
+  @extend .tag;
+  color: $secondary;
+  background: $light-gray;
+}
+.rank-range-tag {
+  @extend .tag;
+  color: $secondary;
+  background: $dark-green;
+}
+.category-tag {
+  @extend .tag;
+  color: $secondary;
+  background: $dark-violet;
 }
 
 @include media-breakpoint-up(sm) {
   .tag {
+    margin-left: 10px;
     font-size: $small;
   }
 }
 
 @include media-breakpoint-up(lg) {
-  .tag {
-    font-size: $large;
-  }
+
 }

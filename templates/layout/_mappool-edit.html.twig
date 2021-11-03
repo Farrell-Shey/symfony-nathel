@@ -1,0 +1,157 @@
+
+
+{% block block_edit_mappool %}
+
+	<section class="global-edit-mappool" id="target-mappool">
+
+		<div class="d-flex block-edit-mappool">
+
+			{% block mappool_title %}
+				<div class="d-flex block-mappool-title filter" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg')">
+					<div class="block-btn">
+						<button class="delete-btn">
+							delete
+						</button>
+					</div>
+					<div class="d-flex mx-auto global-card-title">
+						<span class="mappool-title">
+							Mappool title
+						</span>
+						<form class="d-flex mappool-title-edit">
+							<input class="mappool-input-title" type="text">
+						</form>
+					</div>
+					<div class="d-flex mx-auto dropdown-block">
+						<img id="btn-mappool" class="dropdown" src="{{ asset('build/dropdown-down.svg') }}" alt=""/>
+					</div>
+				</div>
+			{% endblock %}
+
+			{% block dropdown_data %}
+				<div class="d-flex block-dropdown-data">
+					<div class="d-flex block-mappool-data" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg'); z-index: 2">
+						<div class="d-flex first-line-data">
+							<div class="map-link-card">
+								<p class="map-link-text">Map link</p>
+								<form class="d-flex map-link-edit">
+									<input class="map-link" type="text" value="https://osu.ppy.sh/beatmapsets/1267439#osu/2633997" placeholder="https://..." onfocus="this.value='https://';"/></form>
+							</div>
+							{% for i in 0..1 %}
+								{% if i == 0 %}
+									{% block menu_mod %}
+										<div class="menu-mod">
+											<button class="d-flex mod-select" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#mod-target{{ loop.index }}" aria-expanded="false">
+												<div class="d-flex block-drop-menu">
+													<img class="dropdown-toggle" href="#" src="{{ asset('build/dropdown-down.svg') }}"/>
+													<p class="mod">
+														NM
+													</p>
+												</div>
+											</button>
+											<div class="collapse mod-target" id="mod-target{{ loop.index }}">
+												<div class="card-menu">
+													<button class="d-flex mod-btn">
+														<p class="mod-choice">
+															NM
+														</p>
+													</button>
+													<button class="d-flex mod-btn">
+														<p class="mod-choice">
+															DT
+														</p>
+													</button>
+													<button class="d-flex mod-btn">
+														<p class="mod-choice">
+															HD
+														</p>
+													</button>
+													<button class="d-flex mod-btn">
+														<p class="mod-choice">
+															HR
+														</p>
+													</button>
+													<button class="d-flex mod-btn">
+														<p class="mod-choice">
+															NM
+														</p>
+													</button>
+													<button class="d-flex mod-btn">
+														<p class="mod-choice">
+															FM
+														</p>
+													</button>
+													<button class="d-flex mod-btn" style="border-bottom: 0">
+														<p class="mod-choice">
+															TS
+														</p>
+													</button>
+												</div>
+											</div>
+										</div>
+									{% endblock %}
+								{% endif %}
+							{% endfor %}
+							<button class="d-flex delete-btn">
+								delete
+							</button>
+						</div>
+						<div class="d-flex second-line-data">
+							<span class="d-none d-md-flex map-title">Matsushita - raspberry cube [Insane]</span>
+							<span class="d-none d-md-flex map-author">mappée par timemon</span>
+						</div>
+						<span class="d-none d-md-flex rating">CS: 4  AR: 9.3 OD: 8.5 HP: 4.5 Stars: 4.98</span>
+					</div>
+
+					<div class="d-flex block-mappool-data" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg'); z-index: 1">
+						<div class="d-flex first-line-data">
+							<div class="map-link-card">
+								<p class="map-link-text">Map-link</p>
+								<form class="d-flex map-link-edit">
+									<input class="map-link" type="text" value="https://..." placeholder="https://..." onfocus="this.value='https://';"/></form>
+							</div>
+
+							{% for i in 0..1 %}
+								{% if i == 1 %}
+									{{ block("menu_mod") }}
+									<button class="add-btn">
+										add
+									</button>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			{% endblock %}
+
+		</div>
+
+		{% block edit_mappool %}
+			<div class="d-flex block-edit-mappool">
+				<div class="d-flex block-add-mappool-title filter" style="background-image: url('{{asset('/build/constellation.svg')}}')">
+					<div class="d-flex m-auto global-card-title">
+						<span class="mappool-title">
+							Mappool title
+						</span>
+						<div class="d-flex mappool-title-edit">
+							<input class="mappool-input-title" placeholder="New Mappool">
+						</div>
+					</div>
+					<div class="m-auto block-btn">
+						<button class="add-btn">
+							add
+						</button>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+
+		{% block save_button %}
+			<div class="d-flex block-save-btn">
+				<button class="save-btn">
+					Save Change
+				</button>
+			</div>
+		{% endblock %}
+
+	</section>
+{% endblock %}

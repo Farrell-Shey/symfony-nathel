@@ -1,22 +1,131 @@
 main .btn {
   background-image: url("/assets/images/osu_triangle.png");
-  &:hover{
+  &:hover {
     color: white;
   }
 }
-.btn-no-bg{
+
+.btn-no-bg {
   background-image: unset !important;
 }
-.btn-success {
-  background-color: #88B300;
-  border: 1px solid #88B300;
 
-  &:hover, &:focus &:focus-within {
+.btn-success {
+  background-color: #88b300;
+  border: 1px solid #88b300;
+
+  &:hover,
+  &:focus &:focus-within {
     background-color: #afe600;
   }
 }
 
 .btn-danger {
-  background-color: #BB2222;
-  border: 1px solid #BB2222;
+  background-color: #bb2222;
+  border: 1px solid #bb2222;
+}
+
+.following-btn {
+  float: right;
+  margin: 1rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.397);
+  border-radius: 22px;
+  border: solid 2px $blue;
+  height: 45px;
+  width: 124px;
+  .following-text {
+    color: $blue;
+    font-size: $large;
+  }
+}
+
+.change-cover-btn {
+  float: right;
+  margin: 1rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: $blue;
+  border-radius: 10px;
+  border: solid 2px $blue;
+  height: 24px;
+  width: 83px;
+  .change-cover-text {
+    color: white;
+    font-size: $extra-small;
+  }
+}
+
+.delete-btn {
+  float: right;
+  width: fit-content;
+  width: -moz-fit-content;
+  height: fit-content;
+  height: -moz-fit-content;
+  border: 0;
+  padding: 4px 10px;
+  background-color: $red;
+  border-radius: 22px;
+  color: white;
+  font-size: $extra-small;
+}
+.add-btn {
+  @extend .delete-btn;
+  background-color: $blue;
+}
+
+.close-btn {
+  @extend .delete-btn;
+}
+
+.btn-upload {
+  @extend .delete-btn;
+  background-color: $lighter;
+}
+
+.save-btn {
+  @extend .delete-btn;
+  background-color: $dark-pink;
+  font-size: $medium;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+@include media-breakpoint-up(sm) {
+  .change-cover-btn {
+    height: 40px;
+    width: 122px;
+    .change-cover-text {
+      font-size: $small;
+    }
+  }
+  .delete-btn {
+    font-size: $small;
+    padding: 8px 18px;
+  }
+
+  .save-btn {
+    font-size: $large;
+    padding: 9px 30px;
+  }
+
+  .btn-upload {
+    font-size: $large;
+    padding: 8px 43px;
+  }
+}
+@include media-breakpoint-up(lg) {
+  .delete-btn {
+    font-size: $medium;
+    padding: 8px 24px;
+  }
+  .save-btn {
+    font-size: $large;
+    padding: 9px 30px;
+  }
+    .btn-upload {
+    font-size: $large;
+    padding: 8px 43px;
+  }
 }

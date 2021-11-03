@@ -1,5 +1,3 @@
-//CHOISIR ENTRE LE FICHIER _collection.scss où _collection-data.scss //
-
 .collection-card {
     height: 123px;
     width: 100%;
@@ -9,6 +7,7 @@
         height: 100%;
         flex-direction: column;
         justify-content: space-between;
+        color: white;
         .data-text {
             font-size: $small;
             .collection-title {
@@ -17,6 +16,7 @@
                 white-space: nowrap;
                 overflow: scroll;
                 text-overflow: ellipsis;
+                scrollbar-width: none;
             }
         }
     }
@@ -31,29 +31,12 @@
         height: 244px;
         border-radius: 10px;
         justify-content: center;
-
+        margin: 20px 0 20px 0;
         .bg-collection {
             border-radius: 10px;
-            margin: 20px 0 20px 0;
-            width: 95%;
             justify-self: center;
             .filter {
                 border-radius: 10px;
-                .following-btn {
-                    float: right;
-                    margin: 1rem 0.5rem;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: rgba(0, 0, 0, 0.397);
-                    border-radius: 22px;
-                    border: solid 2px $blue;
-                    height: 45px;
-                    width: 124px;
-                    .following-text {
-                        color: $blue;
-                        font-size: $large;
-                    }
-                }
                 .data-collection {
                     width: 70%;
                     .data-text {
@@ -73,10 +56,12 @@
 
 @include media-breakpoint-up(lg) {
     .collection-card {
+        width: 100%;
+        min-width: 60%;
         flex-direction: row;
         height: 452px;
-        gap: 5rem;
         .bg-collection {
+         
             .filter {
                 .data-collection {
                     .data-text {

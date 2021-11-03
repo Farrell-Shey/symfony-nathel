@@ -1,137 +1,127 @@
-
-//À modifier//
-
-.mappool-global {
-    margin-top: 200px;
-    margin-bottom: 200px;
-}
-
-.mappool-skew {
-    transform: rotate(5deg) skew(5deg, 0deg);
-    border-radius: 0;
-    background-color: $classic;
-}
-
-.negative-mappool-skew {
-    transform: rotate(-5deg) skew(-5deg, 0deg);
-}
-
-.mappool-card {
-    min-width: 370px;
-    max-height: 113px;
-    background-color: $light;
-    border-radius: 10px !important;
-    margin-bottom: 16px;
-    &.card {
-        border-radius: 10px;
-
-        & p {
-            text-shadow: 1px 1px 2px rgb(85, 85, 85);
-
-            & a {
-                color: $indigo;
-                text-shadow: none;
-                text-decoration: underline;
+.section-mappool-data {
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    .filter {
+        .global-mappool-data {
+            color: $secondary;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            padding: 10px;
+            height: 100%;
+            .mappool-data {
+                flex-direction: column;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                scrollbar-width: none;
+                width: 100%;
+                .mappool-name {
+                    display: flex;
+                    font-size: $medium;
+                    overflow: scroll;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+                .mappool-collection {
+                    font-size: $extra-small;
+                }
+                .mappool-contributor {
+                    font-size: $extra-small;
+                }
+                .mappool-count {
+                    font-size: $extra-small;
+                }
+                .follow-btn {
+                    width: 30px;
+                }
+            }
+            .mappool-tag {
+                margin-top: auto;
+                flex-direction: row;
+                justify-content: flex-end;
             }
         }
     }
 }
-
-.mappool-card-img {
-    border-radius: 10px;
-    max-height: 113px;
-}
-
-.beatmap-card {
-    border-radius: 10px;
-    .card-img {
-        border-radius: 10px;
-    }
-}
-
-.mappool-tag-content {
-    display: flex;
-    margin-top: 2%;
-}
-
-.mappool-tag {
-    border-radius: 22px;
-    margin: 5px 8px 5px 0;
-    padding: 0 8px 0 8px;
-    font-size: $extra-small;
-}
-
-.card-text {
-    font-size: $extra-small;
-}
-
-.card-title {
-    font-size: $medium;
-}
-
-
 @include media-breakpoint-up(sm) {
-    .mappool-card {
-        min-width: 606px;
-        min-height: 585px;
-        & p {
-            text-shadow: 1px 1px 2px rgb(85, 85, 85);
+    .section-mappool-data {
+        .filter {
+            border-radius: 10px 10px 0 0;
+            height: 232px;
+            .global-mappool-data {
+                border-radius: 10px 10px 0 0;
+                padding: 10px;
+                height: 232px;
+                .mappool-data {
+                    .mappool-name {
+                        font-size: $large;
+                    }
+                    .mappool-collection {
+                        font-size: $medium;
+                    }
+                    .mappool-contributor {
+                        font-size: $medium;
+                    }
+                    .mappool-count {
+                        font-size: $medium;
+                    }
+                    .follow-btn {
+                        width: 32px;
+                    }
+                }
+            }
+        }
+        .global-beatmapset {
+            padding: 4px 10px;
+            color: $secondary;
+            flex-direction: column;
+            border-radius: 10px;
+            border: solid 1px $dark;
+            margin: 16px;
+            width: 95%;
+            height: 70px;
+            .beatmapset {
+                font-size: $medium;
+            }
+            .beatmapset-creator {
+                font-weight: lighter;
+                font-size: $small;
+                .creator-link {
+                    text-decoration: underline;
+                    color: $indigo !important;
+                }
+            }
+            .beatmapset-data {
+                font-size: $small;
+            }
+            .dowload-btn {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: -45px;
+            }
+        }
+        .check-mappool {
+            background: linear-gradient(180deg, rgba(70, 81, 86, 0.42) 0%, #465156 29.69%);
+            width: 100%;
+            height: 74px;
+            margin-top: -74px;
+            border-radius: 0 0 10px 10px;
+            justify-content: center;
+            align-items: center;
+            .check-button {
+                border-radius: 36px;
+                background-color: $fuchsia;
+                height: 43px;
+                color: $secondary;
+                font-size: $large;
+                width: 235px;
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
-
-    .mappool-card-img {
-        border-radius: 10px 10px 0 0;
-        max-height: 232px;
-    }
-
-    .left-loop {
-        margin-top: 120px;
-    }
-    .mappool-card-group {
-        margin: -200px 5% -200px 5%;
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .card-text {
-        font-size: $medium;
-    }
-
-    .card-title {
-        font-size: $extra-large;
-    }
-
-    .mappool-tag-content {
-        margin-top: 10%;
-    }
-
-    .mappool-tag {
-        font-size: $small;
-    }
-
-    .mappool-card-gradient {
-        z-index: 2;
-        background: linear-gradient(0deg, rgba(70, 81, 86, 1) 45%, rgba(70, 81, 86, 0) 100%);
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 75px;
-        border-radius: 10px;
-    }
-
-    .mappool-card-btn {
-        margin: 10px 30% 10px 30%;
-        border-radius: 35px;
-        background-color: $fuchsia;
-        height: 43px;
-    }
 }
-
-@media (min-width: 2088px) { 
-
-    .mappool-card-group {
-        margin: -200px 15% -200px 15%;
-        display: flex;
-        justify-content: space-between;
-    }
- }

@@ -5,18 +5,16 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-/**
- * @Route("/collection", name="collection")
- */
-class CollectionController extends AbstractController
+
+class MyCollectionController extends AbstractController
 {
     /**
-     * @Route("/", name="_index")
+     * @Route("/my/collection", name="my_collection")
      */
     public function index(): Response
     {
-        return $this->render('collection.html.twig', [
-
+        return $this->render('/page/my-collection.html.twig', [
+            'controller_name' => 'MyCollectionController',
         ]);
     }
 }

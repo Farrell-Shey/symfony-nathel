@@ -1,0 +1,6 @@
+@include media-breakpoint-up(lg) {
+    .block-contributors-collection {
+        display: flex;
+        flex-direction: row;
+    }
+}
