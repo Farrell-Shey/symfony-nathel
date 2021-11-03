@@ -10,7 +10,6 @@
 // import de tous les petites élements du site
 @import "components/bg";
 @import "components/button";
-@import "components/collection";
 @import "components/contributor-card";
 @import "components/input";
 @import "components/logo";
@@ -22,6 +21,7 @@
 @import "components/title";
 
 //import de tous les gros élément du site
+@import "layout/box-rotate";
 @import "layout/collection-card";
 @import "layout/collection-data";
 @import "layout/collection-edit";

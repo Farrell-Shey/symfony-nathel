@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CollectionPageController extends AbstractController
 {
 /**
- * @Route("/", name="index")
+ * @Route("/", name="name")
  */
     public function index(): Response
     {

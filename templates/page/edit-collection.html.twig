@@ -1,4 +1,6 @@
 {% extends 'base.html.twig' %}
+{% block title %}Edit collection
+{% endblock %}
 {% block javascripts %}
 	{{ parent() }}
 	{{ encore_entry_script_tags('modal') }}
@@ -32,7 +34,7 @@
 				</div>
 				<div class="d-flex toggle-fit-content global-contributors-dropdown">
 					<div class="d-flex contributors-global-card">
-						<button type="button" class="contributor-card" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+						<button type="button" class="contributor-card" data-bs-toggle="modal" data-bs-target="#staticBackdrop-contributor">
 							<div class="d-flex mb-n3 contributor-cover">
 								<img class="mx-auto img-arrow" src="{{ asset('build/add-arrow.png') }}">
 							</div>

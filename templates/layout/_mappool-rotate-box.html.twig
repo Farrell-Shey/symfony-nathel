@@ -1,0 +1,16 @@
+{% block body %}
+
+	<div class="global-skew">
+		<div class="mappool-skew">
+			<div class="d-flex negative-mappool-skew">
+				{% for i in 0..3 %}
+					<div class="global-mappool-card" {% if i == 0 or i == 2 %} style="margin-top: -25px;" {% endif %}>
+						{% include "/layout/_mappool-card.html.twig" %}</div>
+					<div class="global-mappool-card-small">
+						{% include "/layout/_mappool-card.html.twig" %}</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
