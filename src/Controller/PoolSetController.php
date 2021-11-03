@@ -16,6 +16,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,6 +26,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use function Sodium\randombytes_random16;
 
 /**
  * @Route("/collection")
@@ -43,7 +45,6 @@ class PoolSetController extends AbstractController
 
 
     // Fonction de routes :
-
 
     /**
      * @param EntityManagerInterface $em
@@ -139,6 +140,8 @@ class PoolSetController extends AbstractController
 
     }
 
+
+
     /**
      * @param BeatmapsetRepository $bmsr
      * @param MappoolMapRepository $mmr
@@ -152,23 +155,12 @@ class PoolSetController extends AbstractController
      * @param PoolSetRepository $pr
      * @return JsonResponse
      * @Route("edit_save", name="edit_save", methods={"GET", "POST"})
-     * @Route("/{id}/edit", name="edit_collection", methods={"GET", "POST"})
      */
-    public function  edit_save(BeatmapsetRepository $bmsr, MappoolMapRepository $mmr, BeatmapRepository $br, MappoolRepository $mr, UserRepository $ur, EntityManagerInterface $em, ContributorRepository $cr , Request $request,  TagRepository $tr, PoolSetRepository $pr): JsonResponse
+    public function  editSave(BeatmapsetRepository $bmsr, MappoolMapRepository $mmr, BeatmapRepository $br, MappoolRepository $mr, UserRepository $ur, EntityManagerInterface $em, ContributorRepository $cr , Request $request,  TagRepository $tr, PoolSetRepository $pr): JsonResponse
     {
 
-        // Normalize Table
-        $data = (array) json_decode($request->getContent());
-        $data = (array) $data['input'];
-
-        foreach ($data as $key => $value){
-
-            $key_tmp = str_replace('form[', '', $key);
-            $key_tmp = str_replace(']', '', $key_tmp);
-            $data[$key_tmp] = $value;
-            unset($data[$key]);
-        }
-
+        $data = $request->request->get('form');
+        $data['image'] = $request->files->get('form')['image'];
 
 
         // On rajoute à False les tags suppr par le form traitement
@@ -211,8 +203,14 @@ class PoolSetController extends AbstractController
         $arrData['tournament'] = $data['tournament'];
         $arrData['training'] = $data['training'];
         $arrData['pp_farm'] = $data['pp_farm'];
-        $arrData['image'] = 'test';
-        dd($data['image']);
+        if ($data['image'] != null){
+            $arrData['image'] = $this->uploadBackground($data['image']);
+        }else{
+            $arrData['image'] = null;
+        }
+
+
+        // On save la collection
         $this->saveCollection($arrData, $arrData['image'],$tr, $pr, true);
 
         return new JsonResponse($arrData);
@@ -232,6 +230,7 @@ class PoolSetController extends AbstractController
      * @param BeatmapRepository $br
      * @param BeatmapsetRepository $bmsr
      * @return Response
+     * @throws \Exception
      */
     public function editView(int $id, TagRepository $tr, Request $request, PoolSetRepository $pr, UserRepository $ur, ContributorRepository $cr, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr): Response
     {
@@ -243,7 +242,7 @@ class PoolSetController extends AbstractController
         // CREATION DU FORMULAIRE
 
         $form = $this->createFormBuilder()
-            ->setMethod('GET')
+            ->setMethod('POST')
             //->setAction('/owo')
             ->add('title', TextType::class,
                 ['label' => 'Collection Title', 'required' => False, 'data' => $collection['poolset']->getName()]
@@ -276,14 +275,74 @@ class PoolSetController extends AbstractController
             ->add('range_max', HiddenType::class, ['data'=> $collection['tag_names']['range_max']])
             ->add('rank_min', HiddenType::class, ['data'=> $collection['tag_names']['rank_min']])
             ->add('rank_max', HiddenType::class, ['data'=> $collection['tag_names']['rank_max']])
-            ->add('id', HiddenType::class, ['data'=> $id])
-            ->add('image', FileType::class, ['required' => false, 'attr' => ['value' => 'blaaabluh']])
+            ->add('id', HiddenType::class, ['attr' => ['value'=> $id]])
+            ->add('image', FileType::class, ['required' => false])
             ->add('submit', SubmitType::class, ['label' => 'Save Collection']);
         $form = $form->getForm();
 
+
         $form->handleRequest($request);
 
-        return $this->render('zone_test_nath/edit.html.twig', ['form' => $form->createView()]);
+
+// MAPPOOL ADD FORM
+
+        $form_add_mappool = $this->createFormBuilder();
+        $form_add_mappool->setMethod('POST')
+            ->setAttribute('name', 'add')
+            ->add('id', HiddenType::class, ['attr' => ['value'=> $id]])
+            ->add('title', TextType::class,
+                ['label' => 'Mappool Title', 'required' => False])
+            ->add('submit', SubmitType::class, ['label' => 'Add Mappool'])
+        ;
+        $form_add_mappool = $form_add_mappool->getForm();
+        $form_add_mappool->handleRequest($request);
+
+
+// MAPPOOL FORMS
+        $forms = ['form' => $form, 'add' => $form_add_mappool];
+
+        foreach ($collection['mappools'] as $mappool){
+
+            $form_mappool = $this->createFormBuilder();
+            $form_mappool->setMethod('POST')
+                ->add('id', HiddenType::class, ['data' => $mappool->getId()])
+                ->add('title', TextType::class,
+                ['label' => 'Mappool Title', 'required' => False, 'data' => $mappool->getName()])
+                ->add('delete', CheckboxType::class, ['required' => False]);
+            // AJOUTER UNE MAP
+            $add_map = $this->createFormBuilder();
+            $add_map->setMethod('POST')
+                ->setAttribute('name', 'add_map')
+                ->add('id', HiddenType::class, ['attr' => ['value'=> $mappool->getId()]])
+                ->add('link', TextType::class,
+                    ['label' => 'Map Link', 'required' => False])
+                ->add('submit', SubmitType::class, ['label' => 'Add Map']);
+            $add_map = $add_map->getForm();
+            $add_map->handleRequest($request);
+
+            foreach($mappool->maps as $map){
+                $form_mappool->add('map_link_'.$map['map']->getId(), TextType::class, ['data'=> $map['map']->getUrl(), 'label' => 'Map link'])
+                    ->add('map_mode_'.$map['map']->getId(), ChoiceType::class, [
+                        'choices'  => [
+                            'NM' => 'NM',
+                            'DT' => 'DT',
+                            'HR' => 'HR',
+                        ]
+                        ,
+                        'label' => ' ',
+                        'data' => $map['mode']
+                    ]);
+            }
+            $form_mappool = $form_mappool->getForm();
+            $form_mappool->handleRequest($request);
+
+            $forms[rand(0,9999999)] = $form_mappool;
+            $forms['map_'.rand(0,9999999)] = $add_map;
+
+
+        }
+
+        return $this->renderForm('zone_test_nath/edit.html.twig', $forms);
     }
 
 
@@ -355,7 +414,9 @@ class PoolSetController extends AbstractController
                 $name = $beatmapset->getArtist() . ' - ' . $beatmapset->getName() . ' [' . $map->getDifficulty() . ']';
                 array_push($maps,['name ' =>$name, 'map' =>$map, 'mode' =>$pool_map->getMode()]);
             }
-            $mappools[$key]['maps'] = $maps ;
+
+            $mappools[$key]->maps = $maps ;
+
         }
         return ['poolset' => $poolset, 'tags' => $tags, 'contributors' => $contributors, 'mappools' => $mappools, 'tag_names' => $tag_names];
     }
@@ -381,6 +442,7 @@ class PoolSetController extends AbstractController
         $tag_range_min = $tg->findOneBy(['name' => $data['range_min']]);
         $tag_range_max = $tg->findOneBy(['name' => $data['range_max']]);
         //Save des tags de RANK SI BESOIN
+
         if(empty($tag_rank_min))
         {
             $tag_rank_min = new Tag();
@@ -433,7 +495,12 @@ class PoolSetController extends AbstractController
         }
 
         $collection->setName($data['title']);
-        $collection->setThumbnail($background);
+        if ($background !=null){
+            $collection->setThumbnail($background);
+        }else{
+            $collection->setThumbnail('default');
+        }
+
         $collection->setUpdatedAt(new \DateTime('now'));
 
 
@@ -444,6 +511,7 @@ class PoolSetController extends AbstractController
         $collection->addTag($tag_range_min);
         $collection->addTag($tag_range_max);
 
+
         foreach($data as $data_name => $data_value){
             if ($data_name != 'title'
                 && $data_name != 'range_min'
@@ -452,7 +520,7 @@ class PoolSetController extends AbstractController
                 && $data_name != 'rank_max'
                 && $data_name != 'image'
                 && $data_name != 'id'
-                && $data_value == True){
+                && $data_value == true){
                 $tmp = str_replace(' ', '_', $data_name);
 
                 $tmp = $tg->findOneBy(['name' => $tmp]);
@@ -467,6 +535,7 @@ class PoolSetController extends AbstractController
         $em->persist($collection);
 
         $em->flush();
+
 
         if ($edit == false){
             //Save du contributor
