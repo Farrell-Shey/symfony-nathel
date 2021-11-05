@@ -245,16 +245,16 @@ class PoolSetController extends AbstractController
             ->setMethod('POST')
             //->setAction('/owo')
             ->add('title', TextType::class,
-                ['label' => 'Collection Title', 'required' => False, 'data' => $collection['poolset']->getName()]
+                ['label' => false, 'required' => False, 'data' => $collection['poolset']->getName()]
             );
 
         $mods = $tr->findBy(['type' => 'gamemod']);
         foreach ($mods as $mod){
             $name = str_replace(' ', '_', $mod->getName());
             if (in_array($name, $collection['tag_names']['mod'])){
-                $form = $form->add($name, CheckboxType::class, ['required' => False, 'attr' => ['checked' => true]]);
+                $form = $form->add($name, CheckboxType::class, ['label' => false, 'required' => False, 'attr' => ['checked' => true]]);
             }else{
-                $form = $form->add($name, CheckboxType::class, ['required' => False]);
+                $form = $form->add($name, CheckboxType::class, ['label' => false, 'required' => False]);
             }
 
         }
@@ -299,7 +299,7 @@ class PoolSetController extends AbstractController
 
 
 // MAPPOOL FORMS
-        $forms = ['form' => $form, 'add' => $form_add_mappool];
+        $forms = ['form' => $form->createView(), 'add' => $form_add_mappool->createView()];
 
         foreach ($collection['mappools'] as $mappool){
 
@@ -336,13 +336,16 @@ class PoolSetController extends AbstractController
             $form_mappool = $form_mappool->getForm();
             $form_mappool->handleRequest($request);
 
-            $forms[rand(0,9999999)] = $form_mappool;
-            $forms['map_'.rand(0,9999999)] = $add_map;
+            $forms[rand(0,9999999)] = $form_mappool->createView();
+            $forms['map_'.rand(0,9999999)] = $add_map->createView();
+
+            $forms['poolset_data'] = ['title' => $collection['poolset']->getName(), 'thumbnail' => $collection['poolset']->getThumbnail() ];
 
 
         }
 
-        return $this->renderForm('zone_test_nath/edit.html.twig', $forms);
+
+        return $this->render('/page/edit-collection.html.twig', $forms);
     }
 
 
