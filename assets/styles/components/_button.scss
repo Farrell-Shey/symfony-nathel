@@ -92,6 +92,49 @@ main .btn {
   border-radius: 5px;
 }
 
+.create-collection-btn {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background: $classic;
+  border-radius: 10px;
+  color: $blue;
+  font-size: $medium;
+  width: 98%;
+  height: 64px;
+  box-shadow: 1px 1px 3px 1px #171a1c80;
+  margin-bottom: 76px;
+}
+
+.classification-title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 301px;
+  height: 58px;
+  border-radius: 10px;
+  background: $classic;
+  color: $secondary;
+  font-size: $large;
+  margin: 23px auto -70px;
+  box-shadow: 4px 4px 8px 0px #171a1c80;
+
+  .popular-title,
+  .recent-title {
+    display: flex;
+    flex-direction: column;
+    &:after {
+      content: "";
+      background-color: #00b9db;
+      width: 55px;
+      height: 3px;
+      border-radius: 36px;
+      margin-left: 1px;
+    }
+  }
+}
 @include media-breakpoint-up(sm) {
   .change-cover-btn {
     height: 40px;
@@ -114,6 +157,32 @@ main .btn {
     font-size: $large;
     padding: 8px 43px;
   }
+
+  .classification-title {
+    max-width: 410px;
+    height: 86px;
+    font-size: $extra-large;
+    .popular-title,
+    .recent-title {
+      &:after {
+        width: 72px;
+      }
+    }
+  }
+  .create-collection-btn {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: $classic;
+    border-radius: 10px;
+    color: $blue;
+    font-size: $medium;
+    width: 479px;
+    height: 98px;
+    box-shadow: 1px 1px 3px 1px #171a1c80;
+    margin-bottom: 76px;
+  }
+
 }
 @include media-breakpoint-up(lg) {
   .delete-btn {
@@ -124,8 +193,22 @@ main .btn {
     font-size: $large;
     padding: 9px 30px;
   }
-    .btn-upload {
+  .btn-upload {
     font-size: $large;
     padding: 8px 43px;
+  }
+
+  .classification-title {
+    max-width: 410px;
+    height: 86px;
+    font-size: $extra-large;
+
+  margin: 39px 39px -46px;
+    .popular-title,
+    .recent-title {
+      &:after {
+        width: 72px;
+      }
+    }
   }
 }
