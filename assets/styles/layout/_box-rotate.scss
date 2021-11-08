@@ -1,5 +1,5 @@
 .global-skew {
-    padding: 200px 0;
+    padding: 50px 0;
     z-index: -1;
     .mappool-skew {
         transform: rotate(5deg) skew(5deg, 0deg);
@@ -8,9 +8,15 @@
         width: 100%;
         height: fit-content;
         height: -moz-fit-content;
-        border-top: dashed 3px white;
-        border-bottom: dashed 3px white;
-        outline: solid 50px $classic;
+        border-top: solid 50px $classic;
+        border-bottom: solid 50px $classic;
+        &:before, &:after {
+            content: "";
+            display: block;
+            padding: 2px 0;
+            line-height: 1px;
+            border-top: 3px dashed #fff;
+          }
         .negative-mappool-skew {
             transform: rotate(-5deg) skew(-5deg, 0deg);
             height: 100%;
@@ -39,6 +45,7 @@
 
 @media screen and(min-width: 576px) {
     .global-skew {
+        padding: 200px 0;
         .mappool-skew {
             .negative-mappool-skew {
                 margin: -142px 0 -228px 0;
@@ -58,6 +65,7 @@
 
 @media screen and(min-width: 992px) {
     .global-skew {
+        padding: 200px 0;
         .mappool-skew {
             .negative-mappool-skew {
                 padding: 0 11.286% 0 11.286%;
