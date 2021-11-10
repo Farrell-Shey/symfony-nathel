@@ -153,6 +153,7 @@ class OsuApiService
 
         $endpoint = 'https://osu.ppy.sh/api/v2/beatmaps/'.$map_id;
 
+
         return $this->apiQueryGET(0, $endpoint);
     }
 

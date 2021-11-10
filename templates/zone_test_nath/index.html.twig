@@ -180,7 +180,7 @@
 
                         const res = await axios({
                             method: 'post',
-                            url: '{{ (path('owo')) }}',
+                            url: '{{ (path('search_load_results')) }}',
                             data: {input, data}, // On sérialise les données = Envoi des valeurs du formulaire
                             headers: { "Content-Type": "application/json" }
                         })

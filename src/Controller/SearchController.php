@@ -37,9 +37,9 @@ class SearchController extends AbstractController
      * @param UserRepository $ur
      * @param MappoolRepository $mr
      * @return JsonResponse|Response
-     * @Route("/owo", name="owo")
+     * @Route("/search_load_results", name="search_load_results")
      */
-    public function owo(TransformedFinder $poolsetFinder, Request $request, TagRepository $tr, PoolSetRepository $pr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr)
+    public function search_load_results(TransformedFinder $poolsetFinder, Request $request, TagRepository $tr, PoolSetRepository $pr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr)
     {
         // Normalize Table
         $data = (array) json_decode($request->getContent());
