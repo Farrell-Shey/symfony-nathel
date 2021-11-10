@@ -78,19 +78,19 @@ li {
 }
 
 main {
+  overflow: hidden;
   color: $secondary !important;
   width: 100%;
   min-height: calc(100% - 32px - 60px);
   margin-top: 60px;
   background-color: $dark;
-  padding-bottom: 60px;
 }
 
 @include media-breakpoint-up(sm) {
   main {
     margin-top: 76px;
-    margin-left: 72px;
-    width: calc(100% - 72px);
+    margin-left: 70px;
+    width: calc(100% - 70px);
     min-height: calc(100% - 76px);
   }
 }
@@ -98,7 +98,6 @@ main {
 @include media-breakpoint-up(lg) {
   main {
     min-height: calc(100% - 102px);
-    margin: 102px 0 0 72px;
-    padding-bottom: 102px;
+    margin: 102px 0 0 70px;
   }
 }

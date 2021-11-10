@@ -1,162 +1,109 @@
 {% extends 'base.html.twig' %}
 
-	{% block javascripts %}
-        {{ parent() }}
-        {{ encore_entry_script_tags('modal') }}
-    {% endblock %}
-{% block title %}My collection {% endblock %}
-{% block aside %}
-    <aside id="pop-up" class="d-none modal-show">
-        <div class="create-collection scroller modal-show">
-            <button class="btn arrow-back d-sm-none modal-show">
-                <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24.1663 13.2923H9.46092L16.2155 6.53773L14.4997 4.83398L4.83301 14.5007L14.4997 24.1673L16.2034 22.4636L9.46092 15.709H24.1663V13.2923Z"
-                          fill="white"/>
-                </svg>
-            </button>
-            <form class="form-new-collection">
-                <div class="main-input bg-sm-linear-constellation">
-                    <a class="d-none d-sm-block btn btn-danger modal-show">fermer</a>
-                    <div class="input-title">
-                        <label for="collection-title" class="form-label">Collection Title</label>
-                        <div class="form-control">
-                            <input type="text" id="collection-title" placeholder="Nath’s Collection">
-                        </div>
-                    </div>
-                </div>
-                <div class="block-contain">
-
-                    <div class="tags block-mod">
-                        <span class="title title-mod">Game Mod</span>
-                        {% for i in 0..3 %}
-                            <input type="checkbox" name="{{ i }}" id="{{ i }}"/>
-                            <label class="tag tag-mod" for="{{ i }}">tag mod {{ i }}</label>
-                        {% endfor %}
-                    </div>
-
-                    <div class="tags block-category">
-                        <span class="title title-category">Category</span>
-                        {% for j in 0..3 %}
-                            <input type="checkbox" name="{{ j }}" id="{{ j }}"/>
-                            <label class="tag tag-category" for="{{ j }}">catégorie {{ j }}</label>
-                        {% endfor %}
-                    </div>
-
-                    <div class="block-rank">
-                        <span class="title title-rank">Rank Range</span>
-                        <div id="slider-rank" class="slider"></div>
-                    </div>
-
-
-                </div>
-                <div class="block-image">
-                    <span class="title title-default">Background Image</span>
-                    <div class="drop-box">
-                        <span class="text">Drop your image<br>or</span>
-                        <input type="file" name="cover" id="cover" class="box__file">
-                        <label class="btn btn-light" for="cover">Upload Image</label>
-                    </div>
-                </div>
-                <button class="btn btn-pink" type="submit">Save Collection</button>
-            </form>
-        </div>
-    </aside>
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('modal') }}
 {% endblock %}
+{% block title %}My collection
+{% endblock %}
+{% block aside %}{% endblock %}
 {% block body %}
-    <section class="bg-constellation">
-        <div class="mycollection">
-            <a class="btn btn-add-collection modal-show" href="#" >
-                <svg class="svg" width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M4 10H28V14H4V10ZM4 18.0001H28V22.0001H4V18.0001ZM36.0001 18.0001H32.0001V26.0001H24.0001V30.0001H32.0001V38.0001H36.0001V30.0001H44.0001V26.0001H36.0001V18.0001ZM20 29.9999H4V25.9999H20V29.9999Z"/>
-                </svg>
-                Create new collection
-            </a>
-            <h1 class="title title-section">Collections</h1>
-            <ul class="list-collection">
-                <li class="list-item card"> <!-- style="background-image: url('assets/img/ont.jpg')" -->
-                    <div class="invitation">
-                        <img class="thumbnail" src="https://via.placeholder.com/150x150" alt="thumbnail">
-                        <p class="message">Farrell-Shey sent you an invite on<br>“Dan Project : Aim Collection</p>
-                        <form class="response">
-                            <button type="submit" class="btn btn-success">
-                                <svg class="svg" width="8" height="8" viewBox="0 0 8 8"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2.93169 5.29229L1.54169 3.90229L1.06836 4.37229L2.93169 6.23562L6.93169 2.23562L6.46169 1.76562L2.93169 5.29229Z"/>
-                                </svg>
+	<!-- Modal -->
 
-                                accept
-                            </button>
-                            <button type="submit" class="btn btn-danger">
-                                <svg class="svg" width="8" height="8" viewBox="0 0 8 8"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6.33366 2.13602L5.86366 1.66602L4.00033 3.52935L2.13699 1.66602L1.66699 2.13602L3.53033 3.99935L1.66699 5.86268L2.13699 6.33268L4.00033 4.46935L5.86366 6.33268L6.33366 5.86268L4.47033 3.99935L6.33366 2.13602Z"/>
-                                </svg>
+	
 
-                                decline
-                            </button>
-                            <a target="_blank" href="/" class="btn btn-link">
-                                show collection
-                                <svg class="svg" width="8" height="8" viewBox="0 0 8 8"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.66667 5.16667V6.5L7 4.16667L4.66667 1.83333V3.2C3 3.2 1.83333 2.66667 1 1.5C1.33333 3.16667 2.33333 4.83333 4.66667 5.16667Z"/>
-                                </svg>
-                            </a>
-                        </form>
-                    </div>
-                </li>
-                {% for i in 0..10 %}
-                    <li class="list-item card"> <!-- style="background-image: url('assets/img/ont.jpg')" -->
-                        <div class="filter collection">
-                            <a class="btn-delete">
-                                <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M7.42839 0.761719C3.74839 0.761719 0.761719 3.74839 0.761719 7.42839C0.761719 11.1084 3.74839 14.0951 7.42839 14.0951C11.1084 14.0951 14.0951 11.1084 14.0951 7.42839C14.0951 3.74839 11.1084 0.761719 7.42839 0.761719ZM6.76172 4.09505L6.76172 6.76172L4.09505 6.76172L4.09505 8.09505H6.76172V10.7617H8.09505V8.09505L10.7617 8.09505V6.76172L8.09505 6.76172V4.09505L6.76172 4.09505ZM2.09505 7.42839C2.09505 10.3684 4.48839 12.7617 7.42839 12.7617C10.3684 12.7617 12.7617 10.3684 12.7617 7.42839C12.7617 4.48839 10.3684 2.09505 7.42839 2.09505C4.48839 2.09505 2.09505 4.48839 2.09505 7.42839Z"
-                                          fill="#C30000"/>
-                                </svg>
-                            </a>
-                            <a class="btn btn-edit" href="{{ path('collection_edit') }}">
-                                <svg width="16" height="13" viewBox="0 0 16 13" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M1.59961 3.19922V4.26589H11.1996V3.19922H1.59961ZM1.59961 9.59922H4.79961V8.53255H1.59961V9.59922ZM7.99961 6.93255H1.59961V5.86589H7.99961V6.93255Z"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M12.9317 3.83553L13.7637 4.66753C13.9024 4.8062 13.9024 5.0302 13.7637 5.16887L13.113 5.81953L11.7797 4.4862L12.4304 3.83553C12.4979 3.76798 12.5868 3.73242 12.6792 3.73242C12.7717 3.73242 12.8606 3.76442 12.9317 3.83553ZM7.4668 8.79923V10.1326H8.80013L12.7326 6.20012L11.3992 4.86679L7.4668 8.79923ZM8.50502 9.42126H8.17791V9.09415L11.3992 5.87282L11.7264 6.19993L8.50502 9.42126Z"/>
-                                </svg>
-                                edit
-                            </a>
-                            <div class="text">
-                                <h2 class="title-card">Dan Project : Aim Collection</h2>
-                                <span class="">manage with</span>
-                                <div class="thumbnails-contributor">
-                                    {% set break = false %}
-                                    {% for j in 0..2 %}
-                                        {% if  not break %}
-                                            <img class="thumbnail" src="https://via.placeholder.com/150x150"
-                                                 alt="thumbnail">
-                                            {% if j == 2 %}
-                                                <div class="thumbnail">
-                                                    <p>
-                                                        + {{ j +1 }}
-                                                    </p>
-                                                </div>
-                                                {% set break = true %}
-                                            {% endif %}
-                                        {% endif %}
-                                    {% endfor %}
 
-                                </div>
-                                <span class="nb-mappool">12 mappools</span>
-                            </div>
-                            <div class="tags">
-                                {% for j in 0..3 %}
-                                    <span class="tag">training</span>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </section>
+	<section class="bg-constellation">
+		<div class="mycollection">
+			<a class="btn btn-add-collection" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-pop">
+				<svg class="svg" width="48" height="48" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M4 10H28V14H4V10ZM4 18.0001H28V22.0001H4V18.0001ZM36.0001 18.0001H32.0001V26.0001H24.0001V30.0001H32.0001V38.0001H36.0001V30.0001H44.0001V26.0001H36.0001V18.0001ZM20 29.9999H4V25.9999H20V29.9999Z"/>
+				</svg>
+				Create new collection
+			</a>
+			{% include "/layout/_modal-collection-new.html.twig" %}
+			<h1 class="title title-section">Collections</h1>
+			<ul class="list-collection">
+				<li
+					class="list-item card">
+					<!-- style="background-image: url('assets/img/ont.jpg')" -->
+					<div class="invitation">
+						<img class="thumbnail" src="https://via.placeholder.com/150x150" alt="thumbnail">
+						<p class="message">Farrell-Shey sent you an invite on<br>“Dan Project : Aim Collection</p>
+						<form class="response">
+							<button type="submit" class="btn btn-success">
+								<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+									<path d="M2.93169 5.29229L1.54169 3.90229L1.06836 4.37229L2.93169 6.23562L6.93169 2.23562L6.46169 1.76562L2.93169 5.29229Z"/>
+								</svg>
+
+								accept
+							</button>
+							<button type="submit" class="btn btn-danger">
+								<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+									<path d="M6.33366 2.13602L5.86366 1.66602L4.00033 3.52935L2.13699 1.66602L1.66699 2.13602L3.53033 3.99935L1.66699 5.86268L2.13699 6.33268L4.00033 4.46935L5.86366 6.33268L6.33366 5.86268L4.47033 3.99935L6.33366 2.13602Z"/>
+								</svg>
+
+								decline
+							</button>
+							<a target="_blank" href="/" class="btn btn-link">
+								show collection
+								<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+									<path d="M4.66667 5.16667V6.5L7 4.16667L4.66667 1.83333V3.2C3 3.2 1.83333 2.66667 1 1.5C1.33333 3.16667 2.33333 4.83333 4.66667 5.16667Z"/>
+								</svg>
+							</a>
+						</form>
+					</div>
+				</li>
+				{% for i in 0..10 %}
+					<li
+						class="list-item card">
+						<!-- style="background-image: url('assets/img/ont.jpg')" -->
+						<div class="filter collection">
+							<a class="btn-delete">
+								<svg viewbox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M7.42839 0.761719C3.74839 0.761719 0.761719 3.74839 0.761719 7.42839C0.761719 11.1084 3.74839 14.0951 7.42839 14.0951C11.1084 14.0951 14.0951 11.1084 14.0951 7.42839C14.0951 3.74839 11.1084 0.761719 7.42839 0.761719ZM6.76172 4.09505L6.76172 6.76172L4.09505 6.76172L4.09505 8.09505H6.76172V10.7617H8.09505V8.09505L10.7617 8.09505V6.76172L8.09505 6.76172V4.09505L6.76172 4.09505ZM2.09505 7.42839C2.09505 10.3684 4.48839 12.7617 7.42839 12.7617C10.3684 12.7617 12.7617 10.3684 12.7617 7.42839C12.7617 4.48839 10.3684 2.09505 7.42839 2.09505C4.48839 2.09505 2.09505 4.48839 2.09505 7.42839Z" fill="#C30000"/>
+								</svg>
+							</a>
+							<a class="btn btn-edit" href="{{ path('collection_edit') }}">
+								<svg width="16" height="13" viewbox="0 0 16 13" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M1.59961 3.19922V4.26589H11.1996V3.19922H1.59961ZM1.59961 9.59922H4.79961V8.53255H1.59961V9.59922ZM7.99961 6.93255H1.59961V5.86589H7.99961V6.93255Z"/>
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.9317 3.83553L13.7637 4.66753C13.9024 4.8062 13.9024 5.0302 13.7637 5.16887L13.113 5.81953L11.7797 4.4862L12.4304 3.83553C12.4979 3.76798 12.5868 3.73242 12.6792 3.73242C12.7717 3.73242 12.8606 3.76442 12.9317 3.83553ZM7.4668 8.79923V10.1326H8.80013L12.7326 6.20012L11.3992 4.86679L7.4668 8.79923ZM8.50502 9.42126H8.17791V9.09415L11.3992 5.87282L11.7264 6.19993L8.50502 9.42126Z"/>
+								</svg>
+								edit
+							</a>
+							<div class="text">
+								<h2 class="title-card">Dan Project : Aim Collection</h2>
+								<span class="">manage with</span>
+								<div class="thumbnails-contributor">
+									{% set break = false %}
+									{% for j in 0..2 %}
+										{% if  not break %}
+											<img class="thumbnail" src="https://via.placeholder.com/150x150" alt="thumbnail">
+											{% if j == 2 %}
+												<div class="thumbnail">
+													<p>
+														+
+														{{ j +1 }}
+													</p>
+												</div>
+												{% set break = true %}
+											{% endif %}
+										{% endif %}
+									{% endfor %}
+
+								</div>
+								<span class="nb-mappool">12 mappools</span>
+							</div>
+							<div class="tags">
+								{% for j in 0..3 %}
+									<span class="tag">training</span>
+								{% endfor %}
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
 
 {% endblock %}
