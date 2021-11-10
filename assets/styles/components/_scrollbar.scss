@@ -17,5 +17,5 @@
 .invisible-scrollbar::-webkit-scrollbar {
     display: none;
     visibility: hidden;
-    scrollbar-width: 0px;
+    scrollbar-width: none !important;
   }
