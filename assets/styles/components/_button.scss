@@ -92,6 +92,16 @@ main .btn {
   border-radius: 5px;
 }
 
+.save-collection-btn {
+  @extend .delete-btn;
+  margin-top: 24px;
+  background-color: $dark-pink;
+  font-size: $medium;
+  text-align: center;
+  padding: 2px 10px;
+  border-radius: 36px;
+}
+
 .create-collection-btn {
   overflow: hidden;
   white-space: nowrap;
@@ -182,7 +192,6 @@ main .btn {
     box-shadow: 1px 1px 3px 1px #171a1c80;
     margin-bottom: 76px;
   }
-
 }
 @include media-breakpoint-up(lg) {
   .delete-btn {
@@ -203,7 +212,7 @@ main .btn {
     height: 86px;
     font-size: $extra-large;
 
-  margin: 39px 39px -46px;
+    margin: 39px 39px -46px;
     .popular-title,
     .recent-title {
       &:after {
