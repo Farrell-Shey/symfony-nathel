@@ -112,7 +112,6 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
-<<<<<<< Updated upstream
     "friendsofsymfony/elastica-bundle": {
         "version": "5.0",
         "recipe": {
@@ -124,10 +123,6 @@
         "files": [
             "config/packages/fos_elastica.yaml"
         ]
-=======
-    "jolicode/elastically": {
-        "version": "v1.3.0"
->>>>>>> Stashed changes
     },
     "jms/metadata": {
         "version": "2.5.1"
