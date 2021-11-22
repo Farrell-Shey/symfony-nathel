@@ -43,14 +43,14 @@
 
 							<div class="d-flex search-tourney-modal">Collections</div>
 
-							{% block collection %}
+							{% block collection %}{#A reprendre#}
 								<div class="card border-0 bg-transparent collection-global-card mt-5 mx-auto">
 									<div class="accordion accordion-flush" id="accordionFlushExample">
 										{% for i in 0..2 %}
 											<div class="accordion-item card border-0 mb-3">
 												<div id="flush-heading{{ loop.index0 }}" class="accordion-header bg-transparent border-0 collection-top-card ">
 													<img src="{{ asset('build/default_collection_img.png') }}" class="card-img" alt="...">
-													<div class="card-img-overlay overlay-top text-white d-block">
+													<div class="card-img-overlay overlay-top d-block d-flex">
 														<p class="collection-title">Dan Project : Aim Collection</p>
 														<p class="collection-text">4 mappools</p>
 														<p class="collection-text">manage with
@@ -115,7 +115,7 @@
 											</div>
 										{% endfor %}
 									</div>
-								</div>
+								</div>{# fin a reprendre#}
 							{% endblock %}
 							<button type="button" class="d-flex btn search-more-results">More Collection Search Results
 							</button>

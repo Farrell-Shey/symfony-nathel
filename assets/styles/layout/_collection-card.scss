@@ -18,7 +18,10 @@
         }
     }
     .collection-top-card {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    
         .card-img,
         .overlay-top {
             display: block;
@@ -213,7 +216,7 @@
         }
         .text-contributor {
             font-size: $extra-small;
-            margin-top: -20px;
+            margin-bottom: 4px;
             margin-left: 80px;
         }
         .bloc-contributor {
