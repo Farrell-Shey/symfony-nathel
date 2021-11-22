@@ -33,22 +33,22 @@
 
 .game-mod-tag {
   @extend .tag;
-  color: $secondary;
+  color: $text;
   background: $light-pink;
 }
 .stars-tag {
   @extend .tag;
-  color: $secondary;
+  color: $text;
   background: $light-gray;
 }
 .rank-range-tag {
   @extend .tag;
-  color: $secondary;
+  color: $text;
   background: $dark-green;
 }
 .category-tag {
   @extend .tag;
-  color: $secondary;
+  color: $text;
   background: $dark-violet;
 }
 

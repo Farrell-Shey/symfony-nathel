@@ -149,7 +149,7 @@
                             .mod-choice {
                                 font-size: $middle-small;
                                 margin: auto;
-                                color: $secondary;
+                                color: $text;
                             }
                         }
                     }
@@ -257,7 +257,7 @@
                     width: 100%;
                     margin: 10px 0 15px 0;
                     flex-direction: column;
-                    color: $secondary;
+                    color: $text;
                     .map-title {
                         font-size: $small;
                     }
@@ -266,7 +266,7 @@
                     }
                 }
                 .rating {
-                    color: $secondary;
+                    color: $text;
                     font-size: $middle-small;
                 }
                 .map-link-card {
@@ -374,7 +374,7 @@
                     width: 100%;
                     margin: 10px 0 15px 0;
                     flex-direction: column;
-                    color: $secondary;
+                    color: $text;
                     .map-title {
                         font-size: $medium;
                     }
@@ -383,7 +383,7 @@
                     }
                 }
                 .rating {
-                    color: $secondary;
+                    color: $text;
                     font-size: $small;
                 }
                 .map-link-card {

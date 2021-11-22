@@ -114,6 +114,10 @@ main .btn {
   height: 64px;
   box-shadow: 1px 1px 3px 1px #171a1c80;
   margin-bottom: 76px;
+  &:hover {
+  fill: $text;
+  color: $text;
+  }
 }
 
 .classification-title {
@@ -126,7 +130,7 @@ main .btn {
   height: 58px;
   border-radius: 10px;
   background: $classic;
-  color: $secondary;
+  color: $text;
   font-size: $large;
   margin: 23px auto -70px;
   box-shadow: 4px 4px 8px 0px #171a1c80;
@@ -180,6 +184,8 @@ main .btn {
     }
   }
   .create-collection-btn {
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
