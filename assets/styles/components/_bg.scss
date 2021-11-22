@@ -8,6 +8,10 @@
   background-repeat: repeat;
 }
 
+.bg-constellation-home {
+  @extend.bg-constellation;
+}
+
 .bg-collection {
   width: 100%;
   height: 100%;

@@ -5,7 +5,7 @@
     height: 100%;
     .filter {
         .global-mappool-data {
-            color: $secondary;
+            color: $text;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -77,7 +77,7 @@
         }
         .global-beatmapset {
             padding: 4px 10px;
-            color: $secondary;
+            color: $text;
             flex-direction: column;
             border-radius: 10px;
             border: solid 1px $dark;
@@ -116,7 +116,7 @@
                 border-radius: 36px;
                 background-color: $fuchsia;
                 height: 43px;
-                color: $secondary;
+                color: $text;
                 font-size: $large;
                 width: 235px;
                 align-items: center;

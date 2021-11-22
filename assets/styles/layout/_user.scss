@@ -2,7 +2,7 @@
 
 .user-body {
   background-color: $dark;
-  color: $secondary;
+  color: $text;
   font-weight: bold;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .score-btn {
-  color: $secondary;
+  color: $text;
   width: 78px;
   height: 27px;
   background-color: $fuchsia;
@@ -65,7 +65,7 @@
 
   &:hover {
     background-color: #ea1595;
-    color: $secondary;
+    color: $text;
   }
 
   .upload-svg {

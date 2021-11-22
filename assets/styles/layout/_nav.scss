@@ -7,14 +7,14 @@
   align-items: center;
   top: 0;
   background: $light;
-  color: $secondary;
+  color: $text;
   position: fixed;
   height: 60px;
   width: 100vw;
   font-size: $medium;
 
   .form-control {
-    color: $secondary;
+    color: $text;
     width: 220px;
     height: 40px;
     background: rgba(#a1a1a1, 0.4);
@@ -22,7 +22,7 @@
     border-radius: $strong-border;
 
     &::placeholder {
-      color: rgba($secondary, 0.5);
+      color: rgba($text, 0.5);
     }
   }
 
@@ -39,7 +39,7 @@
     margin: auto;
 
     .svg {
-      fill: $secondary;
+      fill: $text;
     }
   }
 
@@ -78,7 +78,7 @@
     .nav-link {
       display: flex;
       align-items: center;
-      color: $secondary;
+      color: $text;
       padding: 10px 0 10px 30px;
 
       &:before {
@@ -131,8 +131,8 @@
 #second-nav {
   z-index: 4;
   background: $classic;
-  color: $secondary;
-  fill: $secondary;
+  color: $text;
+  fill: $text;
   width: 100vw;
   position: fixed;
   bottom: 0;
@@ -156,8 +156,8 @@
       .nav-link {
         width: 100%;
         padding: 5px 0 0;
-        color: $secondary;
-        fill: $secondary;
+        color: $text;
+        fill: $text;
 
         &:after {
           content: "";
@@ -244,7 +244,7 @@
 
     .search-bar {
       border-radius: $strong-border;
-      border: 2px solid rgba($secondary, 0.3);
+      border: 2px solid rgba($text, 0.3);
       order: 3;
       margin: auto 0 auto auto;
       width: 44px;
@@ -286,7 +286,7 @@
       align-content: center;
 
       .svg {
-        fill: $secondary;
+        fill: $text;
         margin: 0 auto 5px;
       }
 
