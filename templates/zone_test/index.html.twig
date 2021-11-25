@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Home
+{% endblock %}
+
 {% block body %}
 
-	{% include "/layout/_collection-data.html.twig" %}
 
-	<div class="d-flex contributors-global-card">
-		{% for i in 0..5 %}
-			{% include "/layout/_contributor-card.html.twig" %}
-		{% endfor %}
-	</div>
-	<div class="dropdown-card"></div>
 {% endblock %}

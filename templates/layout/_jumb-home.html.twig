@@ -28,7 +28,7 @@
 										</p>
 									</div>
 									<div class="d-flex justify-content-center justify-content-sm-end justify-content-lg-center">
-										<a class="btn blue-button mx-sm-3">Create my fisrt mappool now!</a>
+										<a class="btn blue-button mx-sm-3" href="{{ path('my_collection') }}">Create my fisrt mappool now!</a>
 									</div>
 								</div>
 								<div class="d-flex flex-column flex-sm-row flex-lg-column justify-content-sm-around mt-3 cards-container">
@@ -61,7 +61,8 @@
 
 					</div>
 					<div class="scroll d-none d-lg-flex justify-content-lg-center">
-						<div class="scroll-mouse"></div>
+						{# issues1 scroll-mouse href vers /page/home.html.twig l.9 #}
+						<a class="scroll-mouse" href="#scroll"></a>
 					</div>
 				</div>
 			</section>

@@ -4,29 +4,33 @@
 
 //import des variables spécifiques au projet
 @import "normalize";
-@import "theme";
 @import "variables";
 
 // import de tous les petites élements du site
 @import "components/bg";
 @import "components/button";
-@import "components/collection";
+@import "components/contributor-card";
 @import "components/input";
 @import "components/logo";
 @import "components/menu-burger";
 @import "components/scroll";
+@import "components/scrollbar";
 @import "components/tag";
 @import "components/thumbnails";
 @import "components/title";
 
 //import de tous les gros élément du site
-@import "layout/collection";
+@import "layout/box-rotate";
 @import "layout/collection-card";
 @import "layout/collection-data";
+@import "layout/collection-edit";
 @import "layout/contributor";
 @import "layout/jumbotron";
 @import "layout/mappool-card";
-@import "layout/modal";
+@import "layout/mappool-edit";
+@import "layout/modal-contributor";
+@import "layout/modal-collection-new";
+@import "layout/modal-cover";
 @import "layout/nav";
 @import "layout/pined-mappool";
 @import "layout/pop-up";
@@ -34,5 +38,8 @@
 @import "layout/user";
 
 // import du style des construction finale des pages
+@import "page/collection";
+@import "page/home";
 @import "page/mycollection";
 @import "page/search-page";
+@import "page/zone-test";

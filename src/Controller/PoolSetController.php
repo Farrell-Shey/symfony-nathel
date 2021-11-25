@@ -16,6 +16,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -244,16 +245,16 @@ class PoolSetController extends AbstractController
             ->setMethod('POST')
             //->setAction('/owo')
             ->add('title', TextType::class,
-                ['label' => 'Collection Title', 'required' => False, 'data' => $collection['poolset']->getName()]
+                ['label' => false, 'required' => False, 'data' => $collection['poolset']->getName()]
             );
 
         $mods = $tr->findBy(['type' => 'gamemod']);
         foreach ($mods as $mod){
             $name = str_replace(' ', '_', $mod->getName());
             if (in_array($name, $collection['tag_names']['mod'])){
-                $form = $form->add($name, CheckboxType::class, ['required' => False, 'attr' => ['checked' => true]]);
+                $form = $form->add($name, CheckboxType::class, ['label' => false, 'required' => False, 'attr' => ['checked' => true]]);
             }else{
-                $form = $form->add($name, CheckboxType::class, ['required' => False]);
+                $form = $form->add($name, CheckboxType::class, ['label' => false, 'required' => False]);
             }
 
         }
@@ -298,7 +299,7 @@ class PoolSetController extends AbstractController
 
 
 // MAPPOOL FORMS
-        $forms = ['form' => $form, 'add' => $form_add_mappool];
+        $forms = ['form' => $form->createView(), 'add' => $form_add_mappool->createView()];
 
         foreach ($collection['mappools'] as $mappool){
 
@@ -313,25 +314,38 @@ class PoolSetController extends AbstractController
             $add_map->setMethod('POST')
                 ->setAttribute('name', 'add_map')
                 ->add('id', HiddenType::class, ['attr' => ['value'=> $mappool->getId()]])
-                ->add('title', TextType::class,
-                    ['label' => 'Map Title', 'required' => False])
+                ->add('link', TextType::class,
+                    ['label' => 'Map Link', 'required' => False])
                 ->add('submit', SubmitType::class, ['label' => 'Add Map']);
             $add_map = $add_map->getForm();
             $add_map->handleRequest($request);
 
-            foreach($mappool->maps as $maps){
-                //$form_mappool->add()
+            foreach($mappool->maps as $map){
+                $form_mappool->add('map_link_'.$map['map']->getId(), TextType::class, ['data'=> $map['map']->getUrl(), 'label' => 'Map link'])
+                    ->add('map_mode_'.$map['map']->getId(), ChoiceType::class, [
+                        'choices'  => [
+                            'NM' => 'NM',
+                            'DT' => 'DT',
+                            'HR' => 'HR',
+                        ]
+                        ,
+                        'label' => ' ',
+                        'data' => $map['mode']
+                    ]);
             }
             $form_mappool = $form_mappool->getForm();
             $form_mappool->handleRequest($request);
 
-            $forms[rand(0,9999999)] = $form_mappool;
-            $forms['map_'.rand(0,9999999)] = $add_map;
+            $forms[rand(0,9999999)] = $form_mappool->createView();
+            $forms['map_'.rand(0,9999999)] = $add_map->createView();
+
+            $forms['poolset_data'] = ['title' => $collection['poolset']->getName(), 'thumbnail' => $collection['poolset']->getThumbnail() ];
 
 
         }
 
-        return $this->renderForm('zone_test_nath/edit.html.twig', $forms);
+
+        return $this->render('/page/edit-collection.html.twig', $forms);
     }
 
 

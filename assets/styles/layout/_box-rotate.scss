@@ -1,0 +1,104 @@
+.global-skew {
+    padding: 50px 0;
+    z-index: -1;
+    .mappool-skew {
+        transform: rotate(5deg) skew(5deg, 0deg);
+        border-radius: 0;
+        background-color: $classic;
+        width: 100%;
+        height: fit-content;
+        height: -moz-fit-content;
+        border-top: solid 50px $classic;
+        border-bottom: solid 50px $classic;
+        &:before, &:after {
+            content: "";
+            display: block;
+            padding: 2px 0;
+            line-height: 1px;
+            border-top: 3px dashed #fff;
+          }
+        .negative-mappool-skew {
+            transform: rotate(-5deg) skew(-5deg, 0deg);
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 35px 0 55px 0;
+
+            .global-mappool-card {
+                display: none;
+                box-shadow: 1px 1px 2px 1px #00000080;
+            }
+            .global-mappool-card-small {
+                display: flex;
+                width: 100%;
+                height: 113px;
+                border-radius: 10px;
+                background-color: $light;
+                margin-top: 17px;
+                box-shadow: 1px 1px 2px 1px #00000080;
+            }
+        }
+    }
+}
+
+@media screen and(min-width: 576px) {
+    .global-skew {
+        padding: 200px 0;
+        .mappool-skew {
+            .negative-mappool-skew {
+                margin: -142px 0 -228px 0;
+                .global-mappool-card {
+                    display: none;
+                }
+                .global-mappool-card-small {
+                    display: flex;
+                    width: 606px;
+                    height: 585px;
+                    margin: 34px auto 0 auto;
+                }
+            }
+        }
+    }
+}
+
+@media screen and(min-width: 992px) {
+    .global-skew {
+        padding: 200px 0;
+        .mappool-skew {
+            .negative-mappool-skew {
+                padding: 0 11.286% 0 11.286%;
+                .global-mappool-card {
+                    display: none;
+                }
+                .global-mappool-card-small {
+                    display: flex;
+                    width: 606px;
+                    height: 585px;
+                    margin: 102 auto 0 auto;
+                }
+            }
+        }
+    }
+}
+
+@media screen and(min-width: 1638px) {
+    .global-skew {
+        .mappool-skew {
+            .negative-mappool-skew {
+                .global-mappool-card {
+                    display: flex;
+                    width: 606px;
+                    height: 585px;
+                    border-radius: 10px;
+                    background-color: $light;
+                    margin: 102px 0 0 0;
+                }
+                .global-mappool-card-small {
+                    display: none;
+                }
+            }
+        }
+    }
+}

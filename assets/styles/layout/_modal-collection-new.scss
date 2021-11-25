@@ -1,0 +1,185 @@
+.global-modal {
+    background: rgba(0, 0, 0, 0.3) !important;
+    .modal-dialog {
+        max-width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        .modal-content {
+            appearance: none !important;
+            background: $bg-dark;
+            width: 100%;
+            height: 100vh;
+            color: $text;
+            padding: 13px;
+            .return-arrow {
+                margin: 0 0 18px -10px;
+            }
+            .new-collection-title {
+                white-space: nowrap;
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+                font-size: $medium;
+                background-size: 0;
+                .collection-name {
+                    background: transparent;
+                }
+            }
+            .text-new-collection {
+                font-size: $medium;
+            }
+            .block-drop {
+                margin-top: 28px;
+                width: 100%;
+                flex-direction: column;
+                .drop-title {
+                    font-size: $medium;
+                    width: fit-content;
+                    width: -moz-fit-content;
+                    flex-direction: column;
+                    &:after {
+                        content: "";
+                        height: 3px;
+                        width: 100%;
+                        border-radius: 50px;
+                        background: $classic;
+                        margin-bottom: 10px;
+                    }
+                }
+                .drop-container {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    height: 139px;
+                    width: 100%;
+                    border: 5px dashed $classic;
+                    border-radius: 10px;
+                    .drop-text {
+                        width: 121px;
+                        text-align: center;
+                        font-size: $medium;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .global-modal {
+        background: transparent;
+        border-radius: 10px 10px 0 0;
+
+        .modal-dialog {
+            border-radius: 10px;
+            padding: 49px 23px 23px;
+            .modal-content {
+                border-radius: 10px;
+                height: fit-content !important;
+                height: -moz-fit-content !important;
+                overflow-x: hidden;
+                padding: 0 0 20px 0;
+                .block-input-title {
+                    background: -moz-linear-gradient(left, #2e3538 0%, #171a1c 100%) !important;
+                    background: -webkit-linear-gradient(left, #2e3538 0%, #171a1c 100%) !important;
+                    background: linear-gradient(to right, #2e3538 0%, #171a1c 100%) !important;
+                    .content-collection-btn {
+                        width: 100%;
+                        justify-content: flex-end;
+                        margin: 20px 0;
+                    }
+                    .new-collection-title {
+                        white-space: nowrap;
+                        flex-direction: row;
+                        align-items: center;
+                        width: 100%;
+                        height: 213px;
+                        background-size: 38%;
+                        background-color: transparent;
+                        font-size: $large;
+                        padding: 0 30px;
+                        .collection-title {
+                            width: fit-content;
+                            width: -moz-fit-content;
+                            padding: 25px 33px;
+                            border-radius: 10px;
+                            background: $lighter;
+                            box-shadow: 4px 4px 8px 0px #171a1c80;
+                        }
+                        .collection-name {
+                            width: 100%;
+                            padding: 25px 33px;
+                            border-radius: 10px;
+                            background: $lighter;
+                            box-shadow: 4px 4px 8px 0px #171a1c80;
+                        }
+                    }
+                }
+                .block-contain {
+                    padding: 0 30px;
+                }
+                .text-new-collection {
+                    font-size: $extra-large;
+                }
+                .block-drop {
+                    margin-top: 28px;
+                    width: 100%;
+                    flex-direction: column;
+                    padding: 0 30px;
+                    .drop-title {
+                        font-size: $extra-large;
+                        &:after {
+                            content: "";
+                            height: 3px;
+                            width: 100%;
+                            border-radius: 50px;
+                            background: $classic;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .drop-container {
+                        margin: 0 auto;
+                        height: 224px;
+                        max-width: 667px;
+                        .drop-text {
+                            width: 242px;
+                            font-size: $extra-large;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .global-modal {
+        .modal-dialog {
+            .modal-content {
+                .block-input-title {
+                    .new-collection-title {
+                        font-size: $extra-large;
+                        padding: 0 60px;
+                    }
+                }
+                .block-contain {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    padding: 0 60px;
+                }
+                .text-new-collection {
+                    font-size: $extra-large;
+                }
+                .block-drop {
+                    margin-top: 28px;
+                    width: 100%;
+                    flex-direction: column;
+                    padding: 0 60px;
+                    .drop-container {
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

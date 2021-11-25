@@ -1,83 +1,208 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}{% endblock %}
-
-{% block body %}
-    <section id="collection-body">
-        <div id="drop-down" class="contributors-contain">
-            <h2 class="contributors-h2">Contributors</h2>
-            <ul class="contributors d-flex">
-                <li>
-                    <a class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        {{ block('modal') }}
-                        <p class="modal-text">add a new contributor</p>
-                    </a>
-                </li>
-                {% for i in 0..9 %}
-                    <li class="contributor d-flex">
-                        <a href="">
-                            {{ block('delete') }}
-                        </a>
-                        <img class="contributor-flag" src="https://via.placeholder.com/17x12 " alt="">
-                        <div class="contributor-1">
-                            <img class="contributor-thumbnail" src="https://via.placeholder.com/40x40" alt="">
-                        </div>
-                        <div class="contributor-2">
-                            <p class="contributor-name">Farrell-Shey974</p>
-                            <p><span>Contributor since  <br> 1 November 2020</span></p>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-no-bg" onclick="getElementById('drop-down').classList.toggle('open')">
-                    {{ block('arrow') }}
-                </button>
-            </div>
-        </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <section class="modal-content modal-dialog" id="modal-body">
-                <div class="modal-contain">
-                    <div class="d-flex justify-content-end">
-                        <a class="btn-close btn" data-bs-dismiss="modal">Close</a>
-                    </div>
-                    <form class="search-bar" action="">
-                        <input class=" form-control" type="text" placeholder="Search user">
-                        <button class="btn btn-search" type="submit">
-                            {{ block("search") }}
-                        </button>
-                    </form>
-                    <ul class="modal-list">
-                        {% for i in 0..3 %}
-                            <li class="modal-card">
-                                <img class="modal-thumbnail" src="https://via.placeholder.com/20x20" alt="">
-                                <img class="modal-flag" src="https://via.placeholder.com/14x9" alt="">
-                                <p>Filsdelama</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <div class="modal-add">
-                        <p>You want to add :</p>
-                        <div class="btn-contain">
-                            <div class="btn btn-add">
-                                <p>Trace12</p>
-                                <a>
-                                    {{ block('cross') }}
-                                </a>
-                            </div>
-                            <div class="btn btn-add">
-                                <p>Nireko</p>
-                                <a>
-                                    {{ block('cross') }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn-confirm-contain">
-                        <a class="btn btn-confirm">Confirm</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </section>
+{% block title %}Edit collection
 {% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('modal') }}
+	{{ encore_entry_script_tags('dropdown') }}
+	{{ encore_entry_script_tags('mappoolDropdown') }}
+
+	<script>
+		//const axios = require("axios");
+		const form = document.querySelector("form[id='poolset']")
+		const add = document.querySelector("form[id='add']")
+		const pools = document.querySelectorAll("form[id='pool']")
+		const button = document.querySelector("button[id='test']")
+		const add_map = document.querySelectorAll("form[id='add_map']")
+		console.log(form)
+
+		document.addEventListener('DOMContentLoaded', function() {
+			function makePostRequest(input, path){
+				return axios.post(path, input)
+			}
+
+
+			/////////////////////// POOLSET DATA /////////////////////////////
+
+			form.addEventListener('submit', function(e) {
+				e.preventDefault();
+				const data = new FormData(form)
+
+
+				let request = makePostRequest(data, '{{ (path('edit_save')) }}')
+				// EN JS, il reste à faire l'event qui RENVOIE la requête
+				// scrollable à true signifie qu'il reste pools à afficher
+				const { rank_min, rank_max, title, std,
+					mania, taiko, ctb } = request
+				const form_title = document.getElementById('form_title')
+				const form_rank_min = document.getElementById('form_rank_min')
+				const form_rank_max = document.getElementById('form_rank_max')
+				const form_range_min = document.getElementById('form_range_min')
+				const form_range_max = document.getElementById('form_range_max')
+				const form_std = document.getElementById('form_std')
+				const form_mania = document.getElementById('form_mania')
+				const form_taiko = document.getElementById('form_taiko')
+				const form_ctb = document.getElementById('form_ctb')
+				const form_image = document.getElementById('form_image')
+				form_image.value = ""
+				//b.setAttribute("value", "helloButton");
+			})
+
+
+			/////////////////////// MAPPOOLS & MAPS DATA /////////////////////////////
+
+			button.addEventListener('click', function(e) {
+				e.preventDefault();
+
+				pools.forEach(f => {
+
+					const data = new FormData(f)
+					let request = makePostRequest(data, '{{ (path('save_mappools')) }}')
+
+				})
+			})
+
+
+			add_map.forEach(f => {
+				/////////////////////// AJOUTER UNE MAP /////////////////////////////
+				f.addEventListener('submit', function(e) {
+					e.preventDefault();
+
+					const data = new FormData(f)
+					console.log(data)
+					let request = makePostRequest(data, '{{ (path('add_map')) }}')
+
+				})
+			})
+
+
+			/////////////////////// AJOUTER UN MAPPOOL /////////////////////////////
+			add.addEventListener('submit', function(e) {
+				e.preventDefault();
+				const data = new FormData(add)
+
+
+
+				makePostRequest(data, '{{ (path('add_mappool')) }}').then(function (response){
+					let request = response.data
+
+					let f = document.createElement("form")
+					f.setAttribute('method',"post")
+					f.setAttribute('id', 'pool')
+
+					let i = document.createElement("input") //input element, text
+					i.setAttribute('label', 'Mappool Title')
+					i.setAttribute('type', 'text')
+					i.setAttribute('value',request['title'])
+					i.setAttribute('id','form_title')
+
+					let j = document.createElement("input") //input element, text
+					j.setAttribute('type', 'checkbox')
+					i.setAttribute('label', 'Delete')
+					j.setAttribute('id','form_delete')
+
+					let h = document.createElement("input") //input element, text
+					h.setAttribute('type', 'hidden')
+					h.setAttribute('value',request['id'])
+					h.setAttribute('id','form_id')
+
+					f.appendChild(i)
+					f.appendChild(j)
+					f.appendChild(h)
+
+					document.getElementsByTagName('main')[0].appendChild(f);
+					console.log(f)
+				})
+
+
+			})
+		})
+	</script>
+
+{% endblock %}
+{% block body %}
+	<!-- FORM DE LA PARTIE POOLSET -->
+
+
+	<div class="edit-collection-page">
+
+		{{ form_start(form, {'method': 'post', 'attr': {'id': 'poolset'}}) }}
+		<div class="block-contributors-collection">
+
+			<section class="d-flex collection-card">
+
+				<div class="bg-collection" style="background-image: url('{{asset(poolset_data.thumbnail)}}')">
+					<div class="filter">
+						<button type="button" class="d-flex change-cover-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop-cover">
+							<span class="change-cover-text">change cover</span>
+						</button>
+
+
+
+
+						{% include "/layout/_modal-cover.html.twig" %}
+
+						<div class = 'd-flex block-input-title'>
+							<div class="d-flex mx-auto collection-title-form">
+								<span class="collection-title ms-3">Collection Title</span>
+								{{ form_row(form.title, {'attr': {'class':'collection-name bg-transparent mx-3'}}) }}
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<section class="block-search ">
+			<div class="d-lg-flex flex-lg-wrap justify-content-lg-between">
+				<div class="tags block-mod">
+					<span class="title title-mod">Game Mod</span>
+					{% set mods = ['std', 'taiko','ctb','mania'] %}
+					{% for child in form.children %}
+						{% if (child.vars.name in mods) %}
+							{{ form_widget(child) }}
+							{{ form_label(child, child.vars.name, {'label_attr': {'class': 'tag tag-mod'}} ) }}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="tags block-category">
+					<span class="title title-category">Category</span>
+					{% set categories = ['tournament', 'fun','training','challenge', 'pp_farm'] %}
+					{% for child in form.children %}
+						{% if (child.vars.name in categories) %}
+							{{ form_widget(child) }}
+							{% if child.vars.name == 'pp_farm' %}
+								{% set foo = 'PP farm' %}
+							{% else %}
+								{% set foo = child.vars.name | capitalize %}
+							{% endif %}
+							{{ form_label(child, foo  , {'label_attr': {'class': 'tag tag-category'}} ) }}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="block-rank">
+					{{ form_row(form.rank_min) }}
+					{{ form_row(form.rank_max) }}
+					<span class="title title-rank">Rank Range</span>
+					<div id="slider-rank" class="slider"></div>
+				</div>
+			</div>
+
+		</section>
+
+		{{ form_end(form) }}
+
+
+	</div>
+
+{% endblock %}
+
+
+
+
+
+

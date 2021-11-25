@@ -1,7 +1,7 @@
 //osu - colors
 
 $primary : #00b9db;
-$secondary : #fff;
+$text : rgb(255, 255, 255);
 $pink : #bc497c;
 $purple : #aa88ff;
 $yellow : #FFCC22;
@@ -10,11 +10,15 @@ $black : #121415;
 $red : #BB2222;
 $gray : #C4C4C4;
 $light-gray : #838383;
+$light-pink: #FF66AA;
 $indigo: #FC6AFF;
 $violet: #302E38;
 $fuchsia: #BB1177;
 $bg-dark: #22282A;
 $blue: #2299BB;
+$dark-pink:#bc497c;
+$dark-green: #6C8D02;
+$dark-violet: #7E64BD;
 
 
 // background - colors
@@ -61,6 +65,8 @@ $strong-shadow : 4px 4px 8px rgba(23, 26, 28, 0.5);
 $smallest: 0.375rem;
 //8px
 $extra-small: 0.5rem;
+//10px
+$middle-small: 0.625rem;
 //12px
 $small: 0.75rem;
 //16px

@@ -179,13 +179,22 @@
                 f.addEventListener('submit', function(e) {
                     e.preventDefault();
 
+            add_map.forEach(f => {
+                /////////////////////// AJOUTER UNE MAP /////////////////////////////
+                f.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
                     const data = new FormData(f)
                     console.log(data)
-                    //let request = makePostRequest(data, '{{ (path('save_mappools')) }}')
+                    let request = makePostRequest(data, '{{ (path('add_map')) }}')
 
                 })
             })
 
+            /////////////////////// AJOUTER UN MAPPOOL /////////////////////////////
+            add.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const data = new FormData(add)
 
             /////////////////////// AJOUTER UN MAPPOOL /////////////////////////////
             add.addEventListener('submit', function(e) {

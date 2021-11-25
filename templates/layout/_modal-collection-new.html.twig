@@ -1,0 +1,65 @@
+<div class="global-modal modal fade" id="modal-pop" tabindex="-1" aria-labelledby="modal-popLabel" aria-hidden="true" data-bs-backdrop="static">
+
+	<div class="modal-dialog">
+		<div class="modal-content border-0">
+			<button class="d-flex return-arrow bg-transparent border-0 d-sm-none" type="button" data-bs-dismiss="modal">
+				<svg width="29" height="29" viewbox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.1663 13.2923H9.46092L16.2155 6.53773L14.4997 4.83398L4.83301 14.5007L14.4997 24.1673L16.2034 22.4636L9.46092 15.709H24.1663V13.2923Z" fill="white"/>
+				</svg>
+			</button>
+			<form class="new-collection">
+
+				<div class="d-flex block-input-title">
+
+					<div class="d-flex new-collection-title flex-column" style="background-image: url('{{asset('/build/constellation.svg')}}')">
+						<div class="content-collection-btn d-flex flex-end">
+							<button class="d-none d-sm-flex close-btn border-0" type="button" data-bs-dismiss="modal">
+								fermer
+							</button>
+						</div>
+						<div class="content-collection d-flex flex-row"  style="width: 100%">
+							<span class="collection-title">Collection Title</span>
+							<input class="collection-name ms-3" type="text" placeholder="New collection" name="collection name">
+						</div>
+					</div>
+				</div>
+
+				<div class="d-flex block-contain">
+					<div class="tags block-mod">
+						<span class="title title-mod text-new-collection">Game Mod</span>
+						{% for i in 0..3 %}
+							<input type="checkbox" name="{{ i }}" id="{{ i }}"/>
+							<label class="tag tag-mod" for="{{ i }}">tag mod
+								{{ i }}</label>
+						{% endfor %}
+					</div>
+					<div class="tags block-category">
+						<span class="title title-category text-new-collection">Category</span>
+						{% for j in 0..3 %}
+							<input type="checkbox" name="{{ j }}" id="{{ j }}"/>
+							<label class="tag tag-category" for="{{ j }}">catégorie
+								{{ j }}</label>
+						{% endfor %}
+					</div>
+					<div class="block-rank">
+						<span class="title title-rank text-new-collection">Rank Range</span>
+						<div id="slider-rank" class="slider"></div>
+					</div>
+				</div>
+
+				<div class="block-drop">
+					<span class="drop-title d-flex">Background image</span>
+
+					<div class="d-flex drop-container">
+						<span class="drop-text">Drop your image or</span>
+						<button class="btn bg-transparent btn-upload">Upload image</button>
+					</div>
+				</div>
+
+				<button class="btn save-collection-btn" type="submit" data-bs-dismiss="pop" aria-label="Close">Save Collection</button>
+
+			</form>
+
+		</div>
+	</div>
+</div>

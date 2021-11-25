@@ -1,0 +1,428 @@
+.global-edit-mappool {
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+    &.js-toggle-mappool {
+        .block-edit-mappool {
+            height: fit-content;
+            height: -moz-fit-content;
+            .dropdown-block {
+                .dropdown {
+                    transform: rotate(180deg);
+                }
+            }
+            .block-dropdown-data {
+                visibility: visible;
+            }
+        }
+    }
+    .block-edit-mappool {
+        width: 100%;
+        background: $light;
+        border-radius: 10px;
+        height: 90px;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto 10px auto;
+        .dropdown-block {
+            width: 100%;
+            .dropdown {
+                margin-right: auto;
+                width: 24px;
+            }
+        }
+        .block-btn {
+            width: 100%;
+        }
+        .block-add-mappool-title {
+            @extend .block-mappool-title;
+            background-repeat: repeat !important;
+            background-size: contain !important;
+        }
+        .block-mappool-title {
+            justify-content: space-around;
+            fill: $classic;
+            flex-direction: column;
+            background-color: $dark;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 10px;
+            width: 100%;
+            height: 90px;
+            padding: 5px;
+            .global-card-title {
+                margin: 5px 0;
+                padding: 0 10px;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: row;
+                background-color: transparent;
+                height: fit-content;
+                height: -moz-fit-content;
+                width: 98%;
+                border-radius: 10px;
+                background-color: $classic;
+                border: solid 1px $light;
+
+                .mappool-title {
+                    margin: 0 10px 0 0;
+                    width: fit-content;
+                    width: -moz-fit-content;
+                    white-space: nowrap;
+                    font-size: $medium;
+                }
+                .mappool-title-edit {
+                    overflow: hidden;
+                    min-width: 10%;
+                    .mappool-input-title {
+                        height: 19px;
+                        margin-top: 4px;
+                        background: transparent !important;
+                        outline: 0 !important;
+                        margin-left: 5px;
+                        border: 0;
+                        border-bottom: solid 2px $primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .block-dropdown-data {
+        visibility: hidden;
+        flex-direction: column;
+        width: 90%;
+        height: fit-content;
+        height: -moz-fit-content;
+
+        .block-mappool-data {
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 31px;
+            margin: 6px 0;
+            border-radius: 10px;
+            border: solid 2px $classic;
+            padding: 4px 6px;
+            .first-line-data {
+                width: 100%;
+            }
+            .second-line-data {
+                width: 0%;
+            }
+            .map-link-card {
+                width: 60%;
+                border-radius: 5px;
+                background-color: rgba(0, 0, 0, 0.3);
+
+                .map-link-text {
+                    font-size: $smallest;
+                }
+                .map-link {
+                    background: transparent !important;
+                    width: 95%;
+                    font-size: $extra-small;
+                    margin-top: -3px;
+                }
+            }
+            .menu-mod {
+                margin-right: auto;
+                .mod-target {
+                    .card-menu {
+                        width: 47px;
+                        margin: 4px 6px 0 6px;
+                        background-color: #2e3538;
+                        border-radius: 0 0 5px 5px;
+                        .mod-btn {
+                            background-color: transparent;
+                            width: 100%;
+                            height: fit-content;
+                            height: -moz-fit-content;
+                            border: solid 1px rgba(128, 128, 128, 0.5);
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                            &:hover {
+                                -webkit-box-shadow: inset 0px 0px 25px 10px $primary;
+                                box-shadow: inset 0px 0px 25px 10px $primary;
+                            }
+                            .mod-choice {
+                                font-size: $middle-small;
+                                margin: auto;
+                                color: $text;
+                            }
+                        }
+                    }
+                }
+                .mod-select {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    width: fit-content;
+                    width: -moz-fit-content;
+                    border-radius: 22px;
+                    border: solid 1px $gray;
+                    margin-left: 5px;
+                    margin-right: auto;
+                    padding-left: 4px;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    .block-drop-menu {
+                        flex-direction: row;
+                        color: $gray;
+                        .mod {
+                            margin: 0 6px;
+                            font-size: $middle-small;
+                        }
+                        .dropdown-toggle {
+                            width: 9px;
+                            color: $gray;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .block-save-btn {
+        justify-content: flex-end;
+        width: 95%;
+        margin: 16px auto 16px auto;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .global-edit-mappool {
+        margin-top: 50px;
+        width: 100%;
+        justify-content: center;
+        &.js-toggle-mappool {
+            .block-edit-mappool {
+                height: fit-content;
+                height: -moz-fit-content;
+                .dropdown-block {
+                    .dropdown {
+                        transform: rotate(180deg);
+                    }
+                }
+                .block-add-mappool-title {
+                    border-radius: 10px !important;
+                }
+                .block-mappool-title {
+                    border-radius: 10px 10px 0 0;
+                }
+                .block-dropdown-data {
+                    visibility: visible;
+                }
+            }
+        }
+
+        .block-edit-mappool {
+            min-height: 182px;
+            width: 100%;
+
+            .dropdown-block {
+                .dropdown {
+                    width: 32px;
+                }
+            }
+            .block-mappool-title {
+                min-height: 182px;
+
+                .global-card-title {
+                    padding: 14px 10px;
+                    .mappool-title {
+                        font-size: $large;
+                    }
+                    .mappool-title-edit {
+                        .mappool-input-title {
+                            font-size: $large;
+                        }
+                    }
+                }
+            }
+        }
+
+        .block-dropdown-data {
+            .block-mappool-data {
+                height: 60px;
+                overflow: visible;
+                flex-direction: column;
+                padding: 9px;
+                .first-line-data {
+                    flex-direction: row;
+                    align-items: flex-start;
+                    width: 100%;
+                }
+                .second-line-data {
+                    width: 100%;
+                    margin: 10px 0 15px 0;
+                    flex-direction: column;
+                    color: $text;
+                    .map-title {
+                        font-size: $small;
+                    }
+                    .map-author {
+                        font-size: $extra-small;
+                    }
+                }
+                .rating {
+                    color: $text;
+                    font-size: $middle-small;
+                }
+                .map-link-card {
+                    height: 35px;
+                    .map-link-text {
+                        font-size: $extra-small;
+                    }
+                    .map-link {
+                        font-size: $middle-small;
+                    }
+                }
+                .menu-mod {
+                    .mod-target {
+                        .card-menu {
+                            border-radius: 5px;
+                            width: 75px;
+                        }
+                    }
+                    .mod-select {
+                        height: 35px;
+                        width: 75px;
+                        align-items: center;
+                        justify-content: center;
+                        .block-drop-menu {
+                            .mod {
+                                font-size: $middle-small;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .global-edit-mappool {
+        width: 100%;
+        margin-top: 100px;
+        justify-content: center;
+        &.js-toggle-mappool {
+            .block-edit-mappool {
+                height: fit-content;
+                height: -moz-fit-content;
+                .dropdown-block {
+                    .dropdown {
+                        transform: rotate(180deg);
+                    }
+                }
+                .block-add-mappool-title {
+                    border-radius: 10px !important;
+                }
+                .block-mappool-title {
+                    border-radius: 10px 10px 0 0;
+                }
+                .block-dropdown-data {
+                    visibility: visible;
+                }
+            }
+        }
+
+        .block-edit-mappool {
+            min-height: 232px;
+            width: 100%;
+
+            .dropdown-block {
+                .dropdown {
+                    width: 32px;
+                }
+            }
+            .block-mappool-title {
+                min-height: 232px;
+
+                .global-card-title {
+                    padding: 25px 10px;
+                    .mappool-title {
+                        font-size: $extra-large;
+                    }
+                    .mappool-title-edit {
+                        width: 80%;
+                        .mappool-input-title {
+                            height: 2rem;
+                            width: 100%;
+                            font-size: $extra-large;
+                        }
+                    }
+                }
+            }
+        }
+
+        .block-dropdown-data {
+            .block-mappool-data {
+                height: fit-content;
+                height: -moz-fit-content;
+                overflow: visible;
+                flex-direction: column;
+                padding: 9px;
+                .first-line-data {
+                    flex-direction: row;
+                    align-items: flex-start;
+                    width: 100%;
+                    height: 45px;
+                }
+                .second-line-data {
+                    width: 100%;
+                    margin: 10px 0 15px 0;
+                    flex-direction: column;
+                    color: $text;
+                    .map-title {
+                        font-size: $medium;
+                    }
+                    .map-author {
+                        font-size: $small;
+                    }
+                }
+                .rating {
+                    color: $text;
+                    font-size: $small;
+                }
+                .map-link-card {
+                    height: 40px;
+                    .map-link-text {
+                        font-size: $small;
+                    }
+                    .map-link {
+                        font-size: $medium;
+                    }
+                }
+                .menu-mod {
+                    .mod-target {
+                        .card-menu {
+                            border-radius: 5px;
+                            width: 120px;
+                            .mod-btn {
+                                .mod-choice {
+                                    font-size: $medium;
+                                }
+                            }
+                        }
+                    }
+                    .mod-select {
+                        height: 40px;
+                        width: 120px;
+                        align-items: center;
+                        justify-content: center;
+                        .block-drop-menu {
+                            .mod {
+                                font-size: $large;
+                            }
+                            .dropdown-toggle {
+                                width: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

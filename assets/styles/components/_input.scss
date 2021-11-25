@@ -4,27 +4,27 @@ input[type="checkbox"]:checked, input[type="file"] {
 }
 
 input[type="checkbox"]:checked + label.tag-mod {
-  color: $secondary;
+  color: $text;
   background: $pink;
 }
 
 input[type="checkbox"]:checked + label.tag-category {
-  color: $secondary;
+  color: $text;
   background: $purple;
 }
 
 input {
-  color: $secondary;
+  color: $text;
 
   &:focus {
-    color: $secondary;
+    color: $text;
   }
 }
 
 .main-input {
   width: 100%;
   font-size: $medium;
-  color: $secondary;
+  color: $text;
   border-radius: $light-border;
 
   .btn-danger {
@@ -101,7 +101,7 @@ input {
 
   .noUi-tooltip {
     background: $classic;
-    color: $secondary;
+    color: $text;
     margin-bottom: 13px;
     line-height: normal;
     padding: 3px 5px;
@@ -134,24 +134,24 @@ input {
 }
 
 .btn-light {
-  color: $secondary;
+  color: $text;
   background: $classic;
   border-color: $classic;
 
   &:hover, &:focus {
-    color: $secondary;
+    color: $text;
     background: $light;
     border-color: $light;
   }
 }
 
 .btn-pink {
-  color: $secondary;
+  color: $text;
   background: #b17;
   border-color: #b17;
 
   &:hover, &:focus {
-    color: $secondary;
+    color: $text;
     background: #FF66AA;
     border-color: #FF66AA;
   }
@@ -165,7 +165,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $secondary;
+  color: $text;
   flex-wrap: wrap;
   text-align: center;
 
