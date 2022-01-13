@@ -51,7 +51,8 @@
 				</div>
 				<div class="d-none d-sm-grid profile">
 					{{ block("login") }}
-					Log In
+					<a href="https://osu.ppy.sh/oauth/authorize?response_type=code&client_id=8955&redirect_uri=https://nathel.wip/connexion&scope=public">Log In</a>
+
 				</div>
 			</div>
 			<div id="second-nav">
@@ -66,7 +67,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link " aria-current="page" href="{{ path('my_collection') }}">
+						<a class="nav-link " aria-current="page" href="{{ path('manage_collection') }}">
 							{{ block("mymappool") }}
 							My Mappools
 						</a>

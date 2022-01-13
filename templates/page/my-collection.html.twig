@@ -3,12 +3,14 @@
 {% block javascripts %}
 	{{ parent() }}
 	{{ encore_entry_script_tags('modal') }}
+	{{ encore_entry_script_tags('managePage') }}
 {% endblock %}
 {% block title %}My collection
 {% endblock %}
 {% block aside %}{% endblock %}
 
 {% block body %}
+
 	<!-- Modal -->
 	<section class="bg-constellation">
 		<div class="mycollection">
@@ -51,17 +53,20 @@
 						</form>
 					</div>
 				</li>
-				{% for i in 0..10 %}
+
+
+				{% for collection in collections %}
+
 					<li
-						class="list-item card">
-						<!-- style="background-image: url('assets/img/ont.jpg')" -->
+						class="list-item card" style="background-image: url('{{ "/" ~ collection['poolset'].thumbnail }}')">
+
 						<div class="filter collection">
-							<a class="btn-delete">
+							<a class="btn-delete" data-pool="{{ collection['poolset'].id }}">
 								<svg viewbox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M7.42839 0.761719C3.74839 0.761719 0.761719 3.74839 0.761719 7.42839C0.761719 11.1084 3.74839 14.0951 7.42839 14.0951C11.1084 14.0951 14.0951 11.1084 14.0951 7.42839C14.0951 3.74839 11.1084 0.761719 7.42839 0.761719ZM6.76172 4.09505L6.76172 6.76172L4.09505 6.76172L4.09505 8.09505H6.76172V10.7617H8.09505V8.09505L10.7617 8.09505V6.76172L8.09505 6.76172V4.09505L6.76172 4.09505ZM2.09505 7.42839C2.09505 10.3684 4.48839 12.7617 7.42839 12.7617C10.3684 12.7617 12.7617 10.3684 12.7617 7.42839C12.7617 4.48839 10.3684 2.09505 7.42839 2.09505C4.48839 2.09505 2.09505 4.48839 2.09505 7.42839Z" fill="#C30000"/>
 								</svg>
 							</a>
-							<a class="btn btn-edit" href="{{ path('collection_edit') }}">
+							<a class="btn btn-edit" href="{{ path('edit_collection', { 'id': collection['poolset'].id}) }}">
 								<svg width="16" height="13" viewbox="0 0 16 13" xmlns="http://www.w3.org/2000/svg">
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M1.59961 3.19922V4.26589H11.1996V3.19922H1.59961ZM1.59961 9.59922H4.79961V8.53255H1.59961V9.59922ZM7.99961 6.93255H1.59961V5.86589H7.99961V6.93255Z"/>
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.9317 3.83553L13.7637 4.66753C13.9024 4.8062 13.9024 5.0302 13.7637 5.16887L13.113 5.81953L11.7797 4.4862L12.4304 3.83553C12.4979 3.76798 12.5868 3.73242 12.6792 3.73242C12.7717 3.73242 12.8606 3.76442 12.9317 3.83553ZM7.4668 8.79923V10.1326H8.80013L12.7326 6.20012L11.3992 4.86679L7.4668 8.79923ZM8.50502 9.42126H8.17791V9.09415L11.3992 5.87282L11.7264 6.19993L8.50502 9.42126Z"/>
@@ -69,36 +74,42 @@
 								edit
 							</a>
 							<div class="text">
-								<h2 class="title-card">Dan Project : Aim Collection</h2>
+								<h2 class="title-card">{{ collection['poolset'].name }}</h2>
 								<span class="">manage with</span>
 								<div class="thumbnails-contributor">
 									{% set break = false %}
-									{% for j in 0..2 %}
+									{% set j = 0 %}
+									{% for contributor in collection['contributors'] %}
 										{% if  not break %}
-											<img class="thumbnail" src="https://via.placeholder.com/150x150" alt="thumbnail">
+											<a href="{{ "https://nathel.wip/user/" ~ collection['user']['id'] }}">
+												<img class="thumbnail" src="{{ collection['user']['cover'] }}" alt="thumbnail">
+											</a>
 											{% if j == 2 %}
 												<div class="thumbnail">
 													<p>
 														+
-														{{ j +1 }}
+														{{ j + 1 }}
 													</p>
 												</div>
 												{% set break = true %}
 											{% endif %}
 										{% endif %}
+										{% set j = j + 1 %}
 									{% endfor %}
 
 								</div>
-								<span class="nb-mappool">12 mappools</span>
+								<span class="nb-mappool">{{ collection['nb_pools']}} mappools</span>
 							</div>
+
 							<div class="tags">
-								{% for j in 0..3 %}
-									<span class="tag">training</span>
+								{% for tag in collection['tags'] %}
+									<span class="tag">{{ tag['name'] }}</span>
 								{% endfor %}
 							</div>
 						</div>
 					</li>
 				{% endfor %}
+
 			</ul>
 		</div>
 	</section>

@@ -56,10 +56,13 @@ class MappoolController extends AbstractController
     {
 
         $request = $request->request->get('form');
+
+
         $arrData = [];
         $arrData['title'] = $request['title'];
         $arrData['id'] = $request['id'];
         $arrData['background'] = 'later for background I guess';
+
         $this->editMappool($arrData, $mr, $em);
 
         return new JsonResponse($arrData);
@@ -74,6 +77,30 @@ class MappoolController extends AbstractController
         $mappool->setUpdatedAt(new \DateTime('now'));
         $em->persist($mappool);
         $em->flush();
+
+
+    }
+
+    /**
+     * @Route("delete_pool", name="delete_pool", methods={"GET", "POST"})
+     */
+    public function  deletePool(EntityManagerInterface $em, Request $request, MappoolRepository $mr): JsonResponse
+    {
+
+
+
+
+        $id = preg_replace('/[^0-9.]+/', '', $request->getContent());
+
+        $arrData = [];
+        $arrData['delete'] = true;
+        $arrData['id'] = $id;
+
+        $pool = $mr->findOneById($id);
+        $em->remove($pool);
+        $em->flush();
+
+        return new JsonResponse($arrData);
 
     }
 }

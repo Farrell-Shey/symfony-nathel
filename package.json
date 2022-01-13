@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.9.3",
-    "axios": "^0.21.4",
+    "axios": "^0.24.0",
     "bootstrap": "^5.0.2",
     "nouislider": "^15.4.0",
     "wnumb": "^1.2.0"

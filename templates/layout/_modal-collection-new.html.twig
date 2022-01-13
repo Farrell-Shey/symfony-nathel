@@ -7,7 +7,8 @@
 					<path d="M24.1663 13.2923H9.46092L16.2155 6.53773L14.4997 4.83398L4.83301 14.5007L14.4997 24.1673L16.2034 22.4636L9.46092 15.709H24.1663V13.2923Z" fill="white"/>
 				</svg>
 			</button>
-			<form class="new-collection">
+
+			{{ form_start(formulaire, {'attr': {'class': "new-collection", 'autocomplete' : 'off'}}) }}
 
 				<div class="d-flex block-input-title">
 
@@ -19,7 +20,7 @@
 						</div>
 						<div class="content-collection d-flex flex-row"  style="width: 100%">
 							<span class="collection-title">Collection Title</span>
-							<input class="collection-name ms-3" type="text" placeholder="New collection" name="collection name">
+							{{ form_widget(formulaire.title, {'attr': {'class': "collection-name ms-3", 'placeholder': "New Collection"}}) }}
 						</div>
 					</div>
 				</div>
@@ -27,21 +28,34 @@
 				<div class="d-flex block-contain">
 					<div class="tags block-mod">
 						<span class="title title-mod text-new-collection">Game Mod</span>
-						{% for i in 0..3 %}
-							<input type="checkbox" name="{{ i }}" id="{{ i }}"/>
-							<label class="tag tag-mod" for="{{ i }}">tag mod
-								{{ i }}</label>
+						{% set mods = ['std', 'taiko','ctb','mania'] %}
+						{% for child in formulaire.children %}
+							{% if (child.vars.name in mods) %}
+								{{ form_widget(child) }}
+								{{ form_label(child, child.vars.name, {'label_attr': {'class': 'tag tag-mod'}} ) }}
+							{% endif %}
 						{% endfor %}
+
 					</div>
 					<div class="tags block-category">
 						<span class="title title-category text-new-collection">Category</span>
-						{% for j in 0..3 %}
-							<input type="checkbox" name="{{ j }}" id="{{ j }}"/>
-							<label class="tag tag-category" for="{{ j }}">catégorie
-								{{ j }}</label>
+						{% set categories = ['tournament', 'fun','training','challenge', 'pp_farm'] %}
+						{% for child in formulaire.children %}
+							{% if (child.vars.name in categories) %}
+								{{ form_widget(child) }}
+								{% if child.vars.name == 'pp_farm' %}
+									{% set foo = 'PP farm' %}
+								{% else %}
+									{% set foo = child.vars.name | capitalize %}
+								{% endif %}
+								{{ form_label(child, foo  , {'label_attr': {'class': 'tag tag-category'}} ) }}
+							{% endif %}
 						{% endfor %}
 					</div>
 					<div class="block-rank">
+
+						{{ form_row(formulaire.rank_min) }}
+						{{ form_row(formulaire.rank_max) }}
 						<span class="title title-rank text-new-collection">Rank Range</span>
 						<div id="slider-rank" class="slider"></div>
 					</div>
@@ -52,13 +66,16 @@
 
 					<div class="d-flex drop-container">
 						<span class="drop-text">Drop your image or</span>
-						<button class="btn bg-transparent btn-upload">Upload image</button>
+						{{ form_widget(formulaire.image) }}
+						{{ form_label(formulaire.image, 'Upload Image', { 'label_attr': { 'class' : 'btn bg-transparent btn-upload'}}) }}
+
 					</div>
 				</div>
 
-				<button class="btn save-collection-btn" type="submit" data-bs-dismiss="pop" aria-label="Close">Save Collection</button>
+				{{ form_widget(formulaire.submit, {'attr':{'class': "btn save-collection-btn"}, 'label': "Save Collection"}) }}
 
-			</form>
+
+			{{ form_end(formulaire) }}
 
 		</div>
 	</div>

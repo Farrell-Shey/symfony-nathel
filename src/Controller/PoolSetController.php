@@ -15,6 +15,7 @@ use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -55,7 +56,7 @@ class PoolSetController extends AbstractController
      * @return Response
      * @Route("/manage", name="manage_collection", methods={"GET", "POST"})
      */
-    public function manage(EntityManagerInterface $em, ContributorRepository $cr , Request $request,  TagRepository $tr, PoolSetRepository $pr): Response
+    public function manage(EntityManagerInterface $em, ContributorRepository $cr , Request $request,  TagRepository $tr, PoolSetRepository $pr, MappoolRepository $mr): Response
     {
         // Vérif connexion, ou renvoi directe sur page connexion.
         /*
@@ -73,18 +74,58 @@ class PoolSetController extends AbstractController
         // MANAGE MY POOLS PART
 
         // Instanciation des collections
+
+
         $user = $this->security->getUser();
         $contributors = $cr->findBy(['user' => $user]);
         $collections = [];
+
         foreach($contributors as $contributor){
             $id = $contributor->getPoolSet()->getId();
-            $poolset = $pr->findById($id);
+            $poolset = $pr->findOneBy(['id' =>$id]);
+            $tags_tmp = $tr->findByPoolset($id);
+            $tags = [];
+            foreach($tags_tmp as $tag){
+                if ($tag->getType() == 'rank_min'){
+                    $rank_min = $tag->getName();
+                }elseif($tag->getType() == 'rank_max'){
+                    $rank_max = $tag->getName();
+                }elseif($tag->getType() == 'range_min'){
+                    $range_min = $tag->getName();
+                }elseif($tag->getType() == 'range_max'){
+                    $range_max = $tag->getName();
+                }elseif($tag->getType() =='rank'){
+
+                }else {
+                    array_push($tags, ['name' => $tag->getName(), 'type' => $tag->getType()]);
+                }
+            }
+            if(count($tags) >0){
+                if(isset($range_min) && isset($range_max)){
+                    array_push($tags,['name' => $range_min . " - " . $range_max, 'type' => 'range' ]);
+                }
+                if(isset($rank_min) && isset($rank_max)){
+                    array_push($tags,['name' => $rank_min . " - " . $rank_max, 'type' => 'rank' ]);
+                }
+            }
+
+
+            $tmp_user = [];
+            $tmp_user['id'] = $user->getOsuid();
+            $tmp_user['cover'] = $user->getThumbnail();
+
+
             $collection = ['poolset' => $poolset,
-                'tags' => $tr->findByPoolset($id),
-                'contributors' => $cr->findBy(['poolSet' => $poolset])];
+                'tags' => $tags,
+                'contributors' => $cr->findBy(['poolSet' => $poolset]),
+                'nb_pools' => count($mr->findBy(['poolSet' => $poolset])),
+                'user'=>$tmp_user
+            ];
 
             array_push($collections, $collection);
         }
+
+
 
 
 
@@ -111,20 +152,24 @@ class PoolSetController extends AbstractController
         }
 
         $form = $form
-            ->add('range_min', HiddenType::class)
-            ->add('range_max', HiddenType::class)
-            ->add('image', FileType::class)
-            ->add('submit', SubmitType::class, ['label' => 'Save Collection']);
+            ->add('rank_min', HiddenType::class, ['data' =>'0'])
+            ->add('rank_max', HiddenType::class, ['data' =>'500000'])
+            ->add('image', FileType::class, ['required' => false])
+            ->add('submit', SubmitType::class);
         $form = $form->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() ){
+
+
             $data = $form->getData();
             // Check
             if (gettype($data['title']) == 'string' || strlen($data['title'] <=50)){
                 $background_path = $this->uploadBackground($data['image']);
                 $this->saveCollection($data, $background_path, $tr, $pr);
+                return $this->redirect($request->getUri());
+
                 }
             else{
                 $error = 'Erreur de donnée pour le champ title ou Collection';
@@ -133,9 +178,8 @@ class PoolSetController extends AbstractController
 
         }
 
-        return $this->render('pool_set/index.html.twig',
-            ['formulaire' => $form->createView()
-            ]);
+        return $this->render('page/my-collection.html.twig',
+            ['formulaire' => $form->createView(), 'collections' => $collections]);
 
 
     }
@@ -154,10 +198,11 @@ class PoolSetController extends AbstractController
      * @param TagRepository $tr
      * @param PoolSetRepository $pr
      * @return JsonResponse
-     * @Route("edit_save", name="edit_save", methods={"GET", "POST"})
+     * @Route("_edit_save", name="edit_save", methods={"GET", "POST"})
      */
     public function  editSave(BeatmapsetRepository $bmsr, MappoolMapRepository $mmr, BeatmapRepository $br, MappoolRepository $mr, UserRepository $ur, EntityManagerInterface $em, ContributorRepository $cr , Request $request,  TagRepository $tr, PoolSetRepository $pr): JsonResponse
     {
+
 
         $data = $request->request->get('form');
         $data['image'] = $request->files->get('form')['image'];
@@ -208,6 +253,7 @@ class PoolSetController extends AbstractController
         }else{
             $arrData['image'] = null;
         }
+
 
 
         // On save la collection
@@ -269,15 +315,19 @@ class PoolSetController extends AbstractController
                 $form = $form->add($name, CheckboxType::class, ['required' => False]);
             }
         }
+        if($collection['tag_names']['rank_min'] == null){
+            $collection['tag_names']['rank_min'] = 1;
+        }
+
 
         $form = $form
-            ->add('range_min', HiddenType::class, ['data'=> $collection['tag_names']['range_min']])
-            ->add('range_max', HiddenType::class, ['data'=> $collection['tag_names']['range_max']])
-            ->add('rank_min', HiddenType::class, ['data'=> $collection['tag_names']['rank_min']])
-            ->add('rank_max', HiddenType::class, ['data'=> $collection['tag_names']['rank_max']])
+            ->add('range_min', HiddenType::class, ['attr'=> ['value' => $collection['tag_names']['range_min']]])
+            ->add('range_max', HiddenType::class, ['attr'=> ['value' =>$collection['tag_names']['range_max']]])
+            ->add('rank_min', HiddenType::class, ['attr'=> ['value' =>$collection['tag_names']['rank_min']]])
+            ->add('rank_max', HiddenType::class, ['attr'=> ['value' =>$collection['tag_names']['rank_max']]])
             ->add('id', HiddenType::class, ['attr' => ['value'=> $id]])
             ->add('image', FileType::class, ['required' => false])
-            ->add('submit', SubmitType::class, ['label' => 'Save Collection']);
+            ;
         $form = $form->getForm();
 
 
@@ -300,28 +350,24 @@ class PoolSetController extends AbstractController
 
 // MAPPOOL FORMS
         $forms = ['form' => $form->createView(), 'add' => $form_add_mappool->createView()];
-
+        $maps = [];
         foreach ($collection['mappools'] as $mappool){
 
-            $form_mappool = $this->createFormBuilder();
+
+            $form_mappool = $this->createFormBuilder(null, ['attr'=> ['id'=> 'pool']]);
             $form_mappool->setMethod('POST')
-                ->add('id', HiddenType::class, ['data' => $mappool->getId()])
+                ->add('id', HiddenType::class, ['attr' => ['value' => $mappool->getId()] ])
                 ->add('title', TextType::class,
                 ['label' => 'Mappool Title', 'required' => False, 'data' => $mappool->getName()])
-                ->add('delete', CheckboxType::class, ['required' => False]);
+                ->add('delete', ButtonType::class, ['label' => 'Delete'])
             // AJOUTER UNE MAP
-            $add_map = $this->createFormBuilder();
-            $add_map->setMethod('POST')
-                ->setAttribute('name', 'add_map')
-                ->add('id', HiddenType::class, ['attr' => ['value'=> $mappool->getId()]])
-                ->add('link', TextType::class,
-                    ['label' => 'Map Link', 'required' => False])
-                ->add('submit', SubmitType::class, ['label' => 'Add Map']);
-            $add_map = $add_map->getForm();
-            $add_map->handleRequest($request);
+
+                ->add('addmap', TextType::class,
+                    ['label' => 'Map Link', 'required' => False, 'data' => ""]);
+
 
             foreach($mappool->maps as $map){
-                $form_mappool->add('map_link_'.$map['map']->getId(), TextType::class, ['data'=> $map['map']->getUrl(), 'label' => 'Map link'])
+                $form_mappool->add('map_link_'.$map['map']->getId(), TextType::class, ['data'=> $map['map']->getUrl(), 'label' => 'Map link', 'attr' => ['poolid' => $mappool->getId()]])
                     ->add('map_mode_'.$map['map']->getId(), ChoiceType::class, [
                         'choices'  => [
                             'NM' => 'NM',
@@ -330,20 +376,23 @@ class PoolSetController extends AbstractController
                         ]
                         ,
                         'label' => ' ',
-                        'data' => $map['mode']
+                        'data' => $map['mode'],
+                        'attr' => ['class'=>'select mode',
+                            'poolid' => $mappool->getId(),
+                            'mapid' => $map['map']->getId()
+                        ]
                     ]);
             }
             $form_mappool = $form_mappool->getForm();
             $form_mappool->handleRequest($request);
 
             $forms[rand(0,9999999)] = $form_mappool->createView();
-            $forms['map_'.rand(0,9999999)] = $add_map->createView();
-
-            $forms['poolset_data'] = ['title' => $collection['poolset']->getName(), 'thumbnail' => $collection['poolset']->getThumbnail() ];
-
+            //$forms['map_'.rand(0,9999999)] = $add_map->createView();
+            $maps[$mappool->getId()] = $mappool->maps;
 
         }
-
+        $forms['poolset_data'] = ['title' => $collection['poolset']->getName(), 'thumbnail' => $collection['poolset']->getThumbnail() ];
+        $forms['maps'] = $maps;
 
         return $this->render('/page/edit-collection.html.twig', $forms);
     }
@@ -371,23 +420,45 @@ class PoolSetController extends AbstractController
 
         $tags = $tr->findByPoolset($id);
         // GET LA LISTE DE NAME DES TAGS BRUH
-        $tag_names = ['mod' => [], 'category' => [], 'rank_min' => null, 'rank_max' => null, 'range_min' => null, 'range_max' => null];
+        $tag_names = ['mod' => [], 'category' => [], 'rank_min' => '0', 'rank_max' => '100', 'range_min' => '0', 'range_max' => '100'];
+
         foreach($tags as $tag){
             if ($tag->getType() == 'gamemod'){
                 array_push($tag_names['mod'], $tag->getName());
             }else if ($tag->getType() == 'category'){
                 array_push($tag_names['category'], $tag->getName());
             }else if ($tag->getType() == 'rank_min'){
-                $tag_names['rank_min'] = $tag->getName();
+                if ($tag->getName() == "false" || $tag->getName() == null){
+                    $tag_names['rank_min'] = '0';
+                }else{
+                    $tag_names['rank_min'] = $tag->getName();
+                }
             }else if ($tag->getType() == 'rank_max'){
-                $tag_names['rank_max'] = $tag->getName();
+
+                if ($tag->getName() == "false"|| $tag->getName() == null){
+                    $tag_names['rank_max'] = '100';
+                }else{
+                    $tag_names['rank_max'] = $tag->getName();
+                }
             }else if ($tag->getType() == 'range_min'){
-                $tag_names['range_min'] = $tag->getName();
+                if ($tag->getName() == "false"|| $tag->getName() == null){
+                    $tag_names['range_min'] = '0';
+                }else{
+                    $tag_names['range_min'] = $tag->getName();
+                }
             }else if ($tag->getType() == 'range_max'){
-                $tag_names['range_max'] = $tag->getName();
+                if ($tag->getName() == "false"|| $tag->getName() == null){
+                    $tag_names['range_max'] = '100';
+                }else{
+                    $tag_names['range_max'] = $tag->getName();
+
+                }
             }
 
         }
+
+
+
 
         $contributors = $cr->findBy(['poolSet' => $poolset]);
         foreach ($contributors as $contributor) {
@@ -415,7 +486,7 @@ class PoolSetController extends AbstractController
 
                 $beatmapset = $bmsr->findOneBy(['id' => $beatmapset_id]);
                 $name = $beatmapset->getArtist() . ' - ' . $beatmapset->getName() . ' [' . $map->getDifficulty() . ']';
-                array_push($maps,['name ' =>$name, 'map' =>$map, 'mode' =>$pool_map->getMode()]);
+                array_push($maps,['name ' =>$name, 'map' =>$map, 'mode' =>$pool_map->getMode(), 'cover' => $beatmapset->getCover()]);
             }
 
             $mappools[$key]->maps = $maps ;
@@ -442,12 +513,15 @@ class PoolSetController extends AbstractController
 
         $tag_rank_min = $tg->findOneBy(['name' => $data['rank_min']]);
         $tag_rank_max = $tg->findOneBy(['name' => $data['rank_max']]);
-        $tag_range_min = $tg->findOneBy(['name' => $data['range_min']]);
-        $tag_range_max = $tg->findOneBy(['name' => $data['range_max']]);
+        $tag_range_min = $tg->findOneBy(['name' => '0']);
+        $tag_range_max = $tg->findOneBy(['name' => '5']);
         //Save des tags de RANK SI BESOIN
 
         if(empty($tag_rank_min))
         {
+            if ($data['rank_min'] == false){
+                $data['rank_min'] = 0;
+            }
             $tag_rank_min = new Tag();
             $tag_rank_min->setName($data['rank_min']);
             $tag_rank_min->setType('rank_min');
@@ -456,6 +530,9 @@ class PoolSetController extends AbstractController
         }
         if(empty($tag_rank_max))
         {
+            if ($data['rank_max'] == false){
+                $data['rank_max'] = 0;
+            }
             $tag_rank_max = new Tag();
             $tag_rank_max->setName($data['rank_max']);
             $tag_rank_max->setType('rank_max');
@@ -465,6 +542,9 @@ class PoolSetController extends AbstractController
         // Save des tags de RANGE SI BESOIN
         if(empty($tag_range_min))
         {
+            if ($data['range_min'] == false){
+                $data['range_min'] = 0;
+            }
             $tag_range_min = new Tag();
             $tag_range_min->setName($data['range_min']);
             $tag_range_min->setType('range_min');
@@ -473,6 +553,9 @@ class PoolSetController extends AbstractController
         }
         if(empty($tag_range_max))
         {
+            if ($data['range_max'] == false){
+                $data['range_max'] = 0;
+            }
             $tag_range_max = new Tag();
             $tag_range_max->setName($data['range_max']);
             $tag_range_max->setType('range_max');
@@ -498,10 +581,11 @@ class PoolSetController extends AbstractController
         }
 
         $collection->setName($data['title']);
+
         if ($background !=null){
             $collection->setThumbnail($background);
         }else{
-            $collection->setThumbnail('default');
+            //$collection->setThumbnail('default');
         }
 
         $collection->setUpdatedAt(new \DateTime('now'));
@@ -555,18 +639,21 @@ class PoolSetController extends AbstractController
 
     public function uploadBackground($background)
     {
+
+        // Si pas d'images donnée
+        if ($background == null || $background->getClientOriginalName() == null){
+            return False;
+        }
+
         #Contraintes attendues :
-        $dossier = './build/images/user/';
+        $dossier = './collection_covers/';
         $taille_maxi = (2**20)*10;
         $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+
 
         #Variables du fichier :
         $extension = strrchr($background->getClientOriginalName(), '.');
 
-        // Si pas d'images donnée
-        if ($background->getClientOriginalName() == null){
-            return False;
-        }
         $taille = $background->getSize();
         $fichier = basename($background->getClientOriginalName());
         $name = self::random(30) . $extension;
@@ -589,9 +676,11 @@ class PoolSetController extends AbstractController
         {
             //dd(scandir($dossier));
 
-            if($background->move($dossier . $name)) // Upload
+
+            if($background->move($dossier)) // Upload
             {
                 //echo "l'upload a marché trop bien ";
+                rename($dossier . $background->getBasename(),$dossier . $name );
                 return $dossier . $name;
             }
             else //Sinon (la fonction renvoie FALSE).
@@ -620,11 +709,31 @@ class PoolSetController extends AbstractController
     }
 
 
-    public function saveb(EntityManagerInterface $em){
+    /**
+     * * @Route("/delete_collection", name="delete_collection", methods={"GET", "POST"})
+     * @param EntityManagerInterface $em
+     * @param TagRepository $tr
+     * @param Request $request
+     * @param PoolSetRepository $pr
+     * @param UserRepository $ur
+     * @param ContributorRepository $cr
+     * @param MappoolRepository $mr
+     * @param MappoolMapRepository $mmr
+     * @param BeatmapRepository $br
+     * @param BeatmapsetRepository $bmsr
+     * @return Response
+     */
+    public function deleteCollection(EntityManagerInterface $em,TagRepository $tr, Request $request, PoolSetRepository $pr, UserRepository $ur, ContributorRepository $cr, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr): Response
+    {
+        $id = $request->getContent();
 
 
+        $collection = $pr->findOneById($id);
+        $em->remove($collection);
+        $em->flush();
+
+        return new JsonResponse(['true']);
     }
-
 
 
 

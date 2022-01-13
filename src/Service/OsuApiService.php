@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Exception;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class OsuApiService
@@ -117,7 +118,10 @@ class OsuApiService
         if ($params !== null) {
             array_push($options, $params);
         }
+
         return $this->client->request($method, $endpoint, $options)->toArray();
+
+
     }
 
 

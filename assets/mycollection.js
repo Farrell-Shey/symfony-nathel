@@ -5,13 +5,19 @@
 
 import wNumb from "wnumb";
 import noUiSlider from "nouislider";
+import axios from "axios";
+
+function makePostRequest(input, path){
+    return axios.post(path, input)
+}
+
 
 let sliderRank = document.getElementById('slider-rank');
 
 let sliderRatting = document.getElementById('slider-ratting');
 
 noUiSlider.create(sliderRank, {
-    start: [1, 500000],
+    start: [document.getElementById('form_rank_min').value, document.getElementById('form_rank_max').value],
     connect: true,
     direction: 'rtl',
     range: {
@@ -31,6 +37,29 @@ noUiSlider.create(sliderRank, {
         prefix: '#'
     })
 });
+
+let maxValue_rank = document.getElementById('form_rank_max')
+let minValue_rank = document.getElementById('form_rank_min')
+console.log(minValue_rank.value)
+console.log(maxValue_rank.value)
+
+sliderRank.noUiSlider.on('update', function (values, handle) {
+    let value = values[handle];
+
+    if (handle) {
+        maxValue_rank.value = value;
+    } else {
+        minValue_rank.value = value
+    }
+    console.log(minValue_rank.value)
+    console.log(maxValue_rank.value)
+
+});
+
+
+
+
+
 
 // noUiSlider.create(sliderRatting, {
 //     start: [4, 7],
