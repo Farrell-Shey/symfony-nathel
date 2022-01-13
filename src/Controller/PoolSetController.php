@@ -83,32 +83,8 @@ class PoolSetController extends AbstractController
         foreach($contributors as $contributor){
             $id = $contributor->getPoolSet()->getId();
             $poolset = $pr->findOneBy(['id' =>$id]);
-            $tags_tmp = $tr->findByPoolset($id);
-            $tags = [];
-            foreach($tags_tmp as $tag){
-                if ($tag->getType() == 'rank_min'){
-                    $rank_min = $tag->getName();
-                }elseif($tag->getType() == 'rank_max'){
-                    $rank_max = $tag->getName();
-                }elseif($tag->getType() == 'range_min'){
-                    $range_min = $tag->getName();
-                }elseif($tag->getType() == 'range_max'){
-                    $range_max = $tag->getName();
-                }elseif($tag->getType() =='rank'){
 
-                }else {
-                    array_push($tags, ['name' => $tag->getName(), 'type' => $tag->getType()]);
-                }
-            }
-            if(count($tags) >0){
-                if(isset($range_min) && isset($range_max)){
-                    array_push($tags,['name' => $range_min . " - " . $range_max, 'type' => 'range' ]);
-                }
-                if(isset($rank_min) && isset($rank_max)){
-                    array_push($tags,['name' => $rank_min . " - " . $rank_max, 'type' => 'rank' ]);
-                }
-            }
-
+            $tags = $this->adaptTags($tr->findByPoolset($id));
 
             $tmp_user = [];
             $tmp_user['id'] = $user->getOsuid();
@@ -129,7 +105,7 @@ class PoolSetController extends AbstractController
 
 
 
-
+        dd($collections);
 
 
         // MODAL PART
@@ -456,7 +432,7 @@ class PoolSetController extends AbstractController
             }
 
         }
-
+        $tags = $this->adaptTags($tr->findByPoolset($id));
 
 
 
@@ -735,6 +711,34 @@ class PoolSetController extends AbstractController
         return new JsonResponse(['true']);
     }
 
+    public function adaptTags($tatags){
+        $tags_tmp = $tatags;
+        $tags = [];
+        foreach($tags_tmp as $tag){
+            if ($tag->getType() == 'rank_min'){
+                $rank_min = $tag->getName();
+            }elseif($tag->getType() == 'rank_max'){
+                $rank_max = $tag->getName();
+            }elseif($tag->getType() == 'range_min'){
+                $range_min = $tag->getName();
+            }elseif($tag->getType() == 'range_max'){
+                $range_max = $tag->getName();
+            }elseif($tag->getType() =='rank'){
+
+            }else {
+                array_push($tags, ['name' => $tag->getName(), 'type' => $tag->getType()]);
+            }
+        }
+        if(count($tags) >0){
+            if(isset($range_min) && isset($range_max)){
+                array_push($tags,['name' => $range_min . " - " . $range_max, 'type' => 'range' ]);
+            }
+            if(isset($rank_min) && isset($rank_max)){
+                array_push($tags,['name' => $rank_min . " - " . $rank_max, 'type' => 'rank' ]);
+            }
+        }
+        return $tags;
+    }
 
 
 }
