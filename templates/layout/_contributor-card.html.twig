@@ -6,12 +6,12 @@
 				<div class="d-flex contributor-cover" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg')">
 					<div class="filter">
 						<img class="contributor-flag" src="{{ asset('build/flag.png') }}" href="#">
-						<img class="contributor-avatar" src="{{ asset('build/default_avatar.png') }}" href="#">
+						<img class="contributor-avatar" src="{{ contributor.user.thumbnail }}" href="#">
 						<div class="d-flex contributor-delete">{{ block('delete') }}</div>
 					</div>
 				</div>
 				<div class="d-flex contributors-data">
-					<span class="contributor-name">Farrell-Shey974</span>
+					<span class="contributor-name">{{ contributor.user.name }}</span>
 					<span class="contributor-data">Contributor since
 						<br>
 						1 November 2020</span>

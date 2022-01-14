@@ -8,9 +8,9 @@
 			<div class="d-flex global-mappool-data" style="background-image: url('{{"/" ~ mappool['poolset'].thumbnail }}')">
 				<div class="d-flex mappool-data">
 					<span class="mappool-name invisible-scrollbar"> {{ mappool['pool'].name }}
-						<a id="unfollow" class="show no-transition" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+						<a id="unfollow" class="show no-transition" data-pool = "{{ mappool['pool'].id }}" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
 							{{ block("follow") }}</a>
-						<a id="unfollow" class="collapse no-transition" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+						<a id="unfollow" class="collapse no-transition" data-pool = "{{ mappool['pool'].id }}" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
 							{{ block("unfollow") }}</a>
 					</span>
 					<span class="mappool-collection">From {{ mappool['poolset'].name }}'s Collection'</span>
@@ -77,7 +77,7 @@
 			{% endfor %}
 		</div>
 		<div class="d-none d-sm-flex check-mappool">
-			<a class="d-flex btn check-button" href="{{ path('collection_name') }}"  type="button" > Check all mappool</a>
+			<a class="d-flex btn check-button" href="{{ path('index_collection', { 'id': mappool['poolset'].id}) }}"  type="button" > Check all mappool</a>
 		</div>
 	</div>
 {% endblock %}

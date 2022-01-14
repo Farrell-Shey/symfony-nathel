@@ -51,8 +51,11 @@
 				</div>
 				<div class="d-none d-sm-grid profile">
 					{{ block("login") }}
-					<a href="https://osu.ppy.sh/oauth/authorize?response_type=code&client_id=8955&redirect_uri=https://nathel.wip/connexion&scope=public">Log In</a>
-
+					{% if app.user.name is defined %}
+						<a href="{{ path('user', {'id': app.user.osuid}) }}">View Profile</a>
+						{% else %}
+						<a href="https://osu.ppy.sh/oauth/authorize?response_type=code&client_id=8955&redirect_uri=https://nathel.wip/connexion&scope=public">Log in</a>
+					{% endif %}
 				</div>
 			</div>
 			<div id="second-nav">
@@ -73,7 +76,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('collection_search') }}">
+						<a class="nav-link" href="{{ path('search_collection') }}">
 							{{ block("explore") }}
 							Explore
 						</a>

@@ -47,6 +47,51 @@ class PoolSetController extends AbstractController
 
     // Fonction de routes :
 
+
+
+
+
+
+    /**
+     * @param int $id
+     * @param EntityManagerInterface $em
+     * @param ContributorRepository $cr
+     * @param Request $request
+     * @param TagRepository $tr
+     * @param PoolSetRepository $pr
+     * @param MappoolRepository $mr
+     * @return Response
+     * @Route("/view/{id}", name="index_collection", methods={"GET", "POST"})
+     */
+
+    public function index(int $id, TagRepository $tr, Request $request, PoolSetRepository $pr, UserRepository $ur, ContributorRepository $cr, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr): Response
+    {
+
+        $col = $this->getCollection($id, $tr, $request, $pr, $ur, $cr, $mr, $mmr, $br, $bmsr);
+        $col['tag_names']['rank'] = $col['tag_names']['rank_min'] . " - " . $col['tag_names']['rank_max'];
+        $nb_maps = 0;
+        foreach($col['mappools'] as $pool ){
+            $nb_maps+= count($pool->maps);
+        }
+        $col['nb_maps'] = $nb_maps;
+
+
+
+
+
+
+
+        return $this->render('/page/collection-page.html.twig', ['col' => $col]);
+
+    }
+
+
+
+
+
+
+
+
     /**
      * @param EntityManagerInterface $em
      * @param ContributorRepository $cr

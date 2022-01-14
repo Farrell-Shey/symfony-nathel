@@ -3,6 +3,11 @@
 namespace App\Service;
 
 use Exception;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class OsuApiService
@@ -99,6 +104,13 @@ class OsuApiService
         endif;
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws ClientExceptionInterface
+     */
     public function apiQueryGET(bool $token, string $endpoint, array $params = null)
     {
         /*this method is the "GET template" for queries in the osu Api
@@ -114,10 +126,13 @@ class OsuApiService
                 'Content-Type' => 'application/json'
             ]
         ];
+
         // Mise en place des paramètres GET si il y'en a.
         if ($params !== null) {
-            array_push($options, $params);
+            $options['query'] = $params;
         }
+
+
 
         return $this->client->request($method, $endpoint, $options)->toArray();
 
@@ -168,7 +183,7 @@ class OsuApiService
         //Offset : Result offset for pagination
 
         $this->checkToken(0);
-        $endpoint = "https://osu.ppy.sh/api/v2/users/" . $user_id . "1/recent_activity";
+        $endpoint = "https://osu.ppy.sh/api/v2/users/" . $user_id . "/recent_activity";
         $params = array(
             'limit' => 12,
             'offset' => 1,

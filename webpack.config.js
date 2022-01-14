@@ -37,6 +37,7 @@ Encore
     .addEntry('mappoolDropdown', './assets/dropdownMappool.js')
     .addEntry('editCollection', './assets/editCollection.js')
     .addEntry('managePage', './assets/managePage.js')
+    .addEntry('follow', './assets/follow.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

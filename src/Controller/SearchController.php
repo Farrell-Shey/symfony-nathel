@@ -217,7 +217,7 @@ class SearchController extends AbstractController
                 }
             }
 
-           
+
 
             foreach($tag_true as $true){
                 if(!in_array($true,$tag_names)){

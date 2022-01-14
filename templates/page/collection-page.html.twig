@@ -15,7 +15,7 @@
 			</div>
 			<div class="toggle-fit-content d-flex global-contributors-dropdown">
 				<div class="d-flex contributors-global-card">
-					{% for i in 0..5 %}
+					{% for contributor in col.contributors %}
 						{% include "/layout/_contributor-card.html.twig" %}
 					{% endfor %}
 				</div>

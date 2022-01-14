@@ -31,7 +31,7 @@ class MappoolRepository extends ServiceEntityRepository
     public function findByPopularity()
     {
        $qb = $this->createQueryBuilder('m')
-            ->orderBy('m.id','DESC')
+            ->orderBy('m.follow','DESC')
             ->setMaxResults(5)
             ->getQuery();
             return $qb->getResult();
@@ -40,7 +40,7 @@ class MappoolRepository extends ServiceEntityRepository
     public function findByMostRecent()
     {
         return $this->createQueryBuilder('m')
-            ->orderBy('m.created_at','ASC')
+            ->orderBy('m.created_at','DESC')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult();

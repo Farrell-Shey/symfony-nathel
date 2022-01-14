@@ -13,7 +13,7 @@
 				<div class="d-flex block-edit-mappool">
 
 				{% block mappool_title %}
-					<div class="d-flex block-mappool-title filter" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg')">
+					<div class="d-flex block-mappool-title filter" style="background-image: url('{{ asset(thumbnail) }}')">
 						<div class="block-btn">
 							{{ form_widget(value.delete, { 'attr' : { 'class' : "delete-btn"}}) }}
 

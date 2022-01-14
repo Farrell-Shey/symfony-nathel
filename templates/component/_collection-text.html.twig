@@ -1,7 +1,7 @@
 {% block body %}
 <div class="data-text">
 	<h2 class="collection-title invisible-scrollbar">
-		Dan Project : Aim Collection</h2>
+		{{ col['poolset'].name }}</h2>
 	<div class="d-flex global-thumbnail-card">
 		<span class="d-lg-none manage-text">manage with</span>
 		<div class="d-lg-none thumbnails-contributor">
@@ -22,7 +22,7 @@
 			{% endfor %}
 		</div>
 	</div>
-	<span class="mappools-text">4 mappools</span>
-	<span class="d-none d-lg-block text-uppercase maps-text">30 maps</span>
+	<span class="mappools-text">{{ col['mappools']|length }} mappools</span>
+	<span class="d-none d-lg-block text-uppercase maps-text">{{ col['nb_maps']}} maps</span>
 </div>
 {% endblock %}

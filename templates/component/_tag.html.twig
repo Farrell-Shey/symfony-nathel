@@ -1,5 +1,30 @@
-<div class="{{ ("tags-right" is defined) ? 'tags' : null }}">
-	{% for j in 0..2 %}
-		<span class="tag">training</span>
-	{% endfor %}
-</div>
+
+	<div class="{{ ("tags-right" is defined) ? 'tags' : null }}">
+
+		{% for tag in col['tags'] %}
+			{% if (tag.type == 'gamemod') %}
+				<div class="game-mod-tag">{{ tag.name }}</div>
+			{% endif %}
+		{% endfor %}
+
+		{% for tag in col['tags'] %}
+			{% if (tag.type == 'category') %}
+				{% if tag.name == 'pp_farm' %}
+					{% set foo = 'PP farm' %}
+				{% else %}
+					{% set foo = tag.name | capitalize %}
+				{% endif %}
+				<div class="category-tag">{{ foo }}</div>
+			{% endif %}
+		{% endfor %}
+		{% for tag in col['tags'] %}
+			{% if (tag.type == 'rank') %}
+				<div class="rank-range-tag">{{ tag.name }}</div>
+			{% endif %}
+		{% endfor %}
+		{% for tag in col['tags'] %}
+			{% if (tag.type == 'range') %}
+				<div class="stars-tag">{{ tag.name }}</div>
+			{% endif %}
+		{% endfor %}
+	</div>

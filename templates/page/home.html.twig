@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('follow') }}
+{% endblock %}
 
 {% block title %}Home
 {% endblock %}
 
 {% block body %}
+
 	<div class="bg-constellation-home">
 		{{ include('layout/_jumb-home.html.twig') }}
 		<div class="classification-title" id="scroll">
@@ -25,6 +30,6 @@
 
 		</div>
 
-		{{ include('layout/_mappool-rotate-box.html.twig', {mappools : popular_mappool, title : 'Most Popular Mappool', tag: 'left'}) }}
+		{{ include('layout/_mappool-rotate-box.html.twig', {mappools : recent_mappool, title : 'Most Popular Mappool', tag: 'left'}) }}
 	</div>
 {% endblock %}
