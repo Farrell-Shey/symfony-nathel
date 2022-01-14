@@ -7,11 +7,15 @@
 {% block title %}{% endblock %}
 {% block body %}
     <section class="search-section">
-        <form class="search-form">
+
+            {{ form_start(formulaire, {'attr': {'class': "search-form", 'autocomplete': 'off'}}) }}
+
+
             <div class="main-input bg-sm-linear-constellation">
                 <div class="input-title">
                     <div class="form-control">
-                        <input type="text" id="collection-title" placeholder="Tape in keywords">
+                        {{ form_widget(formulaire.title, {'attr':{'id': "collection-title", 'placeholder': "Tape in keywords"}}) }}
+
                         <button type="submit" class="btn">
                             <svg class="svg" width="29" height="29" viewBox="0 0 29 29"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -27,19 +31,39 @@
 
                 <div class="tags block-mod">
                     <span class="title title-mod">Game Mod</span>
-                    {% for i in 0..3 %}
-                        <input type="checkbox" name="{{ i }}" id="{{ i }}"/>
-                        <label class="tag tag-mod" for="{{ i }}">tag mod {{ i }}</label>
+                    {% set mods = ['std', 'taiko','ctb','mania'] %}
+                    {% for child in formulaire.children %}
+                        {% if (child.vars.name in mods) %}
+                            {{ form_widget(child) }}
+                            {{ form_label(child, child.vars.name, {'label_attr': {'class': 'tag tag-mod'}} ) }}
+                        {% endif %}
                     {% endfor %}
                 </div>
 
                 <div class="tags block-category">
                     <span class="title title-category">Category</span>
-                    {% for j in 0..3 %}
-                        <input type="checkbox" name="{{ j }}" id="{{ j }}"/>
-                        <label class="tag tag-category" for="{{ j }}">catégorie {{ j }}</label>
+                    {% set categories = ['tournament', 'fun','training','challenge', 'pp_farm'] %}
+                    {% for child in formulaire.children %}
+                        {% if (child.vars.name in categories) %}
+                            {{ form_widget(child) }}
+                            {% if child.vars.name == 'pp_farm' %}
+                                {% set foo = 'PP farm' %}
+                            {% else %}
+                                {% set foo = child.vars.name | capitalize %}
+                            {% endif %}
+                            {{ form_label(child, foo  , {'label_attr': {'class': 'tag tag-category'}} ) }}
+                        {% endif %}
                     {% endfor %}
                 </div>
+
+                {% if data is defined %}
+                    {{ form_row(formulaire.rank_min, {'attr':{'value': data['rank_min']}}) }}
+                    {{ form_row(formulaire.rank_max, {'attr':{'value': data['rank_max']}}) }}
+                    {% else %}
+                        {{ form_row(formulaire.rank_min) }}
+                        {{ form_row(formulaire.rank_max) }}
+                {% endif %}
+
 
                 <div class="block-rank">
                     <span class="title title-rank">Rank Range</span>
@@ -52,7 +76,8 @@
                 </div>
             </div>
 
-        </form>
+        {{ form_end(formulaire) }}
+
         <div class="search-filter">
             <svg class="svg" width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -62,5 +87,12 @@
             <span class="search-item">last posted</span>
         </div>
     </section>
-    <section class="search-result"></section>
+    <section class="search-result">
+        {% if results is defined and results['collections'] is not empty %}
+                {{ include('layout/_mappool-rotate-box.html.twig', {mappools : results['collections'], title : 'Results', tag: 'left'}) }}
+        {% endif %}
+    </section>
+
+
+
 {% endblock %}

@@ -105,7 +105,7 @@ class PoolSetController extends AbstractController
 
 
 
-        dd($collections);
+
 
 
         // MODAL PART
@@ -487,74 +487,40 @@ class PoolSetController extends AbstractController
 
         $user = $this->security->getUser();
 
-        $tag_rank_min = $tg->findOneBy(['name' => $data['rank_min']]);
-        $tag_rank_max = $tg->findOneBy(['name' => $data['rank_max']]);
-        $tag_range_min = $tg->findOneBy(['name' => '0']);
-        $tag_range_max = $tg->findOneBy(['name' => '5']);
-        //Save des tags de RANK SI BESOIN
-
-        if(empty($tag_rank_min))
-        {
-            if ($data['rank_min'] == false){
-                $data['rank_min'] = 0;
-            }
-            $tag_rank_min = new Tag();
-            $tag_rank_min->setName($data['rank_min']);
-            $tag_rank_min->setType('rank_min');
-            $em->persist($tag_rank_min);
-            $em->flush();
-        }
-        if(empty($tag_rank_max))
-        {
-            if ($data['rank_max'] == false){
-                $data['rank_max'] = 0;
-            }
-            $tag_rank_max = new Tag();
-            $tag_rank_max->setName($data['rank_max']);
-            $tag_rank_max->setType('rank_max');
-            $em->persist($tag_rank_max);
-            $em->flush();
-        }
-        // Save des tags de RANGE SI BESOIN
-        if(empty($tag_range_min))
-        {
-            if ($data['range_min'] == false){
-                $data['range_min'] = 0;
-            }
-            $tag_range_min = new Tag();
-            $tag_range_min->setName($data['range_min']);
-            $tag_range_min->setType('range_min');
-            $em->persist($tag_range_min);
-            $em->flush();
-        }
-        if(empty($tag_range_max))
-        {
-            if ($data['range_max'] == false){
-                $data['range_max'] = 0;
-            }
-            $tag_range_max = new Tag();
-            $tag_range_max->setName($data['range_max']);
-            $tag_range_max->setType('range_max');
-            $em->persist($tag_range_max);
-            $em->flush();
-        }
-
-
         //Save de la collection en BDD
         if ($edit == false){
             $collection = new PoolSet();
             $collection->setCreatedAt(new \DateTime('now'));
         }else{
-
             // Destruction des tags existants
             $tags = $tr->findByPoolset($data['id']);
             $collection = $pr->findOneBy(['id' => $data['id']]);
 
             foreach ($tags as $tag){
+
                 $collection->removeTag($tag);
+                $em->flush();
             }
 
         }
+
+
+        $tag_rank_min = new Tag();
+        $tag_rank_min->setName($data['rank_min']);
+        $tag_rank_min->setType('rank_min');
+        $tag_rank_max = new Tag();
+        $tag_rank_max->setName($data['rank_max']);
+        $tag_rank_max->setType('rank_max');
+        $em->persist($tag_rank_min);
+        $em->persist($tag_rank_max);
+        $em->flush();
+        //$tag_range_min = $tg->findOneBy(['name' => '1']);
+        //$tag_range_max = $tg->findOneBy(['name' => '500000']);
+        //Save des tags de RANK SI BESOIN
+
+
+
+
 
         $collection->setName($data['title']);
 
@@ -571,8 +537,8 @@ class PoolSetController extends AbstractController
 
         $collection->addTag($tag_rank_min);
         $collection->addTag($tag_rank_max);
-        $collection->addTag($tag_range_min);
-        $collection->addTag($tag_range_max);
+        //$collection->addTag($tag_range_min);
+       // $collection->addTag($tag_range_max);
 
 
         foreach($data as $data_name => $data_value){

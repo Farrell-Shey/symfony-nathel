@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Mappool;
 use App\Form\MappoolType;
+use App\Repository\BeatmapRepository;
+use App\Repository\BeatmapsetRepository;
 use App\Repository\ContributorRepository;
+use App\Repository\MappoolMapRepository;
 use App\Repository\MappoolRepository;
 use App\Repository\PoolSetRepository;
 use App\Repository\TagRepository;
@@ -36,12 +39,12 @@ class SearchController extends AbstractController
      * @param ContributorRepository $cr
      * @param UserRepository $ur
      * @param MappoolRepository $mr
-     * @return JsonResponse|Response
      * @Route("/search_load_results", name="search_load_results")
      */
-    public function search_load_results(TransformedFinder $poolsetFinder, Request $request, TagRepository $tr, PoolSetRepository $pr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr)
+    public function search_load_results(TransformedFinder $poolsetFinder, $content, Request $request, TagRepository $tr, PoolSetRepository $pr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr, PoolSetController $psc)
     {
         // Normalize Table
+        /**
         $data = (array) json_decode($request->getContent());
         foreach ($data as $key => $value){
 
@@ -50,6 +53,7 @@ class SearchController extends AbstractController
             $data[$key_tmp] = $value;
             unset($data[$key]);
         }
+
 
         // On rajoute à False les tags suppr par le form traitement
         $elements = ['title','std','taiko','mania','ctb','tournament','fun','training','challenge', 'pp_farm'];
@@ -66,14 +70,20 @@ class SearchController extends AbstractController
                     $data[$element] = True;
                 }
             }
-        }
+        }**/
+        $data = $content;
 
 
         $search = Util::escapeTerm($data['title']);
 
         $json_results = $poolsetFinder->find('*' . $search . '*');
-        $collections = $this->getCollections($this->getCollectionIds($data, $json_results, $tr), $pr, $tr, $cr, $ur, $mr);
-        $last_id = end($collections)['poolset']->getId();
+
+        $collections = $this->getCollections($this->getCollectionIds($data, $json_results, $tr), $mmr, $br, $bmsr, $request,$psc, $pr, $tr, $cr, $ur, $mr);
+
+        if (isset(end($collections)['poolset'])){
+            $last_id = end($collections)['poolset']->getId();
+        }
+
 
         $arrData = [];
         $arrData['collections'] = $collections;
@@ -83,7 +93,10 @@ class SearchController extends AbstractController
             $arrData['last_id'] = $last_id;
         };
 
-        return new JsonResponse($arrData);
+
+
+        return $arrData;
+        //return new JsonResponse($arrData);
 
     }
 
@@ -95,18 +108,16 @@ class SearchController extends AbstractController
      * @param ContributorRepository $cr
      * @param UserRepository $ur
      * @param MappoolRepository $mr
-     * @return Response
+     * @return Response|array
      * @Route("/collection/search", name="search_collection", methods={"GET", "POST"})
      */
-    public function SearchCollectionPage(TransformedFinder $poolsetFinder, Request $request, TagRepository $tr, PoolSetRepository $pr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr): Response
+    public function SearchCollectionPage(TransformedFinder $poolsetFinder, Request $request, TagRepository $tr, PoolSetRepository $pr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr, PoolSetController $psc): Response
     {
 
-
-        // Search
+        // SEARCH FORM PART
 
         $form = $this->createFormBuilder()
             ->setMethod('GET')
-            //->setAction('/owo')
             ->add('title', TextType::class,
                 ['label' => 'Collection Title', 'required' => False]
             );
@@ -118,45 +129,32 @@ class SearchController extends AbstractController
         }
 
         $categories = $tr->findBy(['type'=> 'category']);
-
         foreach ($categories as $category){
             $name = str_replace(' ', '_', $category->getName());
-
             $form = $form->add($name, CheckboxType::class, ['required' => False]);
         }
 
         $form = $form
-            ->add('range_min', HiddenType::class)
-            ->add('range_max', HiddenType::class)
-            ->add('rank_min', HiddenType::class)
-            ->add('rank_max', HiddenType::class)
-            ->add('submit', SubmitType::class, ['label' => 'Save Collection']);
+            ->add('rank_min', HiddenType::class, ['attr' =>['value'  => '0']])
+            ->add('rank_max', HiddenType::class, ['attr' =>['value'  => '500000']]);
         $form = $form->getForm();
 
         $form->handleRequest($request);
 
 
+
         if ($form->isSubmitted() && $form->isValid() ){
+            //return $this->redirectToRoute('search_load_results');
 
-
-            return $this->redirectToRoute('owo');
-
+            $results = $this->search_load_results($poolsetFinder,$form->getData(),$request,$tr,$pr,$cr,$ur,$mr,$mmr, $br,$bmsr,$psc);
+            return $this->render('page/search-page.html.twig',
+                ['formulaire' => $form->createView(),
+                'results' => $results,
+                    'data' => $form->getData()]);
         }
 
-        /**
-        if ($form->isSubmitted() && $form->isValid() ){
-            $data = $form->getData();
-            dump($data);
-            // Check
-            $search = Util::escapeTerm($data['title']);
 
-            $json_results = $poolsetFinder->find('*' . $search . '*');
-            $collections = $this->getCollections($this->getCollectionIds($data, $json_results, $tr), $pr, $tr, $cr, $ur, $mr);
-            $last_id = end($collections)['poolset']->getId();
-
-        }**/
-
-        return $this->render('search/index.html.twig',
+        return $this->render('page/search-page.html.twig',
             ['formulaire' => $form->createView()
             ]);
 
@@ -167,86 +165,90 @@ class SearchController extends AbstractController
     public function getCollectionIds($data, $json_results, TagRepository $tr){
         $i = 0;
         $ids = [];
+
         foreach($json_results as $result){
+            $check_tag = True;
             $current_id = $result->getId();
             if ($i>=10){
                 break;
             }
 
             $pool_tags = $tr->findByPoolset($current_id);
-            $tags = [];
 
+            $tag_names = [];
+            $ranks = [];
+            $tag_true = [];
+            //Get POOL TAG
             foreach ($pool_tags as $pool_tag){
-                array_push($tags, str_replace(' ', '_', $pool_tag->getName()));
+                array_push($tag_names, str_replace(' ', '_', $pool_tag->getName()));
+                if ($pool_tag->getType() == 'rank_min'){
+                    array_push($ranks,(int) ltrim(str_replace(' ', '', $pool_tag->getName()), '#'));
+                }else if ($pool_tag->getType() == 'rank_max'){
+                    array_push($ranks,(int) ltrim(str_replace(' ', '', $pool_tag->getName()), '#'));
+                }
             }
 
 
-
+            // GET TAGS TRUE
             foreach($data as $data_name => $data_value){
-                $check_tag = True;
+                if($data_name !='title' && $data_name !='rank_min' && $data_name != 'rank_max'){
+                    if($data_value == true){
 
 
-                if ($data_name != 'title'
-                    && $data_name != 'range_min'
-                    && $data_name != 'range_max'
-                    && $data_name != 'rank_max'
-                    && $data_name != 'rank_min'
-                    && $data_name != 'image'
-                    && $data_name != '_token'
-                    && $data_value == True){
-
-                    if (!in_array($data_name, $tags )){
-
-                        $check_tag = False;
-
-                        break;
+                        array_push($tag_true,$data_name);
                     }
+                }else if ($data_name =='rank_min'){
 
-                    if ($check_tag == False){
+                    if(isset($ranks[0]) && isset($ranks[1])){
+                        if ($ranks[0] > (int) ltrim(str_replace(' ', '', $data_value),'#')){
 
-                        break;
+
+                            $check_tag = false;
+                        }
+                    }
+                }else if ($data_name =='rank_max'){
+
+                    if(isset($ranks[0]) && isset($ranks[1])){
+                        if ($ranks[1] < (int) ltrim(str_replace(' ', '', $data_value),'#')){
+
+                            $check_tag = false;
+                        }
                     }
                 }
-
-
             }
+
+           
+
+            foreach($tag_true as $true){
+                if(!in_array($true,$tag_names)){
+                    $check_tag = false;
+                }
+            }
+
             if ($check_tag == True){
                 array_push($ids, $current_id);
                 $i++;
             }
 
-
         }
+
 
         return $ids;
     }
 
-    public function getCollections(array $ids, PoolSetRepository $pr, TagRepository $tr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr){
+    public function getCollections(array $ids, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr, Request $request, PoolSetController $psc, PoolSetRepository $pr, TagRepository $tr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr){
         $collections = [];
         foreach($ids as $id){
             // Instanciation de la collection, des tags et des contributors
-
-            $poolset = $pr->findOneBy(['id' => $id]);
-            $tags = $tr->findByPoolset($id);
-            $contributors = $cr->findBy(['poolSet' => $poolset]);
-            foreach ($contributors as $contributor) {
-                if ($contributor->getIsCreator() == True){
-                    [ 'info' => $contributors_info = $ur->findById($contributor->getId()), 'creator' => 1];
-                }else{
-                    $contributors_info = $ur->findById($contributor->getId());
-                }
+            $collection = $psc->getCollection($id, $tr, $request, $pr, $ur, $cr, $mr, $mmr, $br, $bmsr);
+            if (isset($collection['mappools'][0])){
+                $collection['pool'] = $collection['mappools'][0];
+                array_push($collections, $collection);
+            }else{
+                $collection = [];
             }
 
-            //Instanciation des mappools
-            $mappools = $mr->findBy(['poolSet' => $poolset]);
 
-            $collection = [
-                'poolset' => $poolset,
-                'tags' => $tags,
-                'contributors' => $contributors,
-                'mappools' => $mappools
-            ];
-            array_push($collections, $collection);
 
 
         }
