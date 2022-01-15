@@ -12,6 +12,7 @@ use App\Repository\MappoolRepository;
 use App\Repository\PoolSetRepository;
 use App\Repository\TagRepository;
 use App\Repository\UserRepository;
+use App\Service\OsuApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,10 +26,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Elastica\Util;
+use Symfony\Component\Security\Core\Security;
 
 
 class SearchController extends AbstractController
 {
+    /**
+     * @var Security
+     */
+    private Security $security;
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
 
 
     /**
@@ -111,7 +121,7 @@ class SearchController extends AbstractController
      * @return Response|array
      * @Route("/collection/search", name="search_collection", methods={"GET", "POST"})
      */
-    public function SearchCollectionPage(TransformedFinder $poolsetFinder, Request $request, TagRepository $tr, PoolSetRepository $pr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr, PoolSetController $psc): Response
+    public function SearchCollectionPage(TransformedFinder $poolsetFinder,OsuApiService $osu,Request $request, TagRepository $tr, PoolSetRepository $pr, ContributorRepository $cr, UserRepository $ur, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr, PoolSetController $psc): Response
     {
 
         // SEARCH FORM PART
@@ -141,12 +151,32 @@ class SearchController extends AbstractController
 
         $form->handleRequest($request);
 
+        $user = $this->security->getUser();
+        if ($user != null){
+            $rank = $osu->GetUserInfo($user->getOsuId())['statistics']['global_rank'];
+            $rank = $this->getUserRange($rank);
+
+            $pools = $mr->findByRankRange($rank[0],$rank[1]);
+            $ids = [];
+            foreach($pools as $pool){
+                array_push($ids, $pool->getPoolSet()->getId());
+            }
+
+            $collections = $this->getCollections($ids, $mmr, $br, $bmsr, $request,$psc, $pr, $tr, $cr, $ur, $mr);
+            $results = [];
+            $results['collections'] = $collections;
+            return $this->render('page/search-page.html.twig',
+                ['formulaire' => $form->createView(),
+                    'results' => $results
+                ]);
+        }
 
 
         if ($form->isSubmitted() && $form->isValid() ){
             //return $this->redirectToRoute('search_load_results');
-
+            $results = [];
             $results = $this->search_load_results($poolsetFinder,$form->getData(),$request,$tr,$pr,$cr,$ur,$mr,$mmr, $br,$bmsr,$psc);
+
             return $this->render('page/search-page.html.twig',
                 ['formulaire' => $form->createView(),
                 'results' => $results,
@@ -255,5 +285,23 @@ class SearchController extends AbstractController
 
         return $collections;
 
+    }
+
+    public function getUserRange($rank){
+        if ($rank <= 1000){
+            return [1,10000];
+        }else if ($rank <= 10000 && $rank > 1000){
+            return [1000,10000];
+        }else if ($rank <= 30000 && $rank > 10000){
+            return [5000,30000];
+        }else if ($rank <= 50000 && $rank > 30000){
+            return [20000,50000];
+        }else if ($rank <= 100000 && $rank > 50000){
+            return [50000,120000];
+        }else if ($rank > 100000){
+            return [100000,500000];
+        } else{
+            return [1,500000];
+        }
     }
 }

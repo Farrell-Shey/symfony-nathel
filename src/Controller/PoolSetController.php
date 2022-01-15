@@ -550,15 +550,28 @@ class PoolSetController extends AbstractController
         }
 
 
-        $tag_rank_min = new Tag();
-        $tag_rank_min->setName($data['rank_min']);
-        $tag_rank_min->setType('rank_min');
-        $tag_rank_max = new Tag();
-        $tag_rank_max->setName($data['rank_max']);
-        $tag_rank_max->setType('rank_max');
-        $em->persist($tag_rank_min);
-        $em->persist($tag_rank_max);
-        $em->flush();
+        if ($tr->findByTypeAndValue('rank_min', (int) ltrim(str_replace(' ', '', $data['rank_min']), '#')) == null){
+            $tag_rank_min = new Tag();
+            $tag_rank_min->setName((int) ltrim(str_replace(' ', '', $data['rank_min']), '#'));
+            $tag_rank_min->setType('rank_min');
+            $em->persist($tag_rank_min);
+            $em->flush();
+        }else{
+            $tag_rank_min = $tr->findByTypeAndValue('rank_min', (int) ltrim(str_replace(' ', '', $data['rank_min']), '#'))[0];
+        }
+        if ($tr->findByTypeAndValue('rank_max', (int) ltrim(str_replace(' ', '', $data['rank_max']), '#')) == null){
+            $tag_rank_max = new Tag();
+            $tag_rank_max->setName((int) ltrim(str_replace(' ', '', $data['rank_max']), '#'));
+            $tag_rank_max->setType('rank_max');
+            $em->persist($tag_rank_max);
+            $em->flush();
+        }else{
+            $tag_rank_max = $tr->findByTypeAndValue('rank_max', (int) ltrim(str_replace(' ', '', $data['rank_max']), '#'))[0];
+        }
+
+
+
+
         //$tag_range_min = $tg->findOneBy(['name' => '1']);
         //$tag_range_max = $tg->findOneBy(['name' => '500000']);
         //Save des tags de RANK SI BESOIN

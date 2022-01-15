@@ -49,6 +49,16 @@ class TagRepository extends ServiceEntityRepository
     */
 
 
+    public function findByTypeAndValue($type,$value)
+    {
+        $query = $this->createQueryBuilder('t')
+            ->andWhere('t.type = :type')
+            ->setParameter('type', $type)
+            ->andWhere('t.name = :value')
+            ->setParameter('value', $value);
+        return $query->getQuery()->execute();
+    }
+
     public function findByPoolset(int $id)
     {
         $entityManager = $this->getEntityManager();
