@@ -19,6 +19,19 @@ class ScoreRepository extends ServiceEntityRepository
         parent::__construct($registry, Score::class);
     }
 
+    public function findByMmapAndUser($mmap, $user)
+    {
+
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.user = :user')
+            ->andWhere('s.mappoolMap = :mmap')
+            ->setParameters(['mmap'=> $mmap,'user' => $user])
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Score[] Returns an array of Score objects
     //  */

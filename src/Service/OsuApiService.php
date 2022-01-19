@@ -17,6 +17,7 @@ class OsuApiService
     const CLIENT_ID = 8955;
     const SECRET = 'tdqs5PCfWr1V5CeSCwWoFpIIC3M3umVpoMhzcCif';
     const URI = 'https://nathel.wip/connexion';
+    const KEY = '6f18d2cd4cb6da925b16104f490ea57b869c2daf';
 
     public $code = null; // code obtained in credential token request
     public $credential_token_refresh; // refresh crendetials token
@@ -102,6 +103,7 @@ class OsuApiService
         else : // User authentification token
             $this->user_token = $response['access_token'];
         endif;
+
     }
 
     /**
@@ -176,6 +178,19 @@ class OsuApiService
         return $this->apiQueryGET(0, $endpoint);
     }
 
+    /**
+    // GET A USER BEATMAP SCORE
+    public function getUserBeatmapScore($map_id, $user_id, $mode)
+    {
+        // Gets beatmap data for the specified beatmap ID.
+        $this->getToken();
+        $endpoint = 'https://osu.ppy.sh/api/v2/beatmaps/'.$map_id.'/scores/users/'.$user_id;
+        $params = array(
+            'mode' => $mode,
+        );
+        return $this->apiQueryGET(0, $endpoint, $params);
+    }**/
+
     public function getUserRecentActivity($user_id, $limit = 12, $offset = 1)
     {
         // Returns recent activity.
@@ -206,6 +221,42 @@ class OsuApiService
             'mode' => $mode,
             'limit' => $limit,
             'offset' => $offset
+        );
+
+        return $this->apiQueryGET(0, $endpoint, $params);
+
+    }
+
+    public function getRecentUserScores($user_id, $limit=12, $mode=0)
+    {
+
+        // THIS USES V1 API
+        $endpoint = "https://osu.ppy.sh/api/get_user_recent";
+        $params = array(
+            'k' => $this::KEY,
+            'u' => $user_id,
+            'm' => $mode,
+            'limit' => $limit,
+            'type' => 'user_id'
+        );
+
+        return $this->apiQueryGET(0, $endpoint, $params);
+
+    }
+
+    public function getUserBeatmapScore($user_id,$map_id, $mods, $mode=0, $limit=12)
+    {
+
+        // GET A USER BEATMAP SCORE  (v1)
+        $endpoint = "https://osu.ppy.sh/api/get_scores";
+        $params = array(
+            'k' => $this::KEY,
+            'u' => $user_id,
+            'm' => $mode,
+            'limit' => $limit,
+            'type' => 'user_id',
+            'b' => $map_id,
+            'mods' => $mods
         );
 
         return $this->apiQueryGET(0, $endpoint, $params);

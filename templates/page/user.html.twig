@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('updateScores') }}
+{% endblock %}
 
 {% block body %}
 	<div class="user-body d-lg-flex ">
@@ -7,7 +11,10 @@
 			<div class="user-name">
 				<p class="name">{{ user.name }}</p>
 				<img src="{{ "https://osu.ppy.sh/images/flags/"~ api.country.code ~ ".png" }}" class="flag ms-2" alt="">
-				<a href="" class="score-btn btn">
+				<a class="score-btn btn">
+					<div id="loader" class="spinner-border text-light d-none" role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
 
 					<p>Update
 						<br>

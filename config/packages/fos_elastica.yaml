@@ -6,7 +6,19 @@ fos_elastica:
         poolset:
             properties:
                 id: ~
-                name: ~
+                name: { boost: 5 }
+                mappools:
+                    type: "object"
+                    properties:
+                        name: { boost: 2 }
+                contributors:
+                    type: "object"
+                    properties:
+                        user:
+                            type: "object"
+                            properties:
+                                name: { boost: 10 }
+
             persistence:
                 driver: orm
                 model: App\Entity\PoolSet

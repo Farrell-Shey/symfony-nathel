@@ -68,7 +68,7 @@ class PoolSetController extends AbstractController
     {
 
         $col = $this->getCollection($id, $tr, $request, $pr, $ur, $cr, $mr, $mmr, $br, $bmsr);
-        $col['tag_names']['rank'] = $col['tag_names']['rank_min'] . " - " . $col['tag_names']['rank_max'];
+        $col['tag_names']['rank'] = "#".$col['tag_names']['rank_min'] . " - " ."#". $col['tag_names']['rank_max'];
         $nb_maps = 0;
         foreach($col['mappools'] as $pool ){
             $nb_maps+= count($pool->maps);
@@ -550,6 +550,7 @@ class PoolSetController extends AbstractController
         }
 
 
+
         if ($tr->findByTypeAndValue('rank_min', (int) ltrim(str_replace(' ', '', $data['rank_min']), '#')) == null){
             $tag_rank_min = new Tag();
             $tag_rank_min->setName((int) ltrim(str_replace(' ', '', $data['rank_min']), '#'));
@@ -758,7 +759,7 @@ class PoolSetController extends AbstractController
                 array_push($tags,['name' => $range_min . " - " . $range_max, 'type' => 'range' ]);
             }
             if(isset($rank_min) && isset($rank_max)){
-                array_push($tags,['name' => $rank_min . " - " . $rank_max, 'type' => 'rank' ]);
+                array_push($tags,['name' => '#'.$rank_min . " - " .'#'. $rank_max, 'type' => 'rank' ]);
             }
         }
         return $tags;
