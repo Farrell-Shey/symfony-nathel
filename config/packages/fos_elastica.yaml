@@ -3,6 +3,13 @@ fos_elastica:
     clients:
         default: { url: '%env(ELASTICSEARCH_URL)%' }
     indexes:
+        user:
+            properties:
+                id: ~
+                name: ~
+            persistence:
+                driver: orm
+                model: App\Entity\User
         poolset:
             properties:
                 id: ~
@@ -22,3 +29,5 @@ fos_elastica:
             persistence:
                 driver: orm
                 model: App\Entity\PoolSet
+
+

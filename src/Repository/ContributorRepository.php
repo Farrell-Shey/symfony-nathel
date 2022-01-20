@@ -19,7 +19,18 @@ class ContributorRepository extends ServiceEntityRepository
         parent::__construct($registry, Contributor::class);
     }
 
+    public function findByPoolsetAndUser($poolset, $user)
+    {
 
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.user = :user')
+            ->andWhere('c.poolSet = :poolset')
+            ->setParameters(['poolset'=> $poolset,'user' => $user])
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     // /**
     //  * @return Contributor[] Returns an array of Contributor objects

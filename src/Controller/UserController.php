@@ -4,17 +4,23 @@ namespace App\Controller;
 
 use App\Entity\Mappool;
 use App\Entity\MappoolFollowed;
+use App\Entity\PoolSet;
 use App\Entity\Score;
 use App\Entity\User;
 use App\Repository\BeatmapRepository;
+use App\Repository\BeatmapsetRepository;
 use App\Repository\ContributorRepository;
 use App\Repository\MappoolFollowedRepository;
 use App\Repository\MappoolMapRepository;
 use App\Repository\MappoolRepository;
+use App\Repository\PoolSetRepository;
 use App\Repository\ScoreRepository;
+use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use App\Service\OsuApiService;
 use Doctrine\ORM\EntityManagerInterface;
+use Elastica\Util;
+use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -258,4 +264,52 @@ class UserController extends AbstractController
 
         return $recent_activity;
     }
+
+    /**
+     * @param Request $request
+     * @param TagRepository $tr
+     * @param PoolSetRepository $pr
+     * @param UserRepository $ur
+     * @param ContributorRepository $cr
+     * @param MappoolRepository $mr
+     * @param MappoolMapRepository $mmr
+     * @param BeatmapRepository $br
+     * @param BeatmapsetRepository $bmsr
+     * @return JsonResponse
+     * @Route("/search_users", name="search_users", methods={"GET", "POST"})
+     */
+    public function searchUsers(Request $request, TransformedFinder $userFinder, TagRepository $tr, PoolSetRepository $pr, UserRepository $ur, ContributorRepository $cr, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr): JsonResponse
+    {
+        $data = $request->getContent();
+        $data = explode('§', $data);
+        $id = (int) $data[0];
+        $search = $data[1];
+        $search = Util::escapeTerm($search);
+
+        $json_results = $userFinder->find('*' . $search . '*');
+
+        $contributors = (new PoolSetController($this->security))->getCollection($id, $tr, $request, $pr, $ur, $cr, $mr, $mmr, $br, $bmsr)['contributors'];
+        foreach ($contributors as $contributor){
+            if (in_array($contributor->getUser(),$json_results)){
+                $key = array_search($contributor->getUser(), $json_results);
+                if ($key !== False){
+                    //unset($json_results[$key]);
+                }
+            }
+        }
+        $json_results = array_slice($json_results,0,5);
+        $users = [];
+
+        foreach($json_results as $result){
+            $user = [];
+            $user['name'] = $result->getName();
+            $user['id'] = $result->getId();
+            $user['thumbnail'] = $result->getThumbnail();
+            $user['country'] = $result->getcountry();
+            array_push($users,$user);
+        }
+
+        return new JsonResponse($users);
+    }
+
 }

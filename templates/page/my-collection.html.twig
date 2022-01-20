@@ -23,37 +23,41 @@
 			{% include "/layout/_modal-collection-new.html.twig" %}
 			<h1 class="title title-section">Collections</h1>
 			<ul class="list-collection">
-				<li
-					class="list-item card">
-					<!-- style="background-image: url('assets/img/ont.jpg')" -->
-					<div class="invitation">
-						<img class="thumbnail" src="https://via.placeholder.com/150x150" alt="thumbnail">
-						<p class="message">Farrell-Shey sent you an invite on<br>“Dan Project : Aim Collection</p>
-						<form class="response">
-							<button type="submit" class="btn btn-success">
-								<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
-									<path d="M2.93169 5.29229L1.54169 3.90229L1.06836 4.37229L2.93169 6.23562L6.93169 2.23562L6.46169 1.76562L2.93169 5.29229Z"/>
-								</svg>
 
-								accept
-							</button>
-							<button type="submit" class="btn btn-danger">
-								<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
-									<path d="M6.33366 2.13602L5.86366 1.66602L4.00033 3.52935L2.13699 1.66602L1.66699 2.13602L3.53033 3.99935L1.66699 5.86268L2.13699 6.33268L4.00033 4.46935L5.86366 6.33268L6.33366 5.86268L4.47033 3.99935L6.33366 2.13602Z"/>
-								</svg>
 
-								decline
-							</button>
-							<a target="_blank" href="/" class="btn btn-link">
-								show collection
-								<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
-									<path d="M4.66667 5.16667V6.5L7 4.16667L4.66667 1.83333V3.2C3 3.2 1.83333 2.66667 1 1.5C1.33333 3.16667 2.33333 4.83333 4.66667 5.16667Z"/>
-								</svg>
-							</a>
-						</form>
-					</div>
-				</li>
+				{% for invitation in invitations %}
+					{% if invitation.isAccept is null %}
+						<li
+								class="list-item card"  style="background-image: url('{{"/"~ invitation.poolset.thumbnail }}')" >
 
+							<div class="invitation">
+								<img class="thumbnail" src="{{ invitation.user.thumbnail }}" alt="thumbnail">
+								<p class="message">{{ invitation.user.name }} wants you to become contributor on<br>“{{ invitation.poolset.name }}</p>
+								<div class="response">
+									<button class="btn btn-success" data-id="{{ invitation.id }}">
+										<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+											<path d="M2.93169 5.29229L1.54169 3.90229L1.06836 4.37229L2.93169 6.23562L6.93169 2.23562L6.46169 1.76562L2.93169 5.29229Z"/>
+										</svg>
+
+										accept
+									</button>
+									<button class="btn btn-danger" data-id="{{ invitation.id }}">
+										<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+											<path d="M6.33366 2.13602L5.86366 1.66602L4.00033 3.52935L2.13699 1.66602L1.66699 2.13602L3.53033 3.99935L1.66699 5.86268L2.13699 6.33268L4.00033 4.46935L5.86366 6.33268L6.33366 5.86268L4.47033 3.99935L6.33366 2.13602Z"/>
+										</svg>
+										decline
+									</button>
+									<a target="_blank" href="{{ path('index_collection', { 'id': invitation.poolset.id}) }}" class="btn btn-link">
+										show collection
+										<svg class="svg" width="8" height="8" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+											<path d="M4.66667 5.16667V6.5L7 4.16667L4.66667 1.83333V3.2C3 3.2 1.83333 2.66667 1 1.5C1.33333 3.16667 2.33333 4.83333 4.66667 5.16667Z"/>
+										</svg>
+									</a>
+								</div>
+							</div>
+						</li>
+					{% endif %}
+				{% endfor %}
 
 				{% for collection in collections %}
 

@@ -19,6 +19,21 @@ class InvitationRepository extends ServiceEntityRepository
         parent::__construct($registry, Invitation::class);
     }
 
+    public function findByPoolsetAndUser($poolset, $user)
+    {
+
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.user = :user')
+            ->andWhere('i.poolset = :poolset')
+            ->setParameters(['poolset'=> $poolset,'user' => $user])
+            ->orderBy('i.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+
     // /**
     //  * @return Invitation[] Returns an array of Invitation objects
     //  */

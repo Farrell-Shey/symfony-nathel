@@ -16,6 +16,10 @@ let maps = []
 maps_tmp.forEach(f => {
     maps.push([f, f.value])
 })
+let search_user = document.querySelector("input[class='search-user bg-transparent']")
+let add_user = []
+
+
 // FUNCTIONS
 function makePostRequest(input, path){
     return axios.post(path, input)
@@ -281,6 +285,105 @@ document.addEventListener('DOMContentLoaded', function() {
         )
 
     })
+
+    // CONTRIBUTOR MODAL PART //////
+
+    // Search USERS
+        /////////////////////// AJOUTER UNE MAP /////////////////////////////
+        let modal_events = ['input']
+        modal_events.forEach(event => search_user.addEventListener(event, function(e){
+            e.preventDefault();
+            const data = search_user.getAttribute('data-id') + "§" + search_user.value
+            let request = makePostRequest(data, '/search_users').then( function(response){
+                let result = response.data
+                let oldcontent = document.querySelector("div[class='d-flex search-result-block scrollbar']")
+                if (oldcontent != null){
+                    oldcontent.remove()
+                }
+
+
+                let div0 = document.querySelector("div[class='contributor-container']")
+                let first_div = document.createElement("div")
+                first_div.setAttribute('class',"d-flex search-result-block scrollbar")
+                div0.appendChild(first_div)
+
+                result.forEach(function(f) {
+                    //START
+                    let div1 = document.createElement("div")
+                    div1.setAttribute('class',"d-flex user-card")
+                    div1.setAttribute('style',"background-image: url('/build/constellation.svg')")
+                    first_div.appendChild(div1)
+
+                    let img1 = document.createElement("img")
+                    img1.setAttribute('class',"contributor-avatar")
+                    img1.setAttribute('src', f['thumbnail'])
+                    div1.appendChild(img1)
+
+                    let img2 = document.createElement("img")
+                    img2.setAttribute('class',"contributor-flag")
+                    img2.setAttribute('src', "https://osu.ppy.sh/images/flags/" + f['country'] + ".png" )
+                    div1.appendChild(img2)
+                    let div2 = document.createElement("div")
+                    div2.setAttribute('class',"d-flex contributors-data")
+                    div1.appendChild(div2)
+                    let span = document.createElement("div")
+                    span.setAttribute('class',"contributor-name")
+                    span.textContent = f['name']
+                    div2.appendChild(span)
+                    //END
+
+                    div1.addEventListener('click', function(e){
+                        if (add_user.includes(f) === false){
+                            e.preventDefault()
+                            add_user.push(f)
+                            let div_add = document.querySelector("div[class='d-flex block-user-selected invisible-scrollbar']")
+                            let div_add2 = document.createElement("div")
+                            div_add2.setAttribute('class',"user-selected border-0")
+                            div_add2.textContent = f['name']
+                            div_add.appendChild(div_add2)
+
+                            let div_add3 = document.createElement("button")
+                            div_add3.setAttribute('class',"unselected-btn border-0 bg-transparent")
+                            div_add3.setAttribute('type',"button")
+                            div_add2.appendChild(div_add3)
+
+                            const xmlns = "http://www.w3.org/2000/svg";
+                            let svg = document.createElementNS(xmlns, 'svg');
+                            svg.setAttributeNS(null,'class',"delete")
+                            svg.setAttributeNS(null,'height',"16")
+                            svg.setAttributeNS(null,'width',"16")
+                            svg.setAttributeNS(null,'viewbox',"0 0 16 16")
+                            svg.setAttributeNS(null,'fill',"none")
+                            div_add3.appendChild(svg)
+                            let path = document.createElementNS(xmlns, 'path');
+                            path.setAttributeNS(null,'fill-rule',"evenodd")
+                            path.setAttributeNS(null,'clip-rule',"evenodd")
+                            path.setAttributeNS(null,'d',"M7.99935 15.3327C3.94926 15.3327 0.666016 12.0494 0.666016 7.99935C0.666016 3.94926 3.94926 0.666016 7.99935 0.666016C12.0494 0.666016 15.3327 3.94926 15.3327 7.99935C15.3327 12.0494 12.0494 15.3327 7.99935 15.3327ZM7.99988 13.9999C11.3136 13.9999 13.9999 11.3136 13.9999 7.99988C13.9999 4.68617 11.3136 1.99988 7.99988 1.99988C4.68617 1.99988 1.99988 4.68617 1.99988 7.99988C1.99988 11.3136 4.68617 13.9999 7.99988 13.9999ZM4.66602 7.33215V8.66549H11.3327V7.33215H4.66602Z")
+                            path.setAttributeNS(null,'fill',"#C60000")
+                            svg.appendChild(path)
+
+                            div_add3.addEventListener('click', function(e){
+                                e.preventDefault()
+                                add_user = add_user.filter(e => e !== f)
+                                div_add2.remove()
+                            })
+                        }
+
+
+                    })
+                    let confirm_add_users = document.querySelector("button[class='add-btnERROR']")
+                    confirm_add_users.addEventListener('click', function(e){
+                        console.log('test')
+                        e.preventDefault();
+                        const data = {'id':confirm_add_users.getAttribute('data-id'), 'users': add_user }
+                        let request = makePostRequest(data, '/collection/add_contributors').then( function(response){
+                            let result = response.data
+                        })})
+                })
+
+            })
+        }))
+
 })
 
 

@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Contributor;
+use App\Entity\Invitation;
 use App\Entity\PoolSet;
 use App\Entity\Tag;
 use App\Repository\BeatmapRepository;
 use App\Repository\BeatmapsetRepository;
 use App\Repository\ContributorRepository;
+use App\Repository\InvitationRepository;
 use App\Repository\MappoolMapRepository;
 use App\Repository\MappoolRepository;
 use App\Repository\PoolSetRepository;
@@ -101,29 +103,23 @@ class PoolSetController extends AbstractController
      * @return Response
      * @Route("/manage", name="manage_collection", methods={"GET", "POST"})
      */
-    public function manage(EntityManagerInterface $em, ContributorRepository $cr , Request $request,  TagRepository $tr, PoolSetRepository $pr, MappoolRepository $mr): Response
+    public function manage(EntityManagerInterface $em, InvitationRepository $ir, ContributorRepository $cr , Request $request,  TagRepository $tr, PoolSetRepository $pr, MappoolRepository $mr): Response
     {
         // Vérif connexion, ou renvoi directe sur page connexion.
-        /*
-        // TESTS
-        $cc = $this->getDoctrine()->getRepository(PoolSet::class);
-        $tg = $this->getDoctrine()->getRepository(Tag::class);
-        $col = $cc->findOneBy(['name' => 'Juste un peu']);
+        $user = $this->security->getUser();
 
-        $tag = $tg->findByPoolset($col->getId());
-
-        dd($tag);
-        */
-
-
+        if ($user === null){
+            return $this->redirect('https://osu.ppy.sh/oauth/authorize?response_type=code&client_id=8955&redirect_uri=https://nathel.wip/connexion&scope=public');
+        }
         // MANAGE MY POOLS PART
 
         // Instanciation des collections
 
 
-        $user = $this->security->getUser();
+
         $contributors = $cr->findBy(['user' => $user]);
         $collections = [];
+        $invitation = $ir->findBy(['user' => $user]);
 
         foreach($contributors as $contributor){
             $id = $contributor->getPoolSet()->getId();
@@ -200,7 +196,7 @@ class PoolSetController extends AbstractController
         }
 
         return $this->render('page/my-collection.html.twig',
-            ['formulaire' => $form->createView(), 'collections' => $collections]);
+            ['formulaire' => $form->createView(), 'collections' => $collections,'invitations' => $invitation]);
 
 
     }
@@ -301,10 +297,32 @@ class PoolSetController extends AbstractController
      */
     public function editView(int $id, TagRepository $tr, Request $request, PoolSetRepository $pr, UserRepository $ur, ContributorRepository $cr, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr): Response
     {
-
         // INSTANCIATION DE LA COLLECTION
 
         $collection = $this->getCollection($id, $tr, $request, $pr, $ur, $cr, $mr, $mmr, $br, $bmsr);
+
+        // Verification in contributors
+        $user = $this->security->getUser();
+
+        if($user !== null){
+            $start = false;
+            $user = $ur->findOneBy(['id' => $user->getId()]);
+            $contributors = $cr->findBy(['poolSet' => $collection]);
+            $users = [];
+            foreach ($contributors as $contributor){
+                if ($user->getId() == $contributor->getUser()->getId()){
+                    $start = true;
+                }
+            }
+            if ($start == false){
+                return $this->redirectToRoute('app_home');
+            }
+        }else{
+            return $this->redirectToRoute('app_home');
+        }
+
+
+
 
         // CREATION DU FORMULAIRE
 
@@ -412,7 +430,8 @@ class PoolSetController extends AbstractController
             $maps[$mappool->getId()] = $mappool->maps;
 
         }
-        $forms['poolset_data'] = ['title' => $collection['poolset']->getName(), 'thumbnail' => $collection['poolset']->getThumbnail() ];
+
+        $forms['poolset_data'] = ['title' => $collection['poolset']->getName(), 'thumbnail' => $collection['poolset']->getThumbnail(),'contributors'=> $contributors, 'pool_id' => $collection['poolset']->getId()];
         $forms['maps'] = $maps;
 
         return $this->render('/page/edit-collection.html.twig', $forms);
@@ -765,5 +784,118 @@ class PoolSetController extends AbstractController
         return $tags;
     }
 
+    /**
+     * * @Route("/add_contributors", name="add_contributor", methods={"GET", "POST"})
+     * @param TagRepository $tr
+     * @param Request $request
+     * @param PoolSetRepository $pr
+     * @param UserRepository $ur
+     * @param ContributorRepository $cr
+     * @param MappoolRepository $mr
+     * @param MappoolMapRepository $mmr
+     * @param BeatmapRepository $br
+     * @param BeatmapsetRepository $bmsr
+     */
+    public function sendInvitation(TagRepository $tr, EntityManagerInterface $em, Request $request, InvitationRepository $ir,PoolSetRepository $pr, UserRepository $ur, ContributorRepository $cr, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr)
+    {
+        $data = json_decode($request->getContent());
+        $add_users = [];
+
+        foreach($data->users as $info){
+
+            //vérifie si déjà contributor dans ce pool
+            $poolset = $pr->findOneBy(['id'=>$data->id]);
+            $user = $ur->findOneBy(['id'=>$info->id]);
+            $add_user = [];
+            $add_user['name'] = $user->getName();
+            $add_user['id'] = $user->getId();
+            $add_user['thumbnail'] = $user->getThumbnail();
+            $add_user['country'] = $user->getcountry();
+            $verif_contributors = $cr->findByPoolsetAndUser($poolset,$user);
+            //$verif_contributors = [];
+            if (count($verif_contributors) == 0){
+                //vérifie si invitation denied existe, qu'il y a plus de 48h
+                $invitation = $ir->findByPoolsetAndUser($poolset,$user);
+                if (count($invitation) > 0){
+                    if ($invitation[0]->getIsAccept() === false){
+                        //on regarde le deleted_at
+                        $now = new \DateTime('now');
+                        $deleted = $invitation[0]->getDeletedAt();
+                        $deleted->modify('+2 day');
+                        if ($deleted <= $now){
+                            $invitation[0]->setIsAccept(null);
+                            $invitation[0]->setCreatedAt(new \DateTime('now'));
+                            $em->persist($invitation[0]);
+                            $em->flush();
+                            array_push($add_users,$add_user);
+                            return new JsonResponse($add_users);
+                        }
+                    } elseif($invitation[0]->getIsAccept() === true){
+                        // On repasse en null
+                        $invitation[0]->setIsAccept(null);
+                        $invitation[0]->setCreatedAt(new \DateTime('now'));
+                        $em->persist($invitation[0]);
+                        $em->flush();
+                        array_push($add_users,$add_user);
+                        return new JsonResponse($add_users);
+                    }
+                }else{
+                    // On instancie la relation d'invitation
+                    $invit = new Invitation();
+                    $invit->setUser($user);
+                    $invit->setPoolset($poolset);
+                    $invit->setCreatedAt(new \DateTime('now'));
+                    $em->persist($invit);
+                    $em->flush();
+                    array_push($add_users,$add_user);
+                    return new JsonResponse($add_users);
+                }
+            }
+        }
+
+        return new JsonResponse([False]);
+
+    }
+
+    /**
+     * * @Route("/accept_invitation", name="accept_invitation", methods={"GET", "POST"})
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @param InvitationRepository $ir
+     * @return JsonResponse
+     */
+    public function acceptInvitation(EntityManagerInterface $em, Request $request, InvitationRepository $ir, ContributorRepository $cr): JsonResponse
+    {
+        $id = $request->getContent();
+        $invitation = $ir->findOneBy(['id' => $id]);
+        $invitation->setDeletedAt(new \DateTime('now'));
+        $invitation->setIsAccept(true);
+        $em->persist($invitation);
+        if (count($cr->findByPoolsetAndUser($invitation->getPoolset(), $invitation->getUser())) == 0){
+            $contributor = new Contributor();
+            $contributor->setUser($invitation->getUser());
+            $contributor->setPoolSet($invitation->getPoolset());
+            $contributor->setIsCreator(false);
+        }
+        $em->flush();
+        return new JsonResponse([true]);
+    }
+    /**
+     * * @Route("/decline_invitation", name="decline_invitation", methods={"GET", "POST"})
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @param InvitationRepository $ir
+     * @return JsonResponse
+     */
+    public function declineInvitation(EntityManagerInterface $em, Request $request, InvitationRepository $ir): JsonResponse
+    {
+        $id = $request->getContent();
+        $invitation = $ir->findOneBy(['id' => $id]);
+        $invitation->setDeletedAt(new \DateTime('now'));
+        $invitation->setIsAccept(false);
+        $em->persist($invitation);
+        $em->flush();
+        return new JsonResponse([true]);
+    }
 
 }

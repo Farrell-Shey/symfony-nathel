@@ -51,7 +51,37 @@
 				</div>
 			</section>
 
+			<section id="target-contributor" class="block-contributors">
+				<div class="title-block">
+					<span class="section-title">
+						Contributors
+					</span>
+				</div>
+				<div class="d-flex toggle-fit-content global-contributors-dropdown">
+					<div class="d-flex contributors-global-card">
+						<button type="button" class="contributor-card" data-bs-toggle="modal" data-bs-target="#staticBackdrop-contributor">
+							<div class="d-flex mb-n3 contributor-cover">
+								<img class="mx-auto img-arrow" src="{{ asset('build/add-arrow.png') }}">
+							</div>
+							<div class="d-flex contributors-data">
+								<span class="contributor-add">Add a new contributor</span>
+							</div>
+						</button>
+
+						{% include "/layout/_modal-contributor.html.twig" %}
+
+						{% for contributor in poolset_data['contributors'] %}
+							{% include "/layout/_contributor-card.html.twig" %}
+						{% endfor %}
+					</div>
+				</div>
+				<div class="d-lg-none d-flex dropdown-card">
+					<button type="button" class="dropdown-button">
+						<img id="btn-contributor" class="dropdown" src="{{ asset('build/dropdown-down.svg') }}" alt=""/></button>
+				</div>
+			</section>
 		</div>
+
 
 		<section class="block-search ">
 			<div class="d-lg-flex flex-lg-wrap justify-content-lg-between">
@@ -91,6 +121,8 @@
 		</section>
 
 		{{ form_end(form) }}
+
+
 
 	</div>
 	<!-- FORMS DE LA PARTIE MAPPOOLS & MAPS -->
