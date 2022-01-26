@@ -1,13 +1,15 @@
 // IMPORTS
 import axios from "axios";
 import noUiSlider from "nouislider";
+import { btnPools } from "./dropdownMappool"
 //GLOBAL VARS
+let btnMappools = document.querySelectorAll("img[id='btn-mappool']");
 let sliderRank = document.getElementById('slider-rank');
 const form = document.querySelector("form[id='poolset']")
 const add = document.querySelector("form[id='add']")
 let pools = document.querySelectorAll("form[id='pool']");
 let delete_pools = document.querySelectorAll("button[id='form_delete']");
-const add_map = document.querySelectorAll("input[id='form_addmap']")
+let add_map = document.querySelectorAll("input[id='form_addmap']")
 let events = ['submit', 'change']
 let delete_maps = document.querySelectorAll("button[class='d-flex delete-btn']");
 let maps_tmp = document.querySelectorAll("input[class='map-link']");
@@ -25,7 +27,111 @@ function makePostRequest(input, path){
     return axios.post(path, input)
 }
 
+function addMap(addmap){
+    // add maps
+    addmap.forEach(f => {
+        /////////////////////// AJOUTER UNE MAP /////////////////////////////
+        events.forEach(event => f.addEventListener(event, function(e){
+            e.preventDefault();
+            const data = new FormData(f.form)
+            let request = makePostRequest(data, '/add_map').then( function(response){
+                let result = response.data
+                f.value = ""
+                if (result[0] === 'false'){
+                    f[0].value = f[1]
+                }else{
+                    // Construction de la map
+                        let parent = f.parentElement.parentElement.parentElement.parentElement
+                        let div0 = parent.parentElement
+                        let first_div = document.createElement("div")
+                        first_div.setAttribute('class',"d-flex block-mappool-data")
+                        first_div.setAttribute('style',"background-image: url('"+ result.cover +"'); z-index: 2")
+                        div0.appendChild(first_div)
+                        div0.insertBefore(first_div, f.parentNode.parentNode.parentNode.parentNode)
+                        ////////////////////////////////////////////////
+                        let div1 = document.createElement("div")
+                        div1.setAttribute('class',"d-flex first-line-data")
+                        first_div.appendChild(div1)
+                        /////////////////////////////
+                        let div3 = document.createElement("div")
+                        div3.setAttribute('class',"map-link-card")
+                        div1.appendChild(div3)
+                        ////////////////
+                        let p1 = document.createElement("p")
+                        p1.setAttribute('class',"map-link-text")
+                        p1.textContent = "Map-Link"
+                        div3.appendChild(p1)
+                        ////////////////
+                        let div4 = document.createElement("div")
+                        div4.setAttribute('class',"d-flex map-link-edit")
+                        div3.appendChild(div4)
+                        ////////
+                        let input1 = document.createElement("input")
+                        input1.setAttribute('class',"map-link")
+                        input1.setAttribute('poolid',result.poolid)
+                        input1.value = result.url
+                        div4.appendChild(input1)
+                        /////////////////////////////
+                        let select1 = document.createElement("select")
+                        select1.setAttribute('class',"select mode")
+                        select1.setAttribute('poolid',result.poolid)
+                        select1.setAttribute('mapid',result.id)
+                        div1.appendChild(select1)
+                        //////////////// OPTIONS
+                        let mods = ['NM', 'DT','HR','HD']
+                        mods.forEach(f => {
+                            let option = document.createElement("option")
+                            option.setAttribute('value',f)
+                            option.label = f
+                            select1.appendChild(option)
+
+                        })
+
+                        /////////////////////////////
+                        let button1 = document.createElement("button")
+                        button1.setAttribute('class',"d-flex delete-btn")
+                        button1.setAttribute('value',result.poolid + '_' + result.id)
+                        button1.textContent = 'Delete'
+                        div1.appendChild(button1)
+                        ////////////////////////////////////////////////
+                        let div2 = document.createElement("div")
+                        div2.setAttribute('class',"d-flex second-line-data")
+                        first_div.appendChild(div2)
+                        /////////////////////////////
+                        let span2 = document.createElement("span")
+                        span2.setAttribute('class',"d-none d-md-flex map-title")
+                        span2.textContent = result.name
+                        div2.appendChild(span2)
+                        /////////////////////////////
+                        let span3 = document.createElement("span")
+                        span3.setAttribute('class',"d-none d-md-flex map-author")
+                        span3.textContent = result.creator
+                        div2.appendChild(span3)
+                        /////////////////////////////
+                        ////////////////////////////////////////////////
+                        let span1 = document.createElement("span")
+                        span1.setAttribute('class',"d-none d-md-flex rating")
+                        span1.textContent = ' CS: ' + result.cs + ' AR: ' + result.ar + ' OD: ' + result.accuracy + ' HP: ' + result.drain
+                        first_div.appendChild(span1)
+
+                        let delete_maps = document.querySelectorAll("button[class='d-flex delete-btn']");
+                        let maps_tmp = document.querySelectorAll("input[class='map-link']");
+                        let modes = document.querySelectorAll("select[class='select mode']");
+                        let maps = []
+                        maps_tmp.forEach(t => {
+                            maps.push([t, t.value])
+                        })
+                        eventMaps(delete_maps, maps, modes)
+
+
+                }
+            })
+        }))
+    })
+}
+
 function eventMaps(delete_maps, maps, modes){
+
 
     // delete pool
     delete_maps.forEach(f => {
@@ -60,17 +166,23 @@ function eventMaps(delete_maps, maps, modes){
             let value = f[1];
 
             const data = id + '§' + link + '§' + value;
+            console.log(data)
             let request = makePostRequest(data, '/replace_map').then(function (response){
                 let request = response.data
                 if (request[0] === 'false'){
                     f[0].value = f[1]
                 }else{
+                    console.log(request)
                     let elt = f[0].parentElement.parentElement.parentElement.parentElement
                     elt.setAttribute('style', 'background-image: url(\'' + request.cover + '\'); z-index: 2')
                     elt.querySelector("div[class='d-flex second-line-data']").querySelector("span[class='d-none d-md-flex map-title']").textContent = request.name
                     elt.querySelector("div[class='d-flex second-line-data']").querySelector("span[class='d-none d-md-flex map-author']").textContent = "mappée par " + request.creator
                     elt.querySelector("span[class='d-none d-md-flex rating']").textContent = "CS: " + request.cs + " AR: " + request.ar + " OD: " + request.accuracy + " HP: " + request.drain
                     f[0].value = request.url
+                    elt.querySelector("div[class='d-flex first-line-data']").querySelector("button[class='d-flex delete-btn']").value = request.poolid + '_' + request.id
+                    elt.querySelector("div[class='d-flex first-line-data']").querySelector("select[class='select mode']").setAttribute('poolid',request.poolid)
+                    elt.querySelector("div[class='d-flex first-line-data']").querySelector("select[class='select mode']").setAttribute('mapid',request.id)
+
 
 
 
@@ -81,6 +193,7 @@ function eventMaps(delete_maps, maps, modes){
                     maps_tmp.forEach(t => {
                         maps.push([t, t.value])
                     })
+                    let add_map = document.querySelectorAll("input[id='form_addmap']")
                     eventMaps(delete_maps, maps, modes)
                 }
 
@@ -121,6 +234,10 @@ function eventPools(pools, delete_pools){
 
 //DOM
 document.addEventListener('DOMContentLoaded', function() {
+    // ADD MAP
+    addMap(add_map)
+    //BTN POOLS
+    btnPools(btnMappools)
     /////////////////////// POOLSET DATA /////////////////////////////
 
     sliderRank.noUiSlider.on('update', function() {
@@ -152,16 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // maps changes
     eventMaps(delete_maps, maps, modes)
 
-    add_map.forEach(f => {
-        /////////////////////// AJOUTER UNE MAP /////////////////////////////
-        events.forEach(event => f.addEventListener(event, function(e){
-            e.preventDefault();
-            const data = new FormData(f.form)
-            let request = makePostRequest(data, '/add_map').then( function(response){
-                f.value = ""
-            })
-        }))
-    })
 
 
     /////////////////////// AJOUTER UN MAPPOOL /////////////////////////////
@@ -177,9 +284,11 @@ document.addEventListener('DOMContentLoaded', function() {
             let section = document.querySelector("section[id='target-mappool']")
 
             let form1 = document.createElement("form")
+            form1.setAttribute('class', 'global-edit-mappool')
             form1.setAttribute('id', 'pool')
             form1.setAttribute('name', 'form')
             form1.setAttribute('method',"post")
+            form1.setAttribute('data-pool',request['id'])
 
 
             section.insertBefore(form1, add)
@@ -233,6 +342,8 @@ document.addEventListener('DOMContentLoaded', function() {
             let img1 = document.createElement("img")
             img1.setAttribute('class',"dropdown")
             img1.setAttribute('id',"btn-mappool")
+            img1.setAttribute('data-pool',request['id'])
+
             img1.setAttribute('src',"/build/dropdown-down.svg")
             div7.appendChild(img1)
 
@@ -250,19 +361,23 @@ document.addEventListener('DOMContentLoaded', function() {
             let div11 = document.createElement("div")
             div11.setAttribute('class',"map-link-card")
             div10.appendChild(div11)
+            let button = document.createElement("button")
+            button.setAttribute('class',"add-btn")
+            button.setAttribute('type',"button")
+            button.textContent = 'add'
+            div10.appendChild(button)
+
             let p1 = document.createElement("p")
             p1.setAttribute('class',"map-link-text")
-            p1.setAttribute('value',"Map-link")
+            p1.textContent = 'Map-Link'
             div11.appendChild(p1)
             let div12 = document.createElement("div")
             div12.setAttribute('class',"d-flex map-link-edit")
             div11.appendChild(div12)
             //addmap input
             let i2 = document.createElement("input") //input element, text
-            i2.setAttribute('label', 'Map Link')
             i2.setAttribute('type', 'text')
             i2.setAttribute('placeholder', 'https://...')
-            i2.setAttribute('value',"https://...")
             i2.setAttribute('name','form[addmap]')
             i2.setAttribute('id','form_addmap')
             i2.setAttribute('class','map-link')
@@ -281,6 +396,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 pools = document.querySelectorAll("form[id='pool']")
                 delete_pools = document.querySelectorAll("button[id='form_delete']")
                 eventPools(pools, delete_pools)
+                let btnMappools = document.querySelectorAll("img[id='btn-mappool']");
+                btnPools(btnMappools)
+                // ADD MAP
+                let add_map = document.querySelectorAll("input[id='form_addmap']")
+                addMap(add_map)
         }
         )
 

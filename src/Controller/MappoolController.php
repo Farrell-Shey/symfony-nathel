@@ -84,19 +84,19 @@ class MappoolController extends AbstractController
     /**
      * @Route("delete_pool", name="delete_pool", methods={"GET", "POST"})
      */
-    public function  deletePool(EntityManagerInterface $em, Request $request, MappoolRepository $mr): JsonResponse
+    public function  deletePool(EntityManagerInterface $em, Request $request, MappoolRepository $mr, MappoolMapRepository $mmr): JsonResponse
     {
-
-
-
 
         $id = preg_replace('/[^0-9.]+/', '', $request->getContent());
 
         $arrData = [];
         $arrData['delete'] = true;
         $arrData['id'] = $id;
-
         $pool = $mr->findOneById($id);
+        foreach($mmr->findBy(['mappool' => $pool]) as $mmap){
+
+            $em->remove($mmap);
+        }
         $em->remove($pool);
         $em->flush();
 

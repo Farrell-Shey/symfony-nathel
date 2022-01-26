@@ -203,6 +203,10 @@ class MapController extends AbstractController
             }
         }
 
+        if (count($mmr->findByMapAndMappool($map, $mappool)) > 0 ){
+            return new JsonResponse(['false','7']);
+        }
+
 
         // Insert de la relation Mappool - Map
         if (!isset($mmap) && $replace == False){
@@ -237,26 +241,26 @@ class MapController extends AbstractController
             $arrData['ar'] = $map->getAr();
             $arrData['drain'] = $map->getDrain();
             $arrData['accuracy'] = $map->getAccuracy();
+            $arrData['id'] = $map->getId();
+            $arrData['poolid'] = $mappool->getId();
             return new JsonResponse($arrData);
 
         }
 
-
+        $name = $mapset->getArtist() . ' - ' . $mapset->getName() . ' [' . $map->getDifficulty() . ']';
         $arrData = [];
-        $arrData['title'] = $mapset->getName();
+        $arrData['name'] = $name;
         $arrData['creator'] = $mapset->getCreator();
-        $arrData['artist'] = $mapset->getArtist();
         $arrData['cover'] = $mapset->getCover();
         $arrData['url'] = $map->getUrl();
-        $arrData['difficulty'] = $map->getDifficulty();
         $arrData['cs'] = $map->getCs();
         $arrData['bpm'] = $map->getBpm();
         $arrData['ar'] = $map->getAr();
         $arrData['drain'] = $map->getDrain();
         $arrData['accuracy'] = $map->getAccuracy();
-        $arrData['hit_length'] = $map->getHitLength();
         $arrData['mode'] = $mmap->getMode();
-
+        $arrData['id'] = $map->getId();
+        $arrData['poolid'] = $mappool->getId();;
         return new JsonResponse($arrData);
     }
 
@@ -321,6 +325,7 @@ class MapController extends AbstractController
      * @param BeatmapsetRepository $bmsr
      * @param BeatmapRepository $bmr
      * @param MappoolMapRepository $mmr
+     * @return JsonResponse
      */
     public function deleteMap(EntityManagerInterface $em, Request $request, OsuApiService $api, MappoolRepository $mr, BeatmapsetRepository $bmsr, BeatmapRepository $bmr, MappoolMapRepository $mmr){
         $data = $request->getContent();
@@ -351,8 +356,8 @@ class MapController extends AbstractController
             }
         }
 
-
-
+        $arrData = [];
+        return new JsonResponse($arrData);
 
     }
 }

@@ -22,28 +22,12 @@
 							</div>
 							<div class="contributor-container">
 								<div class="d-flex search-result-block scrollbar">
-									{% for i in 0..3 %}
 
-										<div class="d-flex user-card" style="background-image: url('{{asset('/build/constellation.svg')}}')">
-
-											<img class="contributor-avatar" src="{{ asset('build/default_avatar.png') }}">
-											<img class="contributor-flag" src="{{ asset('build/flag.png') }}">
-
-											<div class="d-flex contributors-data">
-												<span class="contributor-name">Farrell-Shey974</span>
-											</div>
-										</div>
-									{% endfor %}
 								</div>
 							</div>
 
 							<span class="text-add">You want to add :</span>
 							<div class="d-flex block-user-selected invisible-scrollbar">
-								<div class="user-selected border-0">Thrace12
-									<button type="button" class="unselected-btn border-0 bg-transparent">
-										{{ block("cross") }}
-									</button>
-								</div>
 							</div>
 							<div class="d-flex flex-end justify-content-end">
 								<button type="button" class="add-btnERROR" data-bs-dismiss="modal"  aria-label="Confirm"  data-id="{{ poolset_data['pool_id'] }}">Confirm</button>

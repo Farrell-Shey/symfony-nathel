@@ -65,43 +65,6 @@
 											</div>
 										</div>
 										{{ form_widget(attribute(value, mode_array[i])) }}
-										{% for i in 0..1 %}
-											{% if i == 0 %}
-												{% block menu_mod %}
-													<div class="menu-mod">
-														<button class="d-flex mod-select" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#mod-target{{ loop.index }}" aria-expanded="false">
-															<div class="d-flex block-drop-menu">
-																<img class="dropdown-toggle" href="#" src="{{ asset('build/dropdown-down.svg') }}"/>
-																<p class="mod">
-																	NM
-																</p>
-															</div>
-														</button>
-														<div class="collapse mod-target" id="mod-target{{ loop.index }}">
-															<div class="card-menu">
-																<button class="d-flex mod-btn">
-																	<p class="mod-choice">
-																		NM
-																	</p>
-																</button>
-																<button class="d-flex mod-btn">
-																	<p class="mod-choice">
-																		DT
-																	</p>
-																</button>
-																<button class="d-flex mod-btn">
-																	<p class="mod-choice">
-																		HD
-																	</p>
-																</button>
-
-															</div>
-														</div>
-													</div>
-												{% endblock %}
-
-											{% endif %}
-										{% endfor %}
 										<button class="d-flex delete-btn" value="{{ pool_id ~ '_' ~ pool_maps[i]['map'].id }}" >
 											delete
 										</button>

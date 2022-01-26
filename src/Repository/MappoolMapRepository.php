@@ -19,6 +19,19 @@ class MappoolMapRepository extends ServiceEntityRepository
         parent::__construct($registry, MappoolMap::class);
     }
 
+    public function findByMapAndMappool($map, $mappool)
+    {
+
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.beatmap = :map')
+            ->andWhere('m.mappool = :mappool')
+            ->setParameters(['map'=> $map,'mappool' => $mappool])
+            ->orderBy('m.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 
 
     // /**
