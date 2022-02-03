@@ -5,16 +5,24 @@
 			<div class="contributor-card" style="background-image: url('{{asset('/build/constellation.svg')}}')">
 				<div class="d-flex contributor-cover" style="background-image: url('https://assets.ppy.sh/beatmaps/847415/covers/cover.jpg')">
 					<div class="filter">
-						<img class="contributor-flag" src="{{ asset('build/flag.png') }}" href="#">
-						<img class="contributor-avatar" src="{{ contributor.user.thumbnail }}" href="#">
-						<div class="d-flex contributor-delete">{{ block('delete') }}</div>
+						<img class="contributor-flag" src="{{ asset('build/flag.png') }}">
+						<a href="{{ path('user', {'id': contributor.user.osuid}) }}">
+							<img class="contributor-avatar" src="{{ contributor.user.thumbnail }}">
+						</a>
+
+						{% if deletecontributor is defined %}
+							{% else %}
+								{% if creator == true %}
+									<div data-test="{{ creator_id }}" data-user="{{ contributor.user.id }}" data-pool="{{ contributor.poolset.id }}" class="d-flex contributor-delete">{{ block('delete') }}</div>
+									{% endif %}
+						{% endif %}
 					</div>
 				</div>
 				<div class="d-flex contributors-data">
-					<span class="contributor-name">{{ contributor.user.name }}</span>
-					<span class="contributor-data">Contributor since
-						<br>
-						1 November 2020</span>
+					<a href="{{ path('user', {'id': contributor.user.osuid}) }}">
+						<span class="contributor-name">{{ contributor.user.name }}</span>
+					</a>
+
 				</div>
 			</div>
 		{% endblock %}

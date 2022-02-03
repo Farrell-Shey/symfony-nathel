@@ -13,20 +13,23 @@
 										<ul>
 											<li class="title-pined">{{ mappool.name }}</li>
 											<li>From collection
-												<a class="link-pined" href="/">{{ col['poolset'].name }}</a>
+												<a class="link-pined">{{ col['poolset'].name }}</a>
 											</li>
 											<li>submitted by
-												<a class="link-pined">{{ col['contributors'][0].user.name }}</a>
+												<a class="link-pined" href="{{ path('user', {'id': col['contributors'][0].user.osuid}) }}">{{ col['contributors'][0].user.name }}</a>
 											</li>
 											<li>{{ mappool.maps|length}} maps</li>
 										</ul>
-										<div class="d-flex svg">
-											<a class="d-flex pined-svg" href="#">{{ block("svg_pined") }}</a>
-											<a class="d-flex pined-svg" href="#">{{ block("unfollow") }}</a>
-										</div>
+										<span class="mappool-name invisible-scrollbar">
+											<a id="unfollow" class="show no-transition" data-pool = "{{ mappool.id }}" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+												{{ block("follow") }}</a>
+											<a id="unfollow" class="collapse no-transition" data-pool = "{{ mappool.id }}" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+												{{ block("unfollow") }}</a>
+										</span>
+
 									</div>
 									<div class="d-flex pined-info">
-										<button class="accordion-button bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse" aria-expanded="false" aria-controls="flush-collapse"></button>
+										<button id="dropdown-button" class="accordion-button bg-transparent collapsed" type="button"></button>
 
 										{% for tag in col['tags'] %}
 											{% if (tag.type == 'gamemod') %}
@@ -68,7 +71,8 @@
 													<div class="d-flex text-pined-mappools">
 														<ul>
 															<div class="d-flex card-pined-mappools-lg">
-																<li class="title-pined-mappools">{{ map['name ']  }}
+																<li class="title-pined-mappools">
+																	<a href="{{ map.map.url }}">{{ map['name ']  }}</a>
 																</li>
 																<div class="d-none d-lg-block card time-card-pined">
 																	<div class="mt-n1 text-pined-lg">
@@ -78,10 +82,15 @@
 																			{{ map['map'].hitlength|date('i:s', '+00:00 GMT') }}</p>
 																	</div>
 																</div>
-																<img class="img-hd" src="{{ asset('build/img-hd.png') }}" alt="...">
+																{% if map.mode == 'NM' %}{{ block('no_mod') }}{% endif %}
+																{% if map.mode == 'DT' %}{{ block('dt_mod') }}{% endif %}
+																{% if map.mode == 'HR' %}{{ block('hr_mod') }}{% endif %}
+																{% if map.mode == 'HD' %}{{ block('hd_mod') }}{% endif %}
+																{% if map.mode == 'FM' %}{{ block('fm_mod') }}{% endif %}
+																{% if map.mode == 'TB' %}{{ block('tb_mod') }}{% endif %}
 															</div>
 															<li>mappée par
-																<a class="link-pined-mappools">{{ map.map.beatmapset.creator }}</a>
+																<span class="link-pined-mappools">{{ map.map.beatmapset.creator }}</span>
 															</li>
 															<li class="tag-pined-mappools">CS: {{ map.map.cs}}  AR: {{ map.map.ar}} OD: {{ map.map.accuracy}} HP: {{ map.map.drain}}
 															</li>

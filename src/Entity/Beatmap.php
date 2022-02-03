@@ -75,6 +75,11 @@ class Beatmap
      */
     private $beatmapset;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $star_rating;
+
     public function __construct()
     {
         $this->mappoolMaps = new ArrayCollection();
@@ -231,6 +236,18 @@ class Beatmap
     public function setBeatmapset(?Beatmapset $beatmapset): self
     {
         $this->beatmapset = $beatmapset;
+
+        return $this;
+    }
+
+    public function getStarRating(): ?float
+    {
+        return $this->star_rating;
+    }
+
+    public function setStarRating(?float $star_rating): self
+    {
+        $this->star_rating = $star_rating;
 
         return $this;
     }

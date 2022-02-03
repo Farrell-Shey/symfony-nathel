@@ -88,7 +88,6 @@ class MappoolController extends AbstractController
     {
 
         $id = preg_replace('/[^0-9.]+/', '', $request->getContent());
-
         $arrData = [];
         $arrData['delete'] = true;
         $arrData['id'] = $id;

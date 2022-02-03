@@ -95,10 +95,19 @@ class OsuApiService
             ),
         ));
 
-        $response = curl_exec($curl);
+        if ($this->code == null && $this->credential_token == null){
+            $response = curl_exec($curl);
+        }elseif ($this->code == null && $this->credential_token != null){
+            return False;
+        }else{
+            $response = curl_exec($curl);
+        }
+
         curl_close($curl);
+
         $response = json_decode($response, true);
-        if ($code == null) : // Public Token
+
+        if ($code == null && $this->credential_token == null) : // Public Token
             $this->credential_token = $response['access_token'];
         else : // User authentification token
             $this->user_token = $response['access_token'];

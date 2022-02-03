@@ -46,7 +46,7 @@ class TagFixtures extends Fixture // implements DependentFixtureInterface
                 'type' => 'category'
             ],
             [
-                'name' => 'pp farm',
+                'name' => 'pp_farm',
                 'type' => 'category'
             ]
 
@@ -63,10 +63,4 @@ class TagFixtures extends Fixture // implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
-    {
-        return [
-            PoolSetFixtures::class,
-        ];
-    }
 }

@@ -20,7 +20,7 @@ maps_tmp.forEach(f => {
 })
 let search_user = document.querySelector("input[class='search-user bg-transparent']")
 let add_user = []
-
+let delete_contributors = document.querySelectorAll("div[class='d-flex contributor-delete']");
 
 // FUNCTIONS
 function makePostRequest(input, path){
@@ -234,6 +234,14 @@ function eventPools(pools, delete_pools){
 
 //DOM
 document.addEventListener('DOMContentLoaded', function() {
+    // Delete contributors
+    delete_contributors.forEach(f => {
+        f.addEventListener('click', function(e) {
+            e.preventDefault();
+            const data = {'test' : f.getAttribute('data-test'), 'poolset': f.getAttribute('data-pool'), 'user' : f.getAttribute('data-user')};
+            let request = makePostRequest(data, '/collection/delete_contributor')
+            f.parentElement.parentElement.parentElement.remove()
+        })})
     // ADD MAP
     addMap(add_map)
     //BTN POOLS

@@ -6,10 +6,13 @@ use App\Entity\Beatmap;
 use App\Entity\Beatmapset;
 use App\Entity\Mappool;
 use App\Entity\MappoolMap;
+use App\Entity\Tag;
 use App\Repository\BeatmapRepository;
 use App\Repository\BeatmapsetRepository;
 use App\Repository\MappoolMapRepository;
 use App\Repository\MappoolRepository;
+use App\Repository\PoolSetRepository;
+use App\Repository\TagRepository;
 use App\Service\OsuApiService;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -30,9 +33,9 @@ class MapController extends AbstractController
     {
         $this->security = $security;
     }
-
+        // Fonction à n'utiliser qu'en dernier recours
     /**
-     * @Route("add_map", name="add_map", methods={"GET", "POST"})
+     * @Route("update_sr", name="update_sr", methods={"GET", "POST"})
      * @param EntityManagerInterface $em
      * @param Request $request
      * @param OsuApiService $api
@@ -43,7 +46,50 @@ class MapController extends AbstractController
      * @param bool $replace
      * @return JsonResponse
      */
-    public function addMap(EntityManagerInterface $em, Request $request, OsuApiService $api, MappoolRepository $mr, BeatmapsetRepository $bmsr, BeatmapRepository $bmr, MappoolMapRepository $mmr, $replace = False)
+    public function updateSR(EntityManagerInterface $em, Request $request, OsuApiService $api, MappoolRepository $mr, BeatmapsetRepository $bmsr, BeatmapRepository $bmr, MappoolMapRepository $mmr, $replace = False)
+    {
+
+        $maps = $bmr->findAll();
+        foreach($maps as $map){
+            $ch = strrev($map->getUrl());
+            $map_id = '';
+            for($i = 0;is_numeric($ch[$i]) == true; $i++){
+                $map_id = $map_id . (string) $ch[$i];
+            }
+
+            $map_id = strrev($map_id);
+
+        try {
+            $map_data = $api->getBeatmapInfo($map_id);
+
+        } catch (Exception $e) {
+            dump($e);
+        }
+        $map->setStarRating($map_data['difficulty_rating']);
+        $em->persist($map);
+        $em->flush();
+
+
+
+        }
+        dd('Update effectué !');
+
+    }
+
+    /**
+     * @Route("add_map", name="add_map", methods={"GET", "POST"})
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @param PoolSetRepository $pr
+     * @param OsuApiService $api
+     * @param MappoolRepository $mr
+     * @param BeatmapsetRepository $bmsr
+     * @param BeatmapRepository $bmr
+     * @param MappoolMapRepository $mmr
+     * @param bool $replace
+     * @return JsonResponse
+     */
+    public function addMap(EntityManagerInterface $em, Request $request, TagRepository $tr, PoolSetRepository $pr, OsuApiService $api, MappoolRepository $mr, BeatmapsetRepository $bmsr, BeatmapRepository $bmr, MappoolMapRepository $mmr, $replace = False)
     {
 
         $user = $this->security->getUser();
@@ -135,7 +181,6 @@ class MapController extends AbstractController
         try {
             $map_data = $api->getBeatmapInfo($map_id);
         } catch (Exception $e) {
-
             return new JsonResponse(['false', '4']);
         }
 
@@ -159,7 +204,7 @@ class MapController extends AbstractController
         // Insert du beatmapset
         if (!isset($mapset)){
             $mapset = new Beatmapset();
-            $mapset->setCover($map_data['beatmapset']['covers']['cover@2x']);
+            $mapset->setCover($map_data['beatmapset']['covers']['cover']);
             $mapset->setName($map_data['beatmapset']['title']);
             $mapset->setCreator($map_data['beatmapset']['creator']);
             $mapset->setArtist($map_data['beatmapset']['artist']);
@@ -206,6 +251,44 @@ class MapController extends AbstractController
         if (count($mmr->findByMapAndMappool($map, $mappool)) > 0 ){
             return new JsonResponse(['false','7']);
         }
+
+        // UPDATE SR AVERAGE
+        $tmp_col = $mappool->getPoolSet();
+        $tmp_pools = $mr->findBy(['poolSet' => $tmp_col]);
+        $srs = [];
+
+        foreach ($tmp_pools as $tmp_pool){
+            $tmp_mmaps = $mmr->findBy(['mappool' => $tmp_pool]);
+
+            foreach($tmp_mmaps as $tmp){
+
+                array_push($srs, $tmp->getBeatmap()->getStarRating());
+            }
+        }
+        if(count($srs)) {
+            echo $average = round(array_sum($srs)/count($srs),2);
+        }else{
+            $average = 0;
+        }
+        $tags = $tr->findByPoolset($tmp_col->getId());
+        foreach($tags as $tatag){
+            if ($tatag->getType() == 'star_rating'){
+                $tag = $tatag;
+            }
+        }
+        if (isset($tag)){
+            $tag->setName($average);
+        }else{
+            $tag = new Tag();
+            $tag->setType('star_rating');
+            $tag->setName($average);
+            $tag->addPoolSet($tmp_col);
+        }
+        $em->persist($tag);
+        $em->flush();
+        // FIN UPDATE SR
+
+
 
 
         // Insert de la relation Mappool - Map
@@ -276,9 +359,9 @@ class MapController extends AbstractController
      * @param MappoolMapRepository $mmr
      * @return JsonResponse
      */
-    public function replaceMap(EntityManagerInterface $em, Request $request, OsuApiService $api, MappoolRepository $mr, BeatmapsetRepository $bmsr, BeatmapRepository $bmr, MappoolMapRepository $mmr)
+    public function replaceMap(EntityManagerInterface $em,PoolSetRepository $pr, TagRepository $tr, Request $request, OsuApiService $api, MappoolRepository $mr, BeatmapsetRepository $bmsr, BeatmapRepository $bmr, MappoolMapRepository $mmr)
     {
-        return $this->addMap($em, $request, $api, $mr, $bmsr,  $bmr, $mmr, true);
+        return $this->addMap($em, $request, $tr, $pr, $api, $mr, $bmsr,  $bmr, $mmr, true);
     }
 
     /**

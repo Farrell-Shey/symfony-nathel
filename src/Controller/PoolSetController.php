@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Contributor;
 use App\Entity\Invitation;
+use App\Entity\MappoolFollowed;
 use App\Entity\PoolSet;
 use App\Entity\Tag;
 use App\Repository\BeatmapRepository;
 use App\Repository\BeatmapsetRepository;
 use App\Repository\ContributorRepository;
 use App\Repository\InvitationRepository;
+use App\Repository\MappoolFollowedRepository;
 use App\Repository\MappoolMapRepository;
 use App\Repository\MappoolRepository;
 use App\Repository\PoolSetRepository;
@@ -83,7 +85,7 @@ class PoolSetController extends AbstractController
 
 
 
-        return $this->render('/page/collection-page.html.twig', ['col' => $col]);
+        return $this->render('/page/collection-page.html.twig', ['col' => $col, 'deletecontributor' => true]);
 
     }
 
@@ -118,6 +120,7 @@ class PoolSetController extends AbstractController
 
 
         $contributors = $cr->findBy(['user' => $user]);
+
         $collections = [];
         $invitation = $ir->findBy(['user' => $user]);
 
@@ -130,6 +133,7 @@ class PoolSetController extends AbstractController
             $tmp_user = [];
             $tmp_user['id'] = $user->getOsuid();
             $tmp_user['cover'] = $user->getThumbnail();
+            $tmp_user['creator'] = $contributor->getIsCreator();
 
 
             $collection = ['poolset' => $poolset,
@@ -141,11 +145,6 @@ class PoolSetController extends AbstractController
 
             array_push($collections, $collection);
         }
-
-
-
-
-
 
 
 
@@ -303,7 +302,7 @@ class PoolSetController extends AbstractController
 
         // Verification in contributors
         $user = $this->security->getUser();
-
+        $creator = False;
         if($user !== null){
             $start = false;
             $user = $ur->findOneBy(['id' => $user->getId()]);
@@ -312,6 +311,7 @@ class PoolSetController extends AbstractController
             foreach ($contributors as $contributor){
                 if ($user->getId() == $contributor->getUser()->getId()){
                     $start = true;
+                    $creator = $contributor->getIsCreator();
                 }
             }
             if ($start == false){
@@ -412,6 +412,9 @@ class PoolSetController extends AbstractController
                             'NM' => 'NM',
                             'DT' => 'DT',
                             'HR' => 'HR',
+                            'HD' => 'HD',
+                            'FM' => 'FM',
+                            'TB' => 'TB'
                         ]
                         ,
                         'label' => ' ',
@@ -433,6 +436,8 @@ class PoolSetController extends AbstractController
 
         $forms['poolset_data'] = ['title' => $collection['poolset']->getName(), 'thumbnail' => $collection['poolset']->getThumbnail(),'contributors'=> $contributors, 'pool_id' => $collection['poolset']->getId()];
         $forms['maps'] = $maps;
+        $forms['creator'] = $creator;
+        $forms['creator_id'] = $this->security->getUser()->getId();
 
         return $this->render('/page/edit-collection.html.twig', $forms);
     }
@@ -589,17 +594,6 @@ class PoolSetController extends AbstractController
             $tag_rank_max = $tr->findByTypeAndValue('rank_max', (int) ltrim(str_replace(' ', '', $data['rank_max']), '#'))[0];
         }
 
-
-
-
-        //$tag_range_min = $tg->findOneBy(['name' => '1']);
-        //$tag_range_max = $tg->findOneBy(['name' => '500000']);
-        //Save des tags de RANK SI BESOIN
-
-
-
-
-
         $collection->setName($data['title']);
 
         if ($background !=null){
@@ -746,12 +740,18 @@ class PoolSetController extends AbstractController
     public function deleteCollection(EntityManagerInterface $em,TagRepository $tr, Request $request, PoolSetRepository $pr, UserRepository $ur, ContributorRepository $cr, MappoolRepository $mr, MappoolMapRepository $mmr, BeatmapRepository $br, BeatmapsetRepository $bmsr): Response
     {
         $id = $request->getContent();
-
-
-        $collection = $pr->findOneById($id);
+        $pools = $this->getCollection($id, $tr, $request, $pr, $ur, $cr, $mr, $mmr, $br, $bmsr)['mappools'];
+        foreach ($pools as $mappool){
+            $pool = $mr->findOneById($mappool->getId());
+            foreach($mmr->findBy(['mappool' => $pool]) as $mmap){
+                $em->remove($mmap);
+            }
+            $em->remove($pool);
+            $em->flush();
+        }
+        $collection = $pr->findOneBy(['id' => $id]);
         $em->remove($collection);
         $em->flush();
-
         return new JsonResponse(['true']);
     }
 
@@ -782,6 +782,27 @@ class PoolSetController extends AbstractController
             }
         }
         return $tags;
+    }
+
+    /**
+     * * @Route("/delete_contributor", name="delete_contributor", methods={"GET", "POST"})
+     * @param Request $request
+     * @param ContributorRepository $cr
+     * @param EntityManagerInterface $em
+     */
+    public function deleteContributor(Request $request, ContributorRepository $cr, EntityManagerInterface $em){
+        $data = (array) json_decode($request->getContent());
+        $user = $this->security->getUser();
+
+        if ($user->getId() == $data['test']){
+            $contributor = $cr->findByPoolsetAndUser($data['poolset'], $data['user'])[0];
+            $em->remove($contributor);
+            $em->flush();
+        }
+        return new JsonResponse([True]);
+
+
+
     }
 
     /**
@@ -862,6 +883,7 @@ class PoolSetController extends AbstractController
      * @param EntityManagerInterface $em
      * @param Request $request
      * @param InvitationRepository $ir
+     * @param ContributorRepository $cr
      * @return JsonResponse
      */
     public function acceptInvitation(EntityManagerInterface $em, Request $request, InvitationRepository $ir, ContributorRepository $cr): JsonResponse
@@ -876,6 +898,7 @@ class PoolSetController extends AbstractController
             $contributor->setUser($invitation->getUser());
             $contributor->setPoolSet($invitation->getPoolset());
             $contributor->setIsCreator(false);
+            $em->persist($contributor);
         }
         $em->flush();
         return new JsonResponse([true]);
@@ -896,6 +919,50 @@ class PoolSetController extends AbstractController
         $em->persist($invitation);
         $em->flush();
         return new JsonResponse([true]);
+    }
+
+    /**
+     * * @Route("/followall", name="followall", methods={"GET", "POST"})
+     * @param Request $request
+     * @param MappoolFollowedRepository $mfr
+     * @param EntityManagerInterface $em
+     * @param PoolSetRepository $pr
+     * @param BeatmapsetRepository $bmsr
+     * @param MappoolMapRepository $mmr
+     * @param BeatmapRepository $br
+     * @param MappoolRepository $mr
+     * @param UserRepository $ur
+     * @param ContributorRepository $cr
+     * @param TagRepository $tr
+     * @return JsonResponse
+     */
+    public function followAll(Request $request, MappoolFollowedRepository $mfr, EntityManagerInterface $em, PoolSetRepository $pr, BeatmapsetRepository $bmsr, MappoolMapRepository $mmr, BeatmapRepository $br, MappoolRepository $mr, UserRepository $ur,ContributorRepository $cr, TagRepository $tr): JsonResponse
+    {
+        $id = (int) $request->getContent();
+        $col = $pr->findOneBy(['id' => $id]);
+        $user = $this->security->getUser();
+        $mappools = $this->getCollection($col->getId(), $tr, $request, $pr, $ur, $cr, $mr, $mmr, $br, $bmsr)['mappools'];
+        $follows = [];
+        foreach ($mappools as $mappool){
+            $tmp = $mfr->findBy(['user' => $user]);
+            $follow = true;
+            foreach($tmp as $tm){
+                if ($tm->getMappool() === $mappool){
+                    $follow = false;
+                }
+            }
+            if ($follow == true){
+                $mf = new MappoolFollowed();
+                $mf->setUser($user);
+                $mf->setMappool($mappool);
+                $em->persist($mf);
+                $mappool->setFollow($mappool->getFollow() + 1);
+                $em->flush();
+            }
+            array_push($follows, $mappool->getFollow());
+        }
+
+        return new JsonResponse([$follows]);
     }
 
 }

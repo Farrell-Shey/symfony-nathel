@@ -8,13 +8,13 @@
 			<div class="d-flex global-mappool-data" style="background-image: url('{{"/" ~ mappool['poolset'].thumbnail }}')">
 				<div class="d-flex mappool-data">
 					<span class="mappool-name invisible-scrollbar"> {{ mappool['pool'].name }}
-						<a id="unfollow" class="show no-transition" data-pool = "{{ mappool['pool'].id }}" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+						<a id="unfollow{{ mappool['pool'].id }}" class="show no-transition" data-pool = "{{ mappool['pool'].id }}" post="#" data-bs-toggle="collapse" href="#unfollow{{ mappool['pool'].id }}" role="button" aria-expanded="false" aria-controls="unfollow{{ mappool['pool'].id }}">
 							{{ block("follow") }}</a>
-						<a id="unfollow" class="collapse no-transition" data-pool = "{{ mappool['pool'].id }}" post="#" data-bs-toggle="collapse" href="#unfollow" role="button" aria-expanded="false" aria-controls="unfollow">
+						<a id="unfollow{{ mappool['pool'].id }}" class="collapse no-transition" data-pool = "{{ mappool['pool'].id }}" post="#" data-bs-toggle="collapse" href="#unfollow{{ mappool['pool'].id }}" role="button" aria-expanded="false" aria-controls="unfollow{{ mappool['pool'].id }}">
 							{{ block("unfollow") }}</a>
 					</span>
-					<span class="mappool-collection">From {{ mappool['poolset'].name }}'s Collection'</span>
-					<span class="mappool-contributor">& submitted by {{ mappool['contributors'][0].user.name }}</span>
+					<span class="mappool-collection">From <a href="{{ path('index_collection', { 'id': mappool['poolset'].id}) }}">{{ mappool['poolset'].name }}</a>'s Collection</span>
+					<span class="mappool-contributor">& submitted by <a href="{{ path('user', {'id': mappool['contributors'][0].user.osuid}) }}">{{ mappool['contributors'][0].user.name }}</a></span>
 					<span class="mappool-count">{{ mappool['pool'].maps|length}} maps</span>
 					<div class="d-flex mappool-tag">
 
@@ -59,7 +59,7 @@
 
 						<span class="beatmapset-creator">
 							mappée par
-							<a href="#" class="creator-link">{{ map['map'].beatmapset.creator }}
+							<a href="{{ map.map.url }}" class="creator-link">{{ map['map'].beatmapset.creator }}
 							</a>
 						</span>
 
@@ -68,7 +68,7 @@
 							cs: {{ map['map'].cs}} ar: {{ map['map'].ar}} od: {{ map['map'].accuracy}} hp: {{ map['map'].drain}} stars: 4.98
 						</span>
 
-						<a class="dowload-btn bg-transparent border-0" href="#" role="button">
+						<a class="dowload-btn bg-transparent border-0" href="{{ map.map.url }}" role="button">
 							{{ block("download") }}
 						</a>
 					</div>

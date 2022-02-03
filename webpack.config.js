@@ -39,6 +39,7 @@ Encore
     .addEntry('managePage', './assets/managePage.js')
     .addEntry('follow', './assets/follow.js')
     .addEntry('updateScores', './assets/updateScores.js')
+    .addEntry('collectionPage', './assets/collectionPage.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

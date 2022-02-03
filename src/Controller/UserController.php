@@ -143,6 +143,10 @@ class UserController extends AbstractController
                         $sco = $osu->getUserBeatmapScore($user->getOsuId(),$map_id,'16', $mmap->getBeatmap()->getModeInt());
                     }else if ($mmap->getMode() == 'DT'){
                         $sco = $osu->getUserBeatmapScore($user->getOsuId(),$map_id,'64', $mmap->getBeatmap()->getModeInt());
+                    }else if ($mmap->getMode() == 'TB'){
+                        $sco = $osu->getUserBeatmapScore($user->getOsuId(),$map_id,'0', $mmap->getBeatmap()->getModeInt());
+                    }else if ($mmap->getMode() == 'FM'){
+                        $sco = $osu->getUserBeatmapScore($user->getOsuId(),$map_id,'16', $mmap->getBeatmap()->getModeInt());
                     }
 
 
@@ -311,5 +315,7 @@ class UserController extends AbstractController
 
         return new JsonResponse($users);
     }
+
+
 
 }
