@@ -56,7 +56,7 @@ class PoolSet
     private $invitations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Tourney::class, mappedBy="pool_set")
+     * @ORM\OneToMany(targetEntity=Tourney::class, mappedBy="poolset")
      */
     private $tourneys;
 

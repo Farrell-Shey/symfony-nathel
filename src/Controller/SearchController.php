@@ -64,7 +64,7 @@ class SearchController extends AbstractController
         $search = Util::escapeTerm($data['title']);
 
         $json_results = $poolsetFinder->find('*' . $search . '*');
-        dd($json_results);
+
         $collections = $this->getCollections($this->getCollectionIds($data, $json_results, $tr), $mmr, $br, $bmsr, $request,$psc, $pr, $tr, $cr, $ur, $mr);
 
         if (isset(end($collections)['poolset'])){

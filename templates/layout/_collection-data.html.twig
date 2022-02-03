@@ -2,9 +2,11 @@
 	<div class="d-flex collection-card">
 		<div class="bg-collection" style="background-image: url('{{ "/"~col['poolset'].thumbnail }}')">
 			<div class="filter">
+				{% if app.user %}
 				<button type="button" class="d-none d-sm-flex following-btn" data-col="{{ col.poolset.id }}">
 					<span class="following-text">Follow</span>
 				</button>
+				{% endif %}
 				<div class="d-flex data-collection ">
 					{% include "/component/_collection-text.html.twig" %}
 					<div class="d-flex global-tag-card">

@@ -7,12 +7,14 @@
 		<div class="filter">
 			<div class="d-flex global-mappool-data" style="background-image: url('{{"/" ~ mappool['poolset'].thumbnail }}')">
 				<div class="d-flex mappool-data">
+					{% if app.user %}
 					<span class="mappool-name invisible-scrollbar"> {{ mappool['pool'].name }}
 						<a id="unfollow{{ mappool['pool'].id }}" class="show no-transition" data-pool = "{{ mappool['pool'].id }}" post="#" data-bs-toggle="collapse" href="#unfollow{{ mappool['pool'].id }}" role="button" aria-expanded="false" aria-controls="unfollow{{ mappool['pool'].id }}">
 							{{ block("follow") }}</a>
 						<a id="unfollow{{ mappool['pool'].id }}" class="collapse no-transition" data-pool = "{{ mappool['pool'].id }}" post="#" data-bs-toggle="collapse" href="#unfollow{{ mappool['pool'].id }}" role="button" aria-expanded="false" aria-controls="unfollow{{ mappool['pool'].id }}">
 							{{ block("unfollow") }}</a>
 					</span>
+					{% endif %}
 					<span class="mappool-collection">From <a href="{{ path('index_collection', { 'id': mappool['poolset'].id}) }}">{{ mappool['poolset'].name }}</a>'s Collection</span>
 					<span class="mappool-contributor">& submitted by <a href="{{ path('user', {'id': mappool['contributors'][0].user.osuid}) }}">{{ mappool['contributors'][0].user.name }}</a></span>
 					<span class="mappool-count">{{ mappool['pool'].maps|length}} maps</span>

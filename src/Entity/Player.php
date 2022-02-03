@@ -26,7 +26,7 @@ class Player
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Tourney::class, inversedBy="players")
+     * @ORM\ManyToOne(targetEntity=Tourney::class, inversedBy="player")
      * @ORM\JoinColumn(nullable=true)
      */
     private $tourney;

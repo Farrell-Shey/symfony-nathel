@@ -306,7 +306,7 @@ class PoolSetController extends AbstractController
         if($user !== null){
             $start = false;
             $user = $ur->findOneBy(['id' => $user->getId()]);
-            $contributors = $cr->findBy(['poolSet' => $collection]);
+            $contributors = $cr->findBy(['poolSet' => $collection['poolset']]);
             $users = [];
             foreach ($contributors as $contributor){
                 if ($user->getId() == $contributor->getUser()->getId()){

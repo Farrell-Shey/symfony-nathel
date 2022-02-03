@@ -10,10 +10,13 @@
 							<img class="contributor-avatar" src="{{ contributor.user.thumbnail }}">
 						</a>
 
+
 						{% if deletecontributor is defined %}
 							{% else %}
 								{% if creator == true %}
-									<div data-test="{{ creator_id }}" data-user="{{ contributor.user.id }}" data-pool="{{ contributor.poolset.id }}" class="d-flex contributor-delete">{{ block('delete') }}</div>
+									{% if contributor.iscreator == false %}
+										<div data-test="{{ creator_id }}" data-user="{{ contributor.user.id }}" data-pool="{{ contributor.poolset.id }}" class="d-flex contributor-delete">{{ block('delete') }}</div>
+									{% endif %}
 									{% endif %}
 						{% endif %}
 					</div>
